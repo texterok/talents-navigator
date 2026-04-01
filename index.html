@@ -317,8 +317,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .ai-explain-title{font-family:var(--serif);font-size:16px;font-weight:600}
 .ai-explain-themes{display:flex;flex-direction:column;gap:10px}
 .ai-why-theme{display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.5;color:var(--text-1)}
-/* ai-why-num moved to .ai-why-theme .ai-why-num */
-.ai-explain-arrow{font-size:13px;color:var(--text-2);text-align:center;padding-top:4px}
+/* ai-why-num moved to .ai-explain-arrow{font-size:13px;color:var(--text-2);text-align:center;padding-top:4px}
 .ai-why-theme .ai-why-num{flex-shrink:0;min-width:22px;width:22px;height:22px;border-radius:50%;background:var(--text-1);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
 .ai-toggle{background:#F5F3EE;border-radius:12px;overflow:hidden;cursor:pointer}
 .ai-toggle-hdr{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;font-size:14px;font-weight:600;user-select:none}
@@ -1227,6 +1226,19 @@ function renderAiInstr(){
     <div class="ai-intro-text">AI-ассистенты (Claude, ChatGPT, Gemini и другие) работают лучше, когда знают, как вы думаете и что для вас важно. Эти инструкции переводят ваш CliftonStrengths профиль на язык, который понимает AI — и меняет качество ответов с первого сообщения.</div>
   </div>
 
+  <div class="ai-toggle" onclick="this.classList.toggle('open')">
+    <div class="ai-toggle-hdr">
+      <span>Почему этот формат работает</span>
+      <span class="ai-toggle-arrow">▾</span>
+    </div>
+    <div class="ai-toggle-body">
+      <p>Исследования показывают, что запреты (<strong>«никогда не делай»</strong>) LLM выполняет надёжнее, чем предписания (<strong>«всегда делай»</strong>). Добавление причины усиливает эффект — модель экстраполирует правило на смежные случаи, а не применяет его буквально.</p>
+      <p>3–5 конкретных примеров (few-shot) работают лучше абстрактных принципов. Больше примеров — падение качества. Слишком много правил деградируют друг друга: при 30 правилах модель теряет способность определить, какое из них сработало.</p>
+      <p>Поэтому здесь: 3–4 запрета с причиной + 3 примера «вместо/говори» — оптимальное количество для надёжного влияния на поведение AI.</p>
+      <p style="font-size:12px;color:var(--text-2);margin-top:8px">Источники: arxiv 2311.04235, 2407.08440, Anthropic prompting docs, GPT-4.1 Prompting Guide</p>
+    </div>
+  </div>
+
   <div class="ai-explain">
     <div class="ai-explain-title">Почему именно такие инструкции</div>
     <div class="ai-explain-themes">${explanation}</div>
@@ -1270,18 +1282,6 @@ function renderAiInstr(){
     <button class="ai-copy-btn" onclick="copyAiText('aiFullText', this)">Скопировать</button>
   </div>
 
-  <div class="ai-toggle" onclick="this.classList.toggle('open')">
-    <div class="ai-toggle-hdr">
-      <span>Почему этот формат работает</span>
-      <span class="ai-toggle-arrow">▾</span>
-    </div>
-    <div class="ai-toggle-body">
-      <p>Исследования показывают, что запреты (<strong>«никогда не делай»</strong>) LLM выполняет надёжнее, чем предписания (<strong>«всегда делай»</strong>). Добавление причины усиливает эффект — модель экстраполирует правило на смежные случаи, а не применяет его буквально.</p>
-      <p>3–5 конкретных примеров (few-shot) работают лучше абстрактных принципов. Больше примеров — падение качества. Слишком много правил деградируют друг друга: при 30 правилах модель теряет способность определить, какое из них сработало.</p>
-      <p>Поэтому здесь: 3–4 запрета с причиной + 3 примера «вместо/говори» — оптимальное количество для надёжного влияния на поведение AI.</p>
-      <p style="font-size:12px;color:var(--text-2);margin-top:8px">Источники: arxiv 2311.04235, 2407.08440, Anthropic prompting docs, GPT-4.1 Prompting Guide</p>
-    </div>
-  </div>
 </div>`;
 }
 
