@@ -1066,9 +1066,9 @@ function generateAiInstructions(fmt){
     'Communication':{never:'Не давай ответ без контекста — мне важно понимать историю за данными',reason:'данные без нарратива не убеждают',                              example:['Вместо: "Результат: X"','Говори: "Результат X — это произошло потому что Y, и означает Z."']},
   };
 
-  // Build rules from top-5 (max 4 to avoid degradation)
+  // Build rules from top-5
   const rules=[];
-  top5.slice(0,4).forEach(name=>{
+  top5.slice(0,5).forEach(name=>{
     const r=THEME_RULES[name];
     if(r) rules.push(r);
   });
@@ -1196,7 +1196,7 @@ function generateAiExplanation(){
 
   const lines=[];
   lines.push('Твои ведущие темы говорят AI, как с тобой работать:\n');
-  top5.slice(0,4).forEach((name,i)=>{
+  top5.slice(0,5).forEach((name,i)=>{
     const t=findTheme(name);
     const why=THEME_WHY[name];
     if(!t||!why) return;
