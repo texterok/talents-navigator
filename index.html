@@ -311,6 +311,38 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
   .db-label{width:100px;font-size:11px}
   .zt-name{width:110px;font-size:11px}
 }
+
+/* AI Instructions tab */
+.ai-instr-wrap{display:flex;flex-direction:column;gap:24px;padding:8px 0 32px}
+.ai-empty{color:var(--text-2);font-size:15px;padding:40px 0;text-align:center}
+.ai-intro{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:20px 24px}
+.ai-intro-title{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:8px}
+.ai-intro-text{color:var(--text-2);font-size:14px;line-height:1.6}
+.ai-block{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:14px}
+.ai-block-hdr{display:flex;flex-direction:column;gap:4px}
+.ai-block-title{font-family:var(--serif);font-size:17px;font-weight:600}
+.ai-block-subtitle{font-size:12px;color:var(--text-2)}
+.ai-how{background:#F5F3EE;border-radius:8px;padding:14px 16px;font-size:13px}
+.ai-how-title{font-weight:600;margin-bottom:8px;font-size:13px}
+.ai-how-list{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;color:var(--text-1)}
+.ai-how-list li{line-height:1.5}
+.ai-how-note{margin-top:10px;color:var(--text-2);font-size:12px;line-height:1.5}
+.ai-textarea{width:100%;box-sizing:border-box;background:#FAFAF7;border:1px solid var(--border);border-radius:8px;padding:14px;font-family:monospace;font-size:12px;line-height:1.6;color:var(--text-1);resize:vertical;min-height:160px;outline:none}
+.ai-textarea-tall{min-height:260px}
+.ai-copy-btn{align-self:flex-start;background:var(--text-1);color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s,transform .1s}
+.ai-copy-btn:hover{background:#333}
+.ai-copy-btn.copied{background:#059669}
+.ai-why{background:#F5F3EE;border-radius:12px;padding:20px 24px}
+.ai-why-title{font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:14px}
+.ai-why-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ai-why-card{background:#fff;border-radius:8px;padding:14px 16px}
+.ai-why-card-title{font-weight:600;font-size:13px;margin-bottom:6px}
+.ai-why-card-text{font-size:13px;color:var(--text-2);line-height:1.5}
+@media(max-width:600px){
+  .ai-why-grid{grid-template-columns:1fr}
+  .ai-block{padding:16px}
+  .ai-intro{padding:16px}
+}
 </style>
 </head>
 <body>
@@ -393,6 +425,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
     <button class="main-tab active" data-tab="talents" onclick="switchMainTab('talents')">📋 Таланты</button>
     <button class="main-tab" data-tab="dynamics" onclick="switchMainTab('dynamics')">🔗 Связки</button>
     <button class="main-tab" data-tab="checkup" onclick="switchMainTab('checkup')">🎯 Чекап среды</button>
+    <button class="main-tab" data-tab="aiinstr" onclick="switchMainTab('aiinstr')">🤖 Инструкции для AI</button>
   </div>
 
   <!-- TAB: TALENTS -->
@@ -415,6 +448,11 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
   <!-- TAB: CHECKUP -->
   <div class="tab-content" id="tabCheckup">
     <div id="checkupContent"></div>
+  </div>
+
+  <!-- TAB: AI INSTRUCTIONS -->
+  <div class="tab-content" id="tabAiinstr">
+    <div id="aiInstrContent"></div>
   </div>
 
   <!-- EMPTY STATE -->
@@ -829,7 +867,7 @@ function switchMainTab(tab){
   document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelector(`.main-tab[data-tab="${tab}"]`).classList.add('active');
-  const tabMap={talents:'tabTalents',dynamics:'tabDynamics',checkup:'tabCheckup'};
+  const tabMap={talents:'tabTalents',dynamics:'tabDynamics',checkup:'tabCheckup',aiinstr:'tabAiinstr'};
   document.getElementById(tabMap[tab]).classList.add('active');
   if(tab==='dynamics'){renderDynControls();renderDynamics()}
   if(tab==='checkup'){renderCheckup()}
@@ -959,8 +997,187 @@ function answerCheckup(qid,value){
   renderCheckup();
 }
 
+function generateAiInstructions(fmt){
+  if(!selected.length) return '';
+  const top5=selected.slice(0,Math.min(5,selected.length));
+  const top10=selected.slice(0,Math.min(10,selected.length));
+  const bottom5=selected.slice(-Math.min(5,selected.length));
+
+  // Collect brings/needs per top-5
+  const bringsParts=[];
+  const needsParts=[];
+  top5.forEach(name=>{
+    const t=findTheme(name);
+    if(!t) return;
+    if(t.brings) bringsParts.push(t.brings.replace(/\.$/,''));
+    if(t.needs) needsParts.push(t.needs.replace(/^(в\s+|во\s+)?/i,'').replace(/\.$/,''));
+  });
+
+  // Domain style label
+  const domainCount={};
+  top10.forEach(n=>{const t=findTheme(n);if(t) domainCount[t.domain]=(domainCount[t.domain]||0)+1;});
+  const topDomain=Object.entries(domainCount).sort((a,b)=>b[1]-a[1])[0];
+  const domainStyleMap={
+    'Стратегическое мышление':'аналитически — через данные, паттерны и контекст',
+    'Исполнение':'через конкретные задачи и видимый прогресс',
+    'Влияние':'через ясные позиции и прямое действие',
+    'Выстраивание отношений':'через доверие и личный контакт'
+  };
+  const domainStyle=topDomain ? domainStyleMap[topDomain[0]] || '' : '';
+
+  // Bottom themes → what NOT to do
+  const avoidParts=[];
+  bottom5.forEach(name=>{
+    const t=findTheme(name);
+    if(!t) return;
+    const map={
+      'Communication':'не нужны длинные нарративы и storytelling — важна суть',
+      'Positivity':'без искусственного энтузиазма и похвалы ("отличный вопрос!")',
+      'Woo':'светская завязка не нужна, сразу к делу',
+      'Developer':'без педагогики и разжёвывания — нужен результат, не обучение',
+      'Empathy':'не нужно смягчать плохие новости — лучше прямо',
+      'Includer':'не нужно учитывать все точки зрения, важен конкретный результат',
+      'Harmony':'не нужен поиск консенсуса — важна ясная позиция',
+      'Adaptability':'не нужна избыточная гибкость, нужна структура',
+      'Arranger':'не нужно перестраивать процесс — важна глубина',
+      'Achiever':'не нужно торопить с завершением, важна проработка',
+      'Belief':'без морализаторства и ценностных рассуждений',
+      'Consistency':'без шаблонных ответов — важен контекст конкретной ситуации',
+      'Discipline':'без избыточной структуризации процесса',
+      'Futuristic':'без отрыва в далёкое будущее — важен практический горизонт',
+      'Maximizer':'без перфекционизма там, где достаточно "хорошо"',
+    };
+    if(map[name]) avoidParts.push(map[name]);
+  });
+
+  const top10Names=top10.map(n=>{const t=findTheme(n);return t?t.ru:n;}).join(', ');
+  const top5Names=top5.map(n=>{const t=findTheme(n);return t?t.ru:n;}).join(', ');
+
+  if(fmt==='short'){
+    // ~1000 chars for claude.ai personal preferences
+    let lines=[];
+    lines.push(`## Мой профиль CliftonStrengths`);
+    lines.push(`Топ-5: ${top5Names}`);
+    if(domainStyle) lines.push(`Мыслю ${domainStyle}.`);
+    lines.push(``);
+    lines.push(`## Как со мной работать`);
+    lines.push(`- Давай одну аргументированную рекомендацию с данными, не меню вариантов`);
+    lines.push(`- Глубина важнее скорости — поверхностный ответ хуже молчания`);
+    lines.push(`- Плохие новости: прямо, с диагнозом и планом, без смягчений`);
+    if(needsParts.length) lines.push(`- Мне важно: ${needsParts.slice(0,3).join('; ')}`);
+    if(avoidParts.length) lines.push(`- Избегай: ${avoidParts.slice(0,3).join('; ')}`);
+    return lines.join('\n');
+  } else {
+    // Full format for CLAUDE.md
+    let lines=[];
+    lines.push(`## Мой профиль CliftonStrengths`);
+    lines.push(``);
+    lines.push(`**Топ-10:** ${top10Names}`);
+    lines.push(``);
+    lines.push(`### Стиль мышления и решений`);
+    if(domainStyle) lines.push(`- Мыслю ${domainStyle}`);
+    lines.push(`- Давай одну аргументированную рекомендацию с данными — не меню из 3 вариантов`);
+    lines.push(`- Глубина обязательна: поверхностный ответ хуже молчания`);
+    lines.push(``);
+    lines.push(`### Что мне важно`);
+    needsParts.slice(0,5).forEach(n=>lines.push(`- Нуждаюсь в ${n}`));
+    lines.push(``);
+    lines.push(`### Как подавать информацию`);
+    lines.push(`- Плохие новости: прямо, с диагнозом и планом, без смягчений`);
+    lines.push(`- Промежуточные артефакты и частичные выводы полезны`);
+    lines.push(`- Не торопи с решением без достаточных данных`);
+    lines.push(``);
+    lines.push(`### Чего не нужно`);
+    avoidParts.forEach(a=>lines.push(`- ${a}`));
+    if(!avoidParts.length) lines.push(`- Без искусственного энтузиазма и похвалы`);
+    return lines.join('\n');
+  }
+}
+
+function renderAiInstr(){
+  const el=document.getElementById('aiInstrContent');
+  if(!el) return;
+  if(!selected.length){
+    el.innerHTML=`<div class="ai-empty">Вставьте свои таланты выше — и здесь появятся персональные инструкции для AI-ассистентов.</div>`;
+    return;
+  }
+
+  const short=generateAiInstructions('short');
+  const full=generateAiInstructions('full');
+
+  el.innerHTML=`
+<div class="ai-instr-wrap">
+  <div class="ai-intro">
+    <div class="ai-intro-title">Инструкции для AI-ассистента под ваш профиль</div>
+    <div class="ai-intro-text">AI-ассистенты (Claude, ChatGPT, Gemini и другие) работают лучше, когда знают, как вы думаете и что для вас важно. Эти инструкции переводят ваш CliftonStrengths профиль на язык, который понимает AI — и меняет качество ответов с первого сообщения.</div>
+  </div>
+
+  <div class="ai-block">
+    <div class="ai-block-hdr">
+      <div class="ai-block-title">Короткий формат</div>
+      <div class="ai-block-subtitle">Для Claude.ai → Settings → Personal preferences · ChatGPT → Customize ChatGPT</div>
+    </div>
+    <div class="ai-how">
+      <div class="ai-how-title">Как использовать</div>
+      <ol class="ai-how-list">
+        <li>Скопируйте текст ниже</li>
+        <li>Откройте <strong>claude.ai</strong> → иконка профиля → <strong>Settings</strong> → <strong>Personal preferences</strong></li>
+        <li>Вставьте в поле и сохраните</li>
+        <li>Теперь в каждом новом чате Claude будет учитывать ваш стиль автоматически</li>
+      </ol>
+    </div>
+    <textarea class="ai-textarea" id="aiShortText" readonly>${short}</textarea>
+    <button class="ai-copy-btn" onclick="copyAiText('aiShortText', this)">Скопировать</button>
+  </div>
+
+  <div class="ai-block">
+    <div class="ai-block-hdr">
+      <div class="ai-block-title">Расширенный формат</div>
+      <div class="ai-block-subtitle">Для Claude Code → ~/.claude/CLAUDE.md · Cursor · любого AI в IDE</div>
+    </div>
+    <div class="ai-how">
+      <div class="ai-how-title">Как использовать</div>
+      <ol class="ai-how-list">
+        <li>Скопируйте текст ниже</li>
+        <li>Откройте файл <strong>~/.claude/CLAUDE.md</strong> (создайте, если нет)</li>
+        <li>Вставьте в конец файла</li>
+        <li>Claude Code будет загружать ваш профиль в каждую сессию автоматически</li>
+      </ol>
+      <div class="ai-how-note">Также работает для Cursor: вставьте в <strong>.cursorrules</strong> в корне проекта или в <strong>~/.cursor/rules</strong> для глобального применения.</div>
+    </div>
+    <textarea class="ai-textarea ai-textarea-tall" id="aiFullText" readonly>${full}</textarea>
+    <button class="ai-copy-btn" onclick="copyAiText('aiFullText', this)">Скопировать</button>
+  </div>
+
+  <div class="ai-why">
+    <div class="ai-why-title">Почему это работает</div>
+    <div class="ai-why-grid">
+      <div class="ai-why-card">
+        <div class="ai-why-card-title">Без инструкций</div>
+        <div class="ai-why-card-text">AI даёт универсальные ответы — 3 варианта на выбор, мягкие формулировки, подбадривание. Полезно для среднего пользователя, но не для вас.</div>
+      </div>
+      <div class="ai-why-card">
+        <div class="ai-why-card-title">С инструкциями</div>
+        <div class="ai-why-card-text">AI знает ваш стиль мышления, что вас демотивирует и как подавать информацию. Ответы точнее, короче, без лишнего.</div>
+      </div>
+    </div>
+  </div>
+</div>`;
+}
+
+function copyAiText(id, btn){
+  const el=document.getElementById(id);
+  if(!el) return;
+  navigator.clipboard.writeText(el.value).then(()=>{
+    const orig=btn.textContent;
+    btn.textContent='Скопировано!';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent=orig;btn.classList.remove('copied');},2000);
+  });
+}
+
 function render(){
-  renderChips();renderDomainBalance();renderCards();
+  renderChips();renderDomainBalance();renderCards();renderAiInstr();
   const tabs=document.getElementById('mainTabs');
   if(selected.length>=2)tabs.classList.add('visible');else tabs.classList.remove('visible');
   if(document.getElementById('tabDynamics').classList.contains('active')){renderDynControls();renderDynamics()}
