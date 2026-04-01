@@ -312,51 +312,49 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
   .zt-name{width:110px;font-size:11px}
 }
 
-/* AI explanation block */
-.ai-explain{background:#F5F3EE;border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:14px}
-.ai-explain-title{font-family:var(--serif);font-size:16px;font-weight:600}
-.ai-explain-themes{display:flex;flex-direction:column;gap:10px}
-.ai-why-theme{display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.5;color:var(--text-1)}
-/* ai-why-num moved to .ai-explain-arrow{font-size:13px;color:var(--text-2);text-align:center;padding-top:4px}
-.ai-why-theme .ai-why-num{flex-shrink:0;min-width:22px;width:22px;height:22px;border-radius:50%;background:var(--text-1);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
-.ai-toggle{background:#F5F3EE;border-radius:12px;overflow:hidden;cursor:pointer}
-.ai-toggle-hdr{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;font-size:14px;font-weight:600;user-select:none}
-.ai-toggle-arrow{transition:transform .2s;font-size:12px;color:var(--text-2)}
-.ai-toggle.open .ai-toggle-arrow{transform:rotate(180deg)}
-.ai-toggle-body{display:none;padding:0 24px 20px;font-size:13px;color:var(--text-2);line-height:1.6;display:flex;flex-direction:column;gap:8px}
-.ai-toggle:not(.open) .ai-toggle-body{display:none}
-.ai-toggle.open .ai-toggle-body{display:flex}
-
 /* AI Instructions tab */
-.ai-instr-wrap{display:flex;flex-direction:column;gap:24px;padding:8px 0 32px}
+.ai-instr-wrap{display:flex;flex-direction:column;gap:20px;padding:8px 0 32px}
 .ai-empty{color:var(--text-2);font-size:15px;padding:40px 0;text-align:center}
+
 .ai-intro{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:20px 24px}
 .ai-intro-title{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:8px}
 .ai-intro-text{color:var(--text-2);font-size:14px;line-height:1.6}
+
+.ai-toggle{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--card-bg)}
+.ai-toggle-hdr{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;font-size:13px;font-weight:600;cursor:pointer;user-select:none;gap:8px}
+.ai-toggle-icon{font-size:16px;flex-shrink:0}
+.ai-toggle-arrow{transition:transform .2s;font-size:11px;color:var(--text-2);flex-shrink:0}
+.ai-toggle.open .ai-toggle-arrow{transform:rotate(180deg)}
+.ai-toggle-body{display:none;padding:0 20px 18px;font-size:13px;color:var(--text-2);line-height:1.6}
+.ai-toggle.open .ai-toggle-body{display:block}
+.ai-toggle-body p{margin:0 0 8px}
+.ai-toggle-body p:last-child{margin-bottom:0}
+
+.ai-explain{background:#F5F3EE;border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.ai-explain-title{font-family:var(--serif);font-size:15px;font-weight:600}
+.ai-explain-themes{display:flex;flex-direction:column;gap:10px}
+.ai-theme-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.5;color:var(--text-1)}
+.ai-theme-num{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--text-1);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.ai-explain-footer{font-size:12px;color:var(--text-2);text-align:center;border-top:1px solid var(--border);padding-top:10px;margin-top:2px}
+
 .ai-block{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:14px}
-.ai-block-hdr{display:flex;flex-direction:column;gap:4px}
 .ai-block-title{font-family:var(--serif);font-size:17px;font-weight:600}
-.ai-block-subtitle{font-size:12px;color:var(--text-2)}
-.ai-how{background:#F5F3EE;border-radius:8px;padding:14px 16px;font-size:13px}
-.ai-how-title{font-weight:600;margin-bottom:8px;font-size:13px}
-.ai-how-list{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;color:var(--text-1)}
+.ai-block-subtitle{font-size:12px;color:var(--text-2);margin-top:2px}
+.ai-how{background:#F5F3EE;border-radius:8px;padding:14px 16px}
+.ai-how-title{font-weight:600;font-size:13px;margin-bottom:8px}
+.ai-how-list{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;color:var(--text-1);font-size:13px}
 .ai-how-list li{line-height:1.5}
 .ai-how-note{margin-top:10px;color:var(--text-2);font-size:12px;line-height:1.5}
 .ai-textarea{width:100%;box-sizing:border-box;background:#FAFAF7;border:1px solid var(--border);border-radius:8px;padding:14px;font-family:monospace;font-size:12px;line-height:1.6;color:var(--text-1);resize:vertical;min-height:160px;outline:none}
 .ai-textarea-tall{min-height:260px}
-.ai-copy-btn{align-self:flex-start;background:var(--text-1);color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s,transform .1s}
+.ai-copy-btn{align-self:flex-start;background:var(--text-1);color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s}
 .ai-copy-btn:hover{background:#333}
 .ai-copy-btn.copied{background:#059669}
-.ai-why{background:#F5F3EE;border-radius:12px;padding:20px 24px}
-.ai-why-title{font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:14px}
-.ai-why-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ai-why-card{background:#fff;border-radius:8px;padding:14px 16px}
-.ai-why-card-title{font-weight:600;font-size:13px;margin-bottom:6px}
-.ai-why-card-text{font-size:13px;color:var(--text-2);line-height:1.5}
+
 @media(max-width:600px){
-  .ai-why-grid{grid-template-columns:1fr}
   .ai-block{padding:16px}
   .ai-intro{padding:16px}
+  .ai-explain{padding:14px 16px}
 }
 </style>
 </head>
@@ -1202,7 +1200,7 @@ function generateAiExplanation(){
     const t=findTheme(name);
     const why=THEME_WHY[name];
     if(!t||!why) return;
-    lines.push(`<div class="ai-why-theme"><span class="ai-why-num">${i+1}</span><div><strong>${t.ru}</strong> — ${why}</div></div>`);
+    lines.push(`<div class="ai-theme-row"><span class="ai-theme-num">${i+1}</span><div><strong>${t.ru}</strong> — ${why}</div></div>`);
   });
   return lines.join('');
 }
@@ -1226,23 +1224,24 @@ function renderAiInstr(){
     <div class="ai-intro-text">AI-ассистенты (Claude, ChatGPT, Gemini и другие) работают лучше, когда знают, как вы думаете и что для вас важно. Эти инструкции переводят ваш CliftonStrengths профиль на язык, который понимает AI — и меняет качество ответов с первого сообщения.</div>
   </div>
 
-  <div class="ai-toggle" onclick="this.classList.toggle('open')">
-    <div class="ai-toggle-hdr">
-      <span>Почему этот формат работает</span>
+  <div class="ai-toggle">
+    <div class="ai-toggle-hdr" onclick="this.parentElement.classList.toggle('open')">
+      <span class="ai-toggle-icon">📖</span>
+      <span style="flex:1">Почему этот формат работает</span>
       <span class="ai-toggle-arrow">▾</span>
     </div>
     <div class="ai-toggle-body">
       <p>Исследования показывают, что запреты (<strong>«никогда не делай»</strong>) LLM выполняет надёжнее, чем предписания (<strong>«всегда делай»</strong>). Добавление причины усиливает эффект — модель экстраполирует правило на смежные случаи, а не применяет его буквально.</p>
-      <p>3–5 конкретных примеров (few-shot) работают лучше абстрактных принципов. Больше примеров — падение качества. Слишком много правил деградируют друг друга: при 30 правилах модель теряет способность определить, какое из них сработало.</p>
+      <p>3–5 конкретных примеров (few-shot) работают лучше абстрактных принципов. Больше примеров — падение качества. При 30 правилах модель теряет способность определить, какое из них сработало.</p>
       <p>Поэтому здесь: 3–4 запрета с причиной + 3 примера «вместо/говори» — оптимальное количество для надёжного влияния на поведение AI.</p>
-      <p style="font-size:12px;color:var(--text-2);margin-top:8px">Источники: arxiv 2311.04235, 2407.08440, Anthropic prompting docs, GPT-4.1 Prompting Guide</p>
+      <p style="font-size:12px;color:var(--text-2);margin-top:4px">Источники: arxiv 2311.04235, 2407.08440, Anthropic prompting docs, GPT-4.1 Prompting Guide</p>
     </div>
   </div>
 
   <div class="ai-explain">
     <div class="ai-explain-title">Почему именно такие инструкции</div>
     <div class="ai-explain-themes">${explanation}</div>
-    <div class="ai-explain-arrow">↓ Из этого вытекают правила ниже</div>
+    <div class="ai-explain-footer">↓ Из этого вытекают правила ниже</div>
   </div>
 
   <div class="ai-block">
