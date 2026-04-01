@@ -317,8 +317,16 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .ai-explain-title{font-family:var(--serif);font-size:16px;font-weight:600}
 .ai-explain-themes{display:flex;flex-direction:column;gap:10px}
 .ai-why-theme{display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.5;color:var(--text-1)}
-.ai-why-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--text-1);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+/* ai-why-num moved to .ai-why-theme .ai-why-num */
 .ai-explain-arrow{font-size:13px;color:var(--text-2);text-align:center;padding-top:4px}
+.ai-why-theme .ai-why-num{flex-shrink:0;min-width:22px;width:22px;height:22px;border-radius:50%;background:var(--text-1);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.ai-toggle{background:#F5F3EE;border-radius:12px;overflow:hidden;cursor:pointer}
+.ai-toggle-hdr{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;font-size:14px;font-weight:600;user-select:none}
+.ai-toggle-arrow{transition:transform .2s;font-size:12px;color:var(--text-2)}
+.ai-toggle.open .ai-toggle-arrow{transform:rotate(180deg)}
+.ai-toggle-body{display:none;padding:0 24px 20px;font-size:13px;color:var(--text-2);line-height:1.6;display:flex;flex-direction:column;gap:8px}
+.ai-toggle:not(.open) .ai-toggle-body{display:none}
+.ai-toggle.open .ai-toggle-body{display:flex}
 
 /* AI Instructions tab */
 .ai-instr-wrap{display:flex;flex-direction:column;gap:24px;padding:8px 0 32px}
@@ -1262,17 +1270,16 @@ function renderAiInstr(){
     <button class="ai-copy-btn" onclick="copyAiText('aiFullText', this)">Скопировать</button>
   </div>
 
-  <div class="ai-why">
-    <div class="ai-why-title">Почему это работает</div>
-    <div class="ai-why-grid">
-      <div class="ai-why-card">
-        <div class="ai-why-card-title">Без инструкций</div>
-        <div class="ai-why-card-text">AI даёт универсальные ответы — 3 варианта на выбор, мягкие формулировки, подбадривание. Полезно для среднего пользователя, но не для вас.</div>
-      </div>
-      <div class="ai-why-card">
-        <div class="ai-why-card-title">С инструкциями</div>
-        <div class="ai-why-card-text">AI знает ваш стиль мышления, что вас демотивирует и как подавать информацию. Ответы точнее, короче, без лишнего.</div>
-      </div>
+  <div class="ai-toggle" onclick="this.classList.toggle('open')">
+    <div class="ai-toggle-hdr">
+      <span>Почему этот формат работает</span>
+      <span class="ai-toggle-arrow">▾</span>
+    </div>
+    <div class="ai-toggle-body">
+      <p>Исследования показывают, что запреты (<strong>«никогда не делай»</strong>) LLM выполняет надёжнее, чем предписания (<strong>«всегда делай»</strong>). Добавление причины усиливает эффект — модель экстраполирует правило на смежные случаи, а не применяет его буквально.</p>
+      <p>3–5 конкретных примеров (few-shot) работают лучше абстрактных принципов. Больше примеров — падение качества. Слишком много правил деградируют друг друга: при 30 правилах модель теряет способность определить, какое из них сработало.</p>
+      <p>Поэтому здесь: 3–4 запрета с причиной + 3 примера «вместо/говори» — оптимальное количество для надёжного влияния на поведение AI.</p>
+      <p style="font-size:12px;color:var(--text-2);margin-top:8px">Источники: arxiv 2311.04235, 2407.08440, Anthropic prompting docs, GPT-4.1 Prompting Guide</p>
     </div>
   </div>
 </div>`;
