@@ -334,6 +334,9 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .ai-explain-title{font-family:var(--serif);font-size:15px;font-weight:600}
 .ai-explain-themes{display:flex;flex-direction:column;gap:10px}
 .ai-theme-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.5;color:var(--text-1)}
+.ai-combo-row{background:#F0EDE6;border-radius:8px;padding:8px 10px;margin:-2px 0}
+.ai-combo-badge{display:inline-block;font-size:10px;font-weight:600;color:#6B5E4E;background:#E8E0D3;border-radius:4px;padding:1px 5px;margin-left:4px;vertical-align:middle}
+.ai-expl-intro{font-size:12px;color:var(--text-2);margin-bottom:4px}
 .ai-theme-num{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:#1A1A1A;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
 .ai-explain-footer{font-size:12px;color:var(--text-2);text-align:center;border-top:1px solid var(--border);padding-top:10px;margin-top:2px}
 
@@ -1295,7 +1298,7 @@ function generateAiInstructions(fmt){
     for(let j=i+1;j<top5.length&&rules.length<2;j++){
       const key=top5[i]+'+'+top5[j];
       if(COMBO_RULES[key]){
-        rules.push(COMBO_RULES[key]);
+        rules.push(Object.assign({},COMBO_RULES[key],{_source:'combo',_themes:[top5[i],top5[j]]}));
         usedThemes.add(top5[i]);
         usedThemes.add(top5[j]);
       }
@@ -1310,7 +1313,7 @@ function generateAiInstructions(fmt){
     if(!r) return;
     const zone=pos<5?'z1':pos<10?'z2':'z3';
     const variant=r[zone]||r.z1;
-    if(variant) rules.push(variant);
+    if(variant) rules.push(Object.assign({},variant,{_source:'theme',_themes:[name]}));
   });
 
   const avoidLines=[];
@@ -1357,7 +1360,30 @@ function generateAiInstructions(fmt){
 
 function generateAiExplanation(){
   if(!selected.length) return '';
-  const top5=selected.slice(0,Math.min(5,selected.length));
+
+  const COMBO_WHY={
+    'Input+Deliberative':       'эти две темы вместе создают длинный цикл: сначала собираешь данные (Input), потом взвешиваешь риски (Deliberative). AI, который торопит к решению, ломает оба процесса одновременно. Но без safety valve этот цикл может не заканчиваться — поэтому правило двустороннее.',
+    'Analytical+Deliberative':  'Analytical требует видеть логику за выводом, Deliberative — не спешить. Вместе они дают потребность в полном аналитическом цикле перед любой рекомендацией. Финальный ответ без промежуточных данных воспринимается как прыжок через этапы.',
+    'Analytical+Ideation':      'Analytical и Ideation работают в разных режимах: один разбирает причинно-следственные связи, другой генерирует нестандартные углы. Когда они смешаны в одном предложении, аналитическая критика убивает идею до её формулировки. Разделение на блоки даёт каждому режиму пространство.',
+    'Input+Learner':            'оба таланта ценят процесс накопления — Input собирает информацию широко, Learner углубляется в механику. Для них "этого уже достаточно" — не помощь, а обрыв процесса, который сам по себе ценен.',
+    'Restorative+Analytical':   'Restorative хочет чинить, Analytical — понимать причину. Вместе они дают потребность в диагнозе раньше рецепта. Обходной путь без объяснения корня проблемы не даёт ни удовлетворения, ни понимания.',
+    'Strategic+Analytical':     'Strategic видит альтернативные пути, Analytical разбирает логику каждого. Одна рекомендация без веера вариантов выглядит как упрощение задачи, которая на самом деле многомерна.',
+    'Strategic+Context':        'Strategic строит маршрут вперёд, Context понимает через прецеденты. Вместе они требуют не просто пути, но и обоснования почему этот путь работал раньше — история маршрута становится частью его ценности.',
+    'Strategic+Futuristic':     'оба таланта мыслят в горизонте. Попытка заземлить их на "что делаем на этой неделе" в момент стратегического мышления переключает режим и обрывает продуктивный процесс.',
+    'Significance+Individualization': 'Significance хочет, чтобы ответ был релевантен именно этому человеку, Individualization видит уникальность каждой ситуации. Универсальный совет для этой пары — двойное промахивание: ни по контексту, ни по персоне.',
+    'Achiever+Responsibility':  'Achiever берёт и делает, Responsibility отвечает за взятое. Предложение делегировать или сократить объём воспринимается как сомнение в способности выполнить обязательство — это задевает обе темы.',
+    'Command+Self-Assurance':   'Command говорит прямо и берёт инициативу, Self-Assurance уверен в своих суждениях. Смягчённая обратная связь и избыточные оговорки для этой пары — признак неуважения, а не вежливости.',
+    'Command+Activator':        'оба хотят действия немедленно. Анализ всех вариантов перед первым шагом для этой пары — трата времени, а не осторожность.',
+    'Empathy+Harmony':          'Empathy чувствует состояния людей, Harmony избегает напряжения. Конфронтационное решение как первый вариант задевает обе темы — даже если оно эффективно, стиль подачи важнее скорости.',
+    'Relator+Empathy':          'оба строят через понимание человека. Переход к решению без признания человеческого контекста ощущается как игнорирование главного — не задачи, а человека за задачей.',
+    'Focus+Discipline':         'Focus держит внимание на одном, Discipline строит структуру. Параллельные треки и "кстати, есть ещё подход" для этой пары — не расширение, а рассеивание.',
+    'Futuristic+Ideation':      'Futuristic видит возможности в будущем, Ideation генерирует идеи. Оба процесса требуют пространства без преждевременной оценки реалистичности — критика на стадии генерации обрывает именно лучшие идеи.',
+    'Maximizer+Significance':   'Maximizer хочет лучшего, Significance хочет чтобы это было видно. "Достаточно хорошего" для этой пары — двойная неудача: ни качество не достигнуто, ни публичное признание не возможно.',
+    'Consistency+Harmony':      'Consistency требует одинаковых правил для всех, Harmony ищет согласие в группе. Персонализированное исключение для одного человека разрушает оба принципа: и справедливость, и групповой мир.',
+    'Belief+Responsibility':    'Belief держит ценности как ограничение, Responsibility отвечает за взятые обязательства. Компромисс с ценностями ради результата — нарушение обоих: и внутренних принципов, и личной ответственности.',
+    'Developer+Individualization': 'Developer растит людей, Individualization видит каждого уникальным. Универсальный совет по развитию — оксюморон для этой пары: развитие без учёта конкретного человека не работает.',
+    'Activator+Adaptability':   'Activator запускает немедленно, Adaptability движется итерационно. Требование детального плана как условия старта противоречит обеим темам: одна хочет начать сейчас, другая — корректировать в процессе.',
+  };
 
   const THEME_WHY={
     'Input':        'ты накапливаешь информацию и думаешь через глубину. Поверхностный ответ воспринимается как "тема не проработана".',
@@ -1396,14 +1422,66 @@ function generateAiExplanation(){
     'Communication':'данные без нарратива не убеждают тебя. Тебе важно понимать историю за результатом.',
   };
 
-  const lines=[];
-  lines.push('Твои ведущие темы говорят AI, как с тобой работать:\n');
-  top5.slice(0,5).forEach((name,i)=>{
-    const t=findTheme(name);
-    const why=THEME_WHY[name];
-    if(!t||!why) return;
-    lines.push(`<div class="ai-theme-row"><span class="ai-theme-num">${i+1}</span><div><strong>${t.ru}</strong> — ${why}</div></div>`);
+  // Get the actual rules that were built (same logic as generateAiInstructions)
+  const top5=selected.slice(0,Math.min(5,selected.length));
+  const THEME_RULES_ZONES={
+    'Input':{z1:1},'Deliberative':{z1:1},'Analytical':{z1:1},'Ideation':{z1:1},'Intellection':{z1:1},
+    'Learner':{z1:1},'Restorative':{z1:1},'Significance':{z1:1},'Context':{z1:1},'Strategic':{z1:1},
+    'Relator':{z1:1},'Responsibility':{z1:1},'Individualization':{z1:1},'Connectedness':{z1:1},
+    'Activator':{z1:1},'Focus':{z1:1},'Competition':{z1:1},'Maximizer':{z1:1},'Command':{z1:1},
+    'Self-Assurance':{z1:1},'Consistency':{z1:1},'Futuristic':{z1:1},'Adaptability':{z1:1},
+    'Belief':{z1:1},'Discipline':{z1:1},'Harmony':{z1:1},'Empathy':{z1:1},'Achiever':{z1:1},
+    'Arranger':{z1:1},'Includer':{z1:1},'Woo':{z1:1},'Developer':{z1:1},'Positivity':{z1:1},
+    'Communication':{z1:1},
+  };
+  // Minimal COMBO_RULES keys set to detect combos
+  const COMBO_KEYS=new Set([
+    'Input+Deliberative','Analytical+Deliberative','Analytical+Ideation','Input+Learner',
+    'Restorative+Analytical','Strategic+Analytical','Strategic+Context','Strategic+Futuristic',
+    'Significance+Individualization','Achiever+Responsibility','Command+Self-Assurance',
+    'Command+Activator','Empathy+Harmony','Relator+Empathy','Focus+Discipline',
+    'Futuristic+Ideation','Maximizer+Significance','Consistency+Harmony','Belief+Responsibility',
+    'Developer+Individualization','Activator+Adaptability',
+  ]);
+
+  const usedThemes=new Set();
+  const appliedRules=[];
+  for(let i=0;i<top5.length&&appliedRules.length<2;i++){
+    for(let j=i+1;j<top5.length&&appliedRules.length<2;j++){
+      const key=top5[i]+'+'+top5[j];
+      const keyRev=top5[j]+'+'+top5[i];
+      const canonical=COMBO_KEYS.has(key)?key:COMBO_KEYS.has(keyRev)?keyRev:null;
+      if(canonical){
+        appliedRules.push({source:'combo',themes:[top5[i],top5[j]],key:canonical});
+        usedThemes.add(top5[i]);
+        usedThemes.add(top5[j]);
+      }
+    }
+  }
+  top5.forEach((name)=>{
+    if(appliedRules.length>=4) return;
+    if(usedThemes.has(name)) return;
+    if(THEME_RULES_ZONES[name]) appliedRules.push({source:'theme',themes:[name]});
   });
+
+  const lines=[];
+  lines.push('<div class="ai-expl-intro">Откуда взялись именно эти инструкции — и почему они работают для тебя:</div>');
+
+  appliedRules.forEach((rule,i)=>{
+    if(rule.source==='combo'){
+      const [a,b]=rule.themes;
+      const ta=findTheme(a), tb=findTheme(b);
+      const why=COMBO_WHY[rule.key]||COMBO_WHY[b+'+'+a]||'';
+      const nameA=ta?ta.ru:a, nameB=tb?tb.ru:b;
+      lines.push(`<div class="ai-theme-row ai-combo-row"><span class="ai-theme-num">${i+1}</span><div><strong>${nameA} + ${nameB}</strong> <span class="ai-combo-badge">связка</span><br>${why}</div></div>`);
+    } else {
+      const name=rule.themes[0];
+      const t=findTheme(name);
+      const why=THEME_WHY[name]||'';
+      lines.push(`<div class="ai-theme-row"><span class="ai-theme-num">${i+1}</span><div><strong>${t?t.ru:name}</strong> — ${why}</div></div>`);
+    }
+  });
+
   return lines.join('');
 }
 
