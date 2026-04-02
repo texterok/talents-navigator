@@ -1810,22 +1810,18 @@ function renderAmplify(){
     return out;
   }
 
-  // Сначала — полные карточки (есть и AMP_DATA и AMP_AGENTS)
+  // Рендерим карточки в порядке selected (по позиции в профиле)
   let hasAny=false;
-  Object.entries(AMP_DATA).forEach(([name,data])=>{
+  selected.forEach(name=>{
     const zone=getThemeZone(name);
     if(!zone) return;
-    hasAny=true;
-    lines.push(...renderFullCard(name,data,zone));
-  });
-
-  // Потом — упрощённые карточки (есть AMP_AGENTS, но нет в AMP_DATA)
-  Object.keys(AMP_AGENTS).forEach(name=>{
-    if(AMP_DATA[name]) return; // уже отрендерено выше
-    const zone=getThemeZone(name);
-    if(!zone) return;
-    hasAny=true;
-    lines.push(...renderSimpleCard(name));
+    if(AMP_DATA[name]){
+      hasAny=true;
+      lines.push(...renderFullCard(name,AMP_DATA[name],zone));
+    } else if(AMP_AGENTS[name]){
+      hasAny=true;
+      lines.push(...renderSimpleCard(name));
+    }
   });
 
   if(!hasAny){
