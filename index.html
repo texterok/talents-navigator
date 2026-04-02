@@ -364,6 +364,14 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .amp-limit{background:#FDF0F0;border-radius:8px;padding:10px 14px;font-size:12px;color:#8B2020;line-height:1.5;margin-top:4px}
 .amp-limit-label{font-weight:700;margin-right:4px}
 .amp-divider{border:none;border-top:1px solid var(--border);margin:0}
+.amp-agents{display:flex;flex-direction:column;gap:0;margin-top:12px;border-top:1px solid var(--border);padding-top:12px}
+.amp-agents-title{font-size:11px;font-weight:700;color:var(--text-2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.amp-agent-row{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.amp-agent-row:last-child{border-bottom:none;padding-bottom:0}
+.amp-agent-name{flex-shrink:0;font-size:11px;font-weight:700;background:#1A1A1A;color:#fff;border-radius:5px;padding:3px 7px;height:fit-content;white-space:nowrap}
+.amp-agent-body{display:flex;flex-direction:column;gap:3px;flex:1}
+.amp-agent-trigger{font-size:11px;color:var(--text-2);font-style:italic}
+.amp-agent-task{font-size:12px;color:var(--text-1);line-height:1.5}
 
 .ai-block{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:14px}
 .ai-block-title{font-family:var(--serif);font-size:17px;font-weight:600}
@@ -1678,6 +1686,25 @@ function getThemeZone(name){
   return 'z5';
 }
 
+const AMP_AGENTS={
+  'Communication':{
+    function:'Превращает идеи и факты в истории, которые выживают в памяти аудитории — находит слова, метафоры и нарратив.',
+    agents:[
+      {name:'Claude Opus',trigger:'Перед презентацией, важным письмом или объяснением сложной идеи',task:'«Вот сухой факт/данные: [текст]. Превратите это в историю с героем, напряжением и развязкой. Аудитория: [описание]. Формат: [презентация/письмо/речь].»'},
+      {name:'Claude Sonnet',trigger:'При написании любого текста длиннее 3 абзацев',task:'«Перепиши этот текст так, чтобы первое предложение захватило внимание, середина удержала, финал запомнился. Сохрани смысл, измени подачу.»'},
+    ],
+    limit:'AI не воспроизводит личный голос и харизму — неповторимую манеру, которую нельзя делегировать генерации текста.'
+  },
+  'Adaptability':{
+    function:'Удерживает продуктивность в условиях неопределённости — быстро переориентируется без стресса от нарушения плана.',
+    agents:[
+      {name:'Claude Sonnet',trigger:'При любом внезапном изменении — отмена встречи, смена приоритетов, новая задача',task:'«Исходный план был [А]. Только что изменилось [Б]. Что остаётся актуальным, что отменяется, что пересмотреть? Дай быстрый пересчёт приоритетов.»'},
+      {name:'Make / Zapier',trigger:'При изменении статуса задач в трекере',task:'Автоуведомление при изменении статуса ключевых задач с предложением пересмотреть связанные — чтобы изменения не накапливались незаметно.'},
+    ],
+    limit:'AI не воспроизводит психологическую гибкость — спокойствие при хаосе это диспозиция личности, не алгоритм.'
+  },
+};
+
 function renderAmplify(){
   const el=document.getElementById('amplifyContent');
   if(!el) return;
@@ -1709,6 +1736,8 @@ function renderAmplify(){
     const tagText=isStrong?'Мультипликатор':'Компенсатор';
     const zoneLabel=`#${pos}`;
 
+    const agentData=AMP_AGENTS[name];
+
     lines.push(`<div class="amp-card">`);
     lines.push(`<div class="amp-card-header"><span class="amp-tag ${tagClass}">${tagText}</span><span class="amp-theme-name">${displayName} / ${name}</span><span class="amp-zone-badge">${zoneLabel}</span></div>`);
     lines.push(`<div class="amp-card-body"><strong>${modeData.headline}</strong><br>${modeData.why}</div>`);
@@ -1719,6 +1748,15 @@ function renderAmplify(){
     lines.push(`</div>`);
     if(modeData.limit){
       lines.push(`<div class="amp-limit"><span class="amp-limit-label">Граница:</span>${modeData.limit}</div>`);
+    }
+    // Agents section
+    if(agentData&&agentData.agents&&agentData.agents.length){
+      lines.push(`<div class="amp-agents">`);
+      lines.push(`<div class="amp-agents-title">Агенты</div>`);
+      agentData.agents.forEach(a=>{
+        lines.push(`<div class="amp-agent-row"><span class="amp-agent-name">${a.name}</span><div class="amp-agent-body"><div class="amp-agent-trigger">${a.trigger}</div><div class="amp-agent-task">${a.task}</div></div></div>`);
+      });
+      lines.push(`</div>`);
     }
     lines.push(`</div>`);
   });
