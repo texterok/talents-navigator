@@ -353,11 +353,11 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .amp-card-hdr-info{flex:1;display:flex;flex-direction:column;gap:2px}
 .amp-card-hdr-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .amp-card-headline{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--text-1)}
-.amp-card-arrow{font-size:14px;color:var(--text-2);transition:transform .2s;flex-shrink:0}
+.amp-card-arrow{font-size:18px;color:#4A4A4A;transition:transform .2s;flex-shrink:0}
 .amp-card.open .amp-card-arrow{transform:rotate(180deg)}
-.amp-card-body-wrap{display:none;padding:0 20px 18px;display:flex;flex-direction:column;gap:12px}
-.amp-card.open .amp-card-body-wrap{display:flex}
-.amp-card-body-wrap{display:none}
+.amp-card-body-wrap{display:none;padding:0 20px 18px;flex-direction:column;gap:12px}
+.amp-card.open .amp-card-body-wrap{display:flex;flex-direction:column;gap:12px}
+.amp-card.open .amp-card-hdr{border-bottom:1px solid var(--border)}
 .amp-card-header{display:flex;align-items:center;gap:10px}
 .amp-tag{font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 8px;border-radius:5px}
 .amp-tag-multiplier{background:#D6EDD6;color:#2A6B2A}
@@ -1645,52 +1645,50 @@ function copyAiText(id, btn){
 const AMP_DATA={
   'Communication':{
     closability:'compensator',
-    // What AI amplifies when Communication is strong (z1)
     multiplier:{
-      headline:'AI масштабирует твой голос',
-      why:'Communication в топ-5 — ты уже умеешь находить слова и рассказывать истории. AI даёт тебе сырьё и скорость, ты доводишь до своего голоса.',
+      headline:'AI масштабирует влияние твоего голоса',
+      why:'Communication в топ-5 — ты уже чувствуешь аудиторию и умеешь находить слова. AI даёт скорость и масштаб: больше форматов, быстрее итерации, точнее калибровка под реакцию.',
       scenarios:[
-        {label:'Контент',text:'Черновик поста, статьи или письма за 2 минуты — ты правишь под свой стиль, не пишешь с нуля.'},
-        {label:'Масштаб',text:'Один текст → адаптация под 5 каналов (TG, LinkedIn, email, сайт, выступление) без потери сути.'},
-        {label:'Подготовка',text:'Загрузи тезисы выступления — AI строит нарратив, находит метафоры, предлагает сильный opening.'},
-        {label:'Обратная связь',text:'Вставь черновик — AI покажет где теряется аудитория, где нужна история, где слишком сухо.'},
+        {label:'Контент',text:'Черновик поста, статьи или письма за 2 минуты — ты правишь под свой стиль и голос, не пишешь с нуля.'},
+        {label:'Масштаб',text:'Один текст → адаптация под 5 каналов (TG, LinkedIn, email, сайт, выступление) без потери сути и тона.'},
+        {label:'Подготовка',text:'Загрузи тезисы выступления — AI строит нарратив, находит метафоры, предлагает сильный opening под конкретную аудиторию.'},
+        {label:'Калибровка',text:'Вставь черновик — AI покажет где теряется внимание аудитории, где нужна история вместо данных, где тон слишком сухой или наоборот перегружен эмоцией.'},
       ]
     },
-    // What AI compensates when Communication is weak (z4-z5) and role requires it
     compensator:{
-      headline:'AI пишет вместо тебя',
-      why:'Communication в нижней зоне — идеи есть, слов нет. AI берёт твои данные и смыслы и оформляет их в текст, который доносит идею до аудитории.',
+      headline:'AI структурирует твои мысли в текст',
+      why:'Communication в нижней зоне — идеи и смыслы есть, слова для них найти сложно. AI берёт твой поток мысли и оформляет в текст, который аудитория услышит и запомнит.',
       scenarios:[
-        {label:'Презентации',text:'Дай данные и вывод → AI строит нарратив для слайдов: не "выручка выросла на 12%", а "мы прошли точку безубыточности на 2 месяца раньше плана".'},
-        {label:'Письма и сообщения',text:'Опиши что хочешь сказать своими словами → AI переводит в чёткий, убедительный текст под нужный тон.'},
-        {label:'Структура мысли',text:'Голосовое сообщение или поток сознания → AI вычленяет главное и выстраивает логику.'},
-        {label:'Подготовка к разговору',text:'Сложный разговор или переговоры → AI готовит ключевые фразы, аргументы, ответы на возражения.'},
+        {label:'Презентации',text:'Дай данные и вывод → AI строит нарратив: не "выручка выросла на 12%", а "мы прошли точку безубыточности на 2 месяца раньше плана — вот что это значит для следующего квартала".'},
+        {label:'Письма и сообщения',text:'Опиши что хочешь донести своими словами → AI переводит в чёткий убедительный текст под нужный тон и аудиторию.'},
+        {label:'Структура мысли',text:'Голосовое сообщение или поток сознания → AI вычленяет главное, убирает лишнее, выстраивает логику.'},
+        {label:'Подготовка к разговору',text:'Сложные переговоры или трудный разговор → AI готовит ключевые фразы, аргументы и ответы на предсказуемые возражения.'},
       ],
-      limit:'AI закроет подготовленный контент — тексты, структуру, формулировки. Живая подача, импровизация и харизма в комнате остаются за тобой. Если роль требует постоянного публичного присутствия (лицо бренда, спикер) — это будет регулярным расходом энергии, который AI не снимет.'
+      limit:'AI закроет подготовленный контент — структуру, формулировки, нарратив. Но есть то, что остаётся за тобой: заметить когда аудитория теряет внимание прямо во время разговора и мгновенно переключиться; импровизировать когда план не срабатывает; чувствовать эмоциональную готовность комнаты к следующему пункту. Если роль требует постоянного публичного присутствия — это будет регулярным расходом энергии, который AI не снимет.'
     }
   },
   'Adaptability':{
     closability:'partial',
     multiplier:{
-      headline:'AI как инструмент мгновенного реагирования',
-      why:'Adaptability в топ-5 — ты продуктивен в хаосе и живёшь в моменте. AI усиливает скорость реакции: моментальный контекст, быстрые решения, адаптация плана на ходу без потери нити.',
+      headline:'AI расширяет количество сценариев которые ты держишь в голове',
+      why:'Adaptability в топ-5 — ты живёшь в моменте и комфортно с неопределённостью. AI не ускоряет тебя (ты и так быстр), а увеличивает число развилок которые ты можешь просчитать одновременно — больше вариантов, лучше выбор.',
       scenarios:[
-        {label:'Rapid response',text:'Неожиданная задача или изменение → AI мгновенно даёт контекст, варианты действий и первый шаг. Ты уже готов действовать, пока другие ещё осмысляют.'},
-        {label:'Перестройка на ходу',text:'Встреча пошла не по плану → AI за 30 секунд предлагает альтернативную структуру или аргументы под новый контекст.'},
-        {label:'Параллельные треки',text:'Несколько срочных запросов одновременно → AI помогает быстро переключаться между контекстами без потери информации.'},
-        {label:'Ситуативные решения',text:'Нет времени на анализ → AI даёт "достаточно хороший" ответ прямо сейчас, с пометкой что можно уточнить позже.'},
+        {label:'Сценарное мышление',text:'План сломался → AI за 2 минуты рисует 3 альтернативных пути с плюсами и рисками каждого. Ты выбираешь в реальном времени, не паникуя и не сужая варианты.'},
+        {label:'Проектирование на ходу',text:'Встреча идёт не туда → AI генерирует возможные развития прямо сейчас, ты адаптируешься ещё во время разговора, а не после.'},
+        {label:'Параллельные треки',text:'Несколько срочных запросов одновременно → AI держит контекст по каждому, ты переключаешься без потери нити.'},
+        {label:'Быстрое решение',text:'Нет времени думать → AI даёт достаточно хороший ответ сейчас с пометкой что стоит уточнить позже.'},
       ]
     },
     compensator:{
-      headline:'AI как буфер изменений',
-      why:'Adaptability в нижней зоне — неожиданные изменения выбивают из колеи, сложно быстро перестраиваться. AI отслеживает что изменилось и предлагает конкретный следующий шаг, снижая когнитивную нагрузку от неопределённости.',
+      headline:'AI снижает когнитивную нагрузку от неопределённости',
+      why:'Adaptability в нижней зоне — неожиданные изменения вызывают стресс и ощущение потери контроля. AI не убирает неопределённость, но структурирует её: делает видимым что изменилось и что конкретно делать дальше.',
       scenarios:[
-        {label:'Мониторинг изменений',text:'Изменились условия, требования или контекст → AI сравнивает "было/стало" и объясняет что конкретно нужно пересмотреть в твоих планах.'},
-        {label:'Структура при хаосе',text:'Всё вокруг меняется → AI строит мини-план на ближайшие 2–3 шага, чтобы было за что держаться в неопределённости.'},
+        {label:'Что изменилось',text:'Изменились условия или контекст → AI сравнивает "было/стало" и объясняет что конкретно нужно пересмотреть — не нужно держать всё в голове одновременно.'},
+        {label:'Структура при хаосе',text:'Всё вокруг меняется → AI строит мини-план на ближайшие 2–3 шага. Есть конкретный следующий шаг — есть ощущение контроля.'},
         {label:'Приоритизация срочного',text:'Несколько срочных задач навалились одновременно → AI ранжирует по важности и предлагает с чего начать прямо сейчас.'},
-        {label:'Подготовка к непредсказуемому',text:'Перед встречей или проектом с высокой неопределённостью → AI готовит сценарии "что если" и ответы на вероятные изменения.'},
+        {label:'Подготовка к непредсказуемому',text:'Перед встречей с высокой неопределённостью → AI готовит сценарии "что если" заранее, снижая тревогу от возможных изменений.'},
       ],
-      limit:'AI снижает стресс от неожиданностей через структуру и подготовку. Но живая гибкость в отношениях с людьми — умение считывать настроение в комнате и мгновенно менять подход в разговоре — это реляционный навык, который AI не заменит.'
+      limit:'AI структурирует неопределённость и снижает когнитивную нагрузку. Но есть то, что остаётся: даже с готовым планом от AI — смена обстановки может ощущаться как потеря контроля, потому что проблема не в отсутствии плана, а в психологической аверсии к непредсказуемому. AI — это костыль который помогает двигаться, но не меняет базовое отношение к неопределённости. Это нарабатывается опытом.'
     }
   },
 };
@@ -1715,72 +1713,124 @@ function renderAmplify(){
     return;
   }
 
+  const domainIconMap={'Executing':'⚙️','Influencing':'📣','Relationship Building':'🤝','Strategic Thinking':'🧠'};
+
   const lines=[];
   lines.push(`<div class="amp-wrap">`);
   lines.push(`<div><span class="amp-section-title">AI-усиление под ваш профиль</span><span class="amp-alpha-badge">АЛЬФА</span><div class="amp-section-sub">Как AI работает иначе в зависимости от позиции таланта — усиливает сильное и закрывает слабое.</div></div>`);
 
-  // Find which AMP_DATA themes are in profile and render them
-  let hasAny=false;
-  Object.entries(AMP_DATA).forEach(([name,data])=>{
-    const zone=getThemeZone(name);
-    if(!zone) return; // theme not in profile, skip for now
-    hasAny=true;
+  // Справочник агентов — ПЕРЕД карточками (баг 5)
+  lines.push(`<div class="amp-ref"><div class="amp-ref-title">Справочник агентов</div><div class="amp-ref-note">Рекомендации актуальны на апрель 2026. Рынок AI-инструментов меняется быстро — используйте как ориентир, не как директиву.</div><table class="amp-ref-table"><thead><tr><th>Агент</th><th>Что делает</th><th>Когда использовать</th></tr></thead><tbody><tr><td>Claude Opus</td><td>Глубокое рассуждение, анализ, сложные структуры</td><td>Pre-mortem, оценка рисков, сложные когнитивные задачи</td></tr><tr><td>Claude Sonnet</td><td>Быстрые задачи: черновики, редактура, резюме</td><td>Скорость важнее глубины, повторяющиеся задачи</td></tr><tr><td>Perplexity</td><td>Research с источниками в реальном времени</td><td>Факты, исторические прецеденты, trend forecast</td></tr><tr><td>EXA</td><td>Семантический поиск и мониторинг изменений</td><td>Слабые сигналы, подписка на изменения в теме</td></tr><tr><td>Gemini</td><td>Большие документы, таблицы, мультимодальность</td><td>Датасеты, объёмные файлы, поиск паттернов в данных</td></tr><tr><td>NotebookLM</td><td>Синтез знаний из личного корпуса документов</td><td>Извлечение паттернов из накопленного архива</td></tr><tr><td>Make / Zapier</td><td>Автоматизация потоков по триггеру и расписанию</td><td>Напоминания, уведомления, регулярные задачи</td></tr><tr><td>Cursor / Copilot</td><td>Код и технические задачи</td><td>Разработка, автоматизация через скрипты</td></tr></tbody></table></div>`);
+
+  // Helper: render agents block
+  function renderAgents(agentData){
+    const out=[];
+    if(agentData&&agentData.agents&&agentData.agents.length){
+      out.push(`<div class="amp-agents">`);
+      out.push(`<div class="amp-agents-title">Агенты</div>`);
+      agentData.agents.forEach(a=>{
+        out.push(`<div class="amp-agent-row"><span class="amp-agent-name">${a.name}</span><div class="amp-agent-body"><div class="amp-agent-trigger">${a.trigger}</div><div class="amp-agent-task">${a.task}</div></div></div>`);
+      });
+      out.push(`</div>`);
+    }
+    return out;
+  }
+
+  // Helper: render full card (with AMP_DATA scenarios)
+  function renderFullCard(name, data, zone){
     const t=findTheme(name);
     const displayName=t?t.ru:name;
     const pos=selected.indexOf(name)+1;
-
     const isStrong=zone==='z1'||zone==='z2';
     const isWeak=zone==='z4'||zone==='z5';
-    const mode=isStrong?'multiplier':isWeak?'compensator':'compensator';
-    const modeData=data[mode];
-
+    const modeKey=isStrong?'multiplier':'compensator';
+    const modeData=data[modeKey];
+    const hasFullData=modeData&&modeData.scenarios;
     const tagClass=isStrong?'amp-tag-multiplier':'amp-tag-compensator';
     const tagText=isStrong?'Мультипликатор':'Компенсатор';
-    const zoneLabel=`#${pos}`;
-
-    const agentData=AMP_AGENTS[name];
-    const domainIconMap={'Executing':'⚙️','Influencing':'📣','Relationship Building':'🤝','Strategic Thinking':'🧠'};
     const themeIcon=t?domainIconMap[t.domain]||'⭐':'⭐';
     const cardId=`amp-card-${name.replace(/[^a-z]/gi,'').toLowerCase()}`;
-
-    lines.push(`<div class="amp-card" id="${cardId}">`);
-    // Header (always visible, click to toggle)
-    lines.push(`<div class="amp-card-hdr" onclick="this.closest('.amp-card').classList.toggle('open')">`);
-    lines.push(`<span class="amp-card-icon">${themeIcon}</span>`);
-    lines.push(`<div class="amp-card-hdr-info">`);
-    lines.push(`<div class="amp-card-hdr-top"><span class="amp-tag ${tagClass}">${tagText}</span><span class="amp-theme-name">${displayName}</span><span class="amp-zone-badge">${zoneLabel}</span></div>`);
-    lines.push(`<div style="font-size:12px;color:var(--text-2);margin-top:2px">${modeData.headline}</div>`);
-    lines.push(`</div>`);
-    lines.push(`<span class="amp-card-arrow">▾</span>`);
-    lines.push(`</div>`);
-    // Body (hidden by default, shown when open)
-    lines.push(`<div class="amp-card-body-wrap">`);
-    lines.push(`<div class="amp-card-body">${modeData.why}</div>`);
-    lines.push(`<div class="amp-scenarios">`);
-    modeData.scenarios.forEach(s=>{
-      lines.push(`<div class="amp-scenario"><div class="amp-scenario-label">${s.label}</div><div class="amp-scenario-text">${s.text}</div></div>`);
-    });
-    lines.push(`</div>`);
-    if(modeData.limit){
-      lines.push(`<div class="amp-limit"><span class="amp-limit-label">Граница:</span>${modeData.limit}</div>`);
-    }
-    if(agentData&&agentData.agents&&agentData.agents.length){
-      lines.push(`<div class="amp-agents">`);
-      lines.push(`<div class="amp-agents-title">Агенты</div>`);
-      agentData.agents.forEach(a=>{
-        lines.push(`<div class="amp-agent-row"><span class="amp-agent-name">${a.name}</span><div class="amp-agent-body"><div class="amp-agent-trigger">${a.trigger}</div><div class="amp-agent-task">${a.task}</div></div></div>`);
+    const agentData=AMP_AGENTS[name];
+    const out=[];
+    out.push(`<div class="amp-card" id="${cardId}">`);
+    out.push(`<div class="amp-card-hdr" onclick="this.closest('.amp-card').classList.toggle('open')">`);
+    out.push(`<span class="amp-card-icon">${themeIcon}</span>`);
+    out.push(`<div class="amp-card-hdr-info">`);
+    const headline=hasFullData?modeData.headline:(agentData?agentData.function:'');
+    out.push(`<div class="amp-card-hdr-top"><span class="amp-tag ${tagClass}">${tagText}</span><span class="amp-theme-name">${displayName}</span><span class="amp-zone-badge">#${pos}</span></div>`);
+    out.push(`<div style="font-size:12px;color:var(--text-2);margin-top:2px">${headline}</div>`);
+    out.push(`</div>`);
+    out.push(`<span class="amp-card-arrow">▾</span>`);
+    out.push(`</div>`);
+    out.push(`<div class="amp-card-body-wrap">`);
+    if(hasFullData){
+      out.push(`<div class="amp-card-body">${modeData.why}</div>`);
+      out.push(`<div class="amp-scenarios">`);
+      modeData.scenarios.forEach(s=>{
+        out.push(`<div class="amp-scenario"><div class="amp-scenario-label">${s.label}</div><div class="amp-scenario-text">${s.text}</div></div>`);
       });
-      lines.push(`</div>`);
+      out.push(`</div>`);
+      if(modeData.limit){
+        out.push(`<div class="amp-limit"><span class="amp-limit-label">Граница:</span>${modeData.limit}</div>`);
+      }
     }
-    lines.push(`</div>`); // amp-card-body-wrap
-    lines.push(`</div>`); // amp-card
+    out.push(...renderAgents(agentData));
+    out.push(`</div>`);
+    out.push(`</div>`);
+    return out;
+  }
+
+  // Helper: render simplified card (only AMP_AGENTS, no AMP_DATA scenarios)
+  function renderSimpleCard(name){
+    const t=findTheme(name);
+    const displayName=t?t.ru:name;
+    const pos=selected.indexOf(name)+1;
+    const zone=getThemeZone(name);
+    const isStrong=zone==='z1'||zone==='z2';
+    const tagClass=isStrong?'amp-tag-multiplier':'amp-tag-compensator';
+    const tagText=isStrong?'Мультипликатор':'Компенсатор';
+    const themeIcon=t?domainIconMap[t.domain]||'⭐':'⭐';
+    const cardId=`amp-card-${name.replace(/[^a-z]/gi,'').toLowerCase()}`;
+    const agentData=AMP_AGENTS[name];
+    if(!agentData) return [];
+    const out=[];
+    out.push(`<div class="amp-card" id="${cardId}">`);
+    out.push(`<div class="amp-card-hdr" onclick="this.closest('.amp-card').classList.toggle('open')">`);
+    out.push(`<span class="amp-card-icon">${themeIcon}</span>`);
+    out.push(`<div class="amp-card-hdr-info">`);
+    out.push(`<div class="amp-card-hdr-top"><span class="amp-tag amp-tag-partial">Базовые агенты</span><span class="amp-theme-name">${displayName}</span><span class="amp-zone-badge">#${pos}</span></div>`);
+    out.push(`<div style="font-size:12px;color:var(--text-2);margin-top:2px">${agentData.function}</div>`);
+    out.push(`</div>`);
+    out.push(`<span class="amp-card-arrow">▾</span>`);
+    out.push(`</div>`);
+    out.push(`<div class="amp-card-body-wrap">`);
+    out.push(...renderAgents(agentData));
+    out.push(`</div>`);
+    out.push(`</div>`);
+    return out;
+  }
+
+  // Сначала — полные карточки (есть и AMP_DATA и AMP_AGENTS)
+  let hasAny=false;
+  Object.entries(AMP_DATA).forEach(([name,data])=>{
+    const zone=getThemeZone(name);
+    if(!zone) return;
+    hasAny=true;
+    lines.push(...renderFullCard(name,data,zone));
+  });
+
+  // Потом — упрощённые карточки (есть AMP_AGENTS, но нет в AMP_DATA)
+  Object.keys(AMP_AGENTS).forEach(name=>{
+    if(AMP_DATA[name]) return; // уже отрендерено выше
+    const zone=getThemeZone(name);
+    if(!zone) return;
+    hasAny=true;
+    lines.push(...renderSimpleCard(name));
   });
 
   if(!hasAny){
     lines.push(`<div class="amp-empty">Для тем из вашего профиля пока нет данных об AI-усилении.</div>`);
   }
-
-  lines.push(`<div class="amp-ref"><div class="amp-ref-title">Справочник агентов</div><div class="amp-ref-note">Рекомендации актуальны на апрель 2026. Рынок AI-инструментов меняется быстро — используйте как ориентир, не как директиву.</div><table class="amp-ref-table"><thead><tr><th>Агент</th><th>Что делает</th><th>Когда использовать</th></tr></thead><tbody><tr><td>Claude Opus</td><td>Глубокое рассуждение, анализ, сложные структуры</td><td>Pre-mortem, оценка рисков, сложные когнитивные задачи</td></tr><tr><td>Claude Sonnet</td><td>Быстрые задачи: черновики, редактура, резюме</td><td>Скорость важнее глубины, повторяющиеся задачи</td></tr><tr><td>Perplexity</td><td>Research с источниками в реальном времени</td><td>Факты, исторические прецеденты, trend forecast</td></tr><tr><td>EXA</td><td>Семантический поиск и мониторинг изменений</td><td>Слабые сигналы, подписка на изменения в теме</td></tr><tr><td>Gemini</td><td>Большие документы, таблицы, мультимодальность</td><td>Датасеты, объёмные файлы, поиск паттернов в данных</td></tr><tr><td>NotebookLM</td><td>Синтез знаний из личного корпуса документов</td><td>Извлечение паттернов из накопленного архива</td></tr><tr><td>Make / Zapier</td><td>Автоматизация потоков по триггеру и расписанию</td><td>Напоминания, уведомления, регулярные задачи</td></tr><tr><td>Cursor / Copilot</td><td>Код и технические задачи</td><td>Разработка, автоматизация через скрипты</td></tr></tbody></table></div>`);
 
   lines.push(`</div>`); // amp-wrap
   el.innerHTML=lines.join('');
