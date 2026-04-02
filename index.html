@@ -340,6 +340,31 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .ai-theme-num{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:#1A1A1A;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
 .ai-explain-footer{font-size:12px;color:var(--text-2);text-align:center;border-top:1px solid var(--border);padding-top:10px;margin-top:2px}
 
+/* AI Amplification tab */
+.amp-wrap{display:flex;flex-direction:column;gap:24px}
+.amp-empty{text-align:center;color:var(--text-2);padding:40px 20px;font-size:14px}
+.amp-alpha-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;color:#fff;background:#B08B5B;border-radius:4px;padding:2px 7px;margin-left:8px;vertical-align:middle}
+.amp-section-title{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--text-1);margin-bottom:4px}
+.amp-section-sub{font-size:13px;color:var(--text-2);margin-bottom:16px}
+.amp-card{background:#F5F3EE;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:12px}
+.amp-card-header{display:flex;align-items:center;gap:10px}
+.amp-tag{font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 8px;border-radius:5px}
+.amp-tag-multiplier{background:#D6EDD6;color:#2A6B2A}
+.amp-tag-compensator{background:#FDE8C8;color:#8B5C00}
+.amp-tag-partial{background:#E8E0D3;color:#6B5E4E}
+.amp-tag-no-replace{background:#F5D0D0;color:#8B2020}
+.amp-theme-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text-1)}
+.amp-zone-badge{font-size:11px;color:var(--text-2);background:var(--border);border-radius:4px;padding:2px 6px}
+.amp-card-body{font-size:13px;color:var(--text-1);line-height:1.6}
+.amp-card-body strong{color:var(--text-1)}
+.amp-scenarios{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.amp-scenario{background:#fff;border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.5}
+.amp-scenario-label{font-size:11px;font-weight:700;color:var(--text-2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.amp-scenario-text{color:var(--text-1)}
+.amp-limit{background:#FDF0F0;border-radius:8px;padding:10px 14px;font-size:12px;color:#8B2020;line-height:1.5;margin-top:4px}
+.amp-limit-label{font-weight:700;margin-right:4px}
+.amp-divider{border:none;border-top:1px solid var(--border);margin:0}
+
 .ai-block{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:14px}
 .ai-block-title{font-family:var(--serif);font-size:17px;font-weight:600}
 .ai-block-subtitle{font-size:12px;color:var(--text-2);margin-top:2px}
@@ -442,6 +467,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
     <button class="main-tab" data-tab="dynamics" onclick="switchMainTab('dynamics')">🔗 Связки</button>
     <button class="main-tab" data-tab="checkup" onclick="switchMainTab('checkup')">🎯 Чекап среды</button>
     <button class="main-tab" data-tab="aiinstr" onclick="switchMainTab('aiinstr')">🤖 Инструкции для AI</button>
+    <button class="main-tab" data-tab="amplify" onclick="switchMainTab('amplify')">⚡ AI-усиление</button>
   </div>
 
   <!-- TAB: TALENTS -->
@@ -469,6 +495,11 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
   <!-- TAB: AI INSTRUCTIONS -->
   <div class="tab-content" id="tabAiinstr">
     <div id="aiInstrContent"></div>
+  </div>
+
+  <!-- TAB: AI AMPLIFICATION -->
+  <div class="tab-content" id="tabAmplify">
+    <div id="amplifyContent"></div>
   </div>
 
   <!-- EMPTY STATE -->
@@ -883,10 +914,11 @@ function switchMainTab(tab){
   document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelector(`.main-tab[data-tab="${tab}"]`).classList.add('active');
-  const tabMap={talents:'tabTalents',dynamics:'tabDynamics',checkup:'tabCheckup',aiinstr:'tabAiinstr'};
+  const tabMap={talents:'tabTalents',dynamics:'tabDynamics',checkup:'tabCheckup',aiinstr:'tabAiinstr',amplify:'tabAmplify'};
   document.getElementById(tabMap[tab]).classList.add('active');
   if(tab==='dynamics'){renderDynControls();renderDynamics()}
   if(tab==='checkup'){renderCheckup()}
+  if(tab==='amplify'){renderAmplify()}
 }
 
 const CHECKUP_QS=[
@@ -1575,8 +1607,108 @@ function copyAiText(id, btn){
   });
 }
 
+// ── AI AMPLIFICATION ──────────────────────────────────────────────────────────
+
+// Closability: how well AI can substitute for a missing talent
+// 'multiplier' = z1, makes strong stronger
+// 'compensator' = cognitive/communicative, AI closes well
+// 'partial' = relational, AI helps but doesn't replace
+// 'no-replace' = deep relational, AI cannot replace
+
+const AMP_DATA={
+  'Communication':{
+    closability:'compensator',
+    // What AI amplifies when Communication is strong (z1)
+    multiplier:{
+      headline:'AI масштабирует твой голос',
+      why:'Communication в топ-5 — ты уже умеешь находить слова и рассказывать истории. AI даёт тебе сырьё и скорость, ты доводишь до своего голоса.',
+      scenarios:[
+        {label:'Контент',text:'Черновик поста, статьи или письма за 2 минуты — ты правишь под свой стиль, не пишешь с нуля.'},
+        {label:'Масштаб',text:'Один текст → адаптация под 5 каналов (TG, LinkedIn, email, сайт, выступление) без потери сути.'},
+        {label:'Подготовка',text:'Загрузи тезисы выступления — AI строит нарратив, находит метафоры, предлагает сильный opening.'},
+        {label:'Обратная связь',text:'Вставь черновик — AI покажет где теряется аудитория, где нужна история, где слишком сухо.'},
+      ]
+    },
+    // What AI compensates when Communication is weak (z4-z5) and role requires it
+    compensator:{
+      headline:'AI пишет вместо тебя',
+      why:'Communication в нижней зоне — идеи есть, слов нет. AI берёт твои данные и смыслы и оформляет их в текст, который доносит идею до аудитории.',
+      scenarios:[
+        {label:'Презентации',text:'Дай данные и вывод → AI строит нарратив для слайдов: не "выручка выросла на 12%", а "мы прошли точку безубыточности на 2 месяца раньше плана".'},
+        {label:'Письма и сообщения',text:'Опиши что хочешь сказать своими словами → AI переводит в чёткий, убедительный текст под нужный тон.'},
+        {label:'Структура мысли',text:'Голосовое сообщение или поток сознания → AI вычленяет главное и выстраивает логику.'},
+        {label:'Подготовка к разговору',text:'Сложный разговор или переговоры → AI готовит ключевые фразы, аргументы, ответы на возражения.'},
+      ],
+      limit:'AI закроет подготовленный контент — тексты, структуру, формулировки. Живая подача, импровизация и харизма в комнате остаются за тобой. Если роль требует постоянного публичного присутствия (лицо бренда, спикер) — это будет регулярным расходом энергии, который AI не снимет.'
+    }
+  }
+};
+
+function getThemeZone(name){
+  const idx=selected.indexOf(name);
+  if(idx<0) return null;
+  if(idx<5) return 'z1';
+  if(idx<10) return 'z2';
+  if(idx<15) return 'z3';
+  if(idx<24) return 'z4';
+  return 'z5';
+}
+
+function renderAmplify(){
+  const el=document.getElementById('amplifyContent');
+  if(!el) return;
+  if(!selected.length){
+    el.innerHTML=`<div class="amp-empty">Вставьте свои таланты выше — и здесь появится персональный план AI-усиления.</div>`;
+    return;
+  }
+
+  const lines=[];
+  lines.push(`<div class="amp-wrap">`);
+  lines.push(`<div><span class="amp-section-title">AI-усиление под ваш профиль</span><span class="amp-alpha-badge">АЛЬФА</span><div class="amp-section-sub">Как AI работает иначе в зависимости от позиции таланта — усиливает сильное и закрывает слабое.</div></div>`);
+
+  // Find which AMP_DATA themes are in profile and render them
+  let hasAny=false;
+  Object.entries(AMP_DATA).forEach(([name,data])=>{
+    const zone=getThemeZone(name);
+    if(!zone) return; // theme not in profile, skip for now
+    hasAny=true;
+    const t=findTheme(name);
+    const displayName=t?t.ru:name;
+    const pos=selected.indexOf(name)+1;
+
+    const isStrong=zone==='z1'||zone==='z2';
+    const isWeak=zone==='z4'||zone==='z5';
+    const mode=isStrong?'multiplier':isWeak?'compensator':'compensator';
+    const modeData=data[mode];
+
+    const tagClass=isStrong?'amp-tag-multiplier':'amp-tag-compensator';
+    const tagText=isStrong?'Мультипликатор':'Компенсатор';
+    const zoneLabel=`#${pos}`;
+
+    lines.push(`<div class="amp-card">`);
+    lines.push(`<div class="amp-card-header"><span class="amp-tag ${tagClass}">${tagText}</span><span class="amp-theme-name">${displayName} / ${name}</span><span class="amp-zone-badge">${zoneLabel}</span></div>`);
+    lines.push(`<div class="amp-card-body"><strong>${modeData.headline}</strong><br>${modeData.why}</div>`);
+    lines.push(`<div class="amp-scenarios">`);
+    modeData.scenarios.forEach(s=>{
+      lines.push(`<div class="amp-scenario"><div class="amp-scenario-label">${s.label}</div><div class="amp-scenario-text">${s.text}</div></div>`);
+    });
+    lines.push(`</div>`);
+    if(modeData.limit){
+      lines.push(`<div class="amp-limit"><span class="amp-limit-label">Граница:</span>${modeData.limit}</div>`);
+    }
+    lines.push(`</div>`);
+  });
+
+  if(!hasAny){
+    lines.push(`<div class="amp-empty">В вашем профиле пока нет тем с детальным разбором AI-усиления.<br>Альфа-версия содержит: Communication. Остальные темы — в разработке.</div>`);
+  }
+
+  lines.push(`</div>`); // amp-wrap
+  el.innerHTML=lines.join('');
+}
+
 function render(){
-  renderChips();renderDomainBalance();renderCards();renderAiInstr();
+  renderChips();renderDomainBalance();renderCards();renderAiInstr();renderAmplify();
   const tabs=document.getElementById('mainTabs');
   if(selected.length>=2)tabs.classList.add('visible');else tabs.classList.remove('visible');
   if(document.getElementById('tabDynamics').classList.contains('active')){renderDynControls();renderDynamics()}
