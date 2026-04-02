@@ -341,64 +341,67 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .ai-explain-footer{font-size:12px;color:var(--text-2);text-align:center;border-top:1px solid var(--border);padding-top:10px;margin-top:2px}
 
 /* AI Amplification tab */
-.amp-wrap{display:flex;flex-direction:column;gap:24px}
+.amp-wrap{display:flex;flex-direction:column;gap:16px}
 .amp-empty{text-align:center;color:var(--text-2);padding:40px 20px;font-size:14px}
 .amp-alpha-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;color:#fff;background:#B08B5B;border-radius:4px;padding:2px 7px;margin-left:8px;vertical-align:middle}
 .amp-section-title{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--text-1);margin-bottom:4px}
-.amp-section-sub{font-size:13px;color:var(--text-2);margin-bottom:16px}
-.amp-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);overflow:hidden;margin-bottom:0;box-shadow:var(--shadow)}
-.amp-card-hdr{display:flex;align-items:center;gap:10px;padding:14px 20px;cursor:pointer;user-select:none;transition:background .15s}
+.amp-section-sub{font-size:13px;color:var(--text-2);margin-bottom:0;line-height:1.6}
+/* Card */
+.amp-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.amp-card-hdr{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none;transition:background .15s}
 .amp-card-hdr:hover{background:var(--surface-alt)}
-.amp-card-icon{font-size:20px;flex-shrink:0}
-.amp-card-hdr-info{flex:1;display:flex;flex-direction:column;gap:2px}
-.amp-card-hdr-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.amp-card-headline{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--text-1)}
-.amp-card-arrow{font-size:18px;color:#4A4A4A;transition:transform .2s;flex-shrink:0}
+.amp-card.open .amp-card-hdr{border-bottom:1px solid var(--border-light)}
+.amp-card-icon{font-size:22px;flex-shrink:0;line-height:1}
+.amp-card-hdr-info{flex:1;min-width:0}
+.amp-card-hdr-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:3px}
+.amp-theme-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text-1)}
+.amp-zone-badge{font-size:11px;color:var(--text-3);font-weight:400}
+.amp-card-subtitle{font-size:12px;color:var(--text-2);line-height:1.4}
+.amp-card-arrow{font-size:14px;color:var(--text-3);transition:transform .2s;flex-shrink:0}
 .amp-card.open .amp-card-arrow{transform:rotate(180deg)}
-.amp-card-body-wrap{display:none;padding:0 20px 18px;flex-direction:column;gap:12px}
-.amp-card.open .amp-card-body-wrap{display:flex;flex-direction:column;gap:12px}
-.amp-card.open .amp-card-hdr{border-bottom:1px solid var(--border)}
-.amp-card-header{display:flex;align-items:center;gap:10px}
-.amp-tag{font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 8px;border-radius:5px}
+/* Tag */
+.amp-tag{font-size:10px;font-weight:600;letter-spacing:.04em;padding:2px 7px;border-radius:4px;text-transform:uppercase}
 .amp-tag-multiplier{background:#D6EDD6;color:#2A6B2A}
 .amp-tag-compensator{background:#FDE8C8;color:#8B5C00}
-.amp-tag-partial{background:#E8E0D3;color:#6B5E4E}
-.amp-tag-no-replace{background:#F5D0D0;color:#8B2020}
-.amp-theme-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text-1)}
-.amp-zone-badge{font-size:11px;color:var(--text-2);background:var(--border);border-radius:4px;padding:2px 6px}
-.amp-card-body{font-size:13px;color:var(--text-1);line-height:1.6}
-.amp-card-body strong{color:var(--text-1)}
-.amp-scenarios{display:flex;flex-direction:column;gap:8px;margin-top:4px}
-.amp-scenario{background:#fff;border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.5}
-.amp-scenario-label{font-size:11px;font-weight:700;color:var(--text-2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+/* Body */
+.amp-card-body-wrap{display:none;padding:16px 20px 20px;flex-direction:column;gap:14px}
+.amp-card.open .amp-card-body-wrap{display:flex}
+.amp-card-body{font-size:13px;color:var(--text-2);line-height:1.65}
+/* Scenarios */
+.amp-scenarios{display:flex;flex-direction:column;gap:0;border:1px solid var(--border-light);border-radius:8px;overflow:hidden}
+.amp-scenario{padding:12px 16px;font-size:13px;line-height:1.55;border-bottom:1px solid var(--border-light)}
+.amp-scenario:last-child{border-bottom:none}
+.amp-scenario-label{font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
 .amp-scenario-text{color:var(--text-1)}
-.amp-limit{background:#FDF0F0;border-radius:8px;padding:10px 14px;font-size:12px;color:#8B2020;line-height:1.5;margin-top:4px}
-.amp-limit-label{font-weight:700;margin-right:4px}
-.amp-divider{border:none;border-top:1px solid var(--border);margin:0}
-.amp-agents{display:flex;flex-direction:column;gap:0;margin-top:12px;border-top:1px solid var(--border);padding-top:12px}
-.amp-agents-title{font-size:11px;font-weight:700;color:var(--text-2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
-.amp-agent-row{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
-.amp-agent-row:last-child{border-bottom:none;padding-bottom:0}
-.amp-agent-name{flex-shrink:0;font-size:11px;font-weight:600;background:var(--surface-alt);color:var(--text-2);border:1px solid var(--border);border-radius:5px;padding:2px 7px;height:fit-content;white-space:nowrap}
-.amp-agent-body{display:flex;flex-direction:column;gap:3px;flex:1}
-.amp-agent-jtbd{font-size:13px;color:var(--text-1);line-height:1.5;font-weight:500}
-.amp-agent-trigger{font-size:11px;color:var(--text-2);margin-top:2px}
-.amp-agent-task{font-size:12px;color:var(--text-1);line-height:1.5}
-.amp-copy-btn{font-size:11px;color:var(--text-3);background:none;border:1px solid var(--border);border-radius:4px;padding:2px 8px;cursor:pointer;margin-top:4px;align-self:flex-start;transition:all .15s}
-.amp-copy-btn:hover{background:var(--surface-alt);color:var(--text-1)}
-.amp-copy-btn.copied{color:#2A6B2A;border-color:#2A6B2A}
+/* Limit */
+.amp-limit{font-size:12px;color:var(--text-2);line-height:1.55;padding:10px 14px;border-left:3px solid var(--border);background:var(--surface-alt);border-radius:0 6px 6px 0}
+.amp-limit-label{font-weight:600;color:var(--text-1);margin-right:4px}
+/* Agents */
+.amp-agents{display:flex;flex-direction:column;gap:12px}
+.amp-agents-title{font-size:11px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em}
+.amp-agent-row{display:flex;flex-direction:column;gap:4px;padding:12px 14px;background:var(--surface-alt);border-radius:8px;border:1px solid var(--border-light)}
+.amp-agent-jtbd{font-size:13px;color:var(--text-1);line-height:1.5;font-weight:400}
+.amp-agent-meta{display:flex;align-items:center;gap:6px;margin-top:2px}
+.amp-agent-name{font-size:10px;font-weight:600;background:var(--surface);color:var(--text-2);border:1px solid var(--border);border-radius:4px;padding:2px 6px;white-space:nowrap}
+.amp-agent-trigger{font-size:11px;color:var(--text-3)}
+/* Prompt */
 .amp-prompt-details{margin-top:4px}
-.amp-prompt-details summary{list-style:none;cursor:pointer}
-.amp-prompt-details summary::-webkit-details-marker{display:none}
-.amp-prompt-text{font-size:12px;color:var(--text-2);line-height:1.55;background:var(--surface-alt);border-radius:6px;padding:10px 12px;margin:6px 0;white-space:pre-wrap;font-family:var(--sans)}
-.amp-ref{margin-top:8px;background:#F5F3EE;border-radius:12px;padding:20px 22px}
-.amp-ref-title{font-family:var(--serif);font-size:15px;font-weight:700;margin-bottom:6px}
+.amp-prompt-details>summary{list-style:none;cursor:pointer;font-size:11px;color:var(--text-3);display:inline-flex;align-items:center;gap:4px;padding:2px 0}
+.amp-prompt-details>summary::-webkit-details-marker{display:none}
+.amp-prompt-details>summary::before{content:'▶';font-size:8px;transition:transform .15s;display:inline-block}
+.amp-prompt-details[open]>summary::before{transform:rotate(90deg)}
+.amp-prompt-text{font-size:12px;color:var(--text-2);line-height:1.6;background:var(--surface);border:1px solid var(--border-light);border-radius:6px;padding:10px 12px;margin:6px 0;white-space:pre-wrap;font-family:var(--sans)}
+.amp-copy-btn{font-size:11px;color:var(--text-3);background:none;border:1px solid var(--border);border-radius:4px;padding:2px 8px;cursor:pointer;transition:all .15s;display:inline-block}
+.amp-copy-btn:hover{background:var(--surface-alt);color:var(--text-1)}
+/* Reference table */
+.amp-ref{background:var(--surface-alt);border:1px solid var(--border-light);border-radius:var(--r);padding:20px 22px}
+.amp-ref-title{font-family:var(--serif);font-size:15px;font-weight:700;margin-bottom:4px;color:var(--text-1)}
 .amp-ref-note{font-size:11px;color:var(--text-2);margin-bottom:14px;line-height:1.5}
 .amp-ref-table{width:100%;border-collapse:collapse;font-size:12px}
-.amp-ref-table th{text-align:left;font-weight:700;color:var(--text-2);padding:6px 8px;border-bottom:2px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
-.amp-ref-table td{padding:8px 8px;border-bottom:1px solid var(--border);color:var(--text-1);vertical-align:top;line-height:1.4}
+.amp-ref-table th{text-align:left;font-weight:600;color:var(--text-3);padding:6px 8px;border-bottom:1px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+.amp-ref-table td{padding:8px;border-bottom:1px solid var(--border-light);color:var(--text-1);vertical-align:top;line-height:1.4}
 .amp-ref-table tr:last-child td{border-bottom:none}
-.amp-ref-table td:first-child{font-weight:700;white-space:nowrap;width:130px}
+.amp-ref-table td:first-child{font-weight:600;white-space:nowrap;width:120px;color:var(--text-2)}
 
 .ai-block{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:14px}
 .ai-block-title{font-family:var(--serif);font-size:17px;font-weight:600}
@@ -1736,30 +1739,25 @@ function renderAmplify(){
   lines.push(`<div class="amp-wrap">`);
   lines.push(`<div><span class="amp-section-title">AI-усиление под ваш профиль</span><span class="amp-alpha-badge">АЛЬФА</span><div class="amp-section-sub">Галлап учит закрывать слабые зоны партнёрством: найди человека, у которого это сильное, и работайте вместе. Эта логика не изменилась — но AI стал новым типом партнёра. Он не заменяет людей в зонах отношений, но закрывает когнитивные и коммуникационные пробелы быстрее и дешевле. Карточки отсортированы снизу вверх: сначала то, что AI закрывает за тебя.</div></div>`);
 
-  // Справочник агентов — ПЕРЕД карточками (баг 5)
-  lines.push(`<div class="amp-ref"><div class="amp-ref-title">Справочник агентов</div><div class="amp-ref-note">Рекомендации актуальны на апрель 2026. Рынок AI-инструментов меняется быстро — используйте как ориентир, не как директиву.</div><table class="amp-ref-table"><thead><tr><th>Агент</th><th>Что делает</th><th>Когда использовать</th></tr></thead><tbody><tr><td>Claude Opus</td><td>Глубокое рассуждение, сложный анализ, нарратив с нуля</td><td>Pre-mortem, оценка рисков, создание истории из данных</td></tr><tr><td>Claude Sonnet</td><td>Быстрые задачи: редактура готового черновика, резюме</td><td>Когда структура есть — нужна скорость, а не глубокое переосмысление</td></tr><tr><td>Claude Haiku</td><td>Максимальная скорость, минимальная стоимость</td><td>Массовые проверки, короткие тексты, повторяющиеся операции</td></tr><tr><td>Perplexity</td><td>Research с живыми источниками и цитатами</td><td>Факты, прецеденты, данные с датой — когда важна верифицируемость</td></tr><tr><td>EXA</td><td>Семантический поиск + мониторинг изменений по подписке</td><td>Слабые сигналы, язык аудитории, отслеживание изменений в теме. Отличие от Perplexity: не «что сейчас», а «что меняется и как об этом говорят»</td></tr><tr><td>Gemini</td><td>Большие документы, таблицы, мультимодальность</td><td>Датасеты, объёмные файлы, поиск паттернов в данных</td></tr><tr><td>NotebookLM</td><td>Синтез из личного корпуса — твоих документов</td><td>Извлечение паттернов из накопленных заметок, записей, архивов</td></tr><tr><td>Make / Zapier</td><td>Автоматизация по триггеру или расписанию</td><td>Реактивные уведомления, дайджесты, регулярные операции</td></tr><tr><td>Cursor / Copilot</td><td>Код и технические задачи</td><td>Разработка, скрипты, автоматизация через код</td></tr></tbody></table></div>`);
+
 
   // Helper: render agents block
   function renderAgents(agentData){
     const out=[];
     if(agentData&&agentData.agents&&agentData.agents.length){
       out.push(`<div class="amp-agents">`);
-      out.push(`<div class="amp-agents-title">Агенты</div>`);
       agentData.agents.forEach((a,i)=>{
-        // Извлечь промпт из task (всё что между '' или «» или просто текст)
         const promptMatch=a.task.match(/Промпт:\s*['«]([\s\S]*?)['»]\s*—/);
         const jtbd=a.task.replace(/Промпт:\s*['«][\s\S]*?['»]\s*—\s*/,'').trim();
         const hasPrompt=!!promptMatch;
         const promptText=hasPrompt?promptMatch[1]:'';
         const uid=`agent-${Math.random().toString(36).slice(2)}`;
         out.push(`<div class="amp-agent-row">`);
-        out.push(`<div class="amp-agent-body">`);
         out.push(`<div class="amp-agent-jtbd">${jtbd}</div>`);
         if(hasPrompt){
-          out.push(`<details class="amp-prompt-details"><summary class="amp-copy-btn">Промпт</summary><div class="amp-prompt-text" id="${uid}">${promptText}</div><button class="amp-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('${uid}').textContent).then(()=>{this.textContent='Скопировано';setTimeout(()=>this.textContent='Копировать',1500)})">Копировать</button></details>`);
+          out.push(`<details class="amp-prompt-details"><summary>Показать промпт</summary><div class="amp-prompt-text" id="${uid}">${promptText}</div><button class="amp-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('${uid}').textContent).then(()=>{this.textContent='Скопировано ✓';setTimeout(()=>this.textContent='Копировать',1500)})">Копировать</button></details>`);
         }
-        out.push(`<div class="amp-agent-trigger">Когда: ${a.trigger} · <span class="amp-agent-name">${a.name}</span></div>`);
-        out.push(`</div>`);
+        out.push(`<div class="amp-agent-meta"><span class="amp-agent-name">${a.name}</span><span class="amp-agent-trigger">${a.trigger}</span></div>`);
         out.push(`</div>`);
       });
       out.push(`</div>`);
@@ -1788,8 +1786,8 @@ function renderAmplify(){
     out.push(`<span class="amp-card-icon">${themeIcon}</span>`);
     out.push(`<div class="amp-card-hdr-info">`);
     const headline=hasFullData?modeData.headline:(agentData?agentData.function:'');
-    out.push(`<div class="amp-card-hdr-top"><span class="amp-tag ${tagClass}">${tagText}</span><span class="amp-theme-name">${displayName}</span><span class="amp-zone-badge">#${pos}</span></div>`);
-    out.push(`<div style="font-size:12px;color:var(--text-2);margin-top:2px">${headline}</div>`);
+    out.push(`<div class="amp-card-hdr-top"><span class="amp-theme-name">${displayName}</span><span class="amp-zone-badge">#${pos}</span><span class="amp-tag ${tagClass}">${tagText}</span></div>`);
+    out.push(`<div class="amp-card-subtitle">${headline}</div>`);
     out.push(`</div>`);
     out.push(`<span class="amp-card-arrow">▾</span>`);
     out.push(`</div>`);
@@ -1829,8 +1827,8 @@ function renderAmplify(){
     out.push(`<div class="amp-card-hdr" onclick="this.closest('.amp-card').classList.toggle('open')">`);
     out.push(`<span class="amp-card-icon">${themeIcon}</span>`);
     out.push(`<div class="amp-card-hdr-info">`);
-    out.push(`<div class="amp-card-hdr-top"><span class="amp-tag amp-tag-partial">Базовые агенты</span><span class="amp-theme-name">${displayName}</span><span class="amp-zone-badge">#${pos}</span></div>`);
-    out.push(`<div style="font-size:12px;color:var(--text-2);margin-top:2px">${agentData.function}</div>`);
+    out.push(`<div class="amp-card-hdr-top"><span class="amp-theme-name">${displayName}</span><span class="amp-zone-badge">#${pos}</span></div>`);
+    out.push(`<div class="amp-card-subtitle">${agentData.function}</div>`);
     out.push(`</div>`);
     out.push(`<span class="amp-card-arrow">▾</span>`);
     out.push(`</div>`);
@@ -1859,6 +1857,8 @@ function renderAmplify(){
     lines.push(`<div class="amp-empty">Для тем из вашего профиля пока нет данных об AI-усилении.</div>`);
   }
 
+  // Справочник агентов внизу
+  lines.push(`<div class="amp-ref"><div class="amp-ref-title">Справочник агентов</div><div class="amp-ref-note">Рекомендации актуальны на апрель 2026. Рынок AI-инструментов меняется быстро — используйте как ориентир, не как директиву.</div><table class="amp-ref-table"><thead><tr><th>Агент</th><th>Что делает</th><th>Когда использовать</th></tr></thead><tbody><tr><td>Claude Opus</td><td>Глубокое рассуждение, сложный анализ, нарратив с нуля</td><td>Pre-mortem, оценка рисков, создание истории из данных</td></tr><tr><td>Claude Sonnet</td><td>Быстрые задачи: редактура готового черновика, резюме</td><td>Когда структура есть — нужна скорость, а не глубокое переосмысление</td></tr><tr><td>Claude Haiku</td><td>Максимальная скорость, минимальная стоимость</td><td>Массовые проверки, короткие тексты, повторяющиеся операции</td></tr><tr><td>Perplexity</td><td>Research с живыми источниками и цитатами</td><td>Факты, прецеденты, данные с датой — когда важна верифицируемость</td></tr><tr><td>EXA</td><td>Семантический поиск + мониторинг изменений по подписке</td><td>Слабые сигналы, язык аудитории, отслеживание изменений в теме. Отличие от Perplexity: не «что сейчас», а «что меняется и как об этом говорят»</td></tr><tr><td>Gemini</td><td>Большие документы, таблицы, мультимодальность</td><td>Датасеты, объёмные файлы, поиск паттернов в данных</td></tr><tr><td>NotebookLM</td><td>Синтез из личного корпуса — твоих документов</td><td>Извлечение паттернов из накопленных заметок, записей, архивов</td></tr><tr><td>Make / Zapier</td><td>Автоматизация по триггеру или расписанию</td><td>Реактивные уведомления, дайджесты, регулярные операции</td></tr><tr><td>Cursor / Copilot</td><td>Код и технические задачи</td><td>Разработка, скрипты, автоматизация через код</td></tr></tbody></table></div>`);
   lines.push(`</div>`); // amp-wrap
   el.innerHTML=lines.join('');
 }
