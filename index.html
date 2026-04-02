@@ -346,7 +346,18 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .amp-alpha-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;color:#fff;background:#B08B5B;border-radius:4px;padding:2px 7px;margin-left:8px;vertical-align:middle}
 .amp-section-title{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--text-1);margin-bottom:4px}
 .amp-section-sub{font-size:13px;color:var(--text-2);margin-bottom:16px}
-.amp-card{background:#F5F3EE;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:12px}
+.amp-card{background:#F5F3EE;border-radius:12px;overflow:hidden}
+.amp-card-hdr{display:flex;align-items:center;gap:10px;padding:16px 20px;cursor:pointer;user-select:none}
+.amp-card-hdr:hover{background:#EDE9E0}
+.amp-card-icon{font-size:20px;flex-shrink:0}
+.amp-card-hdr-info{flex:1;display:flex;flex-direction:column;gap:2px}
+.amp-card-hdr-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.amp-card-headline{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--text-1)}
+.amp-card-arrow{font-size:14px;color:var(--text-2);transition:transform .2s;flex-shrink:0}
+.amp-card.open .amp-card-arrow{transform:rotate(180deg)}
+.amp-card-body-wrap{display:none;padding:0 20px 18px;display:flex;flex-direction:column;gap:12px}
+.amp-card.open .amp-card-body-wrap{display:flex}
+.amp-card-body-wrap{display:none}
 .amp-card-header{display:flex;align-items:center;gap:10px}
 .amp-tag{font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 8px;border-radius:5px}
 .amp-tag-multiplier{background:#D6EDD6;color:#2A6B2A}
@@ -1728,10 +1739,23 @@ function renderAmplify(){
     const zoneLabel=`#${pos}`;
 
     const agentData=AMP_AGENTS[name];
+    const domainIconMap={'Executing':'⚙️','Influencing':'📣','Relationship Building':'🤝','Strategic Thinking':'🧠'};
+    const themeIcon=t?domainIconMap[t.domain]||'⭐':'⭐';
+    const cardId=`amp-card-${name.replace(/[^a-z]/gi,'').toLowerCase()}`;
 
-    lines.push(`<div class="amp-card">`);
-    lines.push(`<div class="amp-card-header"><span class="amp-tag ${tagClass}">${tagText}</span><span class="amp-theme-name">${displayName} / ${name}</span><span class="amp-zone-badge">${zoneLabel}</span></div>`);
-    lines.push(`<div class="amp-card-body"><strong>${modeData.headline}</strong><br>${modeData.why}</div>`);
+    lines.push(`<div class="amp-card" id="${cardId}">`);
+    // Header (always visible, click to toggle)
+    lines.push(`<div class="amp-card-hdr" onclick="this.closest('.amp-card').classList.toggle('open')">`);
+    lines.push(`<span class="amp-card-icon">${themeIcon}</span>`);
+    lines.push(`<div class="amp-card-hdr-info">`);
+    lines.push(`<div class="amp-card-hdr-top"><span class="amp-tag ${tagClass}">${tagText}</span><span class="amp-theme-name">${displayName}</span><span class="amp-zone-badge">${zoneLabel}</span></div>`);
+    lines.push(`<div style="font-size:12px;color:var(--text-2);margin-top:2px">${modeData.headline}</div>`);
+    lines.push(`</div>`);
+    lines.push(`<span class="amp-card-arrow">▾</span>`);
+    lines.push(`</div>`);
+    // Body (hidden by default, shown when open)
+    lines.push(`<div class="amp-card-body-wrap">`);
+    lines.push(`<div class="amp-card-body">${modeData.why}</div>`);
     lines.push(`<div class="amp-scenarios">`);
     modeData.scenarios.forEach(s=>{
       lines.push(`<div class="amp-scenario"><div class="amp-scenario-label">${s.label}</div><div class="amp-scenario-text">${s.text}</div></div>`);
@@ -1740,7 +1764,6 @@ function renderAmplify(){
     if(modeData.limit){
       lines.push(`<div class="amp-limit"><span class="amp-limit-label">Граница:</span>${modeData.limit}</div>`);
     }
-    // Agents section
     if(agentData&&agentData.agents&&agentData.agents.length){
       lines.push(`<div class="amp-agents">`);
       lines.push(`<div class="amp-agents-title">Агенты</div>`);
@@ -1749,7 +1772,8 @@ function renderAmplify(){
       });
       lines.push(`</div>`);
     }
-    lines.push(`</div>`);
+    lines.push(`</div>`); // amp-card-body-wrap
+    lines.push(`</div>`); // amp-card
   });
 
   if(!hasAny){
