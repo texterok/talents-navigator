@@ -1730,7 +1730,10 @@ async function doRegister() {
 async function doSaveProfile() {
   hideError('profileError');
   const raw = document.getElementById('profileThemes').value.trim();
-  const themes = raw.split('\n').map(s => s.trim()).filter(Boolean);
+  const themes = raw.split('\n')
+    .map(s => s.trim())
+    .filter(Boolean)
+    .map(s => s.replace(/^\d+[\.\)]\s*/, '').trim()); // strip "1. " or "1) " prefixes
 
   if (themes.length !== 34) {
     showError('profileError', `Нужно ровно 34 таланта, сейчас: ${themes.length}`); return;
