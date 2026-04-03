@@ -1737,7 +1737,7 @@ async function doLogin() {
 
 async function doRegister() {
   hideError('regError');
-  const inviteToken = new URLSearchParams(location.search).get('token');
+  const inviteToken = new URLSearchParams(location.search).get('invite') || new URLSearchParams(location.search).get('token');
   if (!inviteToken) { showError('regError', 'Нет invite-токена в ссылке'); return; }
 
   // Validate invite exists and is unused (pre-check for UX, atomic claim happens after signup)
@@ -1876,7 +1876,7 @@ function addLogoutButton() {
 }
 
 (async function bootstrap() {
-  const inviteToken = new URLSearchParams(location.search).get('token');
+  const inviteToken = new URLSearchParams(location.search).get('invite') || new URLSearchParams(location.search).get('token');
   const { data: { session } } = await supa.auth.getSession();
 
   if (session) {
