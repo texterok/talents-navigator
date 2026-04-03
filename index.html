@@ -1621,6 +1621,7 @@ function renderAmplify(){
     const pos=selected.indexOf(name)+1;
     const zone=getThemeZone(name);
     const isStrong=zone==='z1'||zone==='z2';
+    const isWeak=zone==='z4'||zone==='z5';
     const tagClass=isStrong?'amp-tag-multiplier':isWeak?'amp-tag-compensator':'amp-tag-neutral';
     const tagText=isStrong?'Мультипликатор':isWeak?'Компенсатор':'Развитие';
     const themeIcon=THEME_ICONS[name]||domainIconMap[t&&t.domain]||'⭐';
