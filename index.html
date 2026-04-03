@@ -1757,9 +1757,9 @@ async function doSaveProfile() {
   const { data: { user } } = await supa.auth.getUser();
   if (!user) { showLogin(); return; }
 
-  // upsert — safe to call multiple times
+  // insert only — profile is immutable after creation
   const { error } = await supa.from('profiles')
-    .upsert({ user_id: user.id, themes: mapped }, { onConflict: 'user_id' });
+    .insert({ user_id: user.id, themes: mapped });
   if (error) { showError('profileError', error.message); return; }
 
   try {
@@ -1801,6 +1801,17 @@ async function loadAndRender(themes) {
   hideOverlay();
   render();
   addLogoutButton();
+  lockPasteBox(themes);
+}
+
+function lockPasteBox(themes) {
+  const box = document.getElementById('pasteBox');
+  if (!box) return;
+  box.value = themes.map((t, i) => `${i+1}. ${t}`).join('\n');
+  box.readOnly = true;
+  box.style.cssText += ';opacity:0.6;cursor:not-allowed;background:#f0efe9;';
+  const hint = box.nextElementSibling;
+  if (hint) hint.textContent = 'Ваш профиль Gallup зафиксирован и не может быть изменён.';
 }
 
 function addLogoutButton() {
