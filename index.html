@@ -546,7 +546,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 
   <!-- MAIN TABS -->
   <div class="main-tabs" id="mainTabs">
-    <button class="main-tab active" data-tab="talents" onclick="switchMainTab('talents')">📋 Таланты</button>
+    <button class="main-tab active" data-tab="talents" onclick="switchMainTab('talents')">🧭 Лидерский профиль</button>
     <button class="main-tab" data-tab="dynamics" onclick="switchMainTab('dynamics')">🔗 Связки</button>
     <button class="main-tab" data-tab="checkup" onclick="switchMainTab('checkup')">🎯 Чекап среды</button>
     <button class="main-tab" data-tab="aiinstr" onclick="switchMainTab('aiinstr')">🤖 Инструкции для AI</button>
@@ -555,6 +555,10 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 
   <!-- TAB: TALENTS -->
   <div class="tab-content active" id="tabTalents">
+    <div class="tab-intro" id="talentsIntro" style="display:none;padding:16px 0 20px;border-bottom:1px solid var(--border-light);margin-bottom:24px">
+      <div style="font-size:17px;font-weight:600;color:var(--text-1);margin-bottom:6px">Ваша лидерская платформа</div>
+      <div style="font-size:14px;color:var(--text-2);line-height:1.6">Топ-10 талантов — это то, через что вы естественно строите доверие, проявляете заботу, даёте опору и создаёте направление. Gallup Leadership Guide показывает, как именно каждый из них работает в лидерском контексте.</div>
+    </div>
     <div class="cards-area visible" id="cardsArea"></div>
   </div>
 
@@ -743,15 +747,17 @@ function renderCards(){
     area.classList.remove('visible');
     empty.style.display='block';
     document.getElementById('disclaimer').classList.remove('visible');
+    document.getElementById('talentsIntro').style.display='none';
     return;
   }
   area.classList.add('visible');
   empty.style.display='none';
-  
+  document.getElementById('talentsIntro').style.display='block';
+
   // Show disclaimer when cards are visible
   document.getElementById('disclaimer').classList.add('visible');
-  
-  const allSelected=selected;
+
+  const allSelected=selected.slice(0,10);
   let html='';
   let lastZoneCls='';
   allSelected.forEach((name,i)=>{
