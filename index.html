@@ -623,7 +623,7 @@ const SEC_LABELS={trust:"Как вы строите доверие",care:"Как
 const SEC_ICONS={trust:"🤝",care:"💚",stability:"🛡️",direction:"🧭",management:"👥",quotes:"💬"};
 const SEC_HINTS={trust:"Люди идут за теми, кому доверяют. Вот как ваш талант помогает показать честность, последовательность и надёжность — чтобы люди верили вашим словам и решениям.",care:"Люди открываются тем, кому они не безразличны. Вот как ваш талант помогает строить близкие отношения, замечать чужие чувства и показывать, что вам не всё равно.",stability:"В неопределённости люди ищут того, на кого можно опереться. Вот как ваш талант помогает создавать ощущение безопасности, предсказуемости и устойчивости — чтобы люди рядом с вами чувствовали твёрдую почву.",direction:"Когда люди не видят пути вперёд — они останавливаются. Вот как ваш талант помогает показать цель, зажечь энергию и помочь другим поверить, что будущее стоит усилий.",management:"Если в вашей команде есть человек с этим талантом — вот что поможет раскрыть его потенциал и избежать типичных ошибок в работе с ним.",quotes:"Реальные цитаты людей с этим талантом. Помогают понять, как он ощущается изнутри — не в теории, а в жизни."};
 
-const ALL_NAMES=T.map(t=>t.name);
+function ALL_NAMES(){return T.map(t=>t.name);}
 const QUESTIONS={"Achiever":["Что из того, что вы делаете каждый день, на самом деле не приближает к главной цели?","Когда последний раз вы отказались от задачи — не потому что не можете, а потому что не нужно?"],"Activator":["Какой проект вы откладываете, хотя для старта уже достаточно информации?","Вспомните случай, когда вы запустили что-то раньше, чем команда была готова. Что бы вы сделали иначе?"],"Adaptability":["В какой ситуации на прошлой неделе ваша гибкость помогла команде — но никто этого не заметил?","Есть ли решение, которое вы избегаете принять, потому что проще «плыть по течению»?"],"Analytical":["Какое решение в вашей команде прямо сейчас принимается на эмоциях — и выиграло бы от вашего анализа?","Когда последний раз количество ваших вопросов остановило команду вместо того, чтобы продвинуть?"],"Arranger":["Кто в вашей команде сейчас не на своём месте — и вы это видите, но не говорите?","Когда последний раз ваша перестановка приоритетов дезориентировала тех, кто ждал стабильности?"],"Belief":["Какую из ваших ценностей вы давно не проявляли в действиях — только в словах?","Есть ли человек рядом, чью точку зрения вы отвергаете, потому что она не совпадает с вашими убеждениями?"],"Command":["Когда последний раз вы промолчали, хотя видели проблему — и потом пожалели?","Вспомните ситуацию, когда ваша прямота решила задачу — но задела человека. Что бы вы сказали иначе?"],"Communication":["Какую важную историю вашей команды вы ещё не рассказали — хотя она могла бы вдохновить?","Когда последний раз вы говорили так много, что не услышали того, кто хотел сказать что-то важное?"],"Competition":["С кем вы давно не сравнивали свои результаты — хотя это подстегнуло бы вас?","Есть ли коллега, с которым вы соревнуетесь в голове — а он об этом даже не знает и это мешает вашим отношениям?"],"Connectedness":["Кого из команды вы могли бы связать друг с другом — но пока не сделали этого?","Когда «всё связано» мешало вам принять конкретное, практическое решение здесь и сейчас?"],"Consistency":["Какое правило в вашей команде устарело — но вы за него держитесь, потому что «так было всегда»?","Есть ли ситуация, где исключение из правила было бы справедливее, чем само правило?"],"Context":["Какой урок из прошлого опыта вы не передали команде — хотя он мог бы уберечь от ошибки?","Когда последний раз знание «как было раньше» помешало вам попробовать что-то принципиально новое?"],"Deliberative":["Какое решение вы сейчас откладываете — и при этом стоимость ожидания уже выше стоимости ошибки?","Есть ли человек, которого вы не впустили в ближний круг — хотя он уже давно доказал свою надёжность?"],"Developer":["Кто рядом с вами готов к следующему шагу в развитии — но вы не предложили, потому что не было времени?","Есть ли человек, в которого вы инвестируете слишком долго — хотя он давно на своём потолке в этой роли?"],"Discipline":["Какой ваш процесс могли бы перенять коллеги — но вы не предложили, потому что «это же очевидно»?","Когда последний раз ваша потребность в порядке замедлила команду, которой нужно было действовать быстро?"],"Empathy":["Чьи чувства в команде вы считываете, но не озвучиваете — хотя это помогло бы им?","Когда последний раз чужие эмоции так захлестнули вас, что вы приняли решение сердцем, а не головой?"],"Focus":["Какой приоритет вы держите уже месяцами — но ни разу не проверили: а он ещё актуален?","Кого из людей вы «отсекли» вместе с отвлекающими факторами — хотя они заслуживали вашего внимания?"],"Futuristic":["Какое ваше видение будущего вы ещё ни разу не описали команде конкретно — с деталями, а не общими словами?","Когда последний раз мечта о будущем помешала вам разобраться с тем, что горит сейчас?"],"Harmony":["Какой конфликт в команде вы обходите, хотя его разрешение сдвинуло бы дело с мёртвой точки?","Когда последний раз вы согласились с решением, в которое не верите — чтобы не нарушать мир?"],"Ideation":["Какая из ваших идей последнего месяца так и осталась в голове — а могла бы изменить проект?","Когда последний раз новая идея увела вас от задачи, которую нужно было просто доделать?"],"Includer":["Кто в вашем окружении чувствует себя невидимым — и одно ваше приглашение могло бы это изменить?","Когда последний раз вы включили кого-то в проект, хотя это замедлило команду?"],"Individualization":["Кто в команде работает «не в своём формате» — и вы это видите, но не сказали руководителю?","Когда ваше внимание к уникальности каждого помешало принять быстрое решение для всей группы?"],"Input":["Кому из коллег прямо сейчас пригодилась бы информация, которую вы уже собрали — но не передали?","Когда последний раз вы потратили час на сбор данных, которые никто не использовал — включая вас?"],"Intellection":["Какую мысль вы обдумываете уже неделями — но так и не превратили в действие или решение?","Когда последний раз коллеги воспринимали ваше молчание как отстранённость, хотя вы были погружены в размышления?"],"Learner":["Чему вы научились за последний месяц — и кто ещё мог бы от этого выиграть, если бы вы поделились?","Когда последний раз процесс обучения увлёк вас настолько, что результат так и не появился?"],"Maximizer":["Что в вашей работе уже хорошо — но вы не инвестируете в это, потому что заняты латанием слабых мест?","Когда «ещё не достаточно хорошо» остановило вас от запуска того, что было уже достаточно хорошо?"],"Positivity":["Кого вы давно не хвалили — хотя он заслуживает, и ваше слово для него весит много?","Когда последний раз ваш оптимизм помешал команде увидеть реальную проблему вовремя?"],"Relator":["С кем из близких коллег вы давно не разговаривали по-настоящему — не по задачам, а по сути?","Есть ли новый человек в команде, которого вы держите на дистанции — просто потому что «ещё не свой»?"],"Responsibility":["Какое обязательство вы сейчас тянете, хотя давно пора его передать или отменить?","Когда последний раз вы сказали «нет» — и не чувствовали себя виноватым?"],"Restorative":["Какая системная проблема повторяется снова и снова — и вы каждый раз чините симптомы, а не причину?","Когда последний раз вы так увлеклись починкой сломанного, что не заметили то, что работает отлично?"],"Self-Assurance":["Какое решение вы уже приняли внутренне — но ещё не озвучили, хотя команда ждёт направления?","Когда последний раз вы изменили решение после чужой обратной связи — а не после собственного переосмысления?"],"Significance":["Какой ваш вклад остался незамеченным — и вместо того чтобы ждать признания, вы могли бы сами рассказать о нём?","Когда потребность в признании заставила вас взяться за видимый проект вместо важного, но незаметного?"],"Strategic":["Какой альтернативный маршрут вы видите, но не предлагаете — потому что команда уже привыкла к текущему?","Когда последний раз вы объяснили свою логику вслух — а не просто сказали «я вижу путь, пойдём»?"],"Woo":["С кем из новых знакомых последнего месяца стоило бы встретиться ещё раз — для конкретного дела?","Когда последний раз вы вернулись к уже установленному контакту, чтобы углубить его — а не пошли знакомиться дальше?"]};
 const RU_MAP={"Достижение":"Achiever","Катализатор":"Activator","Адаптивность":"Adaptability","Аналитик":"Analytical","Организатор":"Arranger","Вера":"Belief","Командование":"Command","Коммуникация":"Communication","Конкуренция":"Competition","Взаимосвязь":"Connectedness","Последовательность":"Consistency","Контекст":"Context","Осмотрительность":"Deliberative","Развитие":"Developer","Дисциплина":"Discipline","Эмпатия":"Empathy","Сосредоточенность":"Focus","Футурист":"Futuristic","Гармония":"Harmony","Генерация идей":"Ideation","Включение":"Includer","Индивидуализация":"Individualization","Накопление":"Input","Мыслитель":"Intellection","Обучаемость":"Learner","Максимизатор":"Maximizer","Позитивность":"Positivity","Общение":"Relator","Ответственность":"Responsibility","Восстановление":"Restorative","Уверенность":"Self-Assurance","Значимость":"Significance","Стратегия":"Strategic","Обаяние":"Woo","Генератор идей":"Ideation","Распорядитель":"Arranger","Будущее":"Futuristic","Включённость":"Includer","Связь":"Connectedness","Обучение":"Learner","Аналитика":"Analytical","Ответственность за результат":"Responsibility"};
 let DYNAMICS={}
@@ -635,7 +635,7 @@ function parseInput(txt){
   const found=[];
   let clean=txt.replace(/\r/g,'\n');
   // Try English names
-  for(const name of ALL_NAMES){
+  for(const name of ALL_NAMES()){
     const re=new RegExp('\\b'+name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i');
     if(re.test(clean))found.push({name,idx:clean.toLowerCase().indexOf(name.toLowerCase())});
   }
@@ -1688,24 +1688,23 @@ function hideError(id) { document.getElementById(id).style.display = 'none'; }
 
 async function doLogin() {
   hideError('loginError');
+  const btn = event.target;
+  btn.disabled = true;
   const email = document.getElementById('loginEmail').value.trim();
   const password = document.getElementById('loginPassword').value;
   const { error } = await supa.auth.signInWithPassword({ email, password });
+  btn.disabled = false;
   if (error) { showError('loginError', error.message); return; }
   await afterLogin();
 }
 
 async function doRegister() {
   hideError('regError');
-  const token = new URLSearchParams(location.search).get('token');
-  if (!token) { showError('regError', 'Нет invite-токена в ссылке'); return; }
+  const inviteToken = new URLSearchParams(location.search).get('token');
+  if (!inviteToken) { showError('regError', 'Нет invite-токена в ссылке'); return; }
 
-  // Check token is valid and unused
   const { data: invite, error: invErr } = await supa
-    .from('invites')
-    .select('id, used_at')
-    .eq('token', token)
-    .single();
+    .from('invites').select('id, used_at').eq('token', inviteToken).single();
   if (invErr || !invite) { showError('regError', 'Invite-ссылка недействительна'); return; }
   if (invite.used_at) { showError('regError', 'Эта ссылка уже использована'); return; }
 
@@ -1715,16 +1714,23 @@ async function doRegister() {
 
   const { data: signUpData, error: signUpErr } = await supa.auth.signUp({ email, password });
   if (signUpErr) { showError('regError', signUpErr.message); return; }
+  if (!signUpData.user) { showError('regError', 'Ошибка создания аккаунта, попробуйте ещё раз'); return; }
 
-  // Mark invite as used
+  // Mark invite used only after successful signup
   await supa.from('invites').update({
     used_at: new Date().toISOString(),
     used_by: signUpData.user.id
-  }).eq('token', token);
+  }).eq('token', inviteToken);
 
-  // Clean URL and proceed
-  history.replaceState({}, '', location.pathname);
-  await afterLogin();
+  // Auto sign-in after signup (works when email confirmation is off)
+  if (signUpData.session) {
+    history.replaceState({}, '', location.pathname);
+    await afterLogin();
+  } else {
+    showError('regError', 'Аккаунт создан — войдите с вашими данными');
+    history.replaceState({}, '', location.pathname);
+    showLogin();
+  }
 }
 
 async function doSaveProfile() {
@@ -1733,53 +1739,64 @@ async function doSaveProfile() {
   const themes = raw.split('\n')
     .map(s => s.trim())
     .filter(Boolean)
-    .map(s => s.replace(/^\d+[\.\)]\s*/, '').trim()); // strip "1. " or "1) " prefixes
+    .map(s => s.replace(/^\d+[\.\)]\s*/, '').trim());
 
   if (themes.length !== 34) {
     showError('profileError', `Нужно ровно 34 таланта, сейчас: ${themes.length}`); return;
   }
-  const invalid = themes.filter(t => !VALID_THEMES.has(t));
+  // Try Russian → English mapping
+  const mapped = themes.map(t => RU_MAP[t] || t);
+  const invalid = mapped.filter(t => !VALID_THEMES.has(t));
   if (invalid.length) {
     showError('profileError', `Неизвестные таланты: ${invalid.join(', ')}`); return;
   }
-  if (new Set(themes).size !== 34) {
+  if (new Set(mapped).size !== 34) {
     showError('profileError', 'Есть дублирующиеся таланты'); return;
   }
 
   const { data: { user } } = await supa.auth.getUser();
-  const { error } = await supa.from('profiles').insert({ user_id: user.id, themes });
+  if (!user) { showLogin(); return; }
+
+  // upsert — safe to call multiple times
+  const { error } = await supa.from('profiles')
+    .upsert({ user_id: user.id, themes: mapped }, { onConflict: 'user_id' });
   if (error) { showError('profileError', error.message); return; }
 
-  await loadAndRender(themes);
+  try {
+    await loadAndRender(mapped);
+  } catch(e) {
+    showError('profileError', 'Ошибка загрузки данных: ' + e.message);
+  }
 }
 
 async function afterLogin() {
-  const { data: { user } } = await supa.auth.getUser();
-  if (!user) { showLogin(); return; }
+  const { data: { user }, error } = await supa.auth.getUser();
+  if (error || !user) { showLogin(); return; }
 
   const { data: profile } = await supa.from('profiles').select('themes').eq('user_id', user.id).single();
-  if (!profile) {
-    showOverlay('formProfile');
-    return;
+  if (!profile) { showOverlay('formProfile'); return; }
+
+  try {
+    await loadAndRender(profile.themes);
+  } catch(e) {
+    showError('loginError', 'Ошибка загрузки данных: ' + e.message);
+    showLogin();
   }
-  await loadAndRender(profile.themes);
 }
 
 async function loadAndRender(themes) {
-  // Load all content from Supabase Storage
   const files = ['t','dynamics','theme_rules','amp_data','amp_agents','checkup_qs'];
   const baseUrl = `${SUPA_URL}/storage/v1/object/authenticated/content`;
   const { data: { session } } = await supa.auth.getSession();
+  if (!session) throw new Error('Сессия истекла, войдите снова');
   const token = session.access_token;
 
   const results = await Promise.all(files.map(f =>
     fetch(`${baseUrl}/${f}.json`, { headers: { Authorization: `Bearer ${token}` } })
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw new Error(`Ошибка загрузки ${f}.json: ${r.status}`); return r.json(); })
   ));
 
   [T, DYNAMICS, THEME_RULES, AMP_DATA, AMP_AGENTS, CHECKUP_QS] = results;
-
-  // Load profile into app state
   selected = themes.slice(0, 10);
   hideOverlay();
   render();
@@ -1792,24 +1809,19 @@ function addLogoutButton() {
   btn.id = 'logoutBtn';
   btn.textContent = 'Выйти';
   btn.style.cssText = 'position:fixed;bottom:16px;right:16px;padding:8px 14px;background:#fff;border:1px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer;color:#666;z-index:100';
-  btn.onclick = async () => {
-    await supa.auth.signOut();
-    location.reload();
-  };
+  btn.onclick = async () => { await supa.auth.signOut(); location.reload(); };
   document.body.appendChild(btn);
 }
 
-// Check invite token in URL on load, else try silent session restore
 (async function bootstrap() {
-  const token = new URLSearchParams(location.search).get('token');
-
+  const inviteToken = new URLSearchParams(location.search).get('token');
   const { data: { session } } = await supa.auth.getSession();
-  if (session) {
+
+  if (session && !inviteToken) {
     await afterLogin();
     return;
   }
-
-  if (token) {
+  if (inviteToken) {
     showRegister();
   } else {
     showLogin();
