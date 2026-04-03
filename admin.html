@@ -117,6 +117,8 @@
 </div>
 
 <script>
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
 const SUPA_URL = 'https://kyjwdwnooufskjsyhpts.supabase.co';
 const SUPA_KEY = 'sb_publishable_VDkk63hgmR7H6XOdoBi01g_BEQc7deP';
 const supa = supabase.createClient(SUPA_URL, SUPA_KEY, {
@@ -169,7 +171,7 @@ async function loadUsers() {
     .select('user_id, themes, is_admin, created_at')
     .order('created_at', { ascending: false });
 
-  if (error) { el.innerHTML = `<div class="empty">Ошибка: ${error.message}</div>`; return; }
+  if (error) { el.innerHTML = `<div class="empty">Ошибка: ${esc(error.message)}</div>`; return; }
   if (!data?.length) { el.innerHTML = '<div class="empty">Пользователей нет</div>'; return; }
 
   let html = `<table>
@@ -183,11 +185,11 @@ async function loadUsers() {
 
   for (const row of data) {
     const themes = row.themes || [];
-    const top5 = themes.slice(0, 5).join(', ') || '—';
+    const top5 = esc(themes.slice(0, 5).join(', ') || '—');
     const hasProfile = themes.length > 0;
     const date = row.created_at ? new Date(row.created_at).toLocaleDateString('ru-RU') : '—';
     html += `<tr>
-      <td style="font-family:monospace;font-size:11px;color:#888">${row.user_id}</td>
+      <td style="font-family:monospace;font-size:11px;color:#888">${esc(row.user_id)}</td>
       <td><span class="badge ${hasProfile ? 'has' : 'no'}">${hasProfile ? `${themes.length} тем` : 'Нет'}</span></td>
       <td><div class="themes-list">${top5}</div></td>
       <td><span class="badge ${row.is_admin ? 'used' : 'no'}">${row.is_admin ? 'Admin' : 'User'}</span></td>
@@ -207,7 +209,7 @@ async function loadInvites() {
     .select('id, token, note, created_at, used_at, used_by')
     .order('created_at', { ascending: false });
 
-  if (error) { el.innerHTML = `<div class="empty">Ошибка: ${error.message}</div>`; return; }
+  if (error) { el.innerHTML = `<div class="empty">Ошибка: ${esc(error.message)}</div>`; return; }
   if (!data?.length) { el.innerHTML = '<div class="empty">Инвайтов нет</div>'; return; }
 
   const base = window.location.origin + window.location.pathname.replace('admin.html', 'index.html');
@@ -222,12 +224,12 @@ async function loadInvites() {
     </tr></thead><tbody>`;
 
   for (const row of data) {
-    const link = `${base}?invite=${row.token}`;
+    const link = `${base}?invite=${esc(row.token)}`;
     const created = new Date(row.created_at).toLocaleDateString('ru-RU');
     const used = row.used_at ? new Date(row.used_at).toLocaleDateString('ru-RU') : '—';
     html += `<tr>
-      <td>${row.note || '—'}</td>
-      <td><a href="${link}" target="_blank" style="font-size:11px;color:#059669;word-break:break-all">${link}</a></td>
+      <td>${esc(row.note || '—')}</td>
+      <td><a href="${base}?invite=${esc(row.token)}" target="_blank" style="font-size:11px;color:#059669;word-break:break-all">${link}</a></td>
       <td><span class="badge ${row.used_at ? 'used' : 'unused'}">${row.used_at ? 'Активирован' : 'Ожидает'}</span></td>
       <td>${created}</td>
       <td>${used}</td>
@@ -239,11 +241,14 @@ async function loadInvites() {
 }
 
 async function createInvite() {
+  const btn = document.querySelector('.invite-row .btn');
+  btn.disabled = true;
   const note = document.getElementById('inviteNote').value.trim();
   const token = crypto.randomUUID();
 
   const { error } = await supa.from('invites').insert({ token, note: note || null });
-  if (error) { alert('Ошибка: ' + error.message); return; }
+  btn.disabled = false;
+  if (error) { alert('Ошибка: ' + esc(error.message)); return; }
 
   const base = window.location.origin + window.location.pathname.replace('admin.html', 'index.html');
   const link = `${base}?invite=${token}`;

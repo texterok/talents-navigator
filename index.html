@@ -1740,6 +1740,7 @@ async function doRegister() {
   const inviteToken = new URLSearchParams(location.search).get('token');
   if (!inviteToken) { showError('regError', 'Нет invite-токена в ссылке'); return; }
 
+  // Validate invite exists and is unused (pre-check for UX, atomic claim happens after signup)
   const { data: invite, error: invErr } = await supa
     .from('invites').select('id, used_at').eq('token', inviteToken).single();
   if (invErr || !invite) { showError('regError', 'Invite-ссылка недействительна'); return; }
@@ -1753,11 +1754,19 @@ async function doRegister() {
   if (signUpErr) { showError('regError', signUpErr.message); return; }
   if (!signUpData.user) { showError('regError', 'Ошибка создания аккаунта, попробуйте ещё раз'); return; }
 
-  // Mark invite used only after successful signup
-  await supa.from('invites').update({
-    used_at: new Date().toISOString(),
-    used_by: signUpData.user.id
-  }).eq('token', inviteToken);
+  // Atomic claim: update only if used_at is still null (prevents race condition)
+  const { data: claimed } = await supa.from('invites')
+    .update({ used_at: new Date().toISOString(), used_by: signUpData.user.id })
+    .eq('token', inviteToken)
+    .is('used_at', null)
+    .select();
+  if (!claimed?.length) {
+    // Invite was claimed by someone else concurrently — rollback by deleting the new user is not
+    // possible client-side, but we can sign them out and show an error
+    await supa.auth.signOut();
+    showError('regError', 'Эта ссылка уже была использована. Обратитесь за новой.');
+    return;
+  }
 
   // Auto sign-in after signup (works when email confirmation is off)
   if (signUpData.session) {
@@ -1870,7 +1879,9 @@ function addLogoutButton() {
   const inviteToken = new URLSearchParams(location.search).get('token');
   const { data: { session } } = await supa.auth.getSession();
 
-  if (session && !inviteToken) {
+  if (session) {
+    // Already logged in — ignore invite token, go straight to app
+    history.replaceState({}, '', location.pathname);
     await afterLogin();
     return;
   }
