@@ -425,7 +425,14 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
   <script>
     const SUPA_URL = 'https://kyjwdwnooufskjsyhpts.supabase.co';
     const SUPA_KEY = 'sb_publishable_VDkk63hgmR7H6XOdoBi01g_BEQc7deP';
-    const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
+    const supa = supabase.createClient(SUPA_URL, SUPA_KEY, {
+      auth: {
+        persistSession: true,
+        storageKey: 'tn-session',
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+      }
+    });
   </script>
 </head>
 <body>
@@ -1837,6 +1844,16 @@ function addLogoutButton() {
   } else {
     showLogin();
   }
+
+  // Keep session alive — refresh token automatically on expiry
+  supa.auth.onAuthStateChange(async (event, session) => {
+    if (event === 'TOKEN_REFRESHED' && session) {
+      // Token refreshed silently, nothing to do — session stays active
+    }
+    if (event === 'SIGNED_OUT') {
+      location.reload();
+    }
+  });
 })();
 
 </script></body></html>
