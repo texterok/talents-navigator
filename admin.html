@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Talents Navigator</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F8F9FA;color:#1a1a1a;min-height:100vh}
+  .page{max-width:1000px;margin:0 auto;padding:32px 20px}
+  h1{font-size:22px;font-weight:700;margin-bottom:4px}
+  .subtitle{font-size:14px;color:#666;margin-bottom:32px}
+
+  /* Login */
+  .login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh}
+  .login-box{background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:32px;width:360px}
+  .login-box h2{font-size:18px;margin-bottom:20px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:13px;color:#555;margin-bottom:5px}
+  .field input{width:100%;border:1px solid #D1D5DB;border-radius:8px;padding:9px 12px;font-size:14px;outline:none}
+  .field input:focus{border-color:#059669}
+  .btn{width:100%;background:#059669;color:#fff;border:none;border-radius:8px;padding:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px}
+  .btn:hover{background:#047857}
+  .err{color:#DC2626;font-size:13px;margin-top:10px}
+
+  /* Layout */
+  .tabs{display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid #E5E7EB;padding-bottom:0}
+  .tab{padding:10px 18px;font-size:14px;font-weight:500;color:#666;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+  .tab.active{color:#059669;border-bottom-color:#059669}
+
+  /* Section */
+  .section{display:none}
+  .section.active{display:block}
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;border:1px solid #E5E7EB;font-size:13px}
+  th{background:#F3F4F6;padding:10px 14px;text-align:left;font-weight:600;color:#374151;border-bottom:1px solid #E5E7EB}
+  td{padding:10px 14px;border-bottom:1px solid #F3F4F6;vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#FAFAFA}
+  .badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
+  .badge.used{background:#D1FAE5;color:#065F46}
+  .badge.unused{background:#FEF3C7;color:#92400E}
+  .badge.has{background:#DBEAFE;color:#1E40AF}
+  .badge.no{background:#F3F4F6;color:#6B7280}
+
+  /* Invite form */
+  .invite-form{background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:20px;margin-bottom:20px}
+  .invite-form h3{font-size:15px;font-weight:600;margin-bottom:14px}
+  .invite-row{display:flex;gap:10px;align-items:flex-end}
+  .invite-row .field{flex:1;margin-bottom:0}
+  .invite-row .btn{width:auto;padding:9px 20px;margin-top:0}
+  .invite-result{margin-top:14px;padding:12px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;font-size:13px;word-break:break-all}
+  .invite-result strong{display:block;margin-bottom:4px;color:#065F46}
+  .copy-btn{margin-top:8px;padding:5px 12px;font-size:12px;background:#059669;color:#fff;border:none;border-radius:6px;cursor:pointer}
+
+  .themes-list{font-size:12px;color:#555;max-width:300px;line-height:1.4}
+  .empty{text-align:center;padding:40px;color:#999;font-size:14px}
+  .refresh{float:right;font-size:13px;color:#059669;cursor:pointer;font-weight:500}
+  .refresh:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-box">
+    <h2>Вход в админку</h2>
+    <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="you@example.com"></div>
+    <div class="field"><label>Пароль</label><input type="password" id="loginPassword"></div>
+    <button class="btn" onclick="doLogin()">Войти</button>
+    <div class="err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="page" id="adminPanel" style="display:none">
+  <h1>Talents Navigator — Админ</h1>
+  <p class="subtitle" id="adminEmail"></p>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('users')">Пользователи</div>
+    <div class="tab" onclick="switchTab('invites')">Инвайты</div>
+  </div>
+
+  <!-- USERS -->
+  <div class="section active" id="sectionUsers">
+    <span class="refresh" onclick="loadUsers()">↻ Обновить</span>
+    <br><br>
+    <div id="usersTable"><div class="empty">Загрузка...</div></div>
+  </div>
+
+  <!-- INVITES -->
+  <div class="section" id="sectionInvites">
+    <div class="invite-form">
+      <h3>Создать инвайт</h3>
+      <div class="invite-row">
+        <div class="field">
+          <label>Примечание (необязательно)</label>
+          <input type="text" id="inviteNote" placeholder="Для кого (для себя)">
+        </div>
+        <button class="btn" onclick="createInvite()">Создать ссылку</button>
+      </div>
+      <div class="invite-result" id="inviteResult" style="display:none">
+        <strong>Ссылка готова:</strong>
+        <span id="inviteLink"></span>
+        <br>
+        <button class="copy-btn" onclick="copyInvite()">Скопировать</button>
+      </div>
+    </div>
+
+    <span class="refresh" onclick="loadInvites()">↻ Обновить</span>
+    <br><br>
+    <div id="invitesTable"><div class="empty">Загрузка...</div></div>
+  </div>
+</div>
+
+<script>
+const SUPA_URL = 'https://kyjwdwnooufskjsyhpts.supabase.co';
+const SUPA_KEY = 'sb_publishable_VDkk63hgmR7H6XOdoBi01g_BEQc7deP';
+const supa = supabase.createClient(SUPA_URL, SUPA_KEY, {
+  auth: { persistSession: true, autoRefreshToken: true }
+});
+
+async function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const err = document.getElementById('loginErr');
+  err.textContent = '';
+
+  const { data, error } = await supa.auth.signInWithPassword({ email, password });
+  if (error) { err.textContent = error.message; return; }
+
+  // Check is_admin
+  const { data: profile } = await supa.from('profiles')
+    .select('is_admin').eq('user_id', data.user.id).single();
+
+  if (!profile?.is_admin) {
+    await supa.auth.signOut();
+    err.textContent = 'Нет доступа к админке.';
+    return;
+  }
+
+  showPanel(data.user.email);
+}
+
+function showPanel(email) {
+  document.getElementById('loginWrap').style.display = 'none';
+  document.getElementById('adminPanel').style.display = 'block';
+  document.getElementById('adminEmail').textContent = email;
+  loadUsers();
+  loadInvites();
+}
+
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.classList.toggle('active', ['users','invites'][i] === name);
+  });
+  document.getElementById('sectionUsers').classList.toggle('active', name === 'users');
+  document.getElementById('sectionInvites').classList.toggle('active', name === 'invites');
+}
+
+async function loadUsers() {
+  const el = document.getElementById('usersTable');
+  el.innerHTML = '<div class="empty">Загрузка...</div>';
+
+  const { data, error } = await supa.from('profiles')
+    .select('user_id, themes, is_admin, created_at')
+    .order('created_at', { ascending: false });
+
+  if (error) { el.innerHTML = `<div class="empty">Ошибка: ${error.message}</div>`; return; }
+  if (!data?.length) { el.innerHTML = '<div class="empty">Пользователей нет</div>'; return; }
+
+  let html = `<table>
+    <thead><tr>
+      <th>User ID</th>
+      <th>Профиль</th>
+      <th>Таланты (топ-5)</th>
+      <th>Роль</th>
+      <th>Дата регистрации</th>
+    </tr></thead><tbody>`;
+
+  for (const row of data) {
+    const themes = row.themes || [];
+    const top5 = themes.slice(0, 5).join(', ') || '—';
+    const hasProfile = themes.length > 0;
+    const date = row.created_at ? new Date(row.created_at).toLocaleDateString('ru-RU') : '—';
+    html += `<tr>
+      <td style="font-family:monospace;font-size:11px;color:#888">${row.user_id}</td>
+      <td><span class="badge ${hasProfile ? 'has' : 'no'}">${hasProfile ? `${themes.length} тем` : 'Нет'}</span></td>
+      <td><div class="themes-list">${top5}</div></td>
+      <td><span class="badge ${row.is_admin ? 'used' : 'no'}">${row.is_admin ? 'Admin' : 'User'}</span></td>
+      <td>${date}</td>
+    </tr>`;
+  }
+
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+async function loadInvites() {
+  const el = document.getElementById('invitesTable');
+  el.innerHTML = '<div class="empty">Загрузка...</div>';
+
+  const { data, error } = await supa.from('invites')
+    .select('id, token, note, created_at, used_at, used_by')
+    .order('created_at', { ascending: false });
+
+  if (error) { el.innerHTML = `<div class="empty">Ошибка: ${error.message}</div>`; return; }
+  if (!data?.length) { el.innerHTML = '<div class="empty">Инвайтов нет</div>'; return; }
+
+  const base = window.location.origin + window.location.pathname.replace('admin.html', 'index.html');
+
+  let html = `<table>
+    <thead><tr>
+      <th>Примечание</th>
+      <th>Ссылка</th>
+      <th>Статус</th>
+      <th>Создан</th>
+      <th>Активирован</th>
+    </tr></thead><tbody>`;
+
+  for (const row of data) {
+    const link = `${base}?invite=${row.token}`;
+    const created = new Date(row.created_at).toLocaleDateString('ru-RU');
+    const used = row.used_at ? new Date(row.used_at).toLocaleDateString('ru-RU') : '—';
+    html += `<tr>
+      <td>${row.note || '—'}</td>
+      <td><a href="${link}" target="_blank" style="font-size:11px;color:#059669;word-break:break-all">${link}</a></td>
+      <td><span class="badge ${row.used_at ? 'used' : 'unused'}">${row.used_at ? 'Активирован' : 'Ожидает'}</span></td>
+      <td>${created}</td>
+      <td>${used}</td>
+    </tr>`;
+  }
+
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+async function createInvite() {
+  const note = document.getElementById('inviteNote').value.trim();
+  const token = crypto.randomUUID();
+
+  const { error } = await supa.from('invites').insert({ token, note: note || null });
+  if (error) { alert('Ошибка: ' + error.message); return; }
+
+  const base = window.location.origin + window.location.pathname.replace('admin.html', 'index.html');
+  const link = `${base}?invite=${token}`;
+
+  document.getElementById('inviteLink').textContent = link;
+  document.getElementById('inviteResult').style.display = 'block';
+  document.getElementById('inviteNote').value = '';
+
+  loadInvites();
+}
+
+function copyInvite() {
+  const link = document.getElementById('inviteLink').textContent;
+  navigator.clipboard.writeText(link).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Скопировано!';
+    setTimeout(() => btn.textContent = 'Скопировать', 2000);
+  });
+}
+
+// Check existing session on load
+supa.auth.getSession().then(async ({ data }) => {
+  if (!data.session) return;
+  const { data: profile } = await supa.from('profiles')
+    .select('is_admin').eq('user_id', data.session.user.id).single();
+  if (profile?.is_admin) showPanel(data.session.user.email);
+});
+</script>
+</body>
+</html>
