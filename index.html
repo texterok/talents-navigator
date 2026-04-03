@@ -386,14 +386,11 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .amp-agent-name{font-size:10px;font-weight:600;background:var(--surface);color:var(--text-2);border:1px solid var(--border);border-radius:4px;padding:2px 6px;white-space:nowrap}
 .amp-agent-trigger{font-size:11px;color:var(--text-3)}
 /* Prompt */
-.amp-prompt-details{margin-top:4px}
-.amp-prompt-details>summary{list-style:none;cursor:pointer;font-size:11px;color:var(--text-3);display:inline-flex;align-items:center;gap:4px;padding:2px 0}
-.amp-prompt-details>summary::-webkit-details-marker{display:none}
-.amp-prompt-details>summary::before{content:'▶';font-size:8px;transition:transform .15s;display:inline-block}
-.amp-prompt-details[open]>summary::before{transform:rotate(90deg)}
-.amp-prompt-text{font-size:12px;color:var(--text-2);line-height:1.6;background:var(--surface);border:1px solid var(--border-light);border-radius:6px;padding:10px 12px;margin:6px 0;white-space:pre-wrap;font-family:var(--sans)}
-.amp-copy-btn{font-size:11px;color:var(--text-3);background:none;border:1px solid var(--border);border-radius:4px;padding:2px 8px;cursor:pointer;transition:all .15s;display:inline-block}
-.amp-copy-btn:hover{background:var(--surface-alt);color:var(--text-1)}
+.amp-prompt-wrap{margin-top:8px;border:1px solid var(--border-light);border-radius:8px;overflow:hidden}
+.amp-prompt-label{font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;padding:7px 12px;background:var(--surface-alt);border-bottom:1px solid var(--border-light)}
+.amp-prompt-text{font-size:12px;color:var(--text-1);line-height:1.65;background:var(--surface);padding:12px 14px;white-space:pre-wrap;font-family:monospace;margin:0}
+.amp-copy-btn{display:block;width:100%;text-align:center;font-size:11px;color:var(--text-3);background:var(--surface-alt);border:none;border-top:1px solid var(--border-light);padding:7px;cursor:pointer;transition:all .15s;font-family:var(--sans)}
+.amp-copy-btn:hover{background:var(--border-light);color:var(--text-1)}
 /* Reference table */
 .amp-ref{background:var(--surface-alt);border:1px solid var(--border-light);border-radius:var(--r);padding:20px 22px}
 .amp-ref-title{font-family:var(--serif);font-size:15px;font-weight:700;margin-bottom:4px;color:var(--text-1)}
@@ -1758,7 +1755,7 @@ function renderAmplify(){
         if(pain) out.push(`<div class="amp-agent-pain">${pain}</div>`);
         out.push(`<div class="amp-agent-jtbd">${jtbd}</div>`);
         if(hasPrompt){
-          out.push(`<details class="amp-prompt-details"><summary>Показать промпт</summary><div class="amp-prompt-text" id="${uid}">${promptText}</div><button class="amp-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('${uid}').textContent).then(()=>{this.textContent='Скопировано ✓';setTimeout(()=>this.textContent='Копировать',1500)})">Копировать</button></details>`);
+          out.push(`<div class="amp-prompt-wrap"><div class="amp-prompt-label">Промпт</div><div class="amp-prompt-text" id="${uid}">${promptText}</div><button class="amp-copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('${uid}').textContent).then(()=>{this.textContent='Скопировано ✓';setTimeout(()=>this.textContent='Копировать',1500)})">Копировать</button></div>`);
         }
         out.push(`<div class="amp-agent-meta"><span class="amp-agent-name">${a.name}</span><span class="amp-agent-trigger">${a.trigger}</span></div>`);
         out.push(`</div>`);
