@@ -135,12 +135,18 @@ async function doLogin() {
   if (error) { err.textContent = error.message; return; }
 
   // Check is_admin
-  const { data: profile } = await supa.from('profiles')
+  const { data: profile, error: profileErr } = await supa.from('profiles')
     .select('is_admin').eq('user_id', data.user.id).single();
+
+  if (profileErr) {
+    await supa.auth.signOut();
+    err.textContent = `Ошибка чтения профиля: ${profileErr.message} (code: ${profileErr.code})`;
+    return;
+  }
 
   if (!profile?.is_admin) {
     await supa.auth.signOut();
-    err.textContent = 'Нет доступа к админке.';
+    err.textContent = `Нет доступа к админке. (is_admin=${profile?.is_admin}, uid=${data.user.id})`;
     return;
   }
 
