@@ -691,8 +691,8 @@ function renderChips(){
     {cls:'z1',color:'#059669',name:'1–5 Работает само'},
     {cls:'z2',color:'#047857',name:'6–10 Легко включается'},
     {cls:'z3',color:'#B45309',name:'11–15 Доступно осознанно'},
-    {cls:'z4',color:'#D97706',name:'16–24 Требует усилия'},
-    {cls:'z5',color:'#DC2626',name:'25–34 Вне природной зоны'}
+    {cls:'z4',color:'#D97706',name:'16–20 Требует усилия'},
+    {cls:'z5',color:'#DC2626',name:'21–34 Вне природной зоны'}
   ];
   const maxPos=selected.length;
   let legendHtml='';
@@ -791,11 +791,21 @@ function renderCards(){
     html+=`</div>`;
     
     // Use mgmt_title for management section label
-    const secKeys=['trust','care','stability','direction','management','quotes'];
+    // z1-z2: all sections; z3: management only; z4-z5: no leadership sections
+    const zone=getThemeZone(name);
+    let allowedSecs;
+    if(zone==='z1'||zone==='z2'){
+      allowedSecs=['trust','care','stability','direction','management','quotes'];
+    }else if(zone==='z3'){
+      allowedSecs=['management'];
+    }else{
+      allowedSecs=[];
+    }
+    const secKeys=allowedSecs;
     secKeys.forEach((key,si)=>{
       const items=t.sections[key]||[];
       if(!items.length)return;
-      const openClass=si===0&&i===0?' open':'';
+      const openClass=si===0&&(i===0||zone==='z3')?' open':'';
       
       // Determine label: use mgmt_title for management, SEC_LABELS for others
       let label;
@@ -830,11 +840,18 @@ function renderCards(){
       html+=`</div></div>`;
     });
     
+    // Note for z4/z5: no leadership sections shown intentionally
+    if(zone==='z4'||zone==='z5'){
+      const noteText=zone==='z5'
+        ?'Этот талант находится вне вашей природной зоны. Галлап не рекомендует инвестировать в его развитие — лучше закрыть эту потребность через партнёрство или делегирование.'
+        :'Этот талант требует осознанных усилий. Используйте только ситуативно и следите за расходом энергии.';
+      html+=`<div style="padding:12px 16px;background:#FFF7F0;border-radius:8px;margin:0 16px 12px;font-size:13px;color:#92400E;line-height:1.5">${noteText}</div>`;
+    }
+
     // Reflection questions
     const qs=QUESTIONS[name];
     if(qs&&qs.length>=2){
-      const zone=getThemeZone(name);
-      const isDormant=zone==='z5';
+      const isDormant=zone==='z5';  // zone already declared above
       const q1=isDormant&&qs[2]?qs[2]:qs[0];
       const q1label=isDormant&&qs[2]?'Партнёрство':'Потенциал';
       const q1badge=isDormant&&qs[2]?'partner':'potential';
