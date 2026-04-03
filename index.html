@@ -174,6 +174,29 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .chip .chip-n.z4{background:#D97706}
 .chip .chip-n.z5{background:#DC2626}
 
+/* Domain grid (Gallup-style) */
+.dgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border-light);border-radius:10px;overflow:hidden;margin:12px 0}
+.dgrid-col{}
+.dgrid-hdr{padding:10px 8px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-bottom:3px solid currentColor}
+.dgrid-hdr.exec{color:var(--exec);background:var(--exec-bg)}
+.dgrid-hdr.infl{color:var(--infl);background:var(--infl-bg)}
+.dgrid-hdr.rel{color:var(--rel);background:var(--rel-bg)}
+.dgrid-hdr.strat{color:var(--strat);background:var(--strat-bg)}
+.dgrid-col:not(:last-child){border-right:1px solid var(--border-light)}
+.dgrid-cell{display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--border-light);min-height:44px}
+.dgrid-cell:last-child{border-bottom:none}
+.dgrid-cell-pos{font-size:22px;font-weight:700;line-height:1;min-width:28px;text-align:right;flex-shrink:0}
+.dgrid-cell-name{font-size:12px;font-weight:500;line-height:1.3;color:var(--text-1)}
+.dgrid-cell-ru{font-size:10px;color:var(--text-3);line-height:1.2}
+.dgrid-cell.top10 .dgrid-cell-pos{font-size:28px}
+.dgrid-cell.top10 .dgrid-cell-name{font-weight:700}
+.dgrid-cell.z1 .dgrid-cell-pos{color:#059669}
+.dgrid-cell.z2 .dgrid-cell-pos{color:#047857}
+.dgrid-cell.z3 .dgrid-cell-pos{color:#B45309}
+.dgrid-cell.z4 .dgrid-cell-pos{color:#D97706}
+.dgrid-cell.z5 .dgrid-cell-pos{color:#DC2626}
+.dgrid-cell.top10{background:#FAFAFA}
+
 /* ZONE SEPARATOR in cards */
 .zone-separator{padding:12px 0 8px;display:flex;align-items:center;gap:12px}
 .zone-separator-line{flex:1;height:1px;background:var(--border)}
@@ -536,8 +559,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
   <!-- SELECTED CHIPS -->
   <div class="chips-area" id="chipsArea">
     <div class="sec-title">Ваш профиль</div>
-    <div class="sec-desc">Перетащите, чтобы изменить порядок. Нажмите × чтобы убрать. Позиция таланта определяет его зону.</div>
-    <div class="chips-wrap" id="chipsWrap"></div>
+    <div class="sec-desc">Позиция таланта определяет его зону силы.</div>
+    <div id="domainGrid"></div>
     <div class="zone-legend" id="zoneLegend"></div>
   </div>
 
@@ -672,72 +695,59 @@ function getZone(pos){
 
 function renderChips(){
   const area=document.getElementById('chipsArea');
-  const wrap=document.getElementById('chipsWrap');
+  const grid=document.getElementById('domainGrid');
   const legend=document.getElementById('zoneLegend');
   if(!selected.length){area.classList.remove('visible');return}
   area.classList.add('visible');
-  
-  let html='';
+
+  const DOMAINS=[
+    {key:'Executing',     ru:'Исполнение',              cls:'exec'},
+    {key:'Influencing',   ru:'Влияние',                 cls:'infl'},
+    {key:'Relationship Building', ru:'Выстраивание отношений', cls:'rel'},
+    {key:'Strategic Thinking',    ru:'Стратегическое мышление',cls:'strat'},
+  ];
+
+  // Group themes by domain preserving position
+  const byDomain={};
+  DOMAINS.forEach(d=>{byDomain[d.key]=[]});
   selected.forEach((name,i)=>{
     const t=findTheme(name);
     if(!t)return;
-    const z=getZone(i+1);
-    html+=`<div class="chip" draggable="true" data-d="${t.domain}" data-idx="${i}" data-name="${name}">
-      <span class="chip-n ${z.cls}">${i+1}</span>
-      <span>${name}</span>
-      <span class="chip-x" onclick="removeChip(${i})">×</span>
-    </div>`;
+    const pos=i+1;
+    const zone=getZone(pos);
+    byDomain[t.domain]?.push({name,ru:t.ru,pos,zone});
   });
-  wrap.innerHTML=html;
-  
+
+  const maxRows=Math.max(...DOMAINS.map(d=>byDomain[d.key].length));
+
+  let html=`<div class="dgrid">`;
+  DOMAINS.forEach(d=>{
+    const items=byDomain[d.key];
+    html+=`<div class="dgrid-col">`;
+    html+=`<div class="dgrid-hdr ${d.cls}">${d.ru}</div>`;
+    items.forEach(item=>{
+      const isTop=item.pos<=10;
+      html+=`<div class="dgrid-cell ${item.zone.cls}${isTop?' top10':''}">
+        <div class="dgrid-cell-pos">${item.pos}</div>
+        <div><div class="dgrid-cell-name">${item.name}</div><div class="dgrid-cell-ru">${item.ru}</div></div>
+      </div>`;
+    });
+    html+=`</div>`;
+  });
+  html+=`</div>`;
+  grid.innerHTML=html;
+
   // Zone legend
-  const zones=[
+  const zoneDefs=[
     {cls:'z1',color:'#059669',name:'1–5 Работает само'},
     {cls:'z2',color:'#047857',name:'6–10 Легко включается'},
     {cls:'z3',color:'#B45309',name:'11–15 Доступно осознанно'},
     {cls:'z4',color:'#D97706',name:'16–20 Требует усилия'},
-    {cls:'z5',color:'#DC2626',name:'21–34 Вне природной зоны'}
+    {cls:'z5',color:'#DC2626',name:'21–34 Вне природной зоны'},
   ];
-  const maxPos=selected.length;
-  let legendHtml='';
-  for(const z of zones){
-    const [lo]=z.name.match(/\d+/);
-    if(parseInt(lo)<=maxPos){
-      legendHtml+=`<span class="zl-item"><span class="zl-dot" style="background:${z.color}"></span>${z.name}</span>`;
-    }
-  }
-  legend.innerHTML=legendHtml;
-  
-  const chips=wrap.querySelectorAll('.chip');
-  let dragIdx=null;
-  chips.forEach(chip=>{
-    chip.addEventListener('dragstart',e=>{
-      dragIdx=parseInt(chip.dataset.idx);
-      chip.classList.add('dragging');
-      e.dataTransfer.effectAllowed='move';
-    });
-    chip.addEventListener('dragend',()=>{
-      chip.classList.remove('dragging');
-      dragIdx=null;
-      chips.forEach(c=>c.classList.remove('drag-over'));
-    });
-    chip.addEventListener('dragover',e=>{
-      e.preventDefault();
-      e.dataTransfer.dropEffect='move';
-      chip.classList.add('drag-over');
-    });
-    chip.addEventListener('dragleave',()=>chip.classList.remove('drag-over'));
-    chip.addEventListener('drop',e=>{
-      e.preventDefault();
-      chip.classList.remove('drag-over');
-      const dropIdx=parseInt(chip.dataset.idx);
-      if(dragIdx!==null&&dragIdx!==dropIdx){
-        const item=selected.splice(dragIdx,1)[0];
-        selected.splice(dropIdx,0,item);
-        render();
-      }
-    });
-  });
+  legend.innerHTML=zoneDefs.map(z=>
+    `<span class="zl-item"><span class="zl-dot" style="background:${z.color}"></span>${z.name}</span>`
+  ).join('');
 }
 
 function renderCards(){
