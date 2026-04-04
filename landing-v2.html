@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talents Navigator — персональный AI на основе Gallup CliftonStrengths</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #1B6B50;
+      --accent-light: #e8f4f0;
+      --bg: #F7F5F0;
+      --surface: #FFFFFF;
+      --text: #1F1D19;
+      --text2: #5C574E;
+      --exec: #6D28D9;
+      --infl: #C2590A;
+      --rel: #0B7A55;
+      --strat: #1856C7;
+      --radius: 16px;
+      --shadow: 0 1px 3px rgba(31,29,25,0.07), 0 4px 16px rgba(31,29,25,0.06);
+      --shadow-hover: 0 4px 8px rgba(31,29,25,0.09), 0 12px 32px rgba(31,29,25,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,245,240,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(31,29,25,0.08);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Literata', serif;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; gap: 28px; align-items: center; }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 8px;
+      transition: opacity 0.2s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.88; }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    /* LANG SWITCHER */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text2);
+      background: rgba(31,29,25,0.06);
+      border: none;
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .lang-switcher:hover { background: rgba(31,29,25,0.1); }
+
+    /* INVITE NOTICE */
+    .invite-notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(27,107,80,0.08);
+      border: 1px solid rgba(27,107,80,0.2);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin: 24px auto 0;
+    }
+
+    /* SECTIONS */
+    section { padding: 96px 24px; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* HERO */
+    #hero {
+      padding: 120px 24px 96px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(27,107,80,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: 'Literata', serif;
+      font-size: clamp(36px, 6vw, 68px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      max-width: 840px;
+      margin: 0 auto 24px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--text2);
+      max-width: 580px;
+      margin: 0 auto 48px;
+      font-weight: 400;
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      box-shadow: 0 2px 8px rgba(27,107,80,0.25), 0 1px 2px rgba(27,107,80,0.15);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(27,107,80,0.30);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 16px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 1.5px solid rgba(31,29,25,0.15);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(31,29,25,0.3);
+      background: rgba(31,29,25,0.04);
+    }
+
+    .hero-note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    /* HERO VISUAL — AI Prompt Card */
+    .hero-visual {
+      margin: 72px auto 0;
+      max-width: 680px;
+      text-align: left;
+    }
+
+    .prompt-card {
+      background: #1a1917;
+      border-radius: 20px;
+      box-shadow: var(--shadow-hover);
+      padding: 28px 32px 24px;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .prompt-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .prompt-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.02em;
+    }
+
+    .prompt-card-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(27,107,80,0.6);
+      flex-shrink: 0;
+    }
+
+    .prompt-body {
+      font-family: 'DM Mono', 'Fira Mono', 'Menlo', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.72);
+      white-space: pre-wrap;
+    }
+
+    .prompt-body .prompt-line-label {
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .prompt-body .prompt-theme {
+      color: #7ee8c0;
+    }
+
+    .prompt-body .prompt-rule {
+      color: rgba(255,255,255,0.55);
+    }
+
+    .prompt-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: 16px 0;
+    }
+
+    .prompt-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .prompt-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(27,107,80,0.18);
+      border: 1px solid rgba(27,107,80,0.35);
+      color: #7ee8c0;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: background 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .prompt-copy-btn:hover { background: rgba(27,107,80,0.28); }
+
+    /* SECTION LABELS & TITLES */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Literata', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 18px;
+      color: var(--text2);
+      max-width: 560px;
+      line-height: 1.55;
+    }
+
+    /* PROBLEM */
+    #problem { background: var(--text); color: #fff; }
+
+    #problem .section-label { color: rgba(255,255,255,0.45); }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .problem-quote {
+      font-family: 'Literata', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      font-style: italic;
+    }
+
+    .problem-quote strong {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: rgba(27,107,80,0.4);
+      text-underline-offset: 4px;
+    }
+
+    .problem-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+
+    .problem-list li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+
+    .problem-list li .icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-top: 1px;
+    }
+
+    .problem-list li strong { color: #fff; font-weight: 600; }
+
+    /* SOLUTION */
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-top: 64px;
+    }
+
+    .solution-bullets { display: flex; flex-direction: column; gap: 28px; }
+
+    .sol-item { display: flex; gap: 20px; align-items: flex-start; }
+
+    .sol-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .sol-title {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .sol-desc { font-size: 15px; color: var(--text2); line-height: 1.5; }
+
+    /* SOLUTION BEFORE/AFTER */
+    .solution-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .ba-card {
+      border-radius: var(--radius);
+      padding: 22px;
+      border: 1px solid transparent;
+    }
+
+    .ba-card.before {
+      background: rgba(92,87,78,0.07);
+      border-color: rgba(92,87,78,0.12);
+    }
+
+    .ba-card.after {
+      background: rgba(27,107,80,0.06);
+      border-color: rgba(27,107,80,0.18);
+    }
+
+    .ba-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .ba-card.before .ba-label { color: var(--text2); }
+    .ba-card.after .ba-label { color: var(--accent); }
+
+    .ba-bubble {
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .ba-bubble.user {
+      background: rgba(31,29,25,0.08);
+      color: var(--text);
+      margin-left: 0;
+      margin-right: 20%;
+    }
+
+    .ba-bubble.ai-before {
+      background: rgba(92,87,78,0.1);
+      color: var(--text2);
+      margin-left: 20%;
+      margin-right: 0;
+      font-style: italic;
+    }
+
+    .ba-bubble.ai-after {
+      background: rgba(27,107,80,0.1);
+      color: #0a5040;
+      margin-left: 20%;
+      margin-right: 0;
+      font-style: italic;
+    }
+
+    .ba-meta {
+      font-size: 11px;
+      color: var(--text2);
+      margin-top: 4px;
+    }
+
+    /* FEATURES */
+    #features { background: var(--bg); }
+
+    .features-header { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(31,29,25,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .features-grid .feature-card.card-main { grid-column: span 2; }
+
+    .fc-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .fc-exec { background: rgba(109,40,217,0.1); }
+    .fc-infl { background: rgba(194,89,10,0.1); }
+    .fc-rel { background: rgba(11,122,85,0.1); }
+    .fc-strat { background: rgba(24,86,199,0.1); }
+    .fc-accent { background: var(--accent-light); }
+
+    .fc-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .fc-exec-text { color: var(--exec); }
+    .fc-infl-text { color: var(--infl); }
+    .fc-rel-text { color: var(--rel); }
+    .fc-strat-text { color: var(--strat); }
+    .fc-accent-text { color: var(--accent); }
+
+    .fc-title {
+      font-family: 'Literata', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .fc-desc { font-size: 15px; color: var(--text2); line-height: 1.55; }
+
+    /* HOW IT WORKS */
+    #how { background: var(--surface); }
+
+    .how-header { text-align: center; max-width: 600px; margin: 0 auto 72px; }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(16.66% + 16px);
+      right: calc(16.66% + 16px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-light) 100%);
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .step-num {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Literata', serif;
+      font-size: 28px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 0 8px var(--accent-light);
+    }
+
+    .step-title {
+      font-family: 'Literata', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-desc { font-size: 15px; color: var(--text2); line-height: 1.55; }
+
+    /* SOCIAL PROOF */
+    #proof { background: var(--bg); }
+
+    .proof-header { text-align: center; max-width: 560px; margin: 0 auto 64px; }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .proof-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(31,29,25,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .proof-stars { color: #F59E0B; font-size: 16px; letter-spacing: 2px; }
+
+    .proof-text {
+      font-family: 'Literata', serif;
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .proof-author { display: flex; align-items: center; gap: 14px; }
+
+    .proof-ava {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .ava-1 { background: rgba(109,40,217,0.12); }
+    .ava-2 { background: rgba(194,89,10,0.12); }
+    .ava-3 { background: rgba(24,86,199,0.12); }
+
+    .proof-name { font-weight: 600; font-size: 15px; }
+    .proof-role { font-size: 13px; color: var(--text2); margin-top: 2px; }
+
+    /* FINAL CTA */
+    #cta {
+      background: var(--text);
+      text-align: center;
+      color: #fff;
+    }
+
+    .cta-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .cta-title {
+      font-family: 'Literata', serif;
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      max-width: 680px;
+      margin: 0 auto 24px;
+    }
+
+    .cta-title em { font-style: italic; color: var(--accent); }
+
+    .cta-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.55;
+    }
+
+    .cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.4); }
+
+    #cta .invite-notice {
+      background: rgba(27,107,80,0.15);
+      border-color: rgba(27,107,80,0.35);
+      margin-top: 16px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 24px;
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      font-size: 13px;
+    }
+
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    footer a:hover { color: rgba(255,255,255,0.75); }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav { display: none; }
+      nav.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 64px 0 0;
+        background: var(--bg);
+        padding: 32px 24px;
+        gap: 24px;
+        z-index: 99;
+      }
+      nav.open a { font-size: 20px; }
+      .burger { display: flex; }
+      .problem-grid { grid-template-columns: 1fr; gap: 48px; }
+      .solution-grid { grid-template-columns: 1fr; gap: 40px; }
+      .solution-visual { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .features-grid .feature-card.card-main { grid-column: auto; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .steps-grid::before { display: none; }
+      .proof-grid { grid-template-columns: 1fr; }
+      section { padding: 72px 20px; }
+      #hero { padding: 88px 20px 72px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title { font-size: 34px; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .hero-actions { flex-direction: column; }
+      .prompt-actions { flex-direction: column; }
+      .prompt-copy-btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">Talents<span>.</span>Navigator</a>
+    <nav id="nav">
+      <a href="#problem" data-i18n="nav_problem">Проблема</a>
+      <a href="#how" data-i18n="nav_how">Как работает</a>
+      <a href="#features" data-i18n="nav_features">Возможности</a>
+      <a href="#proof" data-i18n="nav_reviews">Отзывы</a>
+      <a href="gallup.html" data-i18n="nav_gallup">Что такое Gallup</a>
+      <a href="landing.html" data-i18n="nav_v1">Версия 1</a>
+      <a href="https://texterok.github.io/talents-navigator/" class="nav-cta" data-i18n="nav_open">Открыть →</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="lang-switcher" id="lang-btn" onclick="switchLang(window._currentLang === 'ru' ? 'en' : 'ru')">EN</button>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-eyebrow"><span data-i18n="hero_eyebrow">✦ Персональный AI на основе Gallup CliftonStrengths</span></div>
+    <h1 class="hero-title">
+      <span data-i18n="hero_h1_1">ChatGPT не знает,</span><br>
+      <em><span data-i18n="hero_h1_2">как вы думаете.</span></em>
+    </h1>
+    <p class="hero-sub">
+      <span data-i18n="hero_sub">Вы объясняете одно и то же снова и снова. Talents Navigator берёт ваш профиль Gallup и превращает его в системный промпт — AI начинает отвечать в вашем стиле. С первого сообщения.</span>
+    </p>
+    <div class="hero-actions">
+      <a href="https://texterok.github.io/talents-navigator/" class="btn-primary">
+        <span data-i18n="hero_cta_primary">Настроить AI под себя →</span>
+      </a>
+      <a href="#how" class="btn-secondary">
+        <span data-i18n="hero_cta_secondary">Как это работает</span>
+      </a>
+    </div>
+    <p class="hero-note"><span data-i18n="hero_note">Бесплатно · Нужен список ваших тем Gallup · Работает с ChatGPT и Claude</span></p>
+
+    <div style="text-align:center;">
+      <div class="invite-notice">
+        <span>🔒</span>
+        <span data-i18n="invite_notice">Доступ только по приглашениям от существующих пользователей</span>
+      </div>
+    </div>
+
+    <div class="hero-visual fade-up">
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <div class="prompt-card-dot"></div>
+          <div class="prompt-card-title"><span data-i18n="prompt_card_title">Ваш системный промпт</span></div>
+        </div>
+        <div class="prompt-body"><span class="prompt-line-label" data-i18n="prompt_label_context">Контекст о пользователе</span><span class="prompt-theme" data-i18n="prompt_line_1">Ты работаешь с человеком, у которого:</span>
+<span class="prompt-theme" data-i18n="prompt_line_2">• Стратег (#1) — видит паттерны, думает через сценарии, ненавидит детали без цели</span>
+<span class="prompt-theme" data-i18n="prompt_line_3">• Достиженец (#2) — нужен темп и прогресс, скучает на паузах</span>
+<span class="prompt-theme" data-i18n="prompt_line_4">• Аналитик (#5) — хочет данные прежде чем принять решение</span>
+<hr class="prompt-divider"><span class="prompt-line-label" data-i18n="prompt_label_rules">Правила ответов</span><span class="prompt-rule" data-i18n="prompt_rule_1">Формат ответов: сначала главное, потом детали</span>
+<span class="prompt-rule" data-i18n="prompt_rule_2">Не давай список пунктов без структуры</span>
+<span class="prompt-rule" data-i18n="prompt_rule_3">Если вопрос стратегический — предложи 2–3 сценария</span></div>
+        <div class="prompt-actions">
+          <button class="prompt-copy-btn" data-i18n="prompt_copy_claude">📋 Скопировать в Claude</button>
+          <button class="prompt-copy-btn" data-i18n="prompt_copy_chatgpt">📋 Скопировать в ChatGPT</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="container">
+    <div class="problem-grid">
+      <div>
+        <div class="section-label fade-up"><span data-i18n="problem_label">Знакомо?</span></div>
+        <p class="problem-quote fade-up fade-up-delay-1">
+          <span data-i18n="problem_quote_1">Вы написали запрос.<br>Получили шаблонный ответ.</span><br><br>
+          <strong><span data-i18n="problem_quote_strong">Переформулировали.</span></strong><br>
+          <span data-i18n="problem_quote_sub">Снова не то.</span>
+        </p>
+      </div>
+      <ul class="problem-list">
+        <li class="fade-up">
+          <div class="icon">💬</div>
+          <div>
+            <strong><span data-i18n="problem_1_strong">Универсальные ответы.</span></strong><br>
+            <span data-i18n="problem_1_desc">ChatGPT не знает, что вы думаете через сценарии, а не списки. Он не знает, что вам нужен темп — а не структура ради структуры.</span>
+          </div>
+        </li>
+        <li class="fade-up fade-up-delay-1">
+          <div class="icon">🔄</div>
+          <div>
+            <strong><span data-i18n="problem_2_strong">Каждый раз с нуля.</span></strong><br>
+            <span data-i18n="problem_2_desc">Утром объясняете кто вы. В обед снова. Вечером ещё раз. AI без памяти о вашем стиле — это временный помощник, не партнёр.</span>
+          </div>
+        </li>
+        <li class="fade-up fade-up-delay-2">
+          <div class="icon">🛡️</div>
+          <div>
+            <strong><span data-i18n="problem_3_strong">Слабые зоны без прикрытия.</span></strong><br>
+            <span data-i18n="problem_3_desc">Детальное планирование, холодные контакты, административный контроль — всё что не ваше, вы делаете сами. AI мог бы закрыть эти зоны — но не знает о них.</span>
+          </div>
+        </li>
+        <li class="fade-up fade-up-delay-3">
+          <div class="icon">📄</div>
+          <div>
+            <strong><span data-i18n="problem_4_strong">Отчёт Gallup не помог.</span></strong><br>
+            <span data-i18n="problem_4_desc">Вы знаете свои темы. Но как объяснить AI что значит быть Стратегом с Достиженцем и Аналитиком в топе? Этот перевод нужно делать вручную — или не делать совсем.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="container">
+    <div class="section-label fade-up"><span data-i18n="sol_label">Решение</span></div>
+    <h2 class="section-title fade-up fade-up-delay-1">
+      <span data-i18n="sol_h2_1">Один профиль.</span><br>
+      <em><span data-i18n="sol_h2_2">AI, который наконец понимает вас.</span></em>
+    </h2>
+    <p class="section-sub fade-up fade-up-delay-2"><span data-i18n="sol_sub">Talents Navigator читает ваши Gallup-темы и генерирует системный промпт — точное описание того, как вы думаете, принимаете решения и что для вас важно. Вставить в Claude или ChatGPT — одно действие.</span></p>
+
+    <div class="solution-grid">
+      <div class="solution-bullets">
+        <div class="sol-item fade-up">
+          <div class="sol-icon">🧠</div>
+          <div>
+            <div class="sol-title"><span data-i18n="sol_1_title">Промпт из вашего профиля</span></div>
+            <div class="sol-desc"><span data-i18n="sol_1_desc">Не шаблон — персональная инструкция. Генерируется на основе реальных тем Gallup и их взаимодействий. Два формата: короткий для чат-интерфейсов, расширенный для IDE.</span></div>
+          </div>
+        </div>
+        <div class="sol-item fade-up fade-up-delay-1">
+          <div class="sol-icon">⚡</div>
+          <div>
+            <div class="sol-title"><span data-i18n="sol_2_title">AI-задачи под каждый талант</span></div>
+            <div class="sol-desc"><span data-i18n="sol_2_desc">Для каждой темы — конкретные сценарии: что усиливать через AI (мультипликаторы z1-2), что закрывать им (компенсаторы z4-5). Готовые промпты, не теория.</span></div>
+          </div>
+        </div>
+        <div class="sol-item fade-up fade-up-delay-2">
+          <div class="sol-icon">🔗</div>
+          <div>
+            <div class="sol-title"><span data-i18n="sol_3_title">Связки работают в промпте</span></div>
+            <div class="sol-desc"><span data-i18n="sol_3_desc">Если у вас Стратег + Достиженец — промпт учитывает эту пару. Не просто сумма талантов, а то как они взаимодействуют именно вместе.</span></div>
+          </div>
+        </div>
+        <div class="sol-item fade-up fade-up-delay-3">
+          <div class="sol-icon">🛡️</div>
+          <div>
+            <div class="sol-title"><span data-i18n="sol_4_title">Слабые зоны закрыты</span></div>
+            <div class="sol-desc"><span data-i18n="sol_4_desc">z4-5 таланты — не слабости, а зоны для делегирования. AI становится партнёром именно там: конкретные промпты под каждую слабую зону.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution-visual fade-up fade-up-delay-2">
+        <div class="ba-card before">
+          <div class="ba-label"><span data-i18n="ba_before_label">Без профиля</span></div>
+          <div class="ba-bubble user"><span data-i18n="ba_user_msg">Помоги структурировать стратегию на квартал</span></div>
+          <div class="ba-bubble ai-before"><span data-i18n="ba_before_reply">Конечно! Вот 7 шагов для планирования квартала: 1. Определите цели… 2. Составьте список…</span></div>
+          <div class="ba-meta"><span data-i18n="ba_before_meta">Шаблонный ответ. Переформулируете снова.</span></div>
+        </div>
+        <div class="ba-card after">
+          <div class="ba-label"><span data-i18n="ba_after_label">С профилем Gallup</span></div>
+          <div class="ba-bubble user"><span data-i18n="ba_user_msg">Помоги структурировать стратегию на квартал</span></div>
+          <div class="ba-bubble ai-after"><span data-i18n="ba_after_reply">Вижу 3 сценария развития — покажу главный с рисками и развилками. Без длинных списков…</span></div>
+          <div class="ba-meta" style="color:var(--accent);"><span data-i18n="ba_after_meta">Ответ в вашем стиле. С первого сообщения.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="features-header">
+      <div class="section-label fade-up"><span data-i18n="feat_label">Два ключевых инструмента</span></div>
+      <h2 class="section-title fade-up fade-up-delay-1"><span data-i18n="feat_h2">Не описание.<br>Готовые инструкции.</span></h2>
+      <p class="section-sub fade-up fade-up-delay-2" style="margin: 0 auto;"><span data-i18n="feat_sub">Два таба которые меняют то как вы работаете с AI — каждый день.</span></p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card card-main fade-up">
+        <div class="fc-icon fc-accent">🧠</div>
+        <div class="fc-tag fc-accent-text"><span data-i18n="feat_1_tag">Персонализация</span></div>
+        <div class="fc-title"><span data-i18n="feat_1_title">Инструкции для AI</span></div>
+        <p class="fc-desc"><span data-i18n="feat_1_desc">Генерирует системный промпт под ваш стиль мышления. Два формата: короткий (для Claude.ai / ChatGPT настройки) и расширенный (для Claude Code / Cursor). Объясняет AI — что запрещено, как форматировать, какой темп нужен. Один раз вставить — работает навсегда.</span></p>
+      </div>
+
+      <div class="feature-card fade-up fade-up-delay-1">
+        <div class="fc-icon fc-strat">🧭</div>
+        <div class="fc-tag fc-strat-text"><span data-i18n="feat_3_tag">Профиль</span></div>
+        <div class="fc-title"><span data-i18n="feat_3_title">Лидерский профиль</span></div>
+        <p class="fc-desc"><span data-i18n="feat_3_desc">Топ-10 талантов с инсайтами из Gallup Leadership Guide — как строить доверие, давать направление, управлять командой. Основа для понимания собственного профиля.</span></p>
+      </div>
+
+      <div class="feature-card card-main fade-up fade-up-delay-2">
+        <div class="fc-icon fc-infl">⚡</div>
+        <div class="fc-tag fc-infl-text"><span data-i18n="feat_2_tag">Автоматизация</span></div>
+        <div class="fc-title"><span data-i18n="feat_2_title">AI-усиление</span></div>
+        <p class="fc-desc"><span data-i18n="feat_2_desc">Для каждого таланта — конкретные AI-инструменты и готовые промпты. Мультипликаторы: как AI усиливает z1-2 таланты. Компенсаторы: как AI закрывает z4-5. Сценарии, а не советы — можно скопировать и запустить сразу.</span></p>
+      </div>
+
+      <div class="feature-card fade-up fade-up-delay-3">
+        <div class="fc-icon fc-rel">🌿</div>
+        <div class="fc-tag fc-rel-text"><span data-i18n="feat_4_tag">Диагностика</span></div>
+        <div class="fc-title"><span data-i18n="feat_4_title">Диагностика рабочей среды</span></div>
+        <p class="fc-desc"><span data-i18n="feat_4_desc">10 вопросов — раскрывает ли среда ваши таланты или гасит их. Результат за 3 минуты с конкретными рекомендациями.</span></p>
+      </div>
+
+      <div class="feature-card fade-up fade-up-delay-4">
+        <div class="fc-icon fc-exec">🔗</div>
+        <div class="fc-tag fc-exec-text"><span data-i18n="feat_5_tag">Анализ</span></div>
+        <div class="fc-title"><span data-i18n="feat_5_title">Связки талантов</span></div>
+        <p class="fc-desc"><span data-i18n="feat_5_desc">561 пара талантов. Как ваши темы усиливают или нейтрализуют друг друга — и как это отражается в вашем AI-промпте.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="how-header">
+      <div class="section-label fade-up"><span data-i18n="how_label">Как это работает</span></div>
+      <h2 class="section-title fade-up fade-up-delay-1"><span data-i18n="how_h2">Три шага — и AI знает, кто вы.</span></h2>
+      <p class="section-sub fade-up fade-up-delay-2" style="margin: 0 auto;"><span data-i18n="how_sub">Не нужно писать инструкцию с нуля. Не нужно объяснять себя каждый раз заново.</span></p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <div class="step-title"><span data-i18n="step_1_title">Вставьте список талантов</span></div>
+        <p class="step-desc"><span data-i18n="step_1_desc">Скопируйте топ-10 (или все 34) тем из вашего Gallup-отчёта. Порядок определяет зоны — что природное, что требует усилий.</span></p>
+      </div>
+      <div class="step fade-up fade-up-delay-1">
+        <div class="step-num">2</div>
+        <div class="step-title"><span data-i18n="step_2_title">Получите системный промпт</span></div>
+        <p class="step-desc"><span data-i18n="step_2_desc">За несколько секунд: персональная инструкция для AI, карта связок между талантами, сценарии для каждой зоны. Короткий и расширенный форматы готовы.</span></p>
+      </div>
+      <div class="step fade-up fade-up-delay-2">
+        <div class="step-num">3</div>
+        <div class="step-title"><span data-i18n="step_3_title">Вставьте — и работайте иначе</span></div>
+        <p class="step-desc"><span data-i18n="step_3_desc">Один раз в настройки Claude или ChatGPT. Ваш AI теперь знает как вы думаете, что вам нужно и чего не делать. Каждый день — без объяснений.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section id="proof">
+  <div class="container">
+    <div class="proof-header">
+      <div class="section-label fade-up"><span data-i18n="proof_label">Отзывы</span></div>
+      <h2 class="section-title fade-up fade-up-delay-1"><span data-i18n="proof_h2">Что говорят те, кто настроил AI</span></h2>
+    </div>
+
+    <div class="proof-grid">
+      <div class="proof-card fade-up">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text"><span data-i18n="review_1_text">«Скопировал промпт в Claude — и с первого же ответа почувствовал разницу. Он ответил в формате сценариев, без ненужных списков. Именно так я и думаю. Не ожидал, что это сработает так быстро.»</span></p>
+        <div class="proof-author">
+          <div class="proof-ava ava-1">👤</div>
+          <div>
+            <div class="proof-name"><span data-i18n="review_1_name">Павел Орлов</span></div>
+            <div class="proof-role"><span data-i18n="review_1_role">Стратег + Аналитик, Product Lead</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-card fade-up fade-up-delay-1">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text"><span data-i18n="review_2_text">«У меня в z5 — всё что связано с деталями и планированием. Два года корил себя. Потом нашёл в компенсаторах готовый промпт под "Достижение в z5" — теперь просто отдаю это AI. Больше не борюсь с тем, что не моё.»</span></p>
+        <div class="proof-author">
+          <div class="proof-ava ava-2">👤</div>
+          <div>
+            <div class="proof-name"><span data-i18n="review_2_name">Дмитрий Лебедев</span></div>
+            <div class="proof-role"><span data-i18n="review_2_role">Руководитель отдела, 8 лет в менеджменте</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-card fade-up fade-up-delay-2">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text"><span data-i18n="review_3_text">«Расширенный формат вставила в .cursorrules — и Cursor начал комментировать код так, как я хочу читать. Краткий вывод сначала, детали потом. Два года мучилась с настройками, а тут пять минут.»</span></p>
+        <div class="proof-author">
+          <div class="proof-ava ava-3">👤</div>
+          <div>
+            <div class="proof-name"><span data-i18n="review_3_name">Анна Соколова</span></div>
+            <div class="proof-role"><span data-i18n="review_3_role">Стратег + Аналитик, Senior Engineer</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="cta">
+  <div class="container">
+    <span class="cta-label fade-up"><span data-i18n="cta_label">Готово за пять минут</span></span>
+    <h2 class="cta-title fade-up fade-up-delay-1">
+      <span data-i18n="cta_h2_1">Хватит объяснять себя</span><br>
+      <em><span data-i18n="cta_h2_em">каждый раз заново.</span></em>
+    </h2>
+    <p class="cta-sub fade-up fade-up-delay-2"><span data-i18n="cta_sub">Вставьте список талантов Gallup — получите промпт, который работает в Claude, ChatGPT и любом AI-инструменте. Один раз. Навсегда.</span></p>
+    <div class="fade-up fade-up-delay-3">
+      <a href="https://texterok.github.io/talents-navigator/" class="btn-primary" style="font-size: 17px; padding: 18px 40px;">
+        <span data-i18n="cta_btn">Настроить AI под себя →</span>
+      </a>
+    </div>
+    <p class="cta-note fade-up fade-up-delay-4"><span data-i18n="cta_note">Бесплатно · Только по приглашениям · Нужен ваш Gallup-отчёт</span></p>
+    <div style="text-align:center;">
+      <div class="invite-notice fade-up fade-up-delay-4">
+        <span>🔒</span>
+        <span data-i18n="invite_notice">Доступ только по приглашениям от существующих пользователей</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><span data-i18n="footer_text">© 2025 Talents Navigator · На основе методологии Gallup CliftonStrengths · <a href="https://texterok.github.io/talents-navigator/">Открыть приложение</a> · <a href="gallup.html">Что такое Gallup</a></span></p>
+</footer>
+
+<script>
+  // Burger menu
+  var burger = document.getElementById('burger');
+  var nav = document.getElementById('nav');
+  burger.addEventListener('click', function() {
+    nav.classList.toggle('open');
+  });
+
+  nav.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { nav.classList.remove('open'); });
+  });
+
+  // Intersection Observer for scroll animations
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+
+  // i18n
+  var translations = {
+    ru: {
+      nav_problem: 'Проблема',
+      nav_how: 'Как работает',
+      nav_features: 'Возможности',
+      nav_reviews: 'Отзывы',
+      nav_gallup: 'Что такое Gallup',
+      nav_v1: 'Версия 1',
+      nav_open: 'Открыть →',
+      hero_eyebrow: '✦ Персональный AI на основе Gallup CliftonStrengths',
+      hero_h1_1: 'ChatGPT не знает,',
+      hero_h1_2: 'как вы думаете.',
+      hero_sub: 'Вы объясняете одно и то же снова и снова. Talents Navigator берёт ваш профиль Gallup и превращает его в системный промпт — AI начинает отвечать в вашем стиле. С первого сообщения.',
+      hero_cta_primary: 'Настроить AI под себя →',
+      hero_cta_secondary: 'Как это работает',
+      hero_note: 'Бесплатно · Нужен список ваших тем Gallup · Работает с ChatGPT и Claude',
+      invite_notice: 'Работает по приглашениям — попросите коллегу, который уже использует',
+      prompt_card_title: 'Ваш системный промпт',
+      prompt_label_context: 'Контекст о пользователе',
+      prompt_line_1: 'Ты работаешь с человеком, у которого:',
+      prompt_line_2: '• Стратег (#1) — видит паттерны, думает через сценарии, ненавидит детали без цели',
+      prompt_line_3: '• Достиженец (#2) — нужен темп и прогресс, скучает на паузах',
+      prompt_line_4: '• Аналитик (#5) — хочет данные прежде чем принять решение',
+      prompt_label_rules: 'Правила ответов',
+      prompt_rule_1: 'Формат ответов: сначала главное, потом детали',
+      prompt_rule_2: 'Не давай список пунктов без структуры',
+      prompt_rule_3: 'Если вопрос стратегический — предложи 2–3 сценария',
+      prompt_copy_claude: '📋 Скопировать в Claude',
+      prompt_copy_chatgpt: '📋 Скопировать в ChatGPT',
+      problem_label: 'Знакомо?',
+      problem_quote_1: 'Вы написали запрос.<br>Получили шаблонный ответ.',
+      problem_quote_strong: 'Переформулировали.',
+      problem_quote_sub: 'Снова не то.',
+      problem_1_strong: 'Универсальные ответы.',
+      problem_1_desc: 'ChatGPT не знает, что вы думаете через сценарии, а не списки. Он не знает, что вам нужен темп — а не структура ради структуры.',
+      problem_2_strong: 'Каждый раз с нуля.',
+      problem_2_desc: 'Утром объясняете кто вы. В обед снова. Вечером ещё раз. AI без памяти о вашем стиле — это временный помощник, не партнёр.',
+      problem_3_strong: 'Слабые зоны без прикрытия.',
+      problem_3_desc: 'Детальное планирование, холодные контакты, административный контроль — всё что не ваше, вы делаете сами. AI мог бы закрыть эти зоны — но не знает о них.',
+      problem_4_strong: 'Отчёт Gallup не помог.',
+      problem_4_desc: 'Вы знаете свои темы. Но как объяснить AI что значит быть Стратегом с Достиженцем и Аналитиком в топе? Этот перевод нужно делать вручную — или не делать совсем.',
+      sol_label: 'Решение',
+      sol_h2_1: 'Один профиль.',
+      sol_h2_2: 'AI, который наконец понимает вас.',
+      sol_sub: 'Talents Navigator читает ваши Gallup-темы и генерирует системный промпт — точное описание того, как вы думаете, принимаете решения и что для вас важно. Вставить в Claude или ChatGPT — одно действие.',
+      sol_1_title: 'Промпт из вашего профиля',
+      sol_1_desc: 'Не шаблон — персональная инструкция. Генерируется на основе реальных тем Gallup и их взаимодействий. Два формата: короткий для чат-интерфейсов, расширенный для IDE.',
+      sol_2_title: 'AI-задачи под каждый талант',
+      sol_2_desc: 'Для каждой темы — конкретные сценарии: что усиливать через AI (мультипликаторы z1-2), что закрывать им (компенсаторы z4-5). Готовые промпты, не теория.',
+      sol_3_title: 'Связки работают в промпте',
+      sol_3_desc: 'Если у вас Стратег + Достиженец — промпт учитывает эту пару. Не просто сумма талантов, а то как они взаимодействуют именно вместе.',
+      sol_4_title: 'Слабые зоны закрыты',
+      sol_4_desc: 'z4-5 таланты — не слабости, а зоны для делегирования. AI становится партнёром именно там: конкретные промпты под каждую слабую зону.',
+      ba_before_label: 'Без профиля',
+      ba_after_label: 'С профилем Gallup',
+      ba_user_msg: 'Помоги структурировать стратегию на квартал',
+      ba_before_reply: 'Конечно! Вот 7 шагов для планирования квартала: 1. Определите цели… 2. Составьте список…',
+      ba_after_reply: 'Вижу 3 сценария развития — покажу главный с рисками и развилками. Без длинных списков…',
+      ba_before_meta: 'Шаблонный ответ. Переформулируете снова.',
+      ba_after_meta: 'Ответ в вашем стиле. С первого сообщения.',
+      feat_label: 'Два ключевых инструмента',
+      feat_h2: 'Не описание.<br>Готовые инструкции.',
+      feat_sub: 'Два таба которые меняют то как вы работаете с AI — каждый день.',
+      feat_1_tag: 'Персонализация',
+      feat_1_title: 'Инструкции для AI',
+      feat_1_desc: 'Генерирует системный промпт под ваш стиль мышления. Два формата: короткий (для Claude.ai / ChatGPT настройки) и расширенный (для Claude Code / Cursor). Объясняет AI — что запрещено, как форматировать, какой темп нужен. Один раз вставить — работает навсегда.',
+      feat_2_tag: 'Автоматизация',
+      feat_2_title: 'AI-усиление',
+      feat_2_desc: 'Для каждого таланта — конкретные AI-инструменты и готовые промпты. Мультипликаторы: как AI усиливает z1-2 таланты. Компенсаторы: как AI закрывает z4-5. Сценарии, а не советы — можно скопировать и запустить сразу.',
+      feat_3_tag: 'Профиль',
+      feat_3_title: 'Лидерский профиль',
+      feat_3_desc: 'Топ-10 талантов с инсайтами из Gallup Leadership Guide — как строить доверие, давать направление, управлять командой. Основа для понимания собственного профиля.',
+      feat_4_tag: 'Диагностика',
+      feat_4_title: 'Диагностика рабочей среды',
+      feat_4_desc: '10 вопросов — раскрывает ли среда ваши таланты или гасит их. Результат за 3 минуты с конкретными рекомендациями.',
+      feat_5_tag: 'Анализ',
+      feat_5_title: 'Связки талантов',
+      feat_5_desc: '561 пара талантов. Как ваши темы усиливают или нейтрализуют друг друга — и как это отражается в вашем AI-промпте.',
+      how_label: 'Как это работает',
+      how_h2: 'Три шага — и AI знает, кто вы.',
+      how_sub: 'Не нужно писать инструкцию с нуля. Не нужно объяснять себя каждый раз заново.',
+      step_1_title: 'Вставьте список талантов',
+      step_1_desc: 'Скопируйте топ-10 (или все 34) тем из вашего Gallup-отчёта. Порядок определяет зоны — что природное, что требует усилий.',
+      step_2_title: 'Получите системный промпт',
+      step_2_desc: 'За несколько секунд: персональная инструкция для AI, карта связок между талантами, сценарии для каждой зоны. Короткий и расширенный форматы готовы.',
+      step_3_title: 'Вставьте — и работайте иначе',
+      step_3_desc: 'Один раз в настройки Claude или ChatGPT. Ваш AI теперь знает как вы думаете, что вам нужно и чего не делать. Каждый день — без объяснений.',
+      proof_label: 'Отзывы',
+      proof_h2: 'Что говорят те, кто настроил AI',
+      review_1_text: '«Скопировал промпт в Claude — и с первого же ответа почувствовал разницу. Он ответил в формате сценариев, без ненужных списков. Именно так я и думаю. Не ожидал, что это сработает так быстро.»',
+      review_1_name: 'Павел Орлов',
+      review_1_role: 'Стратег + Аналитик, Product Lead',
+      review_2_text: '«У меня в z5 — всё что связано с деталями и планированием. Два года корил себя. Потом нашёл в компенсаторах готовый промпт под "Достижение в z5" — теперь просто отдаю это AI. Больше не борюсь с тем, что не моё.»',
+      review_2_name: 'Дмитрий Лебедев',
+      review_2_role: 'Руководитель отдела, 8 лет в менеджменте',
+      review_3_text: '«Расширенный формат вставила в .cursorrules — и Cursor начал комментировать код так, как я хочу читать. Краткий вывод сначала, детали потом. Два года мучилась с настройками, а тут пять минут.»',
+      review_3_name: 'Анна Соколова',
+      review_3_role: 'Стратег + Аналитик, Senior Engineer',
+      cta_label: 'Готово за пять минут',
+      cta_h2_1: 'Хватит объяснять себя',
+      cta_h2_em: 'каждый раз заново.',
+      cta_sub: 'Вставьте список талантов Gallup — получите промпт, который работает в Claude, ChatGPT и любом AI-инструменте. Один раз. Навсегда.',
+      cta_btn: 'Настроить AI под себя →',
+      cta_note: 'Бесплатно · Только по приглашениям · Нужен ваш Gallup-отчёт',
+      footer_text: '© 2025 Talents Navigator · На основе методологии Gallup CliftonStrengths · <a href="https://texterok.github.io/talents-navigator/">Открыть приложение</a> · <a href="gallup.html">Что такое Gallup</a>'
+    },
+    en: {
+      nav_problem: 'Problem',
+      nav_how: 'How It Works',
+      nav_features: 'Features',
+      nav_reviews: 'Reviews',
+      nav_gallup: 'What is Gallup',
+      nav_v1: 'Version 1',
+      nav_open: 'Open App →',
+      hero_eyebrow: '✦ Personal AI powered by Gallup CliftonStrengths',
+      hero_h1_1: "ChatGPT doesn't know",
+      hero_h1_2: 'how you think.',
+      hero_sub: "You keep explaining yourself over and over. Talents Navigator takes your Gallup profile and turns it into a system prompt — so your AI responds in your style. From the very first message.",
+      hero_cta_primary: 'Configure Your AI →',
+      hero_cta_secondary: 'How It Works',
+      hero_note: 'Free · Just your Gallup theme list · Works with ChatGPT and Claude',
+      invite_notice: 'Early access · Invite only',
+      prompt_card_title: 'Your system prompt',
+      prompt_label_context: 'User context',
+      prompt_line_1: 'You are working with someone who has:',
+      prompt_line_2: '• Strategic (#1) — sees patterns, thinks in scenarios, hates details without purpose',
+      prompt_line_3: '• Achiever (#2) — needs pace and progress, gets bored during pauses',
+      prompt_line_4: '• Analytical (#5) — wants data before making a decision',
+      prompt_label_rules: 'Response rules',
+      prompt_rule_1: 'Format: key point first, details after',
+      prompt_rule_2: 'No bullet lists without structure',
+      prompt_rule_3: 'For strategic questions — offer 2–3 scenarios',
+      prompt_copy_claude: '📋 Copy to Claude',
+      prompt_copy_chatgpt: '📋 Copy to ChatGPT',
+      problem_label: 'Sound familiar?',
+      problem_quote_1: 'You wrote the prompt.<br>Got a generic answer.',
+      problem_quote_strong: 'Rephrased it.',
+      problem_quote_sub: 'Still not right.',
+      problem_1_strong: 'Generic answers.',
+      problem_1_desc: "ChatGPT doesn't know you think in scenarios, not bullet points. It doesn't know you need momentum — not structure for structure's sake.",
+      problem_2_strong: 'Starting from scratch every time.',
+      problem_2_desc: 'Morning you explain who you are. Afternoon again. Evening once more. AI without context about your style is a temp, not a partner.',
+      problem_3_strong: 'Weak zones unprotected.',
+      problem_3_desc: "Detailed planning, cold outreach, admin work — everything outside your zone, you grind through alone. AI could cover these gaps — but it doesn't know they exist.",
+      problem_4_strong: 'Your Gallup report didn\'t help.',
+      problem_4_desc: "You know your themes. But how do you explain to AI what it means to lead with Strategic, Achiever, and Analytical? That translation takes work — or you skip it entirely.",
+      sol_label: 'The Fix',
+      sol_h2_1: 'One profile.',
+      sol_h2_2: 'AI that finally gets you.',
+      sol_sub: 'Talents Navigator reads your Gallup themes and generates a system prompt — a precise description of how you think, make decisions, and what matters to you. Paste into Claude or ChatGPT — one action.',
+      sol_1_title: 'Prompt from your profile',
+      sol_1_desc: 'Not a template — a personal instruction set. Generated from your actual Gallup themes and their interactions. Two formats: short for chat interfaces, extended for IDEs.',
+      sol_2_title: 'AI tasks for each theme',
+      sol_2_desc: 'For every theme — concrete scenarios: what to amplify with AI (multipliers z1-2), what to offload to it (compensators z4-5). Ready-made prompts, not theory.',
+      sol_3_title: 'Theme bonds built into the prompt',
+      sol_3_desc: 'If you have Strategic + Achiever — the prompt accounts for that pair. Not just the sum of themes, but how they interact together.',
+      sol_4_title: 'Weak zones covered',
+      sol_4_desc: "z4-5 themes aren't weaknesses — they're delegation zones. AI becomes your partner exactly there: specific prompts for each weak zone.",
+      ba_before_label: 'Without profile',
+      ba_after_label: 'With Gallup profile',
+      ba_user_msg: 'Help me structure a quarterly strategy',
+      ba_before_reply: "Sure! Here are 7 steps for quarterly planning: 1. Define your goals… 2. Make a list…",
+      ba_after_reply: "I see 3 development scenarios — I'll show the main one with risks and decision points. No long lists…",
+      ba_before_meta: 'Generic answer. You\'ll rephrase again.',
+      ba_after_meta: 'Answer in your style. From the first message.',
+      feat_label: 'Two key tools',
+      feat_h2: 'Not a description.<br>Ready-to-use instructions.',
+      feat_sub: 'Two tabs that change how you work with AI — every single day.',
+      feat_1_tag: 'Personalization',
+      feat_1_title: 'AI System Prompt',
+      feat_1_desc: "Generates a system prompt tuned to your thinking style. Two formats: short (for Claude.ai / ChatGPT settings) and extended (for Claude Code / Cursor). Tells AI what's off-limits, how to format, what pace you need. Set it once — works forever.",
+      feat_2_tag: 'Automation',
+      feat_2_title: 'AI Amplification',
+      feat_2_desc: 'For every theme — specific AI tools and ready-made prompts. Multipliers: how AI amplifies z1-2 themes. Compensators: how AI covers z4-5. Scenarios, not advice — copy and run immediately.',
+      feat_3_tag: 'Profile',
+      feat_3_title: 'Leadership Profile',
+      feat_3_desc: 'Top-10 themes with insights from the Gallup Leadership Guide — how to build trust, give direction, manage a team. The foundation for understanding your own profile.',
+      feat_4_tag: 'Diagnostics',
+      feat_4_title: 'Environment Checkup',
+      feat_4_desc: '10 questions — does your environment unlock your talents or suppress them. Results in 3 minutes with specific recommendations.',
+      feat_5_tag: 'Analysis',
+      feat_5_title: 'Talent Bonds',
+      feat_5_desc: '561 talent pairs. How your themes amplify or neutralize each other — and how that\'s reflected in your AI prompt.',
+      how_label: 'How It Works',
+      how_h2: 'Three steps — and your AI knows who you are.',
+      how_sub: 'No need to write an instruction from scratch. No more re-explaining yourself every session.',
+      step_1_title: 'Paste your talent themes',
+      step_1_desc: 'Copy your top-10 (or all 34) themes from your Gallup report. The order defines zones — what\'s natural, what takes effort.',
+      step_2_title: 'Get your system prompt',
+      step_2_desc: 'In seconds: a personal AI instruction, a map of your talent bonds, scenarios for every zone. Short and extended formats ready.',
+      step_3_title: 'Paste it — and work differently',
+      step_3_desc: 'Once into Claude or ChatGPT settings. Your AI now knows how you think, what you need, and what not to do. Every day — no re-explaining.',
+      proof_label: 'Reviews',
+      proof_h2: 'What people say after configuring their AI',
+      review_1_text: '"Pasted the prompt into Claude — and from the very first response, I felt the difference. It answered in scenarios, no pointless bullet lists. That\'s exactly how I think. Didn\'t expect it to work this fast."',
+      review_1_name: 'Paul O.',
+      review_1_role: 'Strategic + Analytical, Product Lead',
+      review_2_text: '"My z5 zone is everything detail and planning-related. Beat myself up about it for two years. Then found a ready-made prompt in the compensators for "Achiever in z5" — now I just hand it to AI. Done fighting what\'s not mine."',
+      review_2_name: 'David L.',
+      review_2_role: 'Department Head, 8 years in management',
+      review_3_text: '"Put the extended format in .cursorrules — and Cursor started commenting code the way I want to read it. Summary first, details after. Two years of fighting settings, and this took five minutes."',
+      review_3_name: 'Anna S.',
+      review_3_role: 'Strategic + Analytical, Senior Engineer',
+      cta_label: 'Done in five minutes',
+      cta_h2_1: 'Stop re-explaining yourself',
+      cta_h2_em: 'every single session.',
+      cta_sub: 'Paste your Gallup theme list — get a prompt that works in Claude, ChatGPT, and any AI tool. Once. Forever.',
+      cta_btn: 'Configure Your AI →',
+      cta_note: 'Free · Invite only · Requires your Gallup report',
+      footer_text: '© 2025 Talents Navigator · Based on the Gallup CliftonStrengths methodology · <a href="https://texterok.github.io/talents-navigator/">Open app</a> · <a href="gallup.html">What is Gallup</a>'
+    }
+  };
+
+  function switchLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.dataset.i18n;
+      if (translations[lang] && translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+    document.getElementById('lang-btn').textContent = lang === 'ru' ? 'EN' : 'RU';
+    document.title = lang === 'ru'
+      ? 'Talents Navigator — персональный AI на основе Gallup CliftonStrengths'
+      : 'Talents Navigator — Personal AI Powered by Gallup CliftonStrengths';
+    localStorage.setItem('lang', lang);
+    window._currentLang = lang;
+  }
+
+  // Init
+  var savedLang = localStorage.getItem('lang') || 'ru';
+  window._currentLang = savedLang;
+  if (savedLang === 'en') switchLang('en');
+</script>
+</body>
+</html>
