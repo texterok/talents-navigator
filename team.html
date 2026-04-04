@@ -279,6 +279,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .full-grid .team-rank-row td{background:#F7F5F0;padding:4px 2px;border-top:2px solid var(--border);border-bottom:2px solid var(--border)}
 .full-grid .team-rank-row td.name-cell{background:#F7F5F0;font-size:12px;font-weight:700;color:var(--text-2)}
 .full-grid .freq-num{font-size:11px;color:var(--text-3);font-weight:500}
+.freq-cell{display:inline-flex;align-items:center;justify-content:center;width:26px;height:22px;border-radius:4px;font-size:11px;font-weight:700}
+.freq-cell.freq-exec{color:#7C3AED;background:rgba(124,58,237,.1)}
+.freq-cell.freq-infl{color:#C2590A;background:rgba(194,89,10,.1)}
+.freq-cell.freq-rel{color:#1D4ED8;background:rgba(29,78,216,.1)}
+.freq-cell.freq-strat{color:#15803D;background:rgba(21,128,61,.1)}
+.freq-cell.freq-light.freq-exec{color:#9D71E8;background:rgba(124,58,237,.05)}
+.freq-cell.freq-light.freq-infl{color:#D4845A;background:rgba(194,89,10,.05)}
+.freq-cell.freq-light.freq-rel{color:#5B8DEF;background:rgba(29,78,216,.05)}
+.freq-cell.freq-light.freq-strat{color:#4A9E6B;background:rgba(21,128,61,.05)}
 
 /* DOMAIN INTERPRETATION */
 .domain-interp{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -1142,7 +1151,7 @@ function renderDeepAnalysis(members) {
     const d = DOMAIN_MAP[t];
     const cls = DOMAIN_CLASS[d] || '';
     gridHtml += cnt > 0
-      ? `<td><div class="grid-cell z1-5 ${cls}">${cnt}</div></td>`
+      ? `<td><span class="freq-cell freq-${cls}">${cnt}</span></td>`
       : '<td></td>';
   });
   gridHtml += '</tr>';
@@ -1154,7 +1163,7 @@ function renderDeepAnalysis(members) {
     const d = DOMAIN_MAP[t];
     const cls = DOMAIN_CLASS[d] || '';
     gridHtml += cnt > 0
-      ? `<td><div class="grid-cell z6-10 ${cls}">${cnt}</div></td>`
+      ? `<td><span class="freq-cell freq-${cls} freq-light">${cnt}</span></td>`
       : '<td></td>';
   });
   gridHtml += '</tr>';
