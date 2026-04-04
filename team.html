@@ -242,52 +242,43 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 /* FULL GRID */
 .grid-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.full-grid{border-collapse:collapse;font-size:12px}
-.full-grid th.name-cell-hdr{text-align:left;padding:4px 14px;font-size:12px;font-weight:700;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:3;min-width:220px}
+.full-grid{border-collapse:collapse;font-size:12px;table-layout:fixed}
+.full-grid th.name-cell-hdr{text-align:left;padding:4px 14px;font-size:12px;font-weight:700;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:3;width:200px;min-width:200px}
 .full-grid th.domain-hdr{text-align:center;padding:8px 4px;font-size:12px;font-weight:800;letter-spacing:.03em;border-bottom:3px solid transparent}
 .full-grid th.domain-hdr.exec{color:#5B21B6;border-bottom-color:#7C3AED;border-left:2px solid #C4B5FD}
 .full-grid th.domain-hdr.infl{color:#C2590A;border-bottom-color:#C2590A;border-left:2px solid #FCD34D}
 .full-grid th.domain-hdr.rel{color:#1D4ED8;border-bottom-color:#1D4ED8;border-left:2px solid #BFDBFE}
 .full-grid th.domain-hdr.strat{color:#15803D;border-bottom-color:#15803D;border-left:2px solid #BBF7D0}
-.full-grid th.theme-hdr{padding:0;vertical-align:bottom;border-bottom:1px solid var(--border-light);width:36px;min-width:36px;max-width:36px}
-.full-grid th.theme-hdr.exec{border-right:1px solid #E9D5FF}
-.full-grid th.theme-hdr.infl{border-right:1px solid #FDE68A}
-.full-grid th.theme-hdr.rel{border-right:1px solid #BFDBFE}
-.full-grid th.theme-hdr.strat{border-right:1px solid #BBF7D0}
+.full-grid th.theme-hdr{padding:0;vertical-align:bottom;width:34px;min-width:34px;max-width:34px;border:1px solid var(--border-light);border-top:none}
+.full-grid th.theme-hdr.exec{border-color:#E9D5FF}
+.full-grid th.theme-hdr.infl{border-color:#FDE68A}
+.full-grid th.theme-hdr.rel{border-color:#BFDBFE}
+.full-grid th.theme-hdr.strat{border-color:#BBF7D0}
 .theme-hdr-inner{writing-mode:vertical-rl;transform:rotate(180deg);padding:10px 8px 6px;font-size:11px;font-weight:600;white-space:nowrap;color:var(--text-2);text-align:left;line-height:1}
-.full-grid td{padding:4px 2px;text-align:center;border-bottom:1px solid var(--border-light);width:36px;min-width:36px;max-width:36px}
-.full-grid td.name-cell{text-align:left;padding:8px 14px;font-size:13px;font-weight:600;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:2;border-right:2px solid var(--border);min-width:220px;max-width:320px}
+/* Data cells — full td fill */
+.full-grid td{padding:0;text-align:center;width:34px;min-width:34px;max-width:34px;height:34px;border:1px solid var(--border-light);font-size:12px;font-weight:700;vertical-align:middle}
+.full-grid td.name-cell{text-align:left;padding:0 12px;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:sticky;left:0;background:var(--surface);z-index:2;border-right:2px solid var(--border);width:200px;min-width:200px;max-width:200px;height:36px;border-bottom:1px solid var(--border-light)}
 .full-grid tr:hover td{background:#FAFAF8}
 .full-grid tr:hover td.name-cell{background:#F5F3EF}
-.grid-cell{width:28px;height:28px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin:0 auto;line-height:1}
-/* z1-5 — subtle tint, bold colored text */
-.grid-cell.z1-5.exec{background:rgba(124,58,237,.10);color:#6D28D9;font-weight:800}
-.grid-cell.z1-5.infl{background:rgba(194,89,10,.10);color:#B45309;font-weight:800}
-.grid-cell.z1-5.rel{background:rgba(29,78,216,.10);color:#1D4ED8;font-weight:800}
-.grid-cell.z1-5.strat{background:rgba(21,128,61,.10);color:#166534;font-weight:800}
-/* z6-10 — very light tint */
-.grid-cell.z6-10.exec{background:rgba(124,58,237,.05);color:#8B5CF6}
-.grid-cell.z6-10.infl{background:rgba(194,89,10,.05);color:#D97706}
-.grid-cell.z6-10.rel{background:rgba(29,78,216,.05);color:#3B82F6}
-.grid-cell.z6-10.strat{background:rgba(21,128,61,.05);color:#22C55E}
-/* z11-29 — very light, small */
-.grid-cell.z11-29{background:transparent;color:#C0BDB8;font-size:10px;font-weight:500}
-/* z30-34 — grey */
-.grid-cell.z30-34{background:#F3F4F6;color:#9CA3AF;font-size:10px;font-weight:600}
-/* hidden zones */
-.grid-cell.hidden{visibility:hidden}
-.full-grid .team-rank-row td{background:#F7F5F0;padding:4px 2px;border-top:2px solid var(--border);border-bottom:2px solid var(--border)}
-.full-grid .team-rank-row td.name-cell{background:#F7F5F0;font-size:12px;font-weight:700;color:var(--text-2)}
+/* Zone colors on td directly */
+.full-grid td.z1-5.exec{background:rgba(124,58,237,.13);color:#5B21B6}
+.full-grid td.z1-5.infl{background:rgba(194,89,10,.13);color:#92400E}
+.full-grid td.z1-5.rel{background:rgba(29,78,216,.13);color:#1D4ED8}
+.full-grid td.z1-5.strat{background:rgba(21,128,61,.13);color:#166534}
+.full-grid td.z6-10.exec{background:rgba(124,58,237,.06);color:#7C3AED}
+.full-grid td.z6-10.infl{background:rgba(194,89,10,.06);color:#C2590A}
+.full-grid td.z6-10.rel{background:rgba(29,78,216,.06);color:#2563EB}
+.full-grid td.z6-10.strat{background:rgba(21,128,61,.06);color:#16A34A}
+.full-grid td.z11-29{color:#D1CDC8;font-weight:500;font-size:11px}
+.full-grid td.z30-34{background:#F7F6F4;color:#B5B0AA;font-size:10px}
+.full-grid td.zone-hidden{color:transparent!important;background:transparent!important}
+/* Freq rows */
+.full-grid .team-rank-row td{background:#F7F5F0;border-top:2px solid var(--border);border-bottom:2px solid var(--border);height:32px}
+.full-grid .team-rank-row td.name-cell{background:#F7F5F0;font-size:11px;font-weight:700;color:var(--text-2)}
 .full-grid .freq-num{font-size:11px;color:var(--text-3);font-weight:500}
-.freq-cell{display:inline-flex;align-items:center;justify-content:center;width:26px;height:22px;border-radius:4px;font-size:11px;font-weight:700}
-.freq-cell.freq-exec{color:#7C3AED;background:rgba(124,58,237,.1)}
-.freq-cell.freq-infl{color:#C2590A;background:rgba(194,89,10,.1)}
-.freq-cell.freq-rel{color:#1D4ED8;background:rgba(29,78,216,.1)}
-.freq-cell.freq-strat{color:#15803D;background:rgba(21,128,61,.1)}
-.freq-cell.freq-light.freq-exec{color:#9D71E8;background:rgba(124,58,237,.05)}
-.freq-cell.freq-light.freq-infl{color:#D4845A;background:rgba(194,89,10,.05)}
-.freq-cell.freq-light.freq-rel{color:#5B8DEF;background:rgba(29,78,216,.05)}
-.freq-cell.freq-light.freq-strat{color:#4A9E6B;background:rgba(21,128,61,.05)}
+.freq-cell{display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.freq-cell.freq-exec{color:#7C3AED}.freq-cell.freq-infl{color:#C2590A}.freq-cell.freq-rel{color:#1D4ED8}.freq-cell.freq-strat{color:#15803D}
+.freq-cell.freq-light.freq-exec{color:#A78BFA}.freq-cell.freq-light.freq-infl{color:#D97706}.freq-cell.freq-light.freq-rel{color:#60A5FA}.freq-cell.freq-light.freq-strat{color:#4ADE80}
 
 /* DOMAIN INTERPRETATION */
 .domain-interp{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -1176,7 +1167,7 @@ function renderDeepAnalysis(members) {
     const roleName = m.job_title || ('Участник ' + (m.user_id ? m.user_id.slice(0, 4) : ''));
     const idName = m.user_id ? m.user_id.slice(0, 8) + '…' : '—';
     const displayName = _gridNameMode === 'role' ? roleName : idName;
-    gridHtml += `<tr data-uid="${esc(m.user_id)}"><td class="name-cell" data-role="${esc(roleName)}" data-uid="${esc(idName)}">${esc(displayName)}</td>`;
+    gridHtml += `<tr data-uid="${esc(m.user_id)}"><td class="name-cell" data-role="${esc(roleName)}" data-uid="${esc(idName)}" title="${esc(displayName)}">${esc(displayName)}</td>`;
     THEMES_ORDER.forEach(t => {
       const p = pos[t];
       if (!p) { gridHtml += '<td></td>'; return; }
@@ -1187,7 +1178,8 @@ function renderDeepAnalysis(members) {
       else if (p <= 10) zone = 'z6-10';
       else if (p <= 29) zone = 'z11-29';
       else zone = 'z30-34';
-      gridHtml += `<td><div class="grid-cell ${zone} ${cls}" data-zone="${zone}">${p}</div></td>`;
+      const hidden = _gridActiveZones.has(zone) ? '' : ' zone-hidden';
+      gridHtml += `<td class="${zone} ${cls}${hidden}" data-zone="${zone}">${p}</td>`;
     });
     gridHtml += '</tr>';
   });
@@ -1258,9 +1250,8 @@ function setGridNameMode(mode, btn) {
 }
 
 function _applyZoneVisibility() {
-  // Always read from canonical state, never from DOM buttons
-  document.querySelectorAll('#fullGridTable .grid-cell[data-zone]').forEach(c => {
-    c.classList.toggle('hidden', !_gridActiveZones.has(c.dataset.zone));
+  document.querySelectorAll('#fullGridTable td[data-zone]').forEach(td => {
+    td.classList.toggle('zone-hidden', !_gridActiveZones.has(td.dataset.zone));
   });
   const row15 = document.getElementById('freqRow15');
   const row610 = document.getElementById('freqRow610');
@@ -1313,8 +1304,8 @@ function closeGridOverlay(e) {
 function _applyZoneVisibilityIn(container) {
   const activeBtns = container.querySelectorAll('.zone-btn[data-zone].active');
   const activeZones = new Set([...activeBtns].map(b => b.dataset.zone));
-  container.querySelectorAll('.grid-cell[data-zone]').forEach(c => {
-    c.classList.toggle('hidden', !activeZones.has(c.dataset.zone));
+  container.querySelectorAll('td[data-zone]').forEach(td => {
+    td.classList.toggle('zone-hidden', !activeZones.has(td.dataset.zone));
   });
   const row15 = container.querySelector('#freqRow15');
   const row610 = container.querySelector('#freqRow610');
