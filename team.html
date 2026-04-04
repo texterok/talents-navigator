@@ -1235,7 +1235,20 @@ function sortGridByTheme(theme) {
     _gridSortTheme = theme;
     _gridSortDir = 'asc';
   }
+  const overlayOpen = document.getElementById('gridOverlay').classList.contains('open');
+  // if overlay is open, move gridSection back so renderDeepAnalysis can replace it
+  if (overlayOpen) {
+    const gs = document.getElementById('gridSection');
+    const dc = document.getElementById('deepContent');
+    if (gs && dc) {
+      const sections = dc.querySelectorAll('.deep-section');
+      const last = sections[sections.length - 1];
+      dc.insertBefore(gs, last);
+    }
+  }
   renderDeepAnalysis(_lastMembers);
+  // move new gridSection back into overlay
+  if (overlayOpen) openGridOverlay();
 }
 
 function setGridNameMode(mode, btn) {
