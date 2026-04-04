@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talents Navigator — превратите Gallup-отчёт в систему лидерства</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #1B6B50;
+      --accent-light: #e8f4f0;
+      --bg: #F7F5F0;
+      --surface: #FFFFFF;
+      --text: #1F1D19;
+      --text2: #5C574E;
+      --exec: #6D28D9;
+      --infl: #C2590A;
+      --rel: #0B7A55;
+      --strat: #1856C7;
+      --radius: 16px;
+      --shadow: 0 1px 3px rgba(31,29,25,0.07), 0 4px 16px rgba(31,29,25,0.06);
+      --shadow-hover: 0 4px 8px rgba(31,29,25,0.09), 0 12px 32px rgba(31,29,25,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,245,240,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(31,29,25,0.08);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Literata', serif;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; gap: 32px; align-items: center; }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 8px;
+      transition: opacity 0.2s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.88; }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    /* SECTIONS */
+    section { padding: 96px 24px; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* HERO */
+    #hero {
+      padding: 120px 24px 96px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(27,107,80,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: 'Literata', serif;
+      font-size: clamp(36px, 6vw, 68px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      max-width: 840px;
+      margin: 0 auto 24px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--text2);
+      max-width: 580px;
+      margin: 0 auto 48px;
+      font-weight: 400;
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      box-shadow: 0 2px 8px rgba(27,107,80,0.25), 0 1px 2px rgba(27,107,80,0.15);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(27,107,80,0.30);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 16px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 1.5px solid rgba(31,29,25,0.15);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(31,29,25,0.3);
+      background: rgba(31,29,25,0.04);
+    }
+
+    .hero-note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    .hero-visual {
+      margin: 72px auto 0;
+      max-width: 760px;
+      background: var(--surface);
+      border-radius: 20px;
+      box-shadow: var(--shadow-hover);
+      padding: 32px;
+      border: 1px solid rgba(31,29,25,0.07);
+      text-align: left;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .profile-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-light), #c9e8df);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .profile-name {
+      font-family: 'Literata', serif;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .profile-role { font-size: 13px; color: var(--text2); margin-top: 2px; }
+
+    .talent-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .talent-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .talent-chip .num {
+      font-size: 11px;
+      font-weight: 600;
+      opacity: 0.7;
+      min-width: 18px;
+    }
+
+    .tc-exec { background: rgba(109,40,217,0.08); color: var(--exec); }
+    .tc-infl { background: rgba(194,89,10,0.08); color: var(--infl); }
+    .tc-rel { background: rgba(11,122,85,0.08); color: var(--rel); }
+    .tc-strat { background: rgba(24,86,199,0.08); color: var(--strat); }
+
+    /* PROBLEM */
+    #problem { background: var(--text); color: #fff; }
+
+    #problem .section-label {
+      color: rgba(255,255,255,0.45);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .problem-quote {
+      font-family: 'Literata', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      font-style: italic;
+    }
+
+    .problem-quote strong {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: rgba(27,107,80,0.4);
+      text-underline-offset: 4px;
+    }
+
+    .problem-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+
+    .problem-list li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+
+    .problem-list li .icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-top: 1px;
+    }
+
+    .problem-list li strong { color: #fff; font-weight: 600; }
+
+    /* SOLUTION */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Literata', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 18px;
+      color: var(--text2);
+      max-width: 560px;
+      line-height: 1.55;
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-top: 64px;
+    }
+
+    .solution-bullets { display: flex; flex-direction: column; gap: 28px; }
+
+    .sol-item { display: flex; gap: 20px; align-items: flex-start; }
+
+    .sol-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .sol-title {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .sol-desc { font-size: 15px; color: var(--text2); line-height: 1.5; }
+
+    .solution-visual {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      border: 1px solid rgba(31,29,25,0.07);
+    }
+
+    .sv-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text2);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .bond-card {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .bond-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+
+    .bond-tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .bond-strat { background: rgba(24,86,199,0.1); color: var(--strat); }
+    .bond-exec { background: rgba(109,40,217,0.1); color: var(--exec); }
+
+    .bond-plus {
+      font-size: 16px;
+      color: var(--text2);
+      font-weight: 300;
+    }
+
+    .bond-desc { font-size: 14px; color: var(--text2); line-height: 1.5; }
+
+    /* FEATURES */
+    #features { background: var(--bg); }
+
+    .features-header { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(31,29,25,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .feature-card:nth-child(4), .feature-card:nth-child(5) {
+      grid-column: span 1;
+    }
+
+    .features-grid .feature-card:nth-child(4) { grid-column: 1 / 2; }
+    .features-grid .feature-card:nth-child(5) { grid-column: 2 / 4; }
+
+    .fc-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .fc-exec { background: rgba(109,40,217,0.1); }
+    .fc-infl { background: rgba(194,89,10,0.1); }
+    .fc-rel { background: rgba(11,122,85,0.1); }
+    .fc-strat { background: rgba(24,86,199,0.1); }
+    .fc-accent { background: var(--accent-light); }
+
+    .fc-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .fc-exec-text { color: var(--exec); }
+    .fc-infl-text { color: var(--infl); }
+    .fc-rel-text { color: var(--rel); }
+    .fc-strat-text { color: var(--strat); }
+    .fc-accent-text { color: var(--accent); }
+
+    .fc-title {
+      font-family: 'Literata', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .fc-desc { font-size: 15px; color: var(--text2); line-height: 1.55; }
+
+    /* HOW IT WORKS */
+    #how { background: var(--surface); }
+
+    .how-header { text-align: center; max-width: 600px; margin: 0 auto 72px; }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(16.66% + 16px);
+      right: calc(16.66% + 16px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-light) 100%);
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .step-num {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Literata', serif;
+      font-size: 28px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 0 8px var(--accent-light);
+    }
+
+    .step-title {
+      font-family: 'Literata', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-desc { font-size: 15px; color: var(--text2); line-height: 1.55; }
+
+    /* SOCIAL PROOF */
+    #proof { background: var(--bg); }
+
+    .proof-header { text-align: center; max-width: 560px; margin: 0 auto 64px; }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .proof-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(31,29,25,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .proof-stars { color: #F59E0B; font-size: 16px; letter-spacing: 2px; }
+
+    .proof-text {
+      font-family: 'Literata', serif;
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .proof-author { display: flex; align-items: center; gap: 14px; }
+
+    .proof-ava {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .ava-1 { background: rgba(109,40,217,0.12); }
+    .ava-2 { background: rgba(194,89,10,0.12); }
+    .ava-3 { background: rgba(24,86,199,0.12); }
+
+    .proof-name { font-weight: 600; font-size: 15px; }
+    .proof-role { font-size: 13px; color: var(--text2); margin-top: 2px; }
+
+    /* FINAL CTA */
+    #cta {
+      background: var(--text);
+      text-align: center;
+      color: #fff;
+    }
+
+    .cta-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .cta-title {
+      font-family: 'Literata', serif;
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      max-width: 680px;
+      margin: 0 auto 24px;
+    }
+
+    .cta-title em { font-style: italic; color: var(--accent); }
+
+    .cta-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.55;
+    }
+
+    .cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.4); }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 24px;
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      font-size: 13px;
+    }
+
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    footer a:hover { color: rgba(255,255,255,0.75); }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav { display: none; }
+      nav.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 64px 0 0;
+        background: var(--bg);
+        padding: 32px 24px;
+        gap: 24px;
+        z-index: 99;
+      }
+      nav.open a { font-size: 20px; }
+      .burger { display: flex; }
+      .problem-grid { grid-template-columns: 1fr; gap: 48px; }
+      .solution-grid { grid-template-columns: 1fr; gap: 40px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .features-grid .feature-card:nth-child(4),
+      .features-grid .feature-card:nth-child(5) { grid-column: auto; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .steps-grid::before { display: none; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .talent-list { grid-template-columns: 1fr; }
+      section { padding: 72px 20px; }
+      #hero { padding: 88px 20px 72px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title { font-size: 34px; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .hero-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">Talents<span>.</span>Navigator</a>
+    <nav id="nav">
+      <a href="#problem">Проблема</a>
+      <a href="#features">Возможности</a>
+      <a href="#how">Как работает</a>
+      <a href="#proof">Отзывы</a>
+      <a href="https://texterok.github.io/talents-navigator/" class="nav-cta">Открыть →</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-eyebrow">✦ На базе методологии Gallup CliftonStrengths</div>
+    <h1 class="hero-title">
+      Вы не сломаны.<br>
+      Вы просто в <em>чужой игре.</em>
+    </h1>
+    <p class="hero-sub">
+      Gallup-отчёт лежит в папке. Вы знаете свои таланты, но не знаете, что с ними делать. Talents Navigator превращает 34 таланта в конкретную систему лидерства — за 5 минут.
+    </p>
+    <div class="hero-actions">
+      <a href="https://texterok.github.io/talents-navigator/" class="btn-primary">
+        Открыть свой профиль →
+      </a>
+      <a href="#features" class="btn-secondary">
+        Как это работает
+      </a>
+    </div>
+    <p class="hero-note">Бесплатно · Нужен только ваш список топ-5 талантов из отчёта Gallup</p>
+
+    <div class="hero-visual fade-up">
+      <div class="profile-header">
+        <div class="profile-avatar">🧭</div>
+        <div>
+          <div class="profile-name">Лидерский профиль</div>
+          <div class="profile-role">Топ-10 талантов · Зоны энергии · AI-инструменты</div>
+        </div>
+      </div>
+      <div class="talent-list">
+        <div class="talent-chip tc-strat"><span class="num">#1</span> Стратегическое мышление</div>
+        <div class="talent-chip tc-exec"><span class="num">#2</span> Достижение</div>
+        <div class="talent-chip tc-infl"><span class="num">#3</span> Командование</div>
+        <div class="talent-chip tc-rel"><span class="num">#4</span> Эмпатия</div>
+        <div class="talent-chip tc-strat"><span class="num">#5</span> Аналитика</div>
+        <div class="talent-chip tc-exec"><span class="num">#6</span> Фокус</div>
+        <div class="talent-chip tc-rel"><span class="num">#7</span> Индивидуализация</div>
+        <div class="talent-chip tc-infl"><span class="num">#8</span> Коммуникация</div>
+        <div class="talent-chip tc-strat"><span class="num">#9</span> Футуристичность</div>
+        <div class="talent-chip tc-exec"><span class="num">#10</span> Ответственность</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="container">
+    <div class="problem-grid">
+      <div>
+        <div class="section-label fade-up">Знакомая ситуация?</div>
+        <p class="problem-quote fade-up fade-up-delay-1">
+          Вы прошли тест, прочитали отчёт.<br>
+          Красиво. Точно. И&nbsp;что дальше?<br><br>
+          <strong>PDF не даёт ответов.</strong><br>
+          Он даёт названия.
+        </p>
+      </div>
+      <ul class="problem-list">
+        <li class="fade-up">
+          <div class="icon">📄</div>
+          <div>
+            <strong>Отчёт есть, действий нет.</strong><br>
+            Вы знаете, что у вас «Стратег» и «Достиженец». Но продолжаете делать то же, что и раньше.
+          </div>
+        </li>
+        <li class="fade-up fade-up-delay-1">
+          <div class="icon">⚡️</div>
+          <div>
+            <strong>Вы тратите энергию на чужое.</strong><br>
+            Часть работы даётся тяжело не потому что вы плохой менеджер, а потому что это вне вашей природной зоны.
+          </div>
+        </li>
+        <li class="fade-up fade-up-delay-2">
+          <div class="icon">🤖</div>
+          <div>
+            <strong>AI работает вслепую.</strong><br>
+            ChatGPT и Claude не знают, как вы думаете. Они дают универсальные ответы — вы получаете шаблон.
+          </div>
+        </li>
+        <li class="fade-up fade-up-delay-3">
+          <div class="icon">🧱</div>
+          <div>
+            <strong>Потолок — не вы.</strong><br>
+            Это ваша среда. Она либо раскрывает таланты, либо гасит их — и вы этого не замечаете.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="container">
+    <div class="section-label fade-up">Решение</div>
+    <h2 class="section-title fade-up fade-up-delay-1">Один инструмент.<br>Пять рычагов роста.</h2>
+    <p class="section-sub fade-up fade-up-delay-2">Talents Navigator берёт ваш список талантов и превращает его в рабочую систему: профиль, связки, диагностику среды, AI-инструменты и персональный промпт.</p>
+
+    <div class="solution-grid">
+      <div class="solution-bullets">
+        <div class="sol-item fade-up">
+          <div class="sol-icon">🎯</div>
+          <div>
+            <div class="sol-title">От теории к практике</div>
+            <div class="sol-desc">Каждый талант — это не описание личности, а конкретный набор действий: как строить доверие, принимать решения, давать обратную связь.</div>
+          </div>
+        </div>
+        <div class="sol-item fade-up fade-up-delay-1">
+          <div class="sol-icon">⚡</div>
+          <div>
+            <div class="sol-title">Зоны энергии вместо оценок</div>
+            <div class="sol-desc">Таланты 1–5 работают сами. Таланты 11–34 требуют усилий — их можно делегировать или автоматизировать через AI.</div>
+          </div>
+        </div>
+        <div class="sol-item fade-up fade-up-delay-2">
+          <div class="sol-icon">🔗</div>
+          <div>
+            <div class="sol-title">Синергия между талантами</div>
+            <div class="sol-desc">561 пара талантов. Увидите, как ваши топ-таланты усиливают друг друга — и где между ними скрытое напряжение.</div>
+          </div>
+        </div>
+        <div class="sol-item fade-up fade-up-delay-3">
+          <div class="sol-icon">🤖</div>
+          <div>
+            <div class="sol-title">AI, который знает вас</div>
+            <div class="sol-desc">Не общий ChatGPT, а ассистент с вашим стилем мышления. Один раз настроить — пользоваться каждый день.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution-visual fade-up fade-up-delay-2">
+        <div class="sv-title">Пример: связка талантов</div>
+        <div class="bond-card">
+          <div class="bond-header">
+            <span class="bond-tag bond-strat">Стратег</span>
+            <span class="bond-plus">+</span>
+            <span class="bond-tag bond-exec">Достиженец</span>
+          </div>
+          <p class="bond-desc">
+            Стратег видит несколько путей к цели и выбирает лучший. Достиженец толкает вперёд без остановки. Вместе — вы не только придумываете короткие пути, но и реально их проходите. Риск: можете начать слишком много проектов одновременно.
+          </p>
+        </div>
+        <div class="bond-card">
+          <div class="bond-header">
+            <span class="bond-tag bond-strat">Аналитик</span>
+            <span class="bond-plus">+</span>
+            <span class="bond-tag bond-exec">Фокус</span>
+          </div>
+          <p class="bond-desc">
+            Аналитик собирает данные, ищет паттерны. Фокус не даёт утонуть в информации — он переводит анализ в конкретный следующий шаг. Ваш конёк: решения с доказательной базой, без потери темпа.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="features-header">
+      <div class="section-label fade-up">Возможности</div>
+      <h2 class="section-title fade-up fade-up-delay-1">Пять блоков. Один профиль.</h2>
+      <p class="section-sub fade-up fade-up-delay-2" style="margin: 0 auto;">Всё, что нужно лидеру, чтобы перестать догадываться и начать использовать то, что уже есть.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="fc-icon fc-exec">🏔</div>
+        <div class="fc-tag fc-exec-text">Исполнение</div>
+        <div class="fc-title">Лидерский профиль</div>
+        <p class="fc-desc">Топ-10 талантов с контентом из Gallup Leadership Guide. Как строить доверие, проявлять заботу, давать опору, создавать направление — конкретно под ваши таланты.</p>
+      </div>
+
+      <div class="feature-card fade-up fade-up-delay-1">
+        <div class="fc-icon fc-strat">🔗</div>
+        <div class="fc-tag fc-strat-text">Анализ</div>
+        <div class="fc-title">Связки талантов</div>
+        <p class="fc-desc">561 уникальная пара. Как ваши таланты взаимодействуют, усиливают или нейтрализуют друг друга. Поймёте, что работает в паре и где скрытый конфликт.</p>
+      </div>
+
+      <div class="feature-card fade-up fade-up-delay-2">
+        <div class="fc-icon fc-rel">🌿</div>
+        <div class="fc-tag fc-rel-text">Диагностика</div>
+        <div class="fc-title">Чекап среды</div>
+        <p class="fc-desc">10 вопросов о качестве вашей рабочей среды. Раскрывает ли она таланты или гасит их? Получите ответ за 3 минуты с конкретными рекомендациями.</p>
+      </div>
+
+      <div class="feature-card fade-up fade-up-delay-3">
+        <div class="fc-icon fc-infl">⚡</div>
+        <div class="fc-tag fc-infl-text">Автоматизация</div>
+        <div class="fc-title">AI-усиление</div>
+        <p class="fc-desc">Для каждого таланта — конкретные AI-инструменты: n8n, Claude, Obsidian, Notion. С готовыми промптами под боли именно вашего таланта.</p>
+      </div>
+
+      <div class="feature-card fade-up fade-up-delay-4">
+        <div class="fc-icon fc-accent">🧠</div>
+        <div class="fc-tag fc-accent-text">Персонализация</div>
+        <div class="fc-title">Инструкции для AI</div>
+        <p class="fc-desc">Персональный системный промпт под ваш стиль мышления. ChatGPT или Claude получают контекст о том, как вы думаете, принимаете решения и что для вас важно — раз и навсегда. Больше никаких «представьтесь».</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="how-header">
+      <div class="section-label fade-up">Как это работает</div>
+      <h2 class="section-title fade-up fade-up-delay-1">Три шага до рабочей системы</h2>
+      <p class="section-sub fade-up fade-up-delay-2" style="margin: 0 auto;">Не нужно перечитывать методологию. Нужен список ваших талантов и пять минут.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <div class="step-title">Вставьте список талантов</div>
+        <p class="step-desc">Откройте Gallup-отчёт, скопируйте топ-5 (или больше) талантов. Введите их в Talents Navigator — порядок и домены определяются автоматически.</p>
+      </div>
+      <div class="step fade-up fade-up-delay-1">
+        <div class="step-num">2</div>
+        <div class="step-title">Получите свой профиль</div>
+        <p class="step-desc">За несколько секунд: лидерский профиль с рекомендациями, карта связок, зоны энергии, диагностика среды и готовые AI-промпты именно под ваши таланты.</p>
+      </div>
+      <div class="step fade-up fade-up-delay-2">
+        <div class="step-num">3</div>
+        <div class="step-title">Действуйте в своей зоне</div>
+        <p class="step-desc">Делегируйте или автоматизируйте то, что за пределами топ-10. Используйте AI с персональным промптом. Стройте команду, зная свои настоящие сильные стороны.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section id="proof">
+  <div class="container">
+    <div class="proof-header">
+      <div class="section-label fade-up">Отзывы</div>
+      <h2 class="section-title fade-up fade-up-delay-1">Что говорят лидеры</h2>
+    </div>
+
+    <div class="proof-grid">
+      <div class="proof-card fade-up">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text">«Прошёл Gallup два года назад. Прочитал отчёт, положил в закладки — и забыл. Talents Navigator сделал за 10 минут то, что я откладывал два года: показал, где я трачу энергию впустую, и дал конкретный формат для разговора с командой о ролях.»</p>
+        <div class="proof-author">
+          <div class="proof-ava ava-1">👤</div>
+          <div>
+            <div class="proof-name">Антон Журавлёв</div>
+            <div class="proof-role">Тимлид продуктовой команды, 12 человек</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-card fade-up fade-up-delay-1">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text">«Блок с AI-промптами — это отдельная история. Я скопировала инструкцию в Claude, и буквально с первого ответа почувствовала разницу. Он стал отвечать в моём темпе, с учётом того, как я думаю. Не ожидала, что это так сильно изменит работу с ИИ.»</p>
+        <div class="proof-author">
+          <div class="proof-ava ava-2">👤</div>
+          <div>
+            <div class="proof-name">Мария Соколова</div>
+            <div class="proof-role">Директор по маркетингу, SaaS-компания</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-card fade-up fade-up-delay-2">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text">«Чекап среды попал точно в больное. У меня «Стратег» и «Аналитик» в топе, но последние полгода я делал в основном операционку. Инструмент помог сформулировать, почему я выгораю — и аргументировать перераспределение обязанностей руководителю.»</p>
+        <div class="proof-author">
+          <div class="proof-ava ava-3">👤</div>
+          <div>
+            <div class="proof-name">Игорь Белов</div>
+            <div class="proof-role">Руководитель отдела разработки</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="cta">
+  <div class="container">
+    <span class="cta-label fade-up">Начните прямо сейчас</span>
+    <h2 class="cta-title fade-up fade-up-delay-1">
+      Перестаньте развивать<br>
+      <em>чужие сильные стороны.</em>
+    </h2>
+    <p class="cta-sub fade-up fade-up-delay-2">Ваши таланты уже есть. Осталось превратить их в систему, которая работает — в лидерстве, в коммуникации, с AI.</p>
+    <div class="fade-up fade-up-delay-3">
+      <a href="https://texterok.github.io/talents-navigator/" class="btn-primary" style="font-size: 17px; padding: 18px 40px;">
+        Открыть Talents Navigator →
+      </a>
+    </div>
+    <p class="cta-note fade-up fade-up-delay-4">Бесплатно · Без регистрации · Нужен только ваш Gallup-отчёт</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 Talents Navigator · На основе методологии Gallup CliftonStrengths · <a href="https://texterok.github.io/talents-navigator/">Открыть приложение</a></p>
+</footer>
+
+<script>
+  // Burger menu
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  burger.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+
+  // Close nav on link click
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => nav.classList.remove('open'));
+  });
+
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
