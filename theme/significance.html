@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Significance — Значимость · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain infl">Влияние</div>
+    <h1>Significance</h1>
+    <div class="hero-sub">Значимость</div>
+    <p class="hero-def">Что такое талант «Значимость»</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое талант «Значимость»</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое талант «Значимость»</p>
+<p>«Значимость» — это талант из домена Влияния. Людей с этим доминирующим талантом ведёт вперёд желание делать важное дело и оставлять след, который будет заметен, доказуем и ощутим для других.</p>
+<p>Изначально, в процессе разработки CliftonStrengths, этот талант назывался <strong>«Желание»</strong> (Desire). Старое название точно передаёт суть: неудержимое притяжение к работе, которая имеет значение, и жажда производить в мире ощутимый эффект.</p>
+<p><strong>Основное определение (Gallup):</strong> Люди с доминирующим талантом «Значимость» хотят производить большое впечатление. Они независимы и расставляют приоритеты среди задач в зависимости от того, насколько сильным будет влияние этих задач на организацию или окружающих людей.</p>
+<p><strong>Ключевое отличие от самопиара:</strong> мотивом является не признание ради признания. Признание работает как <em>подтверждение</em> — сигнал, что работа достигла цели и эффект реален. Без этой обратной связи человек с высоким уровнем «Значимости» не может понять, движется ли он в правильном направлении. По своей природе это стремление обращено <em>к другим людям</em>, а не на себя.</p>
+<blockquote class="md-quote">«Мной движет не признание — мной движет желание быть по-настоящему достойным этого признания.» [Сезон 3]</blockquote>
+<p><strong>Значимый ≠ знаменитый.</strong> Стремление быть <em>заметным</em> имеет два измерения:</p>
+<ul class="marker-list">
+<li>Противоположность <em>незаметности</em> → тяга к конкретной, доказательной работе с ощутимыми результатами</li>
+<li>Противоположность <em>безызвестности</em> → желание оставить проверенный, долгосрочный вклад, а не что-то мимолётное</li>
+</ul>
+<p>У людей с этим талантом между <em>тем, что они делают</em> и <em>тем, кто они есть</em>, существует глубокая внутренняя связь. Работа — не просто функция, а выражение личности.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как это проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как это проявляется</p>
+<p><strong>Характерные паттерны поведения:</strong></p>
+<ul class="marker-list">
+<li>Постоянное ощущение аудитории — кто смотрит, что думает, как воспринимает то, что происходит</li>
+<li>Обратная связь воспринимается как топливо; без неё энергия падает, а результативность снижается</li>
+<li>Наличие собственного стиля, «фирменного знака», по которому окружающие легко узнают этого человека</li>
+<li>Естественное притяжение к превосходному — в людях, проектах и среде</li>
+<li>Комфортное ощущение себя в центре внимания; этот человек чувствует, когда взгляды направлены на него, и это не пугает, а заряжает</li>
+<li>Быстрое понимание того, какие аспекты проекта будут наиболее значимы или запоминаемы для других, — тогда как остальные видят лишь список задач</li>
+<li>Функция сортировки: время, отношения и энергия направляются туда, где будет наибольший эффект. На вечеринке человек с этим талантом выделит двух-трёх людей, в общение с которыми стоит вложиться, вместо того чтобы пытаться познакомиться со всеми</li>
+<li>Инстинктивное отсеивание пустой работы — низкая терпимость к задачам, которые невозможно привязать к аудитории, миссии или наследию</li>
+<li>Вопрос «кому ещё нужно знать о том хорошем, что мы делаем?» — естественное мышление в категориях видимости результатов</li>
+</ul>
+<p><strong>Слова-характеристики (Gallup):</strong> открытый, ориентированный вовне, мотивирующий, связанный с аудиторией, питаемый обратной связью, чувствующий людей, первопроходец, страстный, присутствующий (обладающий сценическим присутствием — умением занять пространство и удерживать внимание аудитории).</p>
+<p><strong>В личной жизни:</strong> человек с этим талантом, как правило, фильтрует, на что тратить время и ресурсы, — отдаёт предпочтение тому, что оставит след. Нередко обладает заметной «харизматичной уверенностью» в себе — люди вокруг воспринимаются не как источник давления, а как источник смысла: осознание аудитории создаёт ориентир и мотивацию, а не тревогу, и именно это ощущение наполненности работы смыслом становится опорой для уверенности.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">Ценность для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Ценность для команды и организации</p>
+<p><strong>Что человек с этим талантом привносит уникального:</strong></p>
+<ul class="marker-list">
+<li><strong>Повышает ставки.</strong> Переводит команду с уровня «давайте создадим что-нибудь крутое» на уровень «давайте создадим то, что переживёт нас и дойдёт до тех, кому это нужно». Поднимает потолок амбиций.</li>
+<li><strong>Удерживает работу в связи с аудиторией.</strong> Выполняет роль внутреннего радара в том, как команда воспринимается снаружи: не только что говорится, но и как это слышат.</li>
+<li><strong>Расставляет приоритеты по резонансу.</strong> Помогает команде сосредоточиться на том, что произведёт наибольший эффект для ключевых участников, а не распылять усилия равномерно на все задачи.</li>
+<li><strong>Находит возможности для признания.</strong> Замечает награды, сертификации и социальные доказательства, которые делают команду или продукт заметными для тех, кому они нужны.</li>
+<li><strong>Отмечает по-настоящему.</strong> Особенно хорошо умеет замечать и называть значимые вехи — и делать это признание весомым. Руководители с этим талантом становятся естественными промоутерами людей вокруг себя.</li>
+<li><strong>Притягивает таланты.</strong> Смелость быть видимым воспринимается как открытость, честность и надёжность — качества, ускоряющие доверие и делающие команду привлекательной для других сильных людей.</li>
+<li><strong>Формирует актуальные предложения клиентам.</strong> Поскольку мнение других людей по-настоящему важно, такой человек настаивает на постоянной обратной связи с клиентами, пользователями и заинтересованными сторонами — удерживая работу на передовом крае.</li>
+</ul>
+<p><strong>Как руководитель:</strong></p>
+<ul class="marker-list">
+<li>Особенно хорошо умеет видеть потенциал в людях раньше, чем они сами его замечают</li>
+<li>Даёт надежду — формулирует образ того, <em>что может быть</em> и как это влияет на жизнь других</li>
+<li>Естественно реализует четыре потребности последователей (по модели Gallup из исследования «Strengths Based Leadership»): <em>доверие</em> (чётко формулирует ценности и цели), <em>сочувствие</em> (продвигает членов команды, находит индивидуальный способ признания для каждого), <em>стабильность</em> (удерживает команду на курсе к зафиксированным целям, не сдвигая приоритеты произвольно), <em>надежда</em> (открывает образ желаемого будущего, выходя к более широкой и разнообразной аудитории)</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Теневая сторона и риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Теневая сторона и риски</p>
+<p><strong>Непонимание со стороны других.</strong> «Значимость» — один из наименее распространённых талантов в топ-5 профилях, и именно он стабильно вызывает больше всего сопротивления — в том числе у самих обладателей. Поскольку большинство людей мотивированы изнутри, внешняя ориентация этого таланта легко читается как самовлюблённость, эгоизм или погоня за статусом. Это разрыв восприятия, а не дефект характера.</p>
+<p><strong>Незрелое vs. зрелое проявление:</strong></p>
+<table class="maturity-table"><thead><tr><th>Незрелая «Значимость»</th><th>Зрелая «Значимость»</th></tr></thead><tbody><tr><td>Независимый эффект — «сделаю сам»</td><td>Влиятельный эффект — берёт других с собой</td></tr><tr><td>Нетерпимость к пустой работе, раздражительность</td><td>Точное видение неэффективности, перенаправление фокуса</td></tr><tr><td>Нужен <em>любой</em> прожектор</td><td>Комфорт в <em>нужном</em> прожекторе</td></tr><tr><td>Принимает всё на личный счёт</td><td>Ориентирован на метрики результативности</td></tr><tr><td>Действует в одиночку, когда что-то кажется неважным</td><td>Находит значимость и делится этим взглядом с другими</td></tr></tbody></table>
+<p><strong>Ключевые риски:</strong></p>
+<ul class="marker-list">
+<li><strong>Скрытая уязвимость.</strong> Может производить впечатление излишне собранного, непробиваемого человека — это мешает другим понять, как его поддержать. Результат — изоляция.</li>
+<li><strong>Признание как замена реальному эффекту.</strong> Когда обратная связь отсутствует, стремление к значимости может превратиться в поиск любого признания вместо осмысленного подтверждения реального эффекта.</li>
+<li><strong>Нетерпимость к рутине.</strong> Задачи, которые не очевидно связаны с аудиторией или наследием, могут игнорироваться или вызывать раздражение — даже если они системообразующие.</li>
+<li><strong>Конфликт с внутренне мотивированными коллегами.</strong> Обладатели таланта «Убеждённость» (Belief, ориентированный на базовые ценности), «Ответственность» (Responsibility, ориентированный на долг) или «Достижение» (Achiever, удовлетворённый самим фактом выполнения) могут воспринимать «Значимость» как театральность или поверхностность.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать этот талант</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать этот талант</p>
+<p><strong>Привязка к приоритетам:</strong></p>
+<ul class="marker-list">
+<li>Регулярно определяй одно самое важное дело на ближайшие 10 дней. Добавь пометку: <em>кто рассчитывает на тебя</em> в связи с этим — это запускает внутренний двигатель.</li>
+<li>Практикуй «проекцию в будущее»: уделяй время представлению того будущего, которое хочешь создать. Найди людей, с которыми можно обсуждать возможности, и сделай это регулярной привычкой, а не разовым упражнением.</li>
+</ul>
+<p><strong>Выстраивание обратной связи:</strong></p>
+<ul class="marker-list">
+<li>Определи один-два способа поддерживать более тесный контакт с самыми важными людьми в своём окружении. Это не нетворкинг ради нетворкинга — это калибровка реального эффекта.</li>
+<li>Проси доверенных людей бросать вызов твоему курсу. Обратная связь — это топливо; активно создавай условия, в которых она возникает.</li>
+</ul>
+<p><strong>Формулировка миссии:</strong></p>
+<ul class="marker-list">
+<li>Назови ценности, которые ты отстаиваешь, и разницу, которую хочешь привнести. Когда работа оказывает положительное влияние на других — называй это вслух. Это нейтрализует ошибочное восприятие таланта как эгоцентричного.</li>
+<li>Назови, чем ты <em>не</em> хочешь быть известен — области за пределами своих сильных сторон, где ты будешь сознательно опираться на других, а не стараться преуспеть в одиночку. Это создаёт ясность и снимает давление «быть лучшим во всём».</li>
+</ul>
+<p><strong>Переход от незрелого к зрелому:</strong></p>
+<ul class="marker-list">
+<li>Проверь себя: ты действуешь в одиночку потому, что всё кажется неважным, — или находишь способы брать других с собой? Переход от «независимого эффекта» к «влиятельному эффекту» — это и есть путь развития.</li>
+<li>Когда ищешь обратную связь, привязывай её к метрикам результативности, а не только к субъективному одобрению. Определи, как выглядит успех, — тогда сможешь оценивать обратную связь объективно.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком, у которого этот талант</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком, у которого этот талант</p>
+<p><strong>Для руководителей:</strong></p>
+<ul class="marker-list">
+<li><strong>Связывай работу с конечными пользователями.</strong> Чем ближе такой человек к клиенту, студенту, сообществу или конечному получателю, тем больше энергии он получает. Убирай стены между работой и людьми, на которых она влияет.</li>
+<li><strong>Давай явную обратную связь — регулярно.</strong> Не предполагай, что он сам знает, что всё идёт хорошо. Для обладателей «Достижения» (Achiever) или «Ответственности» (Responsibility) дополнительная работа и есть признание. Для человека с «Значимостью» нужно остановиться и сказать вслух: «То, что ты здесь сделал, имело значение, и вот почему».</li>
+<li><strong>Не преуменьшай связь работы с эффектом.</strong> Подход «всё, что мы делаем, одинаково важно» демотивирует. Называй конкретно, что именно имело значение.</li>
+<li><strong>Давай самостоятельность.</strong> Таким людям нужна автономия в том, как они подходят к задачам. Микроменеджмент здесь особенно разрушителен.</li>
+<li><strong>Спрашивай о наследии, а не только о результатах.</strong> Вопросы, которые открывают вовлечённость:</li>
+</ul>
+<p>- Что ты хочешь, чтобы люди говорили о тебе на твоём прощальном вечере?</p>
+<p>- Как ты получаешь обратную связь от тех, чьё мнение считаешь наиболее важным?</p>
+<p>- Какой вклад ты надеешься внести в этом квартале?</p>
+<p>- Кто тебя вдохновляет?</p>
+<p>- Как бы ты описал свой фирменный стиль?</p>
+<p><strong>Для коллег:</strong></p>
+<ul class="marker-list">
+<li>Спрашивай, с кем он работает и что ему нравится в этих людях. Человек с этим талантом глубоко чувствует восприятие окружающих — используй это в общении.</li>
+<li>Делись тем, что замечаешь. Будь открытым каналом в его влияние на тебя. Не предполагай, что он сам это видит.</li>
+<li>Отмечай вехи. Признание, которое действительно важно, — это не аплодисменты, а подтверждение, что работа усваивается и люди получают пользу.</li>
+<li><strong>Не путай осознание аудитории с тщеславием.</strong> Такие люди не притворяются, что прячутся, и не ждут этого от других. Это часто выражается в необычной прозрачности и честности — используй это, а не сопротивляйся.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">Сочетания с другими талантами</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Сочетания с другими талантами</p>
+<p><strong>«Значимость» + «Уверенность в себе» (Self-Assurance — уверенность в собственных суждениях и решениях, независимо от чужого мнения)</strong></p>
+<p>«Значимость» черпает энергию из аудитории и внешней обратной связи; «Уверенность в себе» — из внутреннего убеждения. Вместе: мощное самостоятельное лидерство, сочетающее видение и устойчивость. В напряжении: «Значимости» может быть нужна валидация, которой «Уверенность в себе» не ищет.</p>
+<p><strong>«Значимость» + «Соперничество» (Competition — мотивация побеждать, измеряемая относительно других)</strong></p>
+<p>«Соперничество» хочет победить и хочет, чтобы победа была признана теми, кому она важна. «Значимость» хочет победить <em>если победа принесёт людям долгосрочный эффект</em>. Различие: «Соперничество» побеждает ради табло; «Значимость» побеждает ради наследия.</p>
+<p><strong>«Значимость» + «Максимизатор» (Maximizer — доведение хорошего до превосходного)</strong></p>
+<p>Оба таланта — сортировочные; оба задают вопрос «куда вложить энергию для максимального результата?» «Максимизатор» сортирует по внутренней силе (ориентация на качество). «Значимость» сортирует по тому, что будет воспринято как значимое другими (внешняя калибровка). Вместе: мощный фильтр для высокорезультативных и высоковидимых возможностей. Эти таланты нередко путают друг с другом.</p>
+<p><strong>«Значимость» + «Дальновидность» (Futuristic — видение позитивного будущего)</strong></p>
+<p>«Дальновидность» создаёт <em>образ</em> того, куда идти; «Значимость» обеспечивает <em>стремление</em> сделать этот образ реальным и видимым для других. Вместе: природное сочетание для вдохновения широких движений — социальных, организационных или профессиональных сообществ, объединённых общей целью.</p>
+<p><strong>«Значимость» + «Связанность» (Connectedness — убеждённость в универсальной связи всего сущего)</strong></p>
+<p>Редкое и мощное сочетание. «Связанность» <em>знает</em> смысл; «Значимость» привносит страсть и внимание к нему. Вместе: лидер, действующий ради чего-то большего, чем он сам, и способный чётко объяснить, почему это важно.</p>
+<p><strong>«Значимость» + «Обучаемость» (Learner — энергия от приобретения новых знаний)</strong></p>
+<p>«Обучаемость» питает «Значимость» авторитетностью и глубиной, необходимыми для того, чтобы эффект стоил внимания. «Значимость» даёт «Обучаемости» причину делиться открытым — аудиторию, которая заслуживает этих знаний.</p>
+<p><strong>«Значимость» + «Коммуникация» (Communication — умение находить слова для идей, оживлять истории)</strong></p>
+<p>«Значимость» обеспечивает цель и понимание того, что найдёт отклик; «Коммуникация» — инструмент доставки. Вместе: человек, которому важно иметь значение и который умеет заставить других это почувствовать.</p>
+<p>---</p>
+<p><em>Составлено на основе материалов Gallup Theme Thursday, Сезоны 1–6, охватывающих обсуждения таланта «Значимость» с участием экспертов и практиков CliftonStrengths.</em></p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

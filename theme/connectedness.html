@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connectedness — Взаимосвязанность · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain rel">Отношения</div>
+    <h1>Connectedness</h1>
+    <div class="hero-sub">Взаимосвязанность</div>
+    <p class="hero-def">Что такое Connectedness</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое Connectedness</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое Connectedness</p>
+<p><strong>Официальное определение:</strong> «Вы верите в связь между всеми вещами. Вы убеждены, что случайностей почти не бывает и у каждого события есть смысл.»</p>
+<p>Connectedness относится к <strong>домену Построения отношений</strong> (одна из четырёх категорий, на которые CliftonStrengths делит все 34 таланта: Исполнение, Влияние, Построение отношений, Стратегическое мышление). Примерно 12% людей, прошедших CliftonStrengths, имеют его в топ-5 (около 22-го места из 34 талантов). Это нечастый талант — значит, большинство окружающих не будут разделять это восприятие мира.</p>
+<p><strong>Ключевой механизм:</strong> Человек с этим талантом воспринимает мир как единую взаимосвязанную систему. Природа этой системы у каждого своя — она может быть духовной или религиозной, научной (причина и следствие, физика), экономической (всё движется интересами), этической (система ценностей, объединяющая все поступки) или сугубо практической (выключил свет — меньше платишь за электричество). Неизменным остаётся одно: <em>осознание ответственности</em> внутри этой системы. Каждое действие порождает волны, ничто не происходит в изоляции.</p>
+<p>Этот талант — не про связи в смысле нетворкинга. Connectedness — это <em>восприятие, ощущение и предвидение</em> связей между людьми, идеями, событиями и эпохами — тех связей, которые другие просто не замечают.</p>
+<p><strong>Три тематических кластера (группы по смыслу), к которым относится Connectedness:</strong></p>
+<ul class="marker-list">
+<li><strong>Кластер ценностей</strong> (вместе с Belief и Responsibility): в своей основе этот талант ценит человечество в самом широком, глобальном смысле.</li>
+<li><strong>Кластер времени</strong> (вместе с Context, Adaptability, Futuristic): Context заземлён в прошлом; Adaptability живёт в настоящем; Futuristic смотрит вперёд. Каждый из них закреплён в одной точке на временно́й оси. Connectedness <em>не закреплён ни в одной из них в отдельности</em> — он удерживает в поле внимания сразу прошлое, настоящее и будущее: воспринимает текущее событие как следствие того, что было, и одновременно как звено в цепи, ведущей к чему-то большему. На практике это выражается в том, что человек с этим талантом почти автоматически помещает любое происходящее в более широкий контекст — ищет нить, а не изолированный факт.</li>
+<li><strong>Кластер сотрудничества</strong> (вместе с Harmony, Arranger, Includer, Consistency): Connectedness видит «мы», а не «мы против них». Он воспринимает целое.</li>
+</ul>
+<p><strong>Отличие от исторически близкого таланта — Belief (Убеждения)</strong></p>
+<p>На заре разработки StrengthsFinder Connectedness и Belief объединяли под названием «Духовность» — слишком много пересечений. Их разделили, потому что ни один из них не требует религиозного измерения. Разница такова: Belief — это камни, на которых стоишь, твёрдые базовые ценности, направляющие действие. Connectedness — понимание того, <em>как человек пришёл</em> к своим ценностям (через какие связи, опыт, людей они сложились) и способность опираться на ориентиры, которые ещё не оформлены в чёткие правила. Оба свойства — из одного источника: Connectedness воспринимает смысл через связи, а не через формулировки. Поэтому ему не нужно, чтобы ценность была до конца определена, — достаточно ощущения, что она встроена в более широкую систему. Там, где Belief требует чётких правил и границ, Connectedness может работать с размытыми, ещё не сформулированными до конца ориентирами — ему важно ощущение направления, а не исчерпывающая формула.</p>
+<p><strong>Ключевые отличия от похожих талантов:</strong></p>
+<table class="maturity-table"><thead><tr><th>Талант</th><th>Ключевой механизм</th><th>Отличие от Connectedness</th></tr></thead><tbody><tr><td><strong>Empathy (Эмпатия)</strong></td><td>Чувствует эмоции других</td><td>Connectedness воспринимает, <em>что другой вносит в целое</em>, а не только что он переживает</td></tr><tr><td><strong>Ideation (Идеация)</strong></td><td>Создаёт новые связи между разнородными явлениями</td><td>Connectedness <em>воспринимает уже существующие</em> связи; он более созерцателен и ориентирован на людей; Ideation строит поверх того, что Connectedness замечает</td></tr><tr><td><strong>Harmony (Гармония)</strong></td><td>Ищет общую почву для разрешения конфликта</td><td>Connectedness видит в конфликте <em>путь к чему-то значимому</em> — и не уходит от него, а проживает как часть процесса</td></tr><tr><td><strong>Adaptability (Гибкость)</strong></td><td>Откликается на момент, а не контролирует его</td><td>Connectedness связывается с чем-то большим, чтобы ориентироваться в том, что вне контроля</td></tr><tr><td><strong>Analytical (Аналитика)</strong></td><td>Требует доказательств и твёрдых фактов</td><td>Connectedness принимает: некоторые ответы не выяснить — и сама тайна несёт информацию</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как это проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как это проявляется</p>
+<p><strong>Перцептивная особенность:</strong> Люди с Connectedness описывают его как наложение сетки линий, соединяющих людей, культуры, идеи и события. Словно смотришь сложный фильм повторно — только они с первого просмотра ловят все подсказки, которые другие пропускают.</p>
+<p><strong>Поведенческие паттерны:</strong></p>
+<ul class="marker-list">
+<li>Слушает на более глубоком уровне — слышит <em>то, что не сказано</em>, улавливает эмоциональные сигналы, которые другие не замечают.</li>
+<li>Способен с уверенностью сказать: «Я не знаю, откуда я это знаю, но я просто знаю.»</li>
+<li>Редко нуждается в том, чтобы аналитически отвечать на вопрос <em>почему</em> что-то произошло — связи он воспринимает напрямую, интуитивно, и рациональный разбор причин не добавляет ему ясности, а скорее уводит от неё.</li>
+<li>Воспринимает роли людей и их жизненные траектории как сеть со множеством связей, а не как одиночные линейные пути.</li>
+<li>Отслеживает результаты целостно — замечает не только то, был ли план выполнен, но и что произошло на самом деле, включая отклонения, и воспринимает и то и другое — и выполненный план, и то, что произошло вместо него — как значимую информацию: отклонение от плана для него не сбой, который нужно устранить, а сигнал о чём-то, что не было видно в момент планирования. Это не фатализм в смысле «всё предопределено и усилие бесполезно». Скорее установка на смысл: любой исход несёт информацию и вписывается в более широкую картину — в отличие от случайного сбоя, который нужно просто устранить.</li>
+<li>Переживает моменты внезапной ясности в разгар хаоса: «Ах, теперь всё сходится.»</li>
+<li>Часто действует <em>через</em> других — создаёт смысл, замечая то, чего не видят другие, отлавливая маленькие действия, которые складываются в большее, соединяя людей, которые ещё не знают, что им нужно встретиться.</li>
+<li>Не теряет равновесия перед неопределённостью — неизвестное просто часть более широкой картины, а не угроза.</li>
+<li>Часто тянется к природе; находит в ней тишину и связь.</li>
+</ul>
+<p><strong>Характеристические слова:</strong> острый наблюдатель, глобальный мыслитель, интуитивный, самодостаточный, терпеливый, спокойный, мудрый, строитель мостов, интегратор, гуманист.</p>
+<p>Спокойствие, присущее Connectedness, возникает именно из убеждения, что происходящее прямо сейчас — лишь <em>часть</em> момента: оно ведёт к чему-то большему, будь то в прошлом, будущем или за пределами нынешнего понимания.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">Ценность для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Ценность для команды и организации</p>
+<p><strong>Стабилизирующая сила в хаосе:</strong> Когда других выбивает из колеи неопределённость, человек с Connectedness способен держаться — не потому что у него есть ответы, а потому что он доверяет: происходящее — часть чего-то большего. Это привносит в команды под давлением качественно иное спокойствие.</p>
+<p><strong>Распознавание паттернов на уровне организации:</strong> На заседании совета директоров он может услышать данные о клиентах и немедленно связать их с наблюдением из полевой работы двухмесячной давности. Он видит связи между явлениями, которые другие сочли бы абсолютно несвязанными. Это отличается от генеративности Ideation — Connectedness не создаёт новые идеи, а удерживает в виду контекст, историю и смысл уже существующего: он напоминает, что происходящее — не изолированное явление, а часть цепи. Ideation строит поверх замеченного; Connectedness держит нить, которая не даёт потерять целое.</p>
+<p><strong>Строитель мостов через барьеры:</strong> Идеи, отделы и люди в организациях часто живут в изоляции. Человек с Connectedness воспринимает связи между ними и способен строить мосты — к общей миссии, к сотрудничеству, к инновациям, которые рождаются на пересечениях.</p>
+<p><strong>Поиск смысла:</strong> Люди с Connectedness по природе своей ориентированы на цель. В коучинге или руководстве они способны помочь командам и организациям сформулировать, что те на самом деле стремятся сделать в мире — нередко раньше, чем команда сама может это выразить.</p>
+<p><strong>Четыре потребности людей в команде, которые Connectedness удовлетворяет (по данным исследований лидерства):</strong></p>
+<li><strong>Доверие</strong> — через индивидуальный подбор поддержки; понимание, как каждый человек лучше воспринимает перспективу (факты, личная беседа, практический опыт).</li>
+<li><strong>Стабильность</strong> — через расширение горизонта за пределы текущего хаоса; помощь людям удерживать фокус на длинной дуге, а не на немедленном кризисе.</li>
+<li><strong>Сострадание</strong> — через знакомство с личными историями людей и тем, что привело их туда, где они сейчас; через подлинный интерес к человеческому опыту за пределами роли.</li>
+<li><strong>Надежда</strong> — через соединение сегодняшней борьбы с лучшим завтра; через вопросы, которые помогают людям увидеть, к чему ведут нынешние трудности.</li>
+<p><strong>Эффект притяжения для команды:</strong> Команды, в которых есть человек с высоким Connectedness, часто описывают как места, где хочется быть. Этот талант «всегда включён» — даже когда не проявляется вслух, он формирует тон и наполняет взаимодействия смыслом.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Тёмная сторона / риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Тёмная сторона / риски</p>
+<p><strong>Сырой (неразвитый) Connectedness vs. зрелый Connectedness:</strong></p>
+<table class="maturity-table"><thead><tr><th>Сырой</th><th>Зрелый</th></tr></thead><tbody><tr><td>Интуитивное ощущение без объяснений</td><td>Интуиция, переведённая в общее понимание или конкретное направление</td></tr><tr><td>«Что-то не так» — и ничего более</td><td>«Что-то не так, и вот что связи говорят нам о том, куда мы движемся»</td></tr><tr><td>Склонность видеть связи везде — поиск паттернов там, где их нет или где они не нужны</td><td>Построение мостов между связями, которые действительно должны существовать</td></tr><tr><td>Попытки продать каждую связь всем, что порождает путаницу</td><td>Принятие того, что другие не всегда увидят то, что видишь ты, — и это нормально</td></tr><tr><td>Производит впечатление отстранённости от текущих проблем</td><td>Терпение в сочетании с умением показать: сейчас тебе небезразлично</td></tr></tbody></table>
+<p><strong>Конкретные риски:</strong></p>
+<ul class="marker-list">
+<li><strong>Принятие как установка по умолчанию:</strong> Connectedness по умолчанию склонен принимать — воспринимать ситуацию, людей и их позиции такими, какие они есть, не сопротивляясь и не настаивая на изменениях. Это может означать неготовность давить на статус-кво, когда это необходимо. Как нейтрализовать этот риск: чётко определи, что является <em>неизменным</em> для тебя — что ты отстаиваешь, даже когда мир идёт вразнос.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Восприятие как наивности или безразличия:</strong> Люди, которым нужны доказательства и прямые ответы, могут прочитать комфорт с тайной как равнодушие или отсутствие строгости. Без перевода на понятный язык озарения остаются невидимыми.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Ошибочное отождествление с духовностью:</strong> Этот талант часто получает духовно-мистическую трактовку. Это заставляет людей со светским или аналитическим взглядом на мир отвергать его или чувствовать, что описание им не подходит — даже когда талант явно у них есть. Подлинная определяющая черта — <em>системное восприятие</em>, а не духовность.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Риск конспирологического мышления:</strong> В крайнем проявлении импульс искать смысл в каждом событии может скатиться к поиску связей там, где их нет — сопоставление паттернов без разбора.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Отсутствие встроенного фильтра:</strong> Connectedness улавливает множество сигналов одновременно. Без других талантов, задающих направление (Strategic, Deliberative, Achiever), может порождаться слишком много связей без понимания, какие из них стоит развивать или озвучивать.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать этот талант</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать этот талант</p>
+<p><strong>Найди своё состояние настроенности.</strong> Обращай внимание на то, когда чувствуешь себя наиболее «настроенным» — как приёмник, поймавший сигнал без помех. Условия, при которых это ощущение наиболее острое, — и есть то, что нужно найти и встраивать в распорядок намеренно. Это происходит через учёбу? Медитацию? Физическую активность? Время на природе? Определённые отношения? Спроси себя: <em>Когда я чувствую наибольшую уверенность? Когда моё ощущение чего-либо звучит громче всего?</em> Потом выстрой это в намеренную практику.</p>
+<p><strong>Проясни точку опоры.</strong> Connectedness нуждается в личной или организационной системе ценностей как в якоре — иначе принятие превращается в пассивность. Спроси себя: <em>Что остаётся неизменным для меня, даже когда всё идёт вразнос? Что соединяет для меня всё — экономика, этика, духовность, причина и следствие?</em> Без этой ясности таланту не хватает направления.</p>
+<p><strong>Намеренно строй подлинные отношения.</strong> Connectedness — талант из домена построения отношений: близость усиливает его сигнал. Чем ближе ты к людям рядом, тем лучше воспринимаешь причины и следствия, смыслы и направление. Подлинные отношения работают как усилитель сигнала: чем ближе и честнее контакт с людьми рядом, тем отчётливее Connectedness воспринимает связи, смыслы и то, в каком направлении движется система.</p>
+<p><strong>Развивай навык перевода.</strong> Главный разрыв у большинства людей с Connectedness — переход от внутреннего восприятия к общему языку. Практикуй:</p>
+<ul class="marker-list">
+<li>Более короткие и открытые вопросы (не нанизывать 5–6 вопросов подряд в один)</li>
+<li>Конкретные примеры, которые наглядно освещают связь</li>
+<li>Аналогии и метафоры, которые делают абстрактные связи осязаемыми</li>
+<li>Разговор на языке аудитории — те, кому нужны факты, требуют фактов; тем, кому нужен эмоциональный резонанс, нужен он</li>
+</ul>
+<p><strong>Научись фильтровать.</strong> Не каждую связь нужно озвучивать на каждом совещании. Стратегическая фильтрация — вопрос «стратегически важна ли эта связь прямо сейчас?» — делает талант продуктивным, а не подавляющим.</p>
+<p><strong>Как лидеру:</strong> Появляйся в трудных местах. Задавай вопросы, расширяющие мышление. Освещай то, что замечаешь. Привязывай свою перспективу к тому, что нужно последователям (доверие, стабильность, сострадание, надежда). Не нужно иметь ответы — ты с этим талантом на пике, когда задаёшь хорошие вопросы, а не когда делаешь декларации.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком, у которого есть Connectedness</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком, у которого есть Connectedness</p>
+<p><strong>Для руководителей:</strong></p>
+<ul class="marker-list">
+<li><strong>Дай ему пространство.</strong> Не требуй немедленных, линейных ответов. Ему может понадобиться прийти к ясности органически — дай место исследовать связи, прежде чем ждать конкретной рекомендации.</li>
+<li><strong>Спрашивай, что он замечает.</strong> Самый сильный вопрос для человека с Connectedness: <em>«Что ты замечаешь в нашей команде / ситуации / проекте?»</em> Пригласи его поделиться тем, что он видит. Обращайся с ним как с советником по его собственному видению.</li>
+<li><strong>Проверяй промежуточные вехи.</strong> Помоги ему согласовать промежуточные цели с конечной. Он отслеживает результаты целостно и может ставить под сомнение, служит ли каждая запланированная веха более глубокой цели. Это создаёт продуктивное напряжение между руководителем, ориентированным на конкретные шаги плана, и сотрудником, удерживающим в виду смысл всего направления — такое напряжение стоит воспринимать как полезную проверку, а не как сопротивление.</li>
+<li><strong>Исследуй, что его заряжает.</strong> Спроси: <em>«Откуда берётся твоё самое сильное ощущение связи с этой работой?»</em> Помоги ему найти нить между его личной целью и миссией организации — даже если линия не прямая.</li>
+<li><strong>Вопросы, которые его открывают:</strong> «Что это тебе напоминает?» (прошлое) / «Что ты сейчас ощущаешь?» (настоящее) / «Что, по-твоему, это будет означать для нас через полгода?» (будущее).</li>
+</ul>
+<p><strong>Для коллег:</strong></p>
+<ul class="marker-list">
+<li><strong>Будь присутствующим.</strong> Сначала установи контакт на уровне отношений — поделись чем-то важным для тебя или спроси, как у него дела. Если общение сводится только к делу без личного контакта — он остаётся закрытым и не вовлекается по-настоящему.</li>
+<li><strong>Не требуй доказательств для его интуиции.</strong> Если он говорит «я не знаю почему, но что-то здесь не так» — проверь, а не отмахивайся. Он часто улавливает что-то реальное, что ещё не выплыло в данных.</li>
+<li><strong>Знай свой порог терпимости к неопределённости.</strong> Люди с Connectedness способны сидеть со сложностью. Если тебе нужен конкретный ответ или обновление — скажи об этом прямо; он способен откалибровать. Он может сказать «у меня нет ответа», если знает, что именно это тебе нужно услышать.</li>
+<li><strong>Не путай терпение с пассивностью.</strong> Если он кажется безмятежным в момент хаоса, возможно, он обрабатывает происходящее на другом уровне. Спроси, что он видит.</li>
+<li><strong>Найди партнёра для исполнения.</strong> Ему может понадобиться партнёр, который возьмёт воспринимаемые им связи и переведёт их в конкретные планы действий или понятные коммуникации.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">Сочетания с другими талантами</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Сочетания с другими талантами</p>
+<p><strong>Connectedness + Empathy (Эмпатия)</strong> (наиболее статистически частое сочетание): «Я знаю, что мы здесь не случайно, и чувствую, какова твоя часть в этом замысле.» Empathy обеспечивает эмоциональное восприятие отдельного человека; Connectedness — системное понимание того, зачем он здесь и что вносит в целое. Вместе они создают глубоко гуманизирующее присутствие.</p>
+<p><strong>Connectedness + Communication (Коммуникация):</strong> Communication даёт голос тому, что Connectedness ощущает, но с трудом облекает в слова. Communication способен переводить системные озарения в истории и язык, доступный другим. Высокопродуктивное сочетание для коучинга, фасилитации и организационного выравнивания.</p>
+<p><strong>Connectedness + Deliberative (Осмотрительность)</strong> (Deliberative — осторожное, осознающее риски принятие решений): Deliberative проверяет подводные камни; Connectedness проверяет цель и глобальный эффект. Вместе они рождают решения, которые одновременно осторожны и наполнены смыслом — «делаем ли мы правильное дело, и связано ли оно с чем-то большим?»</p>
+<p><strong>Connectedness + Discipline (Дисциплина)</strong> (Discipline — структура, предсказуемость, организованность): Discipline создаёт надёжные структуры, через которые Connectedness может выражать себя так, чтобы другие могли следовать. Без какой-либо структурирующей силы озарения Connectedness могут казаться непредсказуемыми и труднопрактикуемыми.</p>
+<p><strong>Connectedness + Ideation (Идеация):</strong> Ideation создаёт; Connectedness воспринимает. Ideation использует связи как плацдарм для чего-то нового; Connectedness использует их для глубины и присутствия. Вместе они способны выявлять и новые возможности, и реляционно-системный контекст, в котором эти возможности существуют.</p>
+<p><strong>Connectedness + Strategic (Стратегия)</strong> (Strategic — распознавание паттернов для планирования будущего): Strategic фильтрует, какие связи стоит развивать, и прокладывает путь к результату. Connectedness обеспечивает цель и более широкое видение. Человек, использующий Strategic для отбора наиболее релевантных связей из Connectedness — и фильтрации остального, — работает с этим сочетанием на максимуме.</p>
+<p><strong>Connectedness + Achiever (Достижение):</strong> Achiever обеспечивает, что дела действительно делаются; Connectedness обеспечивает, что они делаются <em>ради смысла</em>. Без Achiever Connectedness может оставаться в режиме созерцания. Без Connectedness Achiever может эффективно достигать — но без более глубокого смысла.</p>
+<p><strong>Connectedness + Context (Контекст)</strong> (Context — учится у прошлого, чтобы понять настоящее): Вместе они охватывают полную временну́ю линию — Context даёт историческое заземление, Connectedness — нить, соединяющую все эпохи. Они естественно усиливают друг друга.</p>
+<p><strong>Редкие сочетания</strong> (статистически встречаются у ~1% носителей каждого): Competition (Соревнование), Command (Командование), Focus (Фокус), Significance (Значимость), Self-Assurance (Уверенность в себе). Это по большей части таланты, ориентированные на себя, — они направляют человека к индивидуальным достижениям, личному авторитету или единственному направлению. Connectedness смотрит вовне и на систему — это принципиально иной тип ориентации таланта. Когда такие сочетания всё же встречаются, две силы тянут в разные стороны — одна к индивидуальному результату или личному авторитету, другая к системному смыслу и целому. Это встречное натяжение может работать как баланс: ни одна из сил не подавляет другую полностью, каждая удерживает вторую от крайности. Но для этого требуется осознанная интеграция — иначе они просто конфликтуют.</p>
+<p><strong>Connectedness + Adaptability (Гибкость):</strong> Оба таланта связаны с «отпусканием». Connectedness: есть силы вне моего контроля; связь с чем-то большим помогает ориентироваться в том, на что я могу влиять. Adaptability: я сильнее, откликаясь на настоящее, чем пытаясь его контролировать. Вместе они создают исключительную текучесть — высокую терпимость к неопределённости и очень низкую потребность навязывать структуру. Риск: без других талантов, задающих направление, инициативы и целеполагания крайне мало.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

@@ -355,6 +355,23 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
   .zt-name{width:110px;font-size:11px}
 }
 
+/* ===== THEME DEEP OVERLAY ===== */
+.theme-overlay{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;background:rgba(31,29,25,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .25s ease}
+.theme-overlay.open{opacity:1;pointer-events:all}
+.theme-overlay-inner{position:relative;margin:auto;width:100%;max-width:860px;height:calc(100vh - 40px);max-height:900px;background:#FAFAF7;border-radius:16px 16px 0 0;overflow:hidden;display:flex;flex-direction:column;transform:translateY(32px);transition:transform .3s ease;margin-top:auto}
+.theme-overlay.open .theme-overlay-inner{transform:translateY(0)}
+.theme-overlay-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid #EAE6DD;background:#fff;flex-shrink:0}
+.theme-overlay-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--text)}
+.theme-overlay-close{width:32px;height:32px;border-radius:50%;border:none;background:#F0EDE6;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--text-2);transition:background .15s}
+.theme-overlay-close:hover{background:#E5E2DB}
+.theme-overlay-frame{flex:1;border:none;width:100%;background:#FAFAF7}
+.card-deep-btn{display:inline-flex;align-items:center;gap:6px;margin:0 24px 16px;padding:8px 16px;background:var(--accent-light);border:1px solid rgba(27,107,80,.15);border-radius:20px;font-size:13px;font-weight:600;color:var(--accent);cursor:pointer;transition:background .15s;user-select:none}
+.card-deep-btn:hover{background:#CBE9DE}
+@media(max-width:600px){
+  .theme-overlay-inner{height:calc(100vh - 16px);border-radius:12px 12px 0 0}
+  .card-deep-btn{margin:0 16px 16px}
+}
+
 /* AI Instructions tab */
 .ai-instr-wrap{display:flex;flex-direction:column;gap:20px;padding:8px 0 32px}
 .ai-empty{color:var(--text-2);font-size:15px;padding:40px 0;text-align:center}
@@ -682,6 +699,17 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
     </div>
   </div>
 
+  <!-- THEME DEEP OVERLAY -->
+  <div class="theme-overlay" id="themeOverlay" onclick="closeThemeOverlay(event)">
+    <div class="theme-overlay-inner">
+      <div class="theme-overlay-bar">
+        <span class="theme-overlay-title" id="themeOverlayTitle"></span>
+        <button class="theme-overlay-close" onclick="closeThemeOverlay(null)">✕</button>
+      </div>
+      <iframe class="theme-overlay-frame" id="themeOverlayFrame" src="" title="Подробнее о таланте"></iframe>
+    </div>
+  </div>
+
   <!-- DISCLAIMER -->
   <div class="disclaimer" id="disclaimer">
     <p><strong>Важно помнить</strong></p>
@@ -883,7 +911,11 @@ function renderCards(){
       html+=`</div>`;
     }
     html+=`</div>`;
-    
+
+    // Deep dive button
+    const themeSlug=name.toLowerCase().replace(/[^a-z-]/g,'');
+    html+=`<div class="card-deep-btn" onclick="openThemeOverlay('${themeSlug}','${t.ru||name}')">📖 Читать подробнее — ${t.ru||name}</div>`;
+
     // Use mgmt_title for management section label
     // z1-z2: all sections; z3: management only; z4-z5: no leadership sections
     const zone=getThemeZone(name);
@@ -2040,5 +2072,29 @@ function addLogoutButton() {
     }
   });
 })();
+
+// ── THEME DEEP OVERLAY ──────────────────────────────────────────
+function openThemeOverlay(slug, ruName) {
+  const overlay = document.getElementById('themeOverlay');
+  const frame   = document.getElementById('themeOverlayFrame');
+  const title   = document.getElementById('themeOverlayTitle');
+  title.textContent = ruName;
+  frame.src = `theme/${slug}.html`;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeThemeOverlay(event) {
+  if (event && event.target !== document.getElementById('themeOverlay')) return;
+  const overlay = document.getElementById('themeOverlay');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  // reset iframe after animation
+  setTimeout(() => { document.getElementById('themeOverlayFrame').src = ''; }, 300);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeThemeOverlay(null);
+});
 
 </script></body></html>

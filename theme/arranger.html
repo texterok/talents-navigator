@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arranger — Организатор · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain exec">Исполнение</div>
+    <h1>Arranger</h1>
+    <div class="hero-sub">Организатор</div>
+    <p class="hero-def">Что такое Arranger</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое Arranger</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое Arranger</p>
+<p><strong>Официальное определение (отчёт CliftonStrengths 34):</strong></p>
+<blockquote class="md-quote">«Ты умеешь организовывать, и при этом тебе присуща гибкость, которая дополняет эту способность. Тебе нравится определять, как можно расставить все части и ресурсы для достижения максимальной продуктивности.»</blockquote>
+<p><strong>Домен:</strong> Исполнение. Человек с этим талантом ориентирован на результат — конкретно: добивается его через одновременную координацию людей, процессов и ресурсов.</p>
+<p><strong>Три ключевых слова:</strong></p>
+<ul class="marker-list">
+<li><strong>Продуктивность</strong> — главная ориентация. Расстановка частей важна не ради красоты порядка, а ради движения вперёд.</li>
+<li><strong>Множественность</strong> — чем больше переменных, тем лучше. Частями головоломки продуктивности могут быть люди, процессы или продукты. Больше переменных — больше возможностей.</li>
+<li><strong>Гибкость</strong> — без жёсткости и окончательных решений. Всегда готовность менять, подстраивать, переставлять. Планирование и исполнение идут одновременно, в реальном времени.</li>
+</ul>
+<p>Четвёртое ключевое слово — <strong>взаимодействие</strong>: люди с этим талантом вовлекают и взаимодействуют с другими, чтобы достигать результата. Именно это отличает Arranger от талантов чисто индивидуального исполнения.</p>
+<p><strong>Отличие от похожих талантов:</strong></p>
+<table class="maturity-table"><thead><tr><th>Талант</th><th>Ключевое отличие от Arranger</th></tr></thead><tbody><tr><td>Achiever (Достигатель)</td><td>Личное усердие; индивидуальная продуктивность. Arranger — совместная продуктивность через других.</td></tr><tr><td>Strategic (Стратег)</td><td>Стратег перебирает воображаемые возможности. Arranger жонглирует реальными, актуальными вещами прямо сейчас.</td></tr><tr><td>Adaptability (Адаптивность)</td><td>Адаптивность реагирует на изменения. Arranger управляет ими и сам их инициирует.</td></tr><tr><td>Discipline (Дисциплина)</td><td>Дисциплина = фиксированный план, потом исполнение. Arranger = гибкое планирование и исполнение одновременно.</td></tr><tr><td>Responsibility (Ответственность)</td><td>Ответственность <em>держит</em> дела — поведение движется взятыми обязательствами. Arranger <em>касается</em> дел — мимолётное влияние, и движется дальше.</td></tr><tr><td>Restorative (Восстановитель)</td><td>Restorative берёт сломанный двигатель и чинит его. Arranger подстукивает работающий двигатель, чтобы он шёл ровнее.</td></tr></tbody></table>
+<p><strong>Чем Arranger не является:</strong></p>
+<ul class="marker-list">
+<li>Это не талант аккуратности или жёсткого порядка — организованность достигается <em>через</em> гибкость, а не вопреки ей.</li>
+<li>Это не талант планирования — здесь не планируют заранее, а затем исполняют; здесь делают и то, и другое одновременно.</li>
+<li>Это не талант, движимый личными достижениями — дирижёру не обязательно самому играть на каждом инструменте.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как проявляется</p>
+<p><strong>Характерные поведенческие признаки:</strong></p>
+<ul class="marker-list">
+<li>Мгновенно видит, какие части ситуации можно переставить, чтобы картина сложилась лучше — ещё до того, как другие успели сформулировать проблему.</li>
+<li>Комфортно удерживает одновременно большое количество задач, не теряя ни одной из виду. Один из практиков описал это так: «удерживать дюжину мячей для пинг-понга под водой одновременно».</li>
+<li>Работает лучше, когда сложность возрастает. Больше вводных — больше возможностей найти оптимальную конфигурацию. Статичные ситуации воспринимаются как немного некомфортные.</li>
+<li>Откладывает дела, когда нечего делать. Может разработать вебинар за 2 часа при полной загрузке; при пустом расписании на это уходит полтора дня. Это не дисфункция — это особенность того, как этот талант набирает импульс.</li>
+<li>Войдя в новую среду, быстро её осматривает и мысленно картографирует — не из любопытства, а ради продуктивности. Где что находится? Как элементы связаны? Чтобы когда понадобится действовать — ориентация была мгновенной.</li>
+<li>Ведёт видимые списки как внешнюю систему памяти. То, что не перед глазами, для такого человека фактически не существует. Скрытые списки не работают.</li>
+<li>Различает «изменения, которые исходят от меня» и «изменения, которые происходят со мной». Самому инициировать изменения — это энергия; когда изменения навязываются без участия — некомфортно. Это не нелюбовь к переменам — люди с Arranger часто любят перемены, лишь бы у них было слово в этом процессе.</li>
+<li>Проявляется с детства: продуманное до деталей планирование событий, перерасстановка гостей на вечеринках, обдумывание кто с кем должен сидеть и почему.</li>
+<li>Самоопределение: «Я лучший пожарный, чем фермер.» Пожарный реагирует на кризисы и быстро перестраивается; фермер методично ведёт плановую работу изо дня в день. Человек с Arranger тяготеет к действию и коррекции, а не к поддержанию рутины.</li>
+</ul>
+<p><strong>Внутреннее ощущение:</strong> люди с этим талантом входят в состояние потока — то, что практики называют «серьёзной зоной», — когда могут одновременно взаимодействовать со всеми составляющими ситуации. В отличие от большинства, у которых поток возникает при сосредоточении на одной задаче, здесь его запускает именно множественность одновременных элементов.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">Ценность для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Ценность для команды и организации</p>
+<p><strong>Что человек с этим талантом привносит уникального:</strong></p>
+<ul class="marker-list">
+<li><strong>Разбирается в логистике</strong>, рассматривая идеальные конфигурации — не просто что это за компоненты, а как они соединяются. Понимает «смешение», а не только ингредиенты.</li>
+<li><strong>Успокаивающее присутствие</strong> в хаосе — не через утешения или таинственность, а через реальную, ощутимую способность сказать: «Вот что важно, и вот как это сочетается». Там, где другие видят конкурирующие приоритеты, такой человек видит <em>привлекательные</em> приоритеты.</li>
+<li><strong>Мощное сочетание мнения и операции</strong> — способен выявлять практические идеи для улучшения (мнение) и одновременно исполнять несколько задач (операция). Большинство людей не могут делать и то, и другое.</li>
+<li><strong>Смелость менять</strong> — инициирует изменения, а не ждёт и реагирует. Это не безрассудство; это готовность переставить части тогда, когда другие считают решения уже принятыми.</li>
+<li><strong>Управление несколькими заинтересованными сторонами</strong> — работает лучше под несколькими давлениями, чем под одним сфокусированным. Может одновременно удерживать интересы многих и помогать команде двигаться к самому важному и срочному.</li>
+<li><strong>Конфигурирование команды как лидерский навык</strong> — в роли руководителя такой человек видит «лучшее место в автобусе» для каждого члена команды. Метафора часовщика: понимает, в каком положении каждая шестерня будет работать лучше всего, чтобы весь механизм тикал и двигался вперёд.</li>
+<li><strong>Ориентация на общий результат</strong> — понимает, как индивидуальный вклад влияет на совокупный итог. Интуитивно отслеживает, как элементы связаны с достижениями организации.</li>
+</ul>
+<p><strong>Реальные примеры от практиков:</strong></p>
+<ul class="marker-list">
+<li>Руководитель отделения банка, управляющий 10+ сотрудниками, клиентскими операциями, безопасностью и продажами одновременно — постоянно переключает режимы, не теряя нити.</li>
+<li>Руководитель федерального ведомства, пришедший в новый офис: сначала выясняет сильные стороны каждого члена команды, и только потом настраивает роли так, чтобы индивидуальные сильные стороны совпадали с зонами ответственности.</li>
+<li>Фасилитатор, который ежедневно физически переставляет столы в классе — обдумывает, какие пары дадут лучший разговор на следующий день.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Тёмная сторона и риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Тёмная сторона и риски</p>
+<p><strong>Незрелые (неразвитые) проявления таланта:</strong></p>
+<ul class="marker-list">
+<li><strong>Создаёт сложность там, где она не нужна.</strong> Людей с этим талантом притягивает сложность; когда её не хватает, они могут её порождать. В незрелой форме: прокрастинация (ждут, пока появится достаточно частей) или вмешательство в то, что трогать не нужно.</li>
+<li><strong>Никогда не удовлетворены.</strong> Постоянно ищут другой способ расставить. Могут изобретать велосипед заново, потому что процесс переустройства приятен сам по себе, а не потому что нужно улучшение. Незрелый Arranger путает удовольствие от процесса с целью процесса.</li>
+<li><strong>Сомнение до последнего момента.</strong> Есть внутренняя уверенность: «Я со всем разберусь» — которая может проявляться как отказ от чужих решений без должного их рассмотрения. «Твой способ, скорее всего, не сработает, но не беспокойся — я разберусь».</li>
+<li><strong>Дестабилизация команды.</strong> Незрелый Arranger должен владеть процессом. Постоянные перестановки без объяснений воспринимаются другими как нестабильность или пренебрежение их работой.</li>
+</ul>
+<p><strong>Слепые пятна (возможные, но не обязательные):</strong></p>
+<ul class="marker-list">
+<li><strong>Сложности с делегированием.</strong> Удерживая всю головоломку целиком, кажется, что убрать любой кусочек — значит сломать картину. Результат: трудно отпустить задачи, даже когда делегирование дало бы лучший результат. Работающий рефрейм: другие могут поднять отдельный кусочек на ещё более высокий уровень, и это расширяет возможности для высококонфигурационной работы.</li>
+<li><strong>Детали без общей картины.</strong> Могут так увлечься компонентами задачи, что забывают описать заинтересованным сторонам пункт назначения. «Им не нужно знать рецепт — они просто хотят есть торт». Решение: создавать «обзорные точки» — останавливаться и спрашивать, нужны ли людям подробности, прежде чем продолжать.</li>
+<li><strong>Оставляют людей позади.</strong> Человек с этим талантом может двигаться очень быстро в своих мысленных конфигурациях и предполагать, что команда успевает. В роли лидера это создаёт путаницу и разрушает стабильность. Для Arranger коммуникация — не опция, а механизм, благодаря которому скорость становится полезной, а не дестабилизирующей.</li>
+<li><strong>Изменения без объяснений.</strong> Инициируемые перемены, очевидные для такого человека, другим могут казаться «изменениями ради изменений». То, что делает перемену приемлемой — объяснение <em>почему</em> она происходит: логика, а не только результат.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать этот талант</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать этот талант</p>
+<p><strong>Путь от незрелого к зрелому:</strong></p>
+<table class="maturity-table"><thead><tr><th>Незрелый</th><th>Зрелый</th></tr></thead><tbody><tr><td>Создаёт сложность</td><td>Создаёт порядок</td></tr><tr><td>Никогда не удовлетворён</td><td>Отрабатывает лучшие альтернативы</td></tr><tr><td>Сомневается до последнего</td><td>Вовлекает других в момент</td></tr><tr><td>Должен владеть процессом</td><td>Умеет фасилитировать процесс</td></tr><tr><td>Дестабилизирует команду</td><td>Часть команды</td></tr></tbody></table>
+<p><strong>Конкретные шаги развития:</strong></p>
+<li><strong>Постоянно спрашивать: «Что мы измеряем?»</strong> Это возвращает человека с этим талантом от удовольствия переустройства к цели переустройства. Настоящий Arranger использует головоломку, чтобы прийти в лучшее место — а не потому что головоломки интересны.</li>
+<li><strong>Искать роли с несколькими одновременными потоками работы.</strong> Быть диспетчером воздушного движения. Находить ситуации, где нужно, чтобы несколько вещей происходили одновременно — это именно то, где данный талант раскрывается в полную силу.</li>
+<li><strong>Создавать точки остановки в общении.</strong> Прежде чем углубляться в то, как что-то устроено, спросить: «Вы хотите знать, как это работает подробнее?» Пусть собеседник сам регулирует, сколько деталей получить.</li>
+<li><strong>Вести видимые списки для спокойных периодов.</strong> Когда расписание пустое, человек с этим талантом начинает «вредничать». Видимые, актуальные, доступные списки открытых проектов предотвращают деструктивное переустройство ради переустройства — вмешательство в то, что трогать не нужно.</li>
+<li><strong>Практиковать объяснение «почему» прежде «что».</strong> При любом изменении — сначала сообщать причину и цель, а не только новую конфигурацию. Команда не может следовать тому, чего не понимает.</li>
+<li><strong>При делегировании разделять: что только ты можешь сделать, а что другие сделают лучше.</strong> Само по себе грамотное делегирование — это акт Arranger: оно освобождает талант для конфигураций более высокого уровня.</li>
+<li><strong>Найти партнёра, который отслеживает общую цель.</strong> Человек с этим талантом может увлечься процессом переустройства. Партнёр с фокусом (Focus) или дисциплиной (Discipline), который держит в голове пункт назначения, служит корректирующим механизмом.</li>
+<li><strong>Спрашивать других об их целях.</strong> Это даёт законную почву для применения таланта. Знание, чего хотят достичь другие, создаёт новые конфигурации для работы.</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком с этим талантом</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком с этим талантом</p>
+<p><strong>Для руководителей:</strong></p>
+<ul class="marker-list">
+<li><strong>Давайте им полномочия вносить необходимые изменения без обязательного согласования.</strong> Требование одобрять каждую корректировку создаёт трение, которое блокирует талант.</li>
+<li><strong>Давайте им доступ ко всем движущимся частям.</strong> Если ведут занятие — пусть видят кладовую, планировку помещения, план кейтеринга. Если ведут шоу — пусть сидят за пультом. Доступ к компонентам — это не привилегия, это необходимое условие для работы таланта.</li>
+<li><strong>Стимулируйте их, спрашивая, как можно сделать процесс эффективнее.</strong> Это прямой способ задействовать этот талант и дать человеку понять, что вы цените то, что он видит.</li>
+<li><strong>Чётко определяйте границы роли.</strong> Это владелец процесса или консультант, который предлагает варианты и отходит в сторону? Неопределённость ведёт либо к недостаточному вкладу, либо к превышению полномочий.</li>
+<li><strong>Делитесь конечной целью и объясняйте «почему».</strong> Человек с этим талантом использует контекст цели, чтобы сортировать то, чем жонглирует. Без пункта назначения жонглирование становится произвольным.</li>
+<li><strong>Общайтесь рано, часто и последовательно.</strong> Такому человеку нужна информация для корректировок — и небольшие поправки по ходу он предпочитает крупным исправлениям потом. Не скрывайте детали из опасений перегрузить.</li>
+<li><strong>Открыто говорите о сроках и о том, что зафиксировано, а что можно менять.</strong> Если что-то не подлежит изменению — скажите об этом и объясните, кто от этого зависит и как это связано с другими движущимися частями.</li>
+<li><strong>Предлагайте «экскурсии»</strong> — физические или интеллектуальные — в другие части организации, с которыми они взаимодействуют или которые зависят от них. Это даёт более полную карту системы, которую они конфигурируют.</li>
+</ul>
+<p><strong>Для коллег:</strong></p>
+<ul class="marker-list">
+<li>Не скрывайте детали из боязни перегрузить — такой человек справляется со сложностью; его раздражают не детали, а пропущенные части.</li>
+<li>Спрашивайте: «Что сейчас для тебя самое важное в работе?» или «Что кажется не на своём месте и просто просится на другое?»</li>
+<li>Когда нужна помощь — дайте доступ к информации и не мешайте.</li>
+<li>Не стесняйтесь прямо просить: «Помоги мне разобраться, как это лучше организовать» — такой человек получает от этого удовольствие, это не нагрузка для него.</li>
+</ul>
+<p><strong>Вопросы, которые задействуют этот талант:</strong></p>
+<ul class="marker-list">
+<li>«С чего ты хочешь начать?»</li>
+<li>«Как бы ты это выстроил, если бы имел полные полномочия?»</li>
+<li>«Мы можем продолжать корректировать или нам нужно что-то зафиксировать?»</li>
+<li>«Что ты видишь, чего не видим мы?»</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">Сочетания с другими талантами</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Сочетания с другими талантами</p>
+<p><strong>Статистически наиболее вероятная пара:</strong></p>
+<p><strong>Arranger + Responsibility (Ответственность)</strong> — «Постоянный поиск наиболее эффективного пути к выполнению обязательств». Ответственность обеспечивает якорь (выполнять то, что обещано), Arranger обеспечивает адаптивную гибкость (найти лучший способ доставки). Результат — изящное, «танцующее» исполнение: мы сделаем то, что обещали, и найдём для этого наилучший возможный способ.</p>
+<p><strong>Статистически наименее вероятная пара:</strong></p>
+<p><strong>Arranger + Command (Командование)</strong> — оба имеют управляющую ориентацию (переменными vs. направлением), что, вероятно, объясняет редкость их совместного появления. Когда они всё же встречаются вместе: решительность в отношении лучшего порядка, бо́льшая убедительность, чем у Arranger в одиночку, и способность двигать несколько треков, а не концентрироваться на одном.</p>
+<p>---</p>
+<p><strong>Сочетания, усиливающие талант:</strong></p>
+<p><strong>Arranger + Individualization (Индивидуализация)</strong> — даёт способность находить правильное место для каждого человека <em>и</em> выстраивать его для коллективной продуктивности. «Знать, где каждый человек должен сидеть в автобусе, и уметь посадить его туда и двигаться дальше». Видение людей как уникальных + умение выстраивать их оптимально = исключительная способность формировать команды.</p>
+<p><strong>Arranger + Includer (Включение)</strong> — расширяет естественный коллаборативный охват. Делает вовлечение ещё более полным — обеспечивает, чтобы никто не был исключён из конфигурации.</p>
+<p><strong>Arranger + Activator (Активатор)</strong> — видит все движущиеся части и запускает их в движение. Восприятие (Arranger) + инициация (Activator) создают быстрый импульс многотрекового исполнения.</p>
+<p>---</p>
+<p><strong>Сочетания, умеряющие талант:</strong></p>
+<p><strong>Arranger + Harmony (Гармония)</strong> — стабилизирует эмоциональную среду вокруг изменений, которые вводит Arranger. Изменения имеют эмоциональные последствия для людей; Гармония обеспечивает сглаживающий эффект, способный облегчать переходы.</p>
+<p><strong>Arranger + Focus (Фокус)</strong> — привносит единое направление в подход, который по природе своей гибок и склонен к постоянной реконфигурации. Человек с Arranger и сильным Focus выглядит существенно иначе: переустройство становится средством достижения чёткой цели, а не самоценным процессом. Сужает диапазон реконфигурации в сторону цели.</p>
+<p>---</p>
+<p><strong>Сочетания с взаимодополняющей динамикой:</strong></p>
+<p><strong>Arranger + Strategic (Стратег)</strong> — оба ориентированы на поиск наилучшей конфигурации, но Стратег работает в воображаемом пространстве (возможности, сценарии, «а что если»), а Arranger — в реальности (что есть сейчас, что двигается, до чего можно дотянуться). Вместе: способность предвидеть лучший путь (Strategic) <em>и</em> реализовывать его в реальном времени по мере изменения условий (Arranger). Мара Хугерхейс: «Я могу думать наперёд о том, что нам следует делать, но только оказавшись в классе, включается мой Arranger в реальном времени».</p>
+<p><strong>Arranger + Maximizer (Максимизатор)</strong> — Arranger обеспечивает механизм сортировки; Maximizer задаёт стандарт качества, к которому нужно стремиться. Помогает Arranger выйти за рамки удовольствия от переустройства к поиску лучшей альтернативы.</p>
+<p><strong>Arranger + Input (Коллекционер)</strong> — Input собирает постоянно расширяющуюся библиотеку информации. Arranger организует эту библиотеку в реальном времени и направляет её на текущие цели. Вместе: отбор нужного в реальном времени — доставка правильной информации в нужный момент для нужной цели.</p>
+<p><strong>Arranger + Communication (Коммуникация)</strong> — естественно частая пара. Талант Коммуникации даёт Arranger инструмент для того, чтобы люди следовали за ним. Без осознанного использования Коммуникации лидеры с Arranger могут «нестись со скоростью миллион миль в час и просто предполагать, что люди идут следом» — скорость мысленных конфигураций опережает осознание командой, что конфигурация изменилась.</p>
+<p><strong>Arranger + Responsibility (Ответственность)</strong> — обеспечивает подотчётность за обязательства, а Arranger обеспечивает гибкость в том, как они выполняются. В сочетании: мы доставим — и найдём для этого наилучший способ.</p>
+<p>---</p>
+<p><em>Источники: Gallup Theme Thursday, Сезон 1 (2014, ведущий: Курт Лисвельд, гость: Мара Хугерхейс); Сезон 2 (2016, ведущий: Майкл Либер); Сезон 3 (2017, ведущий: Майкл Либер, гость: Анжела Белдин Мартинес); Сезон 5 (2019, ведущий: Майкл Аарон); Сезон 6 (2021, ведущий: Майкл Либер).</em></p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

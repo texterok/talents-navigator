@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Achiever — Достижение · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain exec">Исполнение</div>
+    <h1>Achiever</h1>
+    <div class="hero-sub">Достижение</div>
+    <p class="hero-def">Что такое Achiever</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое Achiever</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое Achiever</p>
+<p><strong>Официальное определение Gallup:</strong> люди с выраженным талантом Achiever работают усердно и обладают огромной выносливостью. Они получают огромное удовлетворение от занятости и продуктивности.</p>
+<p><strong>Суть:</strong> Achiever — это не просто трудолюбие. Центральный импульс таланта — <strong>завершение</strong>. Не начать, не спланировать, не быть занятым — а завершить. Энергия приходит от самого акта закрытия задачи.</p>
+<blockquote class="md-quote">&quot;Achiever — это тема &#x27;сделай это&#x27;. Не просто занятость, а завершение вещей.&quot; [S2]</blockquote>
+<p>Три синонима, точно описывающих суть таланта:</p>
+<ul class="marker-list">
+<li><strong>Complete</strong> (завершать) — отличие от всех 33 других тем: фокус именно на том, как что-то закончено</li>
+<li><strong>Realize</strong> (воплощать) — способность брать идею или концепцию и превращать её в конкретные достижимые шаги</li>
+<li><strong>Do</strong> (делать) — сильная рабочая этика, готовность возглавить команду и просто сделать</li>
+</ul>
+<p><strong>Место в системе CliftonStrengths:</strong> домен <strong>Executing</strong> (Исполнение). Именно Achiever — первый в алфавитном порядке и самый часто встречающийся талант в топ-5: у 35% людей, прошедших StrengthsFinder, он входит в топ-5. Первый по частоте встречаемости в базе Gallup из 13,5 млн человек.</p>
+<p><strong>Внутренний механизм:</strong> в психологии Achiever живёт постоянный «шёпот недовольства» — ощущение, что всегда есть что-то ещё, что можно завершить. Это не патология, а встроенный двигатель.</p>
+<h3>Отличие от похожих талантов (домен Executing)</h3>
+<table class="maturity-table"><thead><tr><th>Талант</th><th>Мотивация к действию</th></tr></thead><tbody><tr><td><strong>Achiever</strong></td><td>&quot;Я делаю, потому что получаю удовольствие от самого процесса делания и от завершения&quot;</td></tr><tr><td><strong>Responsibility</strong> (Ответственность)</td><td>&quot;Я делаю, потому что на меня рассчитывают&quot;</td></tr><tr><td><strong>Deliberative</strong> (Предусмотрительность)</td><td>&quot;Я делаю, потому что это безопасно и хорошо обдумано&quot;</td></tr><tr><td><strong>Discipline</strong> (Дисциплина)</td><td>&quot;Я делаю, чтобы создать или поддержать порядок и структуру&quot;</td></tr><tr><td><strong>Activator</strong> (Активатор)</td><td>Activator — у стартовой черты; Achiever — у финишной</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как проявляется</p>
+<p><strong>Поведенческие паттерны, по которым можно распознать Achiever:</strong></p>
+<ul class="marker-list">
+<li><strong>Список задач как инструмент, а не украшение.</strong> Чеклисты присутствуют всегда: краткосрочные, среднесрочные, долгосрочные. Добавление в список и вычёркивание из него — два разных события, оба значимых.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Каждый день начинается с нуля.</strong> Вчерашние достижения не переносятся. Утром — снова ноль, нужно накопить победы заново.</li>
+</ul>
+<blockquote class="md-quote">&quot;Каждый раз, когда ты что-то завершаешь, получаешь прилив энергии — возможность поставить галочку и продолжать считать вверх.&quot; [S6]</blockquote>
+<ul class="marker-list">
+<li><strong>Считают вверх, а не вниз.</strong> При беге думают &quot;я уже пробежал 7 миль&quot;, а не &quot;осталось 3 мили&quot;. При проекте — &quot;мы достигли 50%&quot;, а не &quot;ещё половина впереди&quot;.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Прилив энергии при завершении.</strong> Закрытая задача буквально перезаряжает. Наблюдатели описывают это как мгновенный сброс — ощущение чистого листа и готовности к следующему.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Веховая логика на длинных проектах.</strong> Проект длиной 5–6 месяцев разбивается на отметки 5%, 10%, 15%, 50% — каждая веха ощущается как промежуточная победа и создаёт импульс к следующей.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Личный рекорд важнее чемпионства.</strong> Achiever конкурирует не с другими, а с собой. Вопрос не &quot;обгоняю ли я их?&quot; — а &quot;как я делал это раньше и могу ли сделать лучше?&quot;.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Разговор о сделанном — способ выразить близость.</strong> Когда Achiever рассказывает, что он сделал за день — это не отчёт, это приглашение в свой мир. Воспринимать как связь, а не как самохвальство.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Лучшее признание — следующая важная задача.</strong> Не публичная похвала, не награда — а &quot;вот следующий большой проект, возьмёшься?&quot;</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Отдых тоже выглядит как деятельность.</strong> Равновесие Achiever предполагает делание, а не сидение на месте. Радость от &quot;обрезки роз&quot; вместо &quot;наблюдения за розами&quot;.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">Ценность для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Ценность для команды и организации</p>
+<p><strong>Что Achiever привносит в команду:</strong></p>
+<ul class="marker-list">
+<li><strong>Движущая сила.</strong> Увеличивает темп работы всей команды. Другие начинают делать больше просто потому, что находятся рядом.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Доведение до конца.</strong> Помогает команде завершать незакрытые обязательства. Там, где другие останавливаются на 90%, Achiever доходит до 100%.</li>
+</ul>
+<blockquote class="md-quote">&quot;Achiever может увеличить темп других людей, помочь завершить больше задач — и сделать исполнение восхитительным и приятным процессом.&quot; [S5]</blockquote>
+<ul class="marker-list">
+<li><strong>Разбивка больших целей на вехи.</strong> На долгосрочных проектах без естественных точек завершения Achiever создаёт промежуточные финишные линии — делая прогресс видимым и осязаемым для всей команды.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Доверие через следование обещаниям.</strong> Лидер с Achiever создаёт доверие самым прямым способом: сказал — сделал. Не потому что &quot;обязан&quot;, а потому что незавершённость физически некомфортна.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Сострадание через действие.</strong> Когда кто-то в команде перегружен, Achiever выражает поддержку не словами, а делами: &quot;что я могу взять на себя, чтобы тебе стало легче?&quot;</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Заразительный энтузиазм.</strong> Achiever не пугается объёма работы. Это обезоруживает — другие видят, что им тоже не нужно бояться того, сколько усилий потребует задача.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Надежда через &quot;что дальше?&quot;</strong> Постоянный взгляд вперёд — &quot;что следующее?&quot; — помогает команде видеть путь за текущим горизонтом.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Магнит для таланта.</strong> Команды с сильными Achiever притягивают других — все хотят быть там, где что-то реально делается и завершается.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Тёмная сторона / риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Тёмная сторона / риски</p>
+<h3>Слепые зоны</h3>
+<p><strong>За другими сложно угнаться.</strong> Выносливость Achiever может выглядеть как требование — люди без этого таланта физически не могут держать тот же темп, но ощущают молчаливое давление.</p>
+<blockquote class="md-quote">&quot;Эта выносливость может быть сложной для поддержания. Achievers, по наблюдениям, нужно меньше сна, чем людям без этого таланта — потому что завершение само по себе перезаряжает.&quot; [S5]</blockquote>
+<p><strong>Изоляция — &quot;одинокий тяжеловоз&quot;.</strong> Способность работать в одиночку, быть своей собственной батарейкой, приводит к тому, что Achiever предпочитает делать сам, а не ждать других. Это эффективно, но разрушает сотрудничество.</p>
+<p><strong>Чрезмерная нагрузка.</strong> Трудно говорить &quot;нет&quot; — потому что каждое &quot;да&quot; = потенциальная новая галочка в списке. Система ломается незаметно: Achiever не замечает перегруза до тех пор, пока задачи перестают вычёркиваться.</p>
+<p><strong>Действенный уклон — невидимость концептуального.</strong> Незрелый Achiever слышит в любом разговоре то, что можно сделать прямо сейчас. Идеи, которые не укладываются в очевидные шаги 1-2-3, получают меньше внимания — не потому что плохие, а потому что неочевидно исполнимые.</p>
+<blockquote class="md-quote">&quot;В сырой форме Achiever просто ищет что угодно, что можно сделать. Зрелый Achiever ищет то, что соответствует целям и создаёт настоящий прогресс.&quot; [S2]</blockquote>
+<p><strong>Высокие ожидания к другим.</strong> Внутренние стандарты темпа и качества автоматически проецируются на коллег. Агитация и раздражение при чужой медлительности или незавершённости — видна окружающим.</p>
+<p><strong>Пропуск шагов проверки.</strong> &quot;Зачем ждать обратной связи, если я и так знаю, что результат хороший?&quot; — Achiever + Maximizer (Максимизатор) в сочетании особенно склонны пропускать review-этапы, которые важны для других.</p>
+<h3>Raw vs Mature Achiever</h3>
+<table class="maturity-table"><thead><tr><th>Незрелый (raw)</th><th>Зрелый (mature)</th></tr></thead><tbody><tr><td>Занятость ради занятости</td><td>Продуктивность, выравненная с целями</td></tr><tr><td>Одинокий тяжеловоз</td><td>Задаёт темп команде</td></tr><tr><td>Слышит только очевидно исполнимое</td><td>Находит действие даже в концептуальной идее</td></tr><tr><td>Действует в изоляции</td><td>Приглашает других в работу</td></tr><tr><td>Стандарты темпа как требование к другим</td><td>Понимает, что его темп — не норматив для всех</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать</p>
+<p><strong>Базовая формула:</strong> Талант × Инвестиция = Сила. Называть талант недостаточно — важно намеренно наблюдать, как он работает в жизни, и целенаправленно применять.</p>
+<p><strong>Конкретные действия:</strong></p>
+<li><strong>Сделать прогресс видимым.</strong> Использовать планнер, трекер, доску, дашборд — любой инструмент, позволяющий видеть &quot;сколько уже сделано&quot;. Трекинг по вехам (5%, 10%, 25%, 50%) даёт промежуточные победы на длинных проектах.</li>
+<li><strong>Найти партнёров прогресса.</strong> Человек, которому ежедневно сообщаешь &quot;что сделано сегодня&quot; — не обязательно с Achiever, но понимающий эту логику. Создаёт взаимную подотчётность и разделённый ритм.</li>
+<li><strong>Научиться слышать действие в концептуальном.</strong> Тренировать ухо: в абстрактной идее искать конкретный первый шаг, даже если он неочевиден. Это переход от raw к mature.</li>
+<li><strong>Добавить людей в список.</strong> Буквально включать реляционные задачи в чеклист: &quot;поговорить с X&quot;, &quot;поблагодарить Y&quot;, &quot;спросить Z как дела&quot;. Это не манипуляция — это использование сильной стороны для поддержания связей.</li>
+<li><strong>Ввести гейткиперов.</strong> Один-два доверенных человека, которые знают о склонности брать лишнего и могут сигнализировать, когда нагрузка становится нереалистичной.</li>
+<li><strong>Перейти от одинокой работы к задаванию темпа.</strong> Сознательно инвестировать в роль задающего темп: помогать команде видеть вехи, отмечать промежуточные достижения, делать исполнение общим делом.</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком с Achiever</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком с Achiever</p>
+<h3>Для менеджеров</h3>
+<p><strong>Ставьте чёткие ожидания о том, что значит &quot;готово&quot;.</strong> Achiever организует картину мира через завершённое. Если критерии успеха размыты — нет ни финишной черты, ни удовлетворения. Чем конкретнее описание &quot;выполнено = отлично&quot;, тем эффективнее работа.</p>
+<blockquote class="md-quote">&quot;Сделайте ожидания настолько чёткими и очевидными, что выполнение задачи автоматически означает успех.&quot; [S5]</blockquote>
+<p><strong>Говорите о задачах напрямую.</strong> Не вокруг да около, не через контекст — называйте задачи явно. Achiever воспринимает мир через призму &quot;что сделано и что предстоит&quot;.</p>
+<p><strong>Спрашивайте о достижениях и отмечайте их.</strong> &quot;Что ты сделал сегодня?&quot; — не контроль, а проявление интереса к тому, что для человека важно. Признание достижений создаёт связь.</p>
+<p><strong>Давайте автономию.</strong> Achiever — собственная батарейка. Микроменеджмент снижает эффективность: ограничивает скорость и ощущение самостоятельного движения.</p>
+<p><strong>Окружайте трудолюбивыми людьми.</strong> Achiever бежит быстрее, когда рядом другие, кто тоже работает интенсивно. Вынужденное замедление из-за пассивного окружения — демотиватор.</p>
+<p><strong>Лучшая форма признания — следующий важный проект.</strong> Не публичная церемония, не подарок. &quot;Вот самое важное, что нам сейчас нужно сделать — я хочу, чтобы ты это возглавил.&quot;</p>
+<p><strong>Делайте цели трекабельными.</strong> Вместо &quot;будьте лучшим провайдером на рынке&quot; — &quot;охватить 10% новых клиентов в этом квартале&quot;. Объективные индикаторы прогресса позволяют Achiever самостоятельно отслеживать движение и праздновать победы без дополнительного стимулирования.</p>
+<p><strong>Задавайте вопросы о личном через призму достижений.</strong> &quot;Что ты планируешь на выходные? Какую цель сейчас преследуешь?&quot; — это не вторжение, а разговор на языке Achiever.</p>
+<p><strong>Не путайте их занятость с отсутствием человеческой связи.</strong> Когда Achiever рассказывает о списке сделанного — он вас впускает, а не отчитывается.</p>
+<h3>Для коллег</h3>
+<ul class="marker-list">
+<li>Если что-то застряло в команде — к Achiever. Он из тех, кто доведёт до конца.</li>
+<li>Не нужно ждать, пока он сам предложит помощь — скажите прямо: &quot;Мне нужно, чтобы это было завершено. Можешь?&quot;</li>
+<li>Его высокий темп — не претензия к вам. Это просто как он работает.</li>
+<li>Если вы чувствуете давление его ожиданий — говорите об этом прямо: &quot;Мне нужно ещё 2 дня&quot;. Он примет.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">С какими талантами сочетается</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>С какими талантами сочетается</p>
+<h3>Усиливающие сочетания</h3>
+<p><strong>Achiever + Focus (Фокус)</strong> — Achiever даёт энергию движения, Focus убирает лишнее и направляет эту энергию в нужное русло. Один из самых эффективных дуэтов для глубокого, качественного завершения.</p>
+<p><strong>Achiever + Arranger (Организатор)</strong> — Achiever хочет делать, Arranger помогает приоритизировать, делегировать и перестраивать ресурсы на лету. Позволяет вести много проектов без потери качества.</p>
+<p><strong>Achiever + Relator (Связующий)</strong> — оба склонны к интенсивной работе в близких отношениях. Сочетание создаёт доверие: &quot;приглашаю тебя в двигатель, работаем вместе&quot;.</p>
+<p><strong>Achiever + Strategic (Стратегическое мышление)</strong> — помогает разрулить конфликты (например, с Maximizer): как убедиться, что движение вперёд не происходит в ущерб качеству?</p>
+<h3>Продуктивное напряжение</h3>
+<p><strong>Achiever + Maximizer (Максимизатор)</strong> — классическое внутреннее напряжение: Achiever хочет завершить, Maximizer хочет завершить идеально. Со временем эта пара учится регулировать друг друга. Без осознанности — риск либо бесконечного улучшения (Maximizer побеждает), либо скороспелого &quot;готово&quot; (Achiever побеждает).</p>
+<blockquote class="md-quote">&quot;Maximizer хочет сделать правильно, Achiever хочет сделать. Иногда они конкурируют. Но со временем они помогают регулировать друг друга.&quot; [S1]</blockquote>
+<p><strong>Achiever + Self-Assurance (Уверенность в себе)</strong> — уверенное &quot;да&quot; к новым задачам, уверенное &quot;нет&quot; к тому, что не нужно. Риск: брать на себя слишком много, потому что внутренне убеждён, что справишься со всем.</p>
+<h3>Компенсирующие сочетания</h3>
+<p><strong>Achiever + Individualization (Индивидуализация)</strong> — помогает управлять реляционными рисками: понимать, что у разных людей разный темп и разные ожидания.</p>
+<p><strong>Achiever + Responsibility (Ответственность)</strong> — оба в домене Executing, но разная мотивация. Responsibility добавляет &quot;я делаю это для других&quot;, что смягчает тенденцию к одиночной работе.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

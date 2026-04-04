@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Includer — Включенность · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain rel">Отношения</div>
+    <h1>Includer</h1>
+    <div class="hero-sub">Включенность</div>
+    <p class="hero-def">Что такое Includer</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое Includer</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое Includer</p>
+<p><strong>Официальное краткое определение:</strong> Люди с исключительно развитым талантом Includer принимают других такими, какие они есть. Они замечают тех, кто чувствует себя лишним, и стараются вовлечь их.</p>
+<p><strong>Суть механизма:</strong> Includer — это талант социальной осознанности. Человек с этим талантом постоянно сканирует пространство вокруг на предмет чужой отстранённости — на уровне конкретных людей, социальных групп или целых сообществ. Дело не только в том, чтобы заметить это — важно действовать: создавать вовлечённость, расширять круг своих, давать людям ощущение принадлежности.</p>
+<blockquote class="md-quote">«Для Включателя каждый человек — свой.» [S2]</blockquote>
+<p>Includer относится к домену <strong>Выстраивание отношений</strong>. Его сила раскрывается через связь с людьми, а не через самостоятельное достижение результатов.</p>
+<p><strong>Распространённость:</strong> примерно у 11–12% людей Includer входит в топ-5 талантов.</p>
+<h3>Отличие от похожих талантов</h3>
+<table class="maturity-table"><thead><tr><th>Талант</th><th>Основной мотив</th><th>Отношение к кругу общения</th></tr></thead><tbody><tr><td><strong>Includer</strong></td><td>«Я приглашаю тебя» — расширяет круг</td><td>Постоянно расширяется; фокус на общем</td></tr><tr><td><strong>Empathy</strong> (Эмпатия — чувствование эмоций других)</td><td>«Я чувствую тебя» — эмоциональный резонанс</td><td>Чувствует состояние других, но не обязательно действует ради групповой включённости</td></tr><tr><td><strong>Relator</strong> (Родство — глубокая связь один-на-один)</td><td>«Я хочу узнать тебя по-настоящему» — глубина</td><td>Комфортен в узком кругу, избирателен в близости</td></tr><tr><td><strong>Woo</strong> (Привлечение — быстрое знакомство с новыми людьми)</td><td>Встречать новых людей</td><td>Смотрит за пределы круга, чтобы познакомиться; Includer — чтобы пригласить внутрь</td></tr><tr><td><strong>Individualization</strong> (Индивидуализация — видение уникальности каждого)</td><td>«Что делает тебя особенным?»</td><td>Тянется к различиям; Includer тянется к общему — «Что нас объединяет?»</td></tr></tbody></table>
+<p><strong>Ключевой контраст с Maximizer (Максимизатор — использование сильных сторон для достижения совершенства):</strong> у Максимизатора есть избирательность — он отбирает лучшее из множества. Включатель и Максимизатор редко соседствуют в одном профиле: в статистике Gallup, если один из этих талантов входит в топ-5 человека, второй чаще оказывается в нижней части его рейтинга.</p>
+<p><strong>Includer как не доминирующий талант:</strong> в Gallup-оценке все 34 таланта ранжируются от 1-го (самый сильный) до 34-го. Когда Includer занимает позиции 11–15 — то есть не входит в топ-10, но всё равно присутствует как заметная черта — он окрашивает работу других талантов: не ведёт сам, но задаёт им направление. Например, человек с высокими Communication (Коммуникация) и Strategic (Стратегическое мышление) через этот фоновый Includer инстинктивно выстраивает сообщения так, чтобы они находили отклик у самой разной аудитории, вне зависимости от происхождения или точки зрения. [S2]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как это проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как это проявляется</p>
+<h3>Поведенческие паттерны</h3>
+<ul class="marker-list">
+<li><strong>Замечает отсутствующих.</strong> На любом совещании, событии или в любой группе первый вопрос — кого здесь нет и почему?</li>
+<li><strong>Низкий порог для приглашения.</strong> Чтобы пригласить кого-то, не нужно долго раздумывать — «Садись рядом» или «Зайди, посмотри, чем занимается наша команда» произносится почти без усилий.</li>
+<li><strong>Проверяет идеи на других до принятия решения.</strong> Прежде чем остановиться на каком-то решении, обсуждает идеи с окружающими — не ради формального согласования, а потому что взгляды других людей — часть самого мышления.</li>
+<li><strong>Сначала видит общее, потом различия.</strong> Базовый взгляд: что нас объединяет? Это позволяет быстро чувствовать себя своим среди самых разных людей.</li>
+<li><strong>Связующий узел.</strong> Другие люди начинают взаимодействовать друг с другом именно через человека с этим талантом. Он знакомит, наводит мосты между группами, поддерживает связи, которые без него просто не сложились бы.</li>
+<li><strong>Два режима работы:</strong> публичный (отстаивает интересы отстранённых групп открыто, с трибуны) и тихий (создаёт комфорт один-на-один — рука на плечо, негромкое приглашение).</li>
+</ul>
+<h3>Незрелый и зрелый вариант</h3>
+<table class="maturity-table"><thead><tr><th>Незрелый Includer</th><th>Зрелый Includer</th></tr></thead><tbody><tr><td>Без разбора — всех, всегда</td><td>Осознанно — нужных людей, в нужный момент, по нужной причине</td></tr><tr><td>Все приглашены — значит, никто не особенный</td><td>Каждый особенный — поэтому каждый приглашён</td></tr><tr><td>Фокус на собственном ощущении исключённости («меня не позвали»)</td><td>Радар направлен вовне → действие ради других</td></tr><tr><td>Включение потоком, которое перегружает процессы</td><td>Стратегическое расширение круга с осмысленным вводом новых участников в контекст</td></tr><tr><td>Добавляет людей, увеличивая сложность</td><td>Представляет голоса отсутствующих, не обязательно добавляя их физически</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">Ценность для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Ценность для команды и организации</p>
+<h3>Прямой вклад в команду</h3>
+<ul class="marker-list">
+<li><strong>Создаёт атмосферу принятия.</strong> Пока человек с этим талантом в команде — за столом всегда найдётся место. Новые сотрудники, временные участники и те, кто стоит на краю группы, вливаются быстрее.</li>
+<li><strong>Питает инновации.</strong> Расширяя круг участников разговора, привносит опыт и взгляды, которые не дают команде замкнуться на одних и тех же подходах.</li>
+<li><strong>Голос для тех, у кого его нет.</strong> Замечает поспешные обобщения, которые оставляют кого-то за бортом; готов заступиться за людей и группы, которым нужна поддержка.</li>
+<li><strong>Мост между командами.</strong> Таких людей стоит целенаправленно ставить на партнёрство с другими подразделениями — они обеспечивают двусторонний обмен идеями и информацией.</li>
+<li><strong>Система признания.</strong> Люди с этим талантом замечают, кто заслуживает признания, и распределяют его по всей группе — не только самым заметным. Когда признание становится заразным внутри команды, производительность растёт.</li>
+</ul>
+<h3>По 5 принципам сильных команд (Gallup, «Лидерство на основе сильных сторон»)</h3>
+<li><strong>Результат важнее конфликта:</strong> естественно видит, откуда приходят люди — особенно те, кто на периферии группы, — и создаёт пространство для их отличий, не давая им превратиться в трение.</li>
+<li><strong>Организация важнее себя:</strong> расширяет фокус с «нашей команды» до «что делают другие команды, что нужно всей организации». Вовлечение в кросс-функциональные задачи питает этот талант.</li>
+<li><strong>Личная жизнь важна:</strong> такой человек не отгораживается от людей — он не ставит жёстких барьеров в общении, не исключает никого окончательно. Если контакт временно замирает, это пауза, а не разрыв. Широкий круг знакомых и естественная лёгкость с незнакомыми делают среду социально безопасной: люди не боятся оказаться лишними.</li>
+<li><strong>Принять разнообразие:</strong> шире круг → богаче пул опыта → выше базовый уровень творчества и нестандартных решений.</li>
+<li><strong>Магнит для талантов:</strong> главный дар — <strong>социальный комфорт</strong>: рядом с таким человеком ощущаешь, что вписался. И те, кто иначе никогда не оказался бы в твоём кругу, тоже это чувствуют. Это структурно привлекательно для талантливых людей.</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Тёмная сторона / риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Тёмная сторона / риски</p>
+<h3>Слепые пятна, которыми нужно управлять</h3>
+<p><strong>Добавление лишней сложности.</strong> Вовлечь больше людей — для носителя этого таланта очевидно и легко. Для других совсем не очевидно, что включённость стоит затрат на координацию. Добавление участников в процесс принятия решений может его замедлить, размыть ответственность или перегрузить сроки.</p>
+<p><strong>Расширение без разбора.</strong> В незрелом виде можно приглашать настолько широко, что каждое отдельное приглашение теряет смысл — «я был одним из пятидесяти, ничего особенного». Лечение: объяснять, почему именно этот человек приглашён.</p>
+<p><strong>Сбор мнений без завершения.</strong> Когда спрашиваешь многих, у участников возникает ожидание, что их слова будут учтены. Если это невозможно, они чувствуют себя отвергнутыми — порой хуже, чем если бы их вообще не спрашивали.</p>
+<p><strong>Фокус на собственной исключённости.</strong> Тот же радар, который обнаруживает чужую отстранённость, в недоразвитом состоянии может зациклиться на собственном ощущении «меня не позвали». Коллегам, у которых нет этого таланта, это читается как навязчивость или повышенная чувствительность.</p>
+<p><strong>Конфликт с талантами, нацеленными на эффективность.</strong> Носитель этого таланта естественно стремится расширять. Focus (Фокус — концентрация на приоритете), Achiever (Достигатор — стремление завершать) и Maximizer (Максимизатор) тянут к сужению. Без сознательного управления это создаёт внутреннее трение.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать этот талант</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать этот талант</p>
+<p>Следующее применимо как к тому, кто углубляет свой Includer, так и к тем, кто помогает другим его развивать.</p>
+<p><strong>Сделать приглашение привычкой, а не событием.</strong> Держать метафорическую дверь открытой постоянно. Люди обретают устойчивость, когда знают, что за столом им всегда найдётся место, — даже если они им не воспользуются каждый раз. Напоминать о себе тем, от кого давно не было вестей.</p>
+<p><strong>Учиться проговаривать общее вслух.</strong> Основная сила — способность видеть, что объединяет людей. Стоит намеренно называть это — на совещаниях, в текстах, вслух. «Вот что у нас общего» — это самый универсальный вклад, который этот талант может предложить.</p>
+<p><strong>Разделять присутствие и представительство.</strong> Не каждый акт включения требует приглашения в комнату. Устойчивая практика — побуждать тех, кто уже присутствует, учитывать точки зрения отсутствующих. Выступать в роли выразителя: «Думаю, нам стоит услышать взгляд такого-то, прежде чем принять решение».</p>
+<p><strong>Развивать не только осознанность, но и действие.</strong> Незрелый вариант — замечать несправедливость и исключение, но не реагировать. Зрелый — переводить осознанность в конкретный шаг: проинформировать человека после встречи, пересмотреть список участников, открыто отстоять интересы отсутствующей группы при принятии решения.</p>
+<p><strong>Использовать признание как инструмент.</strong> На встречах взять за правило называть что-то конкретное, что цените в каждом участнике, — при всех. Публичное признание становится заразным и закрепляет роль связующего узла, через которого люди относятся друг к другу.</p>
+<p><strong>Учиться сокращать дистанцию, а не добавлять людей в комнату.</strong> Задавать себе вопрос: каким способом лучше всего дать этому человеку ощущение причастности — без его прямого участия? Проинформировать после. Упомянуть его вклад. Сослаться на его позицию. Это высокоэффективные ходы, не увеличивающие координационную нагрузку.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком с Includer</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком с Includer</p>
+<h3>Для руководителей</h3>
+<ul class="marker-list">
+<li><strong>Назначать на адаптацию и интеграцию.</strong> Моменты первого впечатления — новые сотрудники, кросс-командные встречи, знакомство с клиентами — это естественная территория для этого таланта.</li>
+<li><strong>Давать роль «кого не хватает?»</strong> Перед финализацией любого списка участников, состава принимающих решение или карты стейкхолдеров — попросить его просмотреть. Он найдёт пробелы.</li>
+<li><strong>Спрашивать «кого ещё стоит позвать?» в конце планёрок.</strong> Этот вопрос уважает талант и регулярно выявляет упущенные голоса.</li>
+<li><strong>Не использовать эксклюзивность как мотиватор.</strong> VIP-доступ, привилегии для избранных, эксклюзивные предложения — на таких людей это не действует и может активно демотивировать. Формулируйте стимулы через совместность и пользу для группы.</li>
+<li><strong>Говорить об опыте целого, не выделяя отдельных людей или группы.</strong></li>
+<li><strong>Питать талант кросс-функциональными задачами.</strong> Партнёрство с другими подразделениями даёт расширенный круг, в котором этот талант естественно хочет работать.</li>
+</ul>
+<h3>Для коллег</h3>
+<ul class="marker-list">
+<li><strong>Понимать: вы общаетесь с человеком, который думает о всей группе.</strong> Будьте готовы к тому, что в его мышлении всегда есть место для других людей. Он может естественно направлять разговор к тому, как что-то скажется на группе в целом.</li>
+<li><strong>Спрашивать его мнение о включённости.</strong> «Ты думаешь, мы учли всех, чей голос здесь важен?» — это действительно полезный вопрос, и он уважает то, что человек видит сам по себе.</li>
+<li><strong>Не удивляться широким спискам участников.</strong> Это не беспорядок — это особенность. Полезный вопрос: «Учитывая наши сроки, кто из них критически важен сейчас, а кого можно проинформировать после?»</li>
+<li><strong>Ценить социальный комфорт, который он создаёт.</strong> Его присутствие снижает социальное напряжение и поощряет искренность. Это реальный фактор производительности, даже если его сложно измерить.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">Сочетания с другими талантами</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Сочетания с другими талантами</p>
+<h3>Наиболее вероятная статистическая пара: Includer + Positivity (≈38% людей с Includer в топ-5 имеют там же и Positivity)</h3>
+<p>Оба таланта ориентированы на других и движимы осознанностью того, как себя чувствуют люди. Positivity (Позитивность) замечает, как люди себя чувствуют, и стремится это улучшить; Includer замечает, чувствуют ли люди принадлежность к группе, и старается закрыть этот разрыв.</p>
+<ul class="marker-list">
+<li>Вместе: создают исключительно тёплую, заряжающую социальную среду. Могут быть ошибочно приняты за Woo (Привлечение), поскольку суммарная энергия похожа — открытая, воодушевляющая, приветливая.</li>
+<li>По отдельности: Includer без Позитивности всё равно социально осознан и активен, но тише, спокойнее — человек, который знает имена всех в организации и что-то значимое о каждом. Позитивность без Includer может концентрироваться на отдельных людях, а не на сплочённости группы.</li>
+</ul>
+<h3>Наименее вероятная пара: Includer + Command (встречается ≈1% случаев)</h3>
+<p>Command (Командность — создание ясности, принятие управления, прямота) и Includer темпераментно тянут в разные стороны: Командность — к чёткому разграничению и движению вперёд; Includer — к терпимости к неопределённости и принятию разных точек зрения.</p>
+<p>Однако: Command + Includer вместе могут порождать архетип борца за справедливость — человека, который чётко видит исключение, называет его открыто и требует действий. [S2]</p>
+<h3>Ценные дополняющие сочетания</h3>
+<p><strong>Includer + Individualization (Индивидуализация — видение уникальности каждого):</strong> Индивидуализация тянется к различиям и обращается с людьми по-разному, потому что они разные. Includer тянется к общему. Вместе они дают полную картину: что нас объединяет — и что делает вклад каждого отдельным. Партнёр с Индивидуализацией помогает не просто вовлечь людей, но и объяснить, почему именно этот человек уникально ценен в данной ситуации.</p>
+<p><strong>Includer + Strategic (Стратегическое мышление — нахождение лучшего пути среди альтернатив):</strong> Includer со Стратегическим мышлением становится искусным в определении нужных людей, их ролей и того, как позаботиться о тех, кто не участвует напрямую. Это даёт осознанное, обоснованное включение вместо рефлекторного расширения.</p>
+<p><strong>Includer + Arranger (Организатор — оркестровка людей и ресурсов для максимальной отдачи):</strong> Аналогично Стратегическому мышлению — помогает переводить «кто должен быть здесь» в «кто что делает и в каком составе». Организатор добавляет операционную структуру, не позволяющую включённости превратиться в хаос.</p>
+<p><strong>Includer + Focus (Фокус — приоритет и доведение до конца):</strong> Фокус даёт ту границу, которая нужна природной широте Includer. Высокое принятие людей (Includer) + высокие ожидания по результатам (Фокус) описывается как особенно мощное сочетание — люди чувствуют себя по-настоящему принятыми и по-настоящему подотчётными. [S1]</p>
+<p><strong>Includer + Harmony (Гармония — избегание конфликтов, поиск консенсуса):</strong> Вместе помогают обрабатывать большой объём разнородных мнений и быстро приходить к работающему согласию — полезно в ролях с большим количеством фасилитации.</p>
+<p><strong>Includer + Connectedness (Связанность — убеждённость во всеобщей взаимосвязи):</strong> Оба таланта несут открытость и ориентацию за пределы отдельного человека. Связанность добавляет философское основание для того, почему включённость важна; Includer обеспечивает поведенческое воплощение этой идеи.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

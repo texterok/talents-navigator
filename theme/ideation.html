@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ideation — Генератор идей · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain strat">Стратегическое мышление</div>
+    <h1>Ideation</h1>
+    <div class="hero-sub">Генератор идей</div>
+    <p class="hero-def">Что такое Ideation</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое Ideation</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое Ideation</p>
+<p><strong>Официальное определение:</strong> люди с высоким Ideation очарованы идеями и способны находить связи между явлениями, которые кажутся абсолютно несхожими между собой.</p>
+<p>Ideation — стратегический мыслительный талант. Он не про действие, не про отношения, не про исполнение — он про генерацию и соединение идей внутри головы.</p>
+<p>Суть таланта — два механизма, которые работают одновременно:</p>
+<ul class="marker-list">
+<li><strong>Создание нового:</strong> способность рождать мысли, которых раньше не существовало — не через накопление данных и не через логический вывод, а через неожиданные связи между вещами, которые раньше казались несвязанными.</li>
+<li><strong>Соединение несвязанного:</strong> видеть скрытую связь между явлениями, которые другим кажутся полностью разными. Не поверхностное сходство, а неочевидная нить, которую остальные не замечают.</li>
+</ul>
+<blockquote class="md-quote">«Они наслаждаются тем, чтобы взять мир, который мы все знаем, и повернуть его так, чтобы взглянуть под странным, но неожиданно открывающим новое углом.» [S1]</blockquote>
+<p>Идея здесь понимается широко: не только бизнес-концепция, но и концепт, объяснение, аналогия, неожиданное соединение двух несвязанных вещей. [S3]</p>
+<p><strong>Три оси таланта</strong> [S1]:</p>
+<ul class="marker-list">
+<li><strong>Креативность</strong> — способность видеть вещи иначе, задавать вопрос «а что, если...»</li>
+<li><strong>Сложность</strong> — влечение к сложным системам и задачам; желание не только распутать клубок, но и найти в нём простоту, а потом объяснить эту простоту другим</li>
+<li><strong>Связность</strong> — умение видеть неочевидные связи между идеями из разных областей</li>
+</ul>
+<p><strong>Два типа</strong> [S1]:</p>
+<ul class="marker-list">
+<li><strong>Реактивный</strong> — берёт уже существующую идею или ситуацию и спрашивает «а что, если бы это было иначе?». Более распространённый вариант.</li>
+<li><strong>Проактивный</strong> — генерирует идеи самостоятельно, не дожидаясь задачи или запроса.</li>
+</ul>
+<p>Большинство людей с Ideation тяготеют больше к одному из типов, хотя оба присутствуют.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как проявляется</p>
+<p><strong>Поведение и признаки:</strong></p>
+<ul class="marker-list">
+<li>Идеи приходят постоянно, неостановимо — как попкорн: «они просто продолжают появляться» [S1, S3, S5].</li>
+<li>Человек не испытывает скуки: в любой момент есть что-то новое и интересное для размышления.</li>
+<li>Мышление не линейное: не «сначала А, потом Б», а прыжки между идеями в любом направлении — в отличие от Strategic (склонность к построению планов через опции) или Futuristic (склонность к мышлению конкретным будущим горизонтом).</li>
+<li>В проактивном режиме Ideation задаёт вопрос «а что, если» не под конкретную задачу — просто потому что это интересно. Идея рождается раньше, чем появляется запрос [S1, S2].</li>
+<li>Идеи появляются быстро и без предупреждения — даже в разговоре с незнакомым человеком, даже без подготовки [S3].</li>
+<li>Легко переключается между темами, предметно нейтрален: «неважно, о чём — идеи будут» [S3].</li>
+<li>Часто замечает то, что другие пропустили: связи, паттерны, аналогии.</li>
+<li>Трудно засыпает: мозг продолжает работать и ночью [S1].</li>
+<li>В детстве окружающие часто замечали, что человек «думает иначе», что у него «откуда-то берутся идеи» [S3].</li>
+<li>Люди рядом начинают приходить с запросами: «дай мне пять идей» — и это один из сильнейших сигналов, что талант работает [S5, S6].</li>
+</ul>
+<p><strong>Ключевое отличие Ideation от других «творческих» талантов:</strong></p>
+<ul class="marker-list">
+<li>Input (Накопитель) — творит через сбор и отбор лучшей информации из уже существующего.</li>
+<li>Futuristic (Прозорливый) — мыслит новым, но в привязке ко времени и к тому, что будет.</li>
+<li>Strategic (Стратег) — тоже спрашивает «что, если», но ориентирован на опции и маршруты к цели.</li>
+<li>Ideation — создаёт мысль, которой не существовало нигде и никогда, без временного якоря и без цели [S2, S3, S5].</li>
+</ul>
+<blockquote class="md-quote">«Из 34 талантов Ideation — наиболее близкий к общепринятому понятию настоящей творческой активности: рождение мысли, которой не было в ментальном пространстве раньше.» [S6]</blockquote>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">Ценность для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Ценность для команды и организации</p>
+<p><strong>Роль в команде:</strong></p>
+<p>В процессе решения проблем есть несколько этапов: генерация вариантов → фильтрация → оценка → планирование. Человек с Ideation незаменим на первом — он создаёт сырой материал, с которым дальше работают остальные [S5].</p>
+<p>Конкретные вклады:</p>
+<ul class="marker-list">
+<li><strong>Выход из тупика:</strong> когда команда снова и снова возвращается к одному и тому же решению или спору, человек с Ideation предлагает принципиально другой угол — способ сойти с привычной колеи [S6].</li>
+<li><strong>Перезагрузка энергии:</strong> если темп команды достиг плато, один разговор с человеком с высоким Ideation способен дать ощущение «мы снова начинаем» [S6].</li>
+<li><strong>Взгляд со стороны без погружения:</strong> не нужно знать всю историю проекта, чтобы предложить полезную идею. Это делает человека с Ideation доступным ресурсом для любой стадии [S6].</li>
+<li><strong>Объяснение сложного:</strong> склонность находить простоту в сложности позволяет делать непонятное понятным [S1].</li>
+<li><strong>Управление изменениями через связи:</strong> в момент перемен человек с Ideation умеет найти знакомое в незнакомом — «это похоже на то, что мы уже делали» — и так снижать тревогу команды [S3].</li>
+<li><strong>Множество углов зрения:</strong> способность смотреть на одну и ту же проблему с позиции разных людей, ролей или дисциплин — не притворяясь, а реально переключая рамку [S6].</li>
+</ul>
+<p><strong>Как измерять результативность:</strong></p>
+<p>Менеджеру стоит оценивать вклад не через «сколько задач закрыто», а через «какой новый подход мы попробовали». Человека с Ideation вдохновляет то, что его идеи берут в работу, а не количество выполненных поручений [S6].</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Тёмная сторона / риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Тёмная сторона / риски</p>
+<p><strong>Без суждения — только количество.</strong> Ideation сам по себе не оценивает идеи и не отбирает лучшие. В чистом виде талант выдаёт идеи без фильтра «хорошая / плохая». Это создаёт иллюзию, что все идеи одинаково ценны [S2].</p>
+<p><strong>Незавершённость.</strong> Идеи появляются быстрее, чем любая из них успевает реализоваться. К моменту, когда одна идея проходит путь от рождения до внедрения, в голове уже тысяча других. Риск — ничего не доводить до конца [S2].</p>
+<p><strong>Путаница: обсуждение vs. обязательство.</strong> Энтузиазм по поводу идеи легко принимается окружающими за готовность действовать. Человек с Ideation может горячо обсуждать что-то без намерения это реализовывать — и это дезориентирует коллег с высоким Executing-доменом [S5].</p>
+<p><strong>Идеи ≠ ценности ≠ мнения.</strong> Человек с Ideation может генерировать идеи, прямо противоречащие его собственным убеждениям — потому что для него генерация идей и выражение мнения это разные режимы. Он способен предложить вариант, с которым сам не согласен, просто чтобы сдвинуть застрявший процесс. Ответственность — явно обозначать, когда идея превратилась в реальную позицию [S4].</p>
+<p><strong>Подавление команды потоком.</strong> Выдать сто идей за пять минут — это норма. Но для людей, которые не думают таким образом, это подавляет, а не вдохновляет. Особенно уязвимы люди с Deliberative (Осторожным) или Discipline (Дисциплиной) [S2, S3].</p>
+<p><strong>Дестабилизация на этапе исполнения.</strong> Когда команда перешла от генерации к реализации, новая идея от лидера с Ideation разрушает фокус. Пример: пастор, который вышел из комнаты, чтобы не мешать команде выполнять уже принятый план [S3].</p>
+<p><strong>Ревность к чужой реализации.</strong> В незрелом состоянии человек с Ideation может болезненно воспринимать, когда кто-то берёт его идею и реализует её — «это моя идея!». Зрелость — научиться отдавать идею и радоваться общему результату [S6].</p>
+<p><strong>Тревога и хроническое недосыпание.</strong> Мозг не отключается. Сложно заснуть, потому что идеи продолжают приходить. Это не всегда проблема, но при высокой интенсивности — физический ресурс [S1].</p>
+<p><strong>«Сырое» vs. «зрелое»:</strong></p>
+<table class="maturity-table"><thead><tr><th>Сырое (me)</th><th>Зрелое (we)</th></tr></thead><tbody><tr><td>Подавляет окружающих потоком идей</td><td>Терпелив, даёт другим усвоить</td></tr><tr><td>Тревожен, перескакивает</td><td>Энергичен, говорит быстро — но знает, куда ведёт</td></tr><tr><td>Сеет идеи хаотично, куда попало</td><td>Выбирает момент и аудиторию — делится там, где идея может прорасти</td></tr><tr><td>Выдаёт много — ни одна не доходит до финала</td><td>Доводит идею до точки передачи: сформулировал, отдал, отпустил</td></tr><tr><td>Горечь, когда идею не слышат</td><td>Понимает ценность времени и контекста</td></tr><tr><td>Генерирует ради генерации</td><td>Генерирует ради пользы другим</td></tr></tbody></table>
+<p>[S2]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать</p>
+<p><strong>Практики для человека с Ideation:</strong></p>
+<li><strong>Выпускать идеи без обязательств.</strong> Завести дневник, голосовые заметки, отдельный канал — место, куда можно сбрасывать всё, что приходит. Это снимает давление «сделать с этим что-то» и освобождает место для следующей волны [S5].</li>
+<li><strong>Буфер до и после встреч.</strong> 10 минут в календаре до важной встречи — не для подготовки, а чтобы записать накопившиеся идеи и разгрузить голову. После встречи — сразу зафиксировать то, что пришло в процессе. Цель: прийти на встречу с вниманием, а не с переполненной головой [S5].</li>
+<li><strong>Учиться различать «мы генерируем» и «мы обязуемся».</strong> Ввести в практику фразу «я просто идеирую» или «мы сейчас в режиме мозгового штурма» — чтобы создать безопасное пространство и не вводить коллег в заблуждение [S2, S5].</li>
+<li><strong>Находить плодородную аудиторию.</strong> Замечать, в каких ситуациях и с какими людьми идеи приживаются — и намеренно идти туда первым. Зрелость не в том, чтобы везде генерировать, а в том, чтобы выбирать момент [S2].</li>
+<li><strong>Добавлять ценность к идее, а не только идею.</strong> Уметь объяснить не только «что», но и «почему это хорошо» — хотя бы в первом приближении. Это снижает сопротивление при восприятии: людям проще принять идею, когда она приходит с обоснованием [S2].</li>
+<li><strong>Дожидаться идей, которые возвращаются.</strong> Если одна и та же мысль приходит снова и снова — это сигнал. Сигнал к действию. Не первая идея, а та, что выжила [S6].</li>
+<li><strong>Переосмысливать «старые» идеи.</strong> Когда что-то кажется уже известным и скучным — задать себе вопрос: «Как я мог бы это сформулировать иначе? Что изменилось, раз это снова всплыло?» Это перезапускает интерес [S2].</li>
+<li><strong>Принять, что реализация — не твоя задача.</strong> Научиться отдавать идею и не претендовать на её выполнение. Чем быстрее приходит понимание, что идей не «убудет», тем легче делиться [S6].</li>
+<li><strong>Использовать идеирование как инструмент снятия стресса.</strong> Проблема не в том, что мозг думает перед сном — он всё равно будет. Проблема в том, о чём он думает. Намеренно взять нейтральную, не личную задачу и начать генерировать идеи без цели и без фиксации — это переключает мозг с тревожной петли на творческую, которая постепенно затихает сама [S4].</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком с Ideation</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком с Ideation</p>
+<p><strong>Для менеджеров:</strong></p>
+<ul class="marker-list">
+<li><strong>Явно назвать режим встречи.</strong> Перед разговором обозначить: «мы генерируем варианты» или «мы принимаем решение». Без этой разметки человек с Ideation работает по умолчанию в режиме генерации — и обе стороны расходятся с разными ожиданиями [S3, S5, S6].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Задавать конкретный запрос.</strong> «Дай мне три идеи» или «у тебя пять минут — что ты думаешь по этому поводу?» — это не ограничение, это подарок. Человеку с Ideation комфортно с чётким заданием [S5, S6].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Приходить до того, как решение принято.</strong> Подключать человека с Ideation на этапе «мы ещё не знаем, что делать» — не после. Идеи, поданные в финальную стадию проекта, дестабилизируют [S5].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Давать время до встречи.</strong> Предупреждение заранее — не обязательно, но если дать время подумать, человек приходит с уже отфильтрованными, более сильными идеями [S5].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Не бояться говорить «нет» или «стоп».</strong> Человек с Ideation не обижается, когда идею не берут или когда его останавливают. Он легко переключается. Страх обидеть его — одно из распространённых заблуждений [S5].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Не держать на рутине без смысла.</strong> Если нужно держать человека в стандартной процедуре — объяснять зачем. Без объяснения — это источник фрустрации. Если есть любая возможность дать свободу в том, как делать — давать [S5].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Спрашивать, какие правила нельзя нарушать.</strong> Ideation не про нарушение ограничений ради нарушения — он про работу в свободном пространстве внутри заданных границ. Если чётко назвать, что жёстко зафиксировано, человек с Ideation получает «заповедник» для идей и не тратит энергию на столкновение с запретами [S4].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Обещать результат, а не маршрут.</strong> Человек с Ideation надёжен — но не предсказуем. Если он обязуется достичь цели, он её достигнет, но способ каждый раз будет другим. При согласовании обязательств важно фиксировать что будет сделано, а не как именно [S4].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Признание через использование.</strong> Открыто говорить коллегам «я пришла к ней за идеями» — это сильнее похвалы. Видимое признание суперсилы, а не просто слова [S5].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Признавать через момент идеи, а не через результат.</strong> Для человека с Ideation значимым является сам момент рождения идеи — не завершённый проект. Признание через связь с конкретным моментом озарения («помнишь, когда ты это придумал тогда-то») работает сильнее, чем итоговая похвала. Материальный якорь — предмет, напоминающий об этом моменте, — эффективный способ такого признания [S4].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Создавать канал для идей.</strong> Если есть постоянное место, где человек с Ideation может предлагать идеи — «журнал идей», регулярные брейнстормы — это позволяет использовать талант системно, а не хаотично [S3].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Отслеживать прогресс через идеи, а не задачи.</strong> Формулировать успех как «какой новый подход мы внедрили», а не «сколько пунктов закрыли» [S6].</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Спрашивать:</strong> «Что ты создал в последнее время? Какое нестандартное решение нашёл? Какая идея возвращается к тебе снова и снова?» [S6]</li>
+</ul>
+<p><strong>Для коллег:</strong></p>
+<ul class="marker-list">
+<li>Если Ideation не в топ-5 — найти в команде человека с этим талантом и использовать его как источник идей: спросить лучшие мысли по своей теме и продвигать те, что резонируют. Это не делегирование творчества — это использование чужой сильной стороны как ресурса [S4].</li>
+</ul>
+<ul class="marker-list">
+<li>Если нужны идеи — просить напрямую и называть количество: «дай пять вариантов». Это идеальный запрос.</li>
+<li>Не воспринимать энтузиазм в разговоре как обязательство. Уточнять: «Мы сейчас просто думаем или договариваемся?»</li>
+<li>Понимать, что предложение сотни идей — это не хаос, а рабочий процесс. Из ста выживет одна — хорошая.</li>
+<li>Если сейчас не время для новых идей (дедлайн, кризис, уже принятое решение) — сказать об этом прямо: «Идея хорошая, давай вернёмся к ней после». Это честнее, чем молча игнорировать.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">С какими талантами сочетается</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>С какими талантами сочетается</p>
+<p><strong>Наиболее частые сочетания по данным Gallup:</strong></p>
+<p><strong>Strategic (Стратег) — самое распространённое (46% вероятность совместного появления в топ-5)</strong> [S2]:</p>
+<ul class="marker-list">
+<li>Оба задают вопрос «что, если», но по-разному: Ideation генерирует без цели, Strategic фильтрует и строит маршрут.</li>
+<li>Человек со Strategic (склонностью к построению маршрута через опции) даёт структуру плана, в которую можно вставлять идеи — как доска для стикеров: идеи находят своё место, а не летают в воздухе.</li>
+<li>Ideation задаёт вопрос «почему бы нет», Strategic — «что дальше» или «что, если это произойдёт».</li>
+<li>Вместе: творческое обогащение плана плюс способность двигаться к цели [S2, S5].</li>
+</ul>
+<p><strong>Futuristic (Прозорливый):</strong></p>
+<ul class="marker-list">
+<li>Оба мыслят за пределами текущего. Разница — временной якорь: Futuristic привязан к будущему и мотивирован прогрессом; Ideation не привязан ко времени и мотивирован новизной.</li>
+<li>Futuristic может дать Ideation горизонт: «нам нужны идеи для того, что будет через пять лет» [S2, S5, S6].</li>
+</ul>
+<p><strong>Analytical (Аналитик):</strong></p>
+<ul class="marker-list">
+<li>Ideation спрашивает «что ещё не существует», Analytical — «что есть и доказано».</li>
+<li>Сочетание даёт идее заземлённость и доказательную базу. Хорошая пара для ситуаций, где идею нужно защищать перед скептиком [S2].</li>
+</ul>
+<p><strong>Maximizer (Максималист):</strong></p>
+<ul class="marker-list">
+<li>Maximizer помогает ранжировать идеи — выбрать лучшую из потока. Ideation порождает, Maximizer отбирает [S2].</li>
+</ul>
+<p><strong>Activator (Катализатор):</strong></p>
+<ul class="marker-list">
+<li>Activator запускает идею в действие. Без него Ideation рискует остаться в режиме вечного «а что, если» [S2].</li>
+</ul>
+<p><strong>Arranger (Организатор):</strong></p>
+<ul class="marker-list">
+<li>Помогает держать несколько идей и процессов в движении одновременно — особенно полезно, когда Ideation запустил параллельно слишком много [S2].</li>
+</ul>
+<p><strong>Наименее вероятное сочетание — Consistency (Последовательность, 1% совместного появления)</strong> [S2]:</p>
+<ul class="marker-list">
+<li>Человек со склонностью к стабильности и последовательности (Consistency) видит силу в том, что делается одинаково раз за разом; Ideation видит силу в том, чего ещё не было.</li>
+<li>При совместном наличии даёт редкое сочетание: не просто новая идея, а идея, которую можно повторить и масштабировать — не разовое озарение, а воспроизводимый процесс.</li>
+</ul>
+<p><strong>Почему нужны партнёры с Executing-талантами (Achiever, Discipline, Responsibility):</strong></p>
+<ul class="marker-list">
+<li>Ideation сам по себе не производит результат — он производит варианты. Партнёры с фокусом на исполнении берут идею и доводят до конца. Зрелость человека с Ideation — научиться отдавать идею им и воспринимать это как победу, а не потерю [S1, S6].</li>
+</ul></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

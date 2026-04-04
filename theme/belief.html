@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belief — Убеждение · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain exec">Исполнение</div>
+    <h1>Belief</h1>
+    <div class="hero-sub">Убеждение</div>
+    <p class="hero-def">Что такое Убеждённость</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое Убеждённость</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое Убеждённость</p>
+<p><strong>Суть таланта:</strong> У людей с высокой Убеждённостью есть набор глубинных ценностей, которые <strong>не меняются</strong> со временем. Из этих ценностей вырастает ощущение смысла и жизненной цели. Ценности — не просто внутренние убеждения: они напрямую запускают действие.</p>
+<p><strong>Область применения:</strong> Исполнение. Ключевое отличие от других талантов этой группы: Убеждённость не просто формирует у человека внутреннее ощущение того, что правильно делать и от чего отказаться, — она превращает ценности в двигатель, который заставляет действовать. Человек делает что-то не потому, что взял на себя обязательство (это Ответственность), и не потому, что задача срочная, — а потому, что его ценности этого требуют.</p>
+<blockquote class="md-quote">«Дело не просто в том, что у тебя хорошие ценности — дело в том, что именно ценности выгоняют тебя из дома по утрам.» [S2]</blockquote>
+<p><strong>Распространённость:</strong> Убеждённость входит в топ-5 примерно у 11% базы данных Gallup — примерно у каждого десятого человека.</p>
+<h3>Чем отличается от похожих талантов</h3>
+<table class="maturity-table"><thead><tr><th>Талант</th><th>Что запускает действие</th></tr></thead><tbody><tr><td><strong>Убеждённость (Belief)</strong></td><td>Ценности — «Я делаю это, потому что так правильно по моим главным убеждениям»</td></tr><tr><td><strong>Ответственность (Responsibility)</strong></td><td>Обязательство — «Я делаю это, потому что обещал и на меня рассчитывают»</td></tr><tr><td><strong>Последовательность (Consistency)</strong></td><td>Надёжная привычка — «Я делаю это одинаково, потому что это работает»</td></tr><tr><td><strong>Значимость (Significance)</strong> — влияние</td><td>Признание и внешний результат — смысл появляется <em>через</em> работу; Убеждённость — работа <em>выбирается</em> под уже существующий смысл</td></tr><tr><td><strong>Фокус (Focus)</strong> — исполнение</td><td>Интенсивность задачи — страсть к самому делу, а не к смыслу за ним</td></tr></tbody></table>
+<p><strong>Важное уточнение:</strong> отсутствие Убеждённости в топ-5 не означает, что у человека нет ценностей. Разница в том, что у людей с высокой Убеждённостью ценности напрямую встроены в список дел — любое касание этих ценностей немедленно влияет на то, как они действуют.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как проявляется</p>
+<p><strong>Поведенческие признаки:</strong></p>
+<ul class="marker-list">
+<li>Чёткое внутреннее ощущение «правильно / неправильно» по конкретным вопросам — не обязательно по всем, но по тому, что действительно важно</li>
+<li>Резкие скачки энергии, когда ситуация поддерживает или нарушает его ценности — коллеги описывают это как мгновенную, нутряную реакцию</li>
+<li>В момент ценностного выбора — не анализ, а ощущение уверенности: «куда идти — понятно»</li>
+<li>Реакции «однозначно да» или «категорически нет» — почти нет серой зоны в главном</li>
+<li>Работает усерднее и дольше, когда работа совпадает с ценностями; усилие не ощущается как борьба</li>
+<li>Воспринимает себя как проводника, представителя идеи или жизненной философии — определённого взгляда на то, как должна быть устроена жизнь или работа</li>
+<li>Стремится к целостности — хочет быть одним и тем же человеком на работе и дома; избегает ситуаций, где нужно «отключить» часть себя</li>
+<li>Часто занимается волонтёрством, входит в советы, берётся за неоплачиваемую работу, если она совпадает с миссией</li>
+<li>Может долго оставаться незаметным — включается не постоянно, а только когда что-то задевает ценности</li>
+</ul>
+<p><strong>Как выглядит до того, как человек это понял в себе:</strong> резкая смена энергии. «Однозначно да.» «Категорически нет.» Десятилетиями остаётся на одном месте, потому что миссия совпадает. Внезапно уходит из-за «дрейфа миссии» — когда организация постепенно отходит от тех ценностей, которые изначально её определяли: не человек меняется, а место вокруг него.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">Польза для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Польза для команды и организации</p>
+<h3>Для команды</h3>
+<ul class="marker-list">
+<li><strong>Совесть группы:</strong> ставит вопрос «что из этого действительно правильно взять на себя?» — и делает явным то, от чего стоит отказаться.</li>
+<li><strong>Якорь миссии:</strong> не даёт отклониться от курса. Когда появляются соблазнительные, но отвлекающие возможности, Убеждённость удерживает команду у того, что она отстаивает.</li>
+<li><strong>Упрощение:</strong> сужает набор вариантов до того, что существенно для миссии. Отфильтровывает лишнее через призму ценностей.</li>
+<li><strong>Создаёт предсказуемое пространство:</strong> чёткость в том, что допустимо, а что нет, формирует границы, внутри которых другие могут спокойно работать.</li>
+<li><strong>Притягивает людей:</strong> убеждённость заразительна. Стабильность и определённость человека с этим талантом вызывают доверие и привлекают тех, кто хочет работать ради чего-то важного.</li>
+</ul>
+<h3>Для руководства</h3>
+<ul class="marker-list">
+<li>Не тратит время на бессмысленные инициативы — руководитель с высокой Убеждённостью не возьмётся за работу, которая ни для чего не важна.</li>
+<li>Служит компасом в период перемен — удерживает людей у понимания, зачем вообще эта работа.</li>
+<li>Считывает страсть в других: сотрудниках, коллегах, клиентах. Умеет замечать и говорить на языке смысла.</li>
+<li>Строит доверие, публично обозначая, какое поведение соответствует миссии, а какое нет — до того, как возникнут проблемы, а не после.</li>
+<li>Способен передавать собственный импульс другим — в разговоре, публичном выступлении или личном примере заряжает тех, кто потерял ориентир или ощущение смысла.</li>
+<li>Вдохновляет надеждой, связывая ежедневные задачи с более широким влиянием.</li>
+</ul>
+<p><strong>Важное замечание по измерению:</strong> Убеждённость — внутренне мотивированный талант. Измерять прогресс человека с этим талантом через количество подписчиков, клиентов или влияние на других — значит измерять не то. Важно — собственное усилие человека в направлении ценностно значимой цели.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Тёмная сторона и риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Тёмная сторона и риски</p>
+<h3>Слепые пятна</h3>
+<ul class="marker-list">
+<li><strong>Оценка других через свои ценности:</strong> человек может не замечать индивидуальные различия, пропуская всё через свой ценностный фильтр. Результат — осуждение вместо любопытства.</li>
+<li><strong>Закрытость под угрозой:</strong> когда глубинные ценности чувствуют угрозу, Убеждённость может превратиться в плотину — блокировать, закрываться, а не вступать в диалог.</li>
+<li><strong>Разделение на «своих» и «чужих» в руководстве:</strong> высокая чёткость в «наших ценностях» может непреднамеренно создавать ощущение, кто принадлежит к группе, а кто нет.</li>
+</ul>
+<h3>Незрелая и зрелая Убеждённость</h3>
+<p>Это наиболее практически полезное различие из всех рассмотренных эпизодов серии Gallup Theme Thursday по теме Убеждённости (сезоны 1–3, 5–6):</p>
+<table class="maturity-table"><thead><tr><th>Незрелая Убеждённость</th><th>Зрелая Убеждённость</th></tr></thead><tbody><tr><td>Движется <strong>против</strong> тех, кто держится других ценностей</td><td>Движется <strong>к</strong> — вступает в диалог с теми, кто думает иначе</td></tr><tr><td>Определяется через то, чему противостоит</td><td>Определяется через то, что отстаивает</td></tr><tr><td>Осуждающая, закрытая, блокирующая</td><td>Устойчивая, стабильная, открытая к вызову</td></tr><tr><td>Воспринимается как упрямая, старомодная, самоправедная</td><td>Воспринимается как принципиальная, надёжная, уверенная</td></tr><tr><td>Пытается убедить других принять свои ценности</td><td>Чётко транслирует свои ценности, не требуя их разделить</td></tr><tr><td>Борется за всё</td><td>Осознанно выбирает, за что стоит бороться</td></tr></tbody></table>
+<p><strong>Метафора якоря:</strong> якорь может утопить лодку, а может удержать её в шторм. Та же Убеждённость — незрелая — это мёртвый груз; зрелая — это балласт, который держит устойчиво в шторм.</p>
+<p><strong>Риск в отношениях:</strong> два человека с высокой Убеждённостью и разными ценностями могут серьёзно столкнуться, так и не назвав, о чём именно спорят. Когда ценности выходят на поверхность и сравниваются напрямую, они нередко обнаруживают больше общего, чем казалось, — или хотя бы понимают настоящий источник конфликта.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать Убеждённость</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать Убеждённость</p>
+<p>Это действия для тех, у кого этот талант есть, и кто хочет перейти от незрелого проявления к зрелому:</p>
+<p><strong>1. Назвать свои ценности явно.</strong></p>
+<p>Убеждённость питается от «что правильно» — но безымянные ценности нельзя использовать осознанно. Сделайте сортировку ценностей: выберите топ-5 безусловных из набора примерно 25 карточек. Повторяйте упражнение ежегодно. Отслеживайте, какие ценности остаются постоянными в разных контекстах — это и есть ядро. Те, что меняются, говорят о том, что было ситуационно важным.</p>
+<p><strong>2. Дать своим ценностям голос.</strong></p>
+<p>Убеждённость не обязана проповедовать — но она обязана говорить. Другие не могут работать с тем, что не видят. Объясняйте, откуда вы исходите, чтобы коллеги понимали ваши реакции, могли предсказать вашу включённость и эффективно с вами сотрудничать.</p>
+<p><strong>3. Перейти от «против» к «за».</strong></p>
+<p>Незрелая Убеждённость тратит энергию на крик «это неправильно». Зрелая — ведёт с позиции «вот что правильно». Практикуйтесь формулировать, что вы отстаиваете, а не только что не приемлете.</p>
+<p><strong>4. Связывать повседневную работу с влиянием на миссию.</strong></p>
+<p>Убеждённость жаждет движения к ценностно значимой цели. Выработайте привычку: получая задачу, спрашивайте себя — «как это связано с нашей миссией? Как это влияет на людей, которым мы служим?» По возможности получайте прямой контакт с теми, на кого влияет ваша работа.</p>
+<p><strong>5. Использовать подход «что выделяется» при расстановке приоритетов.</strong></p>
+<p>Если чувствуете, что что-то не так — этот сигнал реален. Скорее всего, что-то действительно не так. Вместо того чтобы начинать с «что осталось незавершённым» — то есть задач, которые просто числятся невыполненными вне зависимости от их значимости, — начинайте с «что сейчас действительно важно». Дайте себе право расставлять приоритеты по важности, а не только по незавершённости.</p>
+<p><strong>6. Активно выстраивать согласованность между работой и ценностями.</strong></p>
+<p>Цель — не баланс между работой и жизнью. Цель — целостность: чтобы внешняя работа соответствовала внутренней миссии. Ищите проекты и роли, где эта согласованность есть. Заранее называйте несоответствия, чтобы управлять ими, а не оказываться застигнутым врасплох.</p>
+<p><strong>7. Научиться выбирать битвы, не отказываясь от ценностей.</strong></p>
+<p>Ценности — это не то же самое, что приоритеты: приоритеты говорят <em>что</em> делать; ценности говорят <em>зачем</em>. Зрелая Убеждённость не идёт на компромисс с ценностями — она заранее избегает ситуаций, в которых придётся их нарушить, вместо того чтобы доводить каждый конфликт до обострения.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком, у которого есть Убеждённость</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком, у которого есть Убеждённость</p>
+<h3>Для руководителей</h3>
+<p><strong>Чтобы понять:</strong></p>
+<ul class="marker-list">
+<li>Спрашивайте: «Что привело тебя на эту роль?», «На что ты всегда найдёшь время?», «Что самое важное мы должны сделать правильно?»</li>
+<li>Следите за резкими сменами энергии — быстрое «однозначно да» или «категорически нет» сигнализирует, что задета ценность.</li>
+</ul>
+<p><strong>Чтобы вовлечь:</strong></p>
+<ul class="marker-list">
+<li>Связывайте цели команды с тем, что она отстаивает, а не только с бизнес-результатами. «Какую разницу мы пытаемся создать?» мотивирует сильнее, чем «попасть в цифру».</li>
+<li>Обсуждайте организационные ценности напрямую — не как лозунги на стене, а как реальные вопросы: «Мы их проживаем? Мы от них отдаляемся?»</li>
+<li>Согласуйте конкретную роль и задачи человека с теми частями миссии организации, которые его по-настоящему вдохновляют.</li>
+</ul>
+<p><strong>Чтобы измерить прогресс:</strong></p>
+<ul class="marker-list">
+<li>Не измеряйте только внешнее влияние (количество подписчиков, клиентов, конверсий). Измеряйте усилие в направлении ценностно значимых целей.</li>
+<li>Помогите выстроить простой инструмент отслеживания прогресса по ценностно значимым целям — например, список из 3–5 вопросов, которые человек задаёт себе при расстановке приоритетов: «Это двигает нас к нашей миссии? Это важно для людей, которым мы служим?»</li>
+</ul>
+<p><strong>Чтобы удержать:</strong></p>
+<ul class="marker-list">
+<li>Такие люди уходят, когда сталкиваются с «дрейфом миссии» — когда действия организации расходятся с её декларируемыми ценностями или с личными ценностями человека. Прозрачность о направлении организации и согласованность ценностей — это инструмент удержания, а не просто сигнал вовлечённости.</li>
+</ul>
+<h3>Для коллег</h3>
+<ul class="marker-list">
+<li>Когда человек становится осуждающим, проявляйте любопытство, а не защищайтесь. Замените стену на стену — вопросом: «Что для тебя здесь важно?»</li>
+<li>Поймите: кажущаяся негибкость — это обычно сработавшая ценность, а не упрямство ради упрямства.</li>
+<li>Будьте готовы поделиться своими безусловными принципами в ответ. Взаимная открытость создаёт доверие, на которое откликается такой человек.</li>
+<li>Используйте его язык — замечайте слова, которые он повторяет, и включайте их в свои вопросы.</li>
+<li>Доверяйте его интуиции, когда он чувствует, что что-то не так. Это реальные данные.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">Сочетания с другими талантами</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Сочетания с другими талантами</p>
+<h3>Самая частая пара</h3>
+<p><strong>Убеждённость + Ответственность</strong> (статистически самое частое сочетание; оба таланта ориентированы на других):</p>
+<p>Оба несут ценностную ориентацию. Вместе: хранитель и миссии, и обязательств. Убеждённость определяет, на что сказать «да»; Ответственность обеспечивает выполнение этих «да». «Я берусь за задачи, совпадающие с моими ценностями, и одна из моих ценностей — держать слово.» [S5]</p>
+<h3>Взаимодополняющие пары (разные сильные стороны, высокая синергия)</h3>
+<p><strong>Убеждённость + Перспектива (Futuristic)</strong> — мышление и стратегия:</p>
+<p>Убеждённость может застревать в многократном повторении одной и той же ценностно близкой работы — там комфортно. Перспектива добавляет видение: куда могут привести эти ценности через изменения? Как миссия может расширяться в будущем?</p>
+<p><strong>Убеждённость + Контекст (Context)</strong> — аналитическое и ретроспективное мышление:</p>
+<p>Контекст добавляет глубину и убедительность — историю и истории, стоящие за ценностями. Помогает другим понять, откуда берётся миссия и почему она важна. Превращает убеждённость человека в аргумент.</p>
+<p><strong>Убеждённость + Эмпатия (Empathy)</strong> — построение отношений:</p>
+<p>Убеждённость чувствует миссию и смысл. Эмпатия чувствует реакции других людей на эту миссию. Вместе: заранее замечает, кого ценности вдохновят, а кого оттолкнут — до того, как возникнет напряжение.</p>
+<p><strong>Убеждённость + Завоевание (Woo, Winning Others Over)</strong> — влияние:</p>
+<p>Смягчает острые углы. Завоевание помогает располагать людей не только к самому человеку, но и к его делу. Результат: «обаятельный миссионер» — убеждающий, а не конфронтирующий.</p>
+<p><strong>Убеждённость + Командность (Command)</strong> — влияние; редкое сочетание (~2%):</p>
+<p>Заостряет углы. Командность усиливает импульс действовать, когда что-то неправильно. Вместе: «Это правильно, И мы что-то с этим сделаем.» Редкое сочетание. Когда присутствует — даёт сильного и директивного защитника идеи.</p>
+<h3>Маловероятные пары (встречаются вместе примерно в 2% случаев каждая)</h3>
+<p><strong>Убеждённость + Значимость (Significance)</strong> — влияние:</p>
+<p>Внешние результаты схожи — оба движимы миссией, — но механика противоположная. Значимость находит миссию в работе (признание и результат движут поиском смысла). Убеждённость находит работу, которая воплощает уже существующую миссию. Их движущие силы не усиливают, а нейтрализуют друг друга — поэтому они редко соседствуют.</p>
+<p><strong>Убеждённость + Фокус (Focus)</strong> — исполнение:</p>
+<p>Оба привносят интенсивность и страсть. Но Фокус направляет интенсивность на саму задачу; Убеждённость — на смысл за ней. Они по-разному расставляют приоритеты и по-разному поддерживают энергию.</p>
+<p><strong>Убеждённость + Командность (Command)</strong> — влияние <em>(см. также «Взаимодополняющие пары» выше)</em>:</p>
+<p>Пара встречается редко именно потому, что их ориентации противоположны: Убеждённость направлена внутрь и запускает личное действие из ценностей; Командность направлена наружу и движет других к действию. Редкость — статистическая, не качественная: когда эти два таланта всё же соседствуют, они дают мощного и директивного защитника идеи (подробнее — в разделе выше).</p>
+<p>---</p>
+<p><em>Составлено по транскриптам Gallup Theme Thursday, сезоны 1–3, 5–6 (2015–2020). Ведущие: Курт Лифельд (сезон 1), Майка Маккартур-Бёртон (сезоны 2–3, 5–6). Приглашённые эксперты: Келли Винклер, Тим Ходжес (сезон 1), Джейн Миллер, операционный директор Gallup (сезон 3).</em></p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

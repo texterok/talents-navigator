@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Input — Вклад · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain strat">Стратегическое мышление</div>
+    <h1>Input</h1>
+    <div class="hero-sub">Вклад</div>
+    <p class="hero-def">Что такое Input</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое Input</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое Input</p>
+<p><strong>Официальное определение (Gallup):</strong> «У вас есть потребность собирать и архивировать. Вы можете накапливать информацию, идеи, физические предметы или даже связи с людьми».</p>
+<p>Input — стратегический тип мышления. Суть: открытое, ненасыщаемое желание поглощать информацию, идеи и объекты из окружающего мира, с фоновым убеждением, что собранное когда-нибудь окажется полезным — себе или кому-то другому.</p>
+<p><strong>Ключевое отличие от похожих тем:</strong></p>
+<ul class="marker-list">
+<li><strong>Input vs Learner.</strong> Learner ценит сам процесс усвоения знания — путь от незнания к мастерству. Input ценит результат — накопленный ресурс. Learner может забыть выученное; Input хранит. Аналогия: Learner — это студент на курсе, Input — человек, который собирает все учебники по теме. [S5] Ещё точнее: «Input — это библиотека. Learner — это класс». Input занимается сбором и каталогизацией; Learner — превращением знания в мастерство. [S4]</li>
+<li><strong>Input vs Intellection.</strong> Intellection — это мышление как самостоятельный процесс, размышление ради размышления. Input — потребность собирать внешние источники, которые это мышление питают. Вместе: непрерывно пополнять запас идей и непрерывно их обдумывать. [S2]</li>
+<li><strong>Input vs Strategic.</strong> Strategic видит паттерны и строит маршрут — он картограф. Input собирает информацию и лучше понимает что и как ещё можно собрать — он куратор. [S5]</li>
+<li><strong>Input vs Ideation.</strong> Ideation создаёт новые идеи из своей головы. Input приносит идеи извне — из источников, которые уже существуют. [S6]</li>
+</ul>
+<p><strong>Формула из транскрипта:</strong></p>
+<blockquote class="md-quote">&quot;Input — это не создание информации. Это сбор её из мест, где она уже существует.&quot; [S2]</blockquote>
+<p><strong>Частота в базе данных Gallup:</strong> в топ-5 у 20% из 11 миллионов человек — шестое место по распространённости. [S1]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как проявляется</p>
+<p><strong>Что собирают люди с Input:</strong></p>
+<ul class="marker-list">
+<li>Информацию: статьи, книги, журналы, цитаты, факты, данные, статистика</li>
+<li>Слова и язык: богатый словарный запас, необычные термины, меткие выражения</li>
+<li>Инструменты и гаджеты: приложения, устройства, технологии</li>
+<li>Людей: контакты, связи, базы знакомых</li>
+<li>Артефакты и физические объекты: коллекции любого рода</li>
+<li>Идеи, фреймворки, истории, лучшие практики</li>
+</ul>
+<p>Диапазон широк. Один человек с Input собирает книги и статьи. Другой — инструменты в мастерской. Третий — 200 фотоприложений на телефоне. Четвёртый — связи и контакты людей, которых знает. Содержимое коллекции определяется человеком, а не темой.</p>
+<p><strong>Поведенческие маркеры:</strong></p>
+<ul class="marker-list">
+<li>Человек является первым источником ответа, когда коллеги задают вопросы в общий чат [S5]</li>
+<li>Испытывает нечто вроде кайфа, когда книга, прочитанная шесть лет назад, внезапно оказывается уместной в разговоре прямо сейчас [S1]</li>
+<li>Превращает «мёртвое» время (дорога, ожидание, перелёт) в время поглощения информации</li>
+<li>Испытывает лёгкий дискомфорт при мысли о выбрасывании информации — всегда звучит фоновый шёпот «а вдруг пригодится»</li>
+<li>Хочет получить копию слайдов не потому, что они нужны сегодня, а потому что могут понадобиться завтра [S6]</li>
+<li>Первым откликается с источником и конкретным материалом, когда в команде появляется вопрос [S5]</li>
+</ul>
+<p><strong>Радар достоверности.</strong> Люди с высоким Input имеют встроенный фильтр для оценки источников: они опираются на внешние данные, а не только на интуицию. Это не значит, что они не доверяют себе — это значит, что они инстинктивно ищут внешнее подтверждение, и за счёт этого умеют отличать надёжную информацию от сомнительной быстрее, чем другие. [S4]</p>
+<p><strong>Принципиальная внешняя направленность:</strong> Input смотрит наружу — на источники, идеи, артефакты, которые существуют вне самого человека. Это отличает его от большинства стратегических тем, которые работают преимущественно внутри. Именно поэтому человек с Input приносит в команду перспективы, которых у неё не было бы без него. [S6]</p>
+<p><strong>Накапливать, чтобы передавать.</strong> Ценность Input — не в том, чтобы держать информацию при себе, а в том, чтобы доставлять её туда, где она нужна. Человек, который только накапливает и никогда не делится, теряет главное — влияние на других. [S1]</p>
+<p><strong>Сеять в плодородную почву.</strong> Делиться знанием нужно не просто, а точно — там, где люди реально готовы учиться. Знать всё об интересной теме и рассказывать это людям, которым всё равно — это ощущение облегчения (как почесать зуд), но не влияние. Зрелый Input ищет момент, когда аудитория задаёт правильные вопросы, и именно тогда раскрывает то, что знает. [S4]</p>
+<p><strong>Коллекция как видение потенциала.</strong> Люди с высоким Input редко говорят «я коллекционирую бесполезные вещи». Они говорят «я вижу потенциал». Там, где другие видят мусор, хлам или устаревшую информацию — они видят будущий ресурс. Это стоит объяснять коллегам: то, что похоже на накопительство, — это на самом деле особый способ видеть ценность раньше, чем она станет очевидной. [S4]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">В чём ценность для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>В чём ценность для команды и организации</p>
+<p><strong>Человек с Input на команде:</strong></p>
+<ul class="marker-list">
+<li>Углубляет колодец ресурсов команды — у неё появляется доступ к информации и перспективам, которых без него не было бы [S6]</li>
+<li>Является ходячей энциклопедией: вероятнее всего знает немного о многом и любит делиться [S5]</li>
+<li>Никогда не бывает полностью загнан в угол: даже в хаосе или кризисе он знает, что можно найти информацию, человека или материал, который поможет двигаться дальше. Широта коллекции работает как страховочная сеть в непредвиденных ситуациях. [S4]</li>
+<li>Когда в команде расходятся мнения, не просто предлагает то, что уже есть в архиве, но переходит в режим поиска — собирает доказательства, альтернативные точки зрения, данные — чтобы расширить картину, а не подтвердить чью-то правоту [S6]</li>
+<li>В распределённых или хаотичных средах оказывается тем, кто уже сохранил всё нужное — включая то, что коллеги давно удалили как ненужное [S6]</li>
+<li>Хранит то, что команда давно выбросила. Даже если решение или материал был отброшен как нерелевантный — человек с Input может восстановить путь и объяснить, почему тогда выбрали иначе [S6]</li>
+</ul>
+<p><strong>Как Input создаёт доверие как лидер.</strong> Исследователи доверия (Маистер и др.) выделяют три его составляющих — авторитетность, надёжность и близость. Input усиливает все три:</p>
+<ul class="marker-list">
+<li><strong>Авторитетность:</strong> «Я не просто придумал это. Я читал статью, изучил журнал, узнал это от кого-то» — опора на источники, а не на мнение, делает аргумент весомее [S3]</li>
+<li><strong>Надёжность:</strong> коллеги знают, что к нему можно прийти с вопросом и не уйти с пустыми руками [S3]</li>
+<li><strong>Близость:</strong> «я нашёл это именно для тебя» — персонализированная информация сигнализирует о внимании к конкретному человеку [S3]</li>
+</ul>
+<p><strong>Input и управление изменениями:</strong> человек с Input замечает новые тренды раньше других — потому что постоянно поглощает информацию из разных источников. Появившийся термин, нарастающий паттерн, изменение в риторике индустрии — он фиксирует это до того, как оно стало очевидным для всех. Команда получает время подготовиться, а не реагировать постфактум. [S3]</p>
+<p><strong>Ценность для разнообразия команды:</strong> Input ставит перед командой вопрос: «Достаточно ли у нас источников?» Он бросает вызов однобокому мышлению, вытаскивая перспективы из мест, до которых команда сама не добралась бы. [S6]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Тёмная сторона / риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Тёмная сторона / риски</p>
+<h3>4.1. Сырой Input vs зрелый Input</h3>
+<p>Сырой Input — <strong>только потребление</strong>: собирает для себя, держит при себе. Зрелый — <strong>потребление и отдача</strong>: собирает и активно делится с теми, кому это нужно [S2].</p>
+<table class="maturity-table"><thead><tr><th>Параметр</th><th>Сырой Input</th><th>Зрелый Input</th></tr></thead><tbody><tr><td>Ответ на вопрос</td><td>5–10 вариантов из 5–10 источников</td><td>Один наиболее подходящий</td></tr><tr><td>Стиль</td><td>Пожарный шланг вместо стакана воды</td><td>Прескриптивный: «вот лучший для вас»</td></tr><tr><td>Отвлекаемость</td><td>Кроличьи норы везде, часы уходят незаметно</td><td>Намеренная работа с проверенными источниками</td></tr><tr><td>Разнообразие источников</td><td>Подписки только на то, что подтверждает уже известное</td><td>Намеренное собирание информации из разных точек зрения</td></tr><tr><td>Мобилизация</td><td>Застрял на стадии сбора</td><td>Понимает, когда «достаточно» и можно действовать</td></tr></tbody></table>
+<h3>4.2. Конкретные слепые пятна</h3>
+<p><strong>Информационный пожарный шланг.</strong> Когда кто-то просил один стакан воды, а человек с Input льёт из шланга. Это не злой умысел — это страх «дать неполный ответ» или «вдруг они придут с претензией». Защитная реакция, прикрытая избыточной информацией. [S2]</p>
+<p><strong>Физический или интеллектуальный беспорядок.</strong> Размер коллекции не имеет значения, если через неё невозможно пройти. Коллекция, в которой нельзя найти нужное, не имеет утилитарной ценности. [S5]</p>
+<p><strong>Аналитический паралич.</strong> Input сам по себе не толкает к действию — он накапливает. Без другого таланта или внешнего обязательства, которое переводит знания в дело, человек может бесконечно оставаться на стадии сбора, никогда не переходя к действию. «Для кого-то с высоким Input фраза &quot;вся информация&quot; — бесконечная» [S2]. Кроличьи норы поглощают время, изначально отведённое для работы.</p>
+<p><strong>Эхо-камера.</strong> В мире, где можно тщательно настраивать информационные потоки, Input рискует подписаться только на источники, подтверждающие уже существующие убеждения. Вместо обновления взглядов — их укрепление. Зрелый Input намеренно собирает информацию с разных сторон. [S2]</p>
+<p><strong>Перфекционизм накопления.</strong> Если человек одновременно склонен доводить всё до максимума (талант Maximizer), появляется риск собирать не до «достаточно», а до «идеально» — что на практике означает никогда не остановиться. Помогает наличие таланта к немедленному действию (Activator) — он вытаскивает из режима вечного сбора. [S1]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать</p>
+<h3>5.1. От собирателя к куратору</h3>
+<p>Ключевой сдвиг развития: <strong>от сбора к курированию</strong>. Курирование — это не просто больше собирать, а делать инвентаризацию, позиционировать уже собранное, делать его доступным для использования.</p>
+<p><strong>Конкретные действия:</strong></p>
+<li><strong>Сделай инвентаризацию.</strong> Разбери то, что уже есть — по темам, задачам, потенциальной утилитарности. Зайди внутрь своей коллекции с вопросом: «Чего мне не хватает?» — это лучше, чем продолжать добавлять новое.</li>
+<li><strong>Найди лучший способ отзыва.</strong> Информация, которую нельзя найти, не существует. Определи систему, которая работает именно для тебя: Kindle с поиском, теги, цифровые заметки. Экспериментируй с форматами хранения до тех пор, пока не появится уверенность «я смогу это найти». [S1]</li>
+<li><strong>Найди специализацию.</strong> Вместо «чего я хочу знать больше», спроси «в чём я хочу знать всё». Глубина в одной теме — другой вид ценности, чем широта по всем. [S2]</li>
+<li><strong>Добавь ещё один метод поглощения.</strong> Если уже слушаешь подкасты — найди книгу. Если читаешь — напишись на курс, побеседуй с экспертом, стань учеником, напиши или выступи по теме. Каждый новый канал открывает другой угол. [S5]</li>
+<li><strong>Определи сигналы «достаточно».</strong> У человека с Input «достаточно информации» — концепция почти бессмысленная, потому что информация бесконечна. Поэтому нужно заранее договориться с собой: какие конкретные критерии означают «можно начинать действовать». Сообщи эти критерии команде. [S2]</li>
+<li><strong>Найди талант-катализатор.</strong> Input сам по себе не двигается — он накапливает. Нужен другой талант в профиле, который выведет накопленное в действие: склонность к немедленному запуску (Activator), к развитию других (Developer), к победе (Competition), к завершению задач (Achiever). Определи, какой из твоих талантов катализирует Input.</li>
+<blockquote class="md-quote">&quot;Input будет ждать и потом соединится с движителем. Если у тебя Developer — это выльется в помощь другим в росте. Если Competition — в то, чтобы использовать информацию для победы.&quot; [S2]</blockquote>
+<li><strong>Используй мёртвое время.</strong> Дорога, перелёт, ожидание в очереди — для человека с Input это рабочее время. Настрой систему, которая позволяет поглощать именно тогда.</li>
+<li><strong>Предлагай себя как ресурс.</strong> Люди с высоким Input часто уступают место формальным специалистам, хотя по конкретному вопросу могут знать больше них. Предлагай своё знание активно, не жди, пока спросят. [S2]</li>
+<li><strong>Открой один новый информационный канал по конкретной специализации.</strong> Подписка, подкаст, встреча с экспертом — всё что угодно. Не «широко», а по одной теме, в которой хочешь идти глубже. Это переводит Input из режима «знаю понемногу обо всём» в режим «знаю много об одном». [S4]</li>
+<li><strong>Найди один способ превратить накопленное в вывод.</strong> Запишись выступить, договорись объяснить тему коллеге, предложи провести обучающий обед. Конкретное обязательство поделиться — лучший способ заставить Input работать на результат, а не только на архив. [S4]</li>
+<li><strong>Упражнение: запиши все вопросы, которые пришли в голову за неделю.</strong> Поставь таймер на 3 минуты. Запиши всё, что хотел узнать, что зацепило, что вызвало любопытство. Это упражнение показывает, какой «вкус» любопытства сейчас у тебя — и куда Input реально тянет прямо сейчас. [S4]</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком с Input (для менеджеров и коллег)</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком с Input (для менеджеров и коллег)</p>
+<h3>6.1. Что активирует</h3>
+<ul class="marker-list">
+<li><strong>Задай вопрос про коллекцию.</strong> «Вы когда-нибудь сталкивались с этой темой раньше?» или «Что сейчас вас интересует больше всего?» — человек с Input моментально оживает [S5]</li>
+<li><strong>Попроси экскурсию.</strong> «Покажи, что ты на этом собрал» — один из лучших способов начать разговор и установить контакт [S5]</li>
+<li><strong>Ссылайся на источники явно.</strong> Не «я где-то слышал», а «вот откуда это — что думаешь?». Человек с Input подхватит нить и пойдёт дальше, найдёт больше, чем ты мог предположить [S5]. Не говори «я где-то слышал» — говори «вот откуда это, что думаешь?». Это открывает человека с Input к дальнейшему исследованию вместо того, чтобы он пытался угадать первоисточник. [S4]</li>
+<li><strong>Вопросы менеджера для 1-on-1:</strong> «Что тебя сейчас вдохновляет? Что читаешь? Какие подкасты слушаешь? Что коллекционируешь? Какие темы тебя занимают? Кто на тебя влияет?» [S6]</li>
+</ul>
+<h3>6.2. Как задействовать на команде</h3>
+<ul class="marker-list">
+<li><strong>Поставь первым в цепочке реагирования.</strong> Когда в команде появляется вопрос — человек с Input первым откликнется с источником и конкретикой. Это его естественная роль [S5]</li>
+<li><strong>Дай время на сбор перед действием.</strong> Для человека с Input «зайти в тему» — это работа, а не прокрастинация. Если получить возможность собрать информацию до того, как просят действовать, он потом действует быстрее и точнее [S6]</li>
+<li><strong>Назначь на изучение проблем до начала исполнения.</strong> На этапе, когда ещё непонятно, что делать и какая информация нужна — это его естественная роль [S5]</li>
+<li><strong>Дай роль «что мы знаем об этом».</strong> Когда приходит новый запрос или задача — он первым собирает контекст, источники, предысторию [S5]</li>
+<li><strong>Позволь делать сбор самостоятельно.</strong> Нельзя просто отправить команду «собрать данные» вместо человека с Input — он найдёт углы, которые другие пропустят, потому что знает, где искать и какие источники надёжные [S6]</li>
+</ul>
+<h3>6.2.1. Как помочь человеку с Input расти (в роли менеджера или коллеги)</h3>
+<ul class="marker-list">
+<li><strong>Помоги сформулировать research question.</strong> Не обязательно академически: «Что именно тебя интересует в этой теме?» или «Какой вопрос ты пытаешься ответить?» — это помогает человеку с Input направить сбор, а не просто поглощать всё подряд. Озвучивание вопроса вслух открывает более конкретные «рецепторы» для поиска. [S4]</li>
+<li><strong>Признавай экспертность публично.</strong> Если человек с Input ценит признание — назови его доверенным советником: «Иван — тот, к кому идут за информацией по этой теме, потому что у него есть и данные, и контекст». Это усиливает именно то, за что он хочет быть ценен. [S4]</li>
+<li><strong>Признавай момент «первого ответа».</strong> Человек с Input часто первым откликается с нужным материалом — источником, документом, контактом. Замечай это: «Ты снова первый с нужным». Это простое признание подтверждает ценность таланта в действии. [S4]</li>
+</ul>
+<h3>6.3. Как давать обратную связь</h3>
+<ul class="marker-list">
+<li>Уточняй запрос, прежде чем человек с Input уйдёт «в архив». «Какую проблему ты пытаешься решить?» — позволяет направить поиск до того, как появится шланг вместо стакана [S5]</li>
+<li>Допустимая формула: «Вот самый короткий ответ — хочешь узнать больше?» Учи использовать её.</li>
+<li>Помоги установить критерии «достаточно» — это снимет тревогу «а вдруг недостаточно» и позволит перейти к действию.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">4. О чём человеку с Input стоит беспокоиться меньше [S4]</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><li>О чём человеку с Input стоит беспокоиться меньше [S4]</li>
+<ul class="marker-list">
+<li><strong>Не нужно создавать всё из себя.</strong> Человек с Input работает лучше, когда может опереться на уже существующий материал — статью, исследование, чужой опыт. Это не слабость — это именно то, как устроена сила Input. Опираться на чужие статьи, исследования и готовые фреймворки как отправную точку — нормально и эффективно.</li>
+<li><strong>Не нужно знать всё обо всём.</strong> Широкий охват — это сила, но не означает энциклопедической глубины по каждой теме. Лучше предложить немного, посмотреть где твой интерес пересекается с потребностью собеседника — и пойти туда глубже. Начни с поверхности, а не с тотальной погружённостью.</li>
+<li><strong>Не нужно паниковать из-за коллекции «без цели».</strong> Не всё собранное будет использовано. Это нормально. Вопрос не в том, используется ли каждый элемент, а в том, обеспечивает ли коллекция доступ к нужному в нужный момент.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <div class="section-icon">📌</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 08</div>
+        <div class="section-title">С какими талантами сочетается</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>С какими талантами сочетается</p>
+<h3>Наиболее вероятные пары (статистика Gallup)</h3>
+<p><strong>Input + Intellection</strong> — 45% вероятность. Самая распространённая пара. Intellection — процесс мышления; Input — ресурсы для этого мышления. Вместе: собирать и обдумывать непрерывно. Независимый мыслитель с огромным запасом «топлива для размышлений». [S1, S2]</p>
+<p><strong>Input + Learner</strong> — часто встречается вместе. Learner придаёт Input более немедленную цель: «мне нужно это, чтобы достичь мастерства» вместо «когда-нибудь пригодится». Input даёт Learner материал для обучения. Вместе: естественный студент-исследователь, который любит процесс обучения и всегда ищет ресурсы, которые его усилят. [S2]</p>
+<h3>Усиливающие сочетания</h3>
+<p><strong>Input + Strategic</strong> — стратегическое мышление помогает отфильтровать периферию и сосредоточиться на паттернах, которые ведут к плану. Сочетание переводит «собрать всё» в «найти, собрать и поделиться самым полезным». [S2]</p>
+<p><strong>Input + Responsibility</strong> — ответственность перед обязательствами удерживает от бесконечного сбора: накопление идёт под конкретное обещание. В ответ Input усиливает Responsibility: человек стремится дать не просто то, что обещал, а самую достоверную и хорошо изученную версию. [S2]</p>
+<p><strong>Input + Communication</strong> — накопленное становится материалом для выступлений и текстов. Человек ищет интересные слова, яркие истории, точные факты — потому что хочет быть ясным, убедительным и занимательным. Результат: хорошо информированная коммуникация. [S2]</p>
+<p><strong>Input + Developer</strong> — накопленное направляется на развитие других. Человек делится информацией с намерением подтолкнуть рост тех, кто рядом. [S2]</p>
+<p><strong>Input + Individualization</strong> — помогает кастомизировать то, что собирается и как распределяется. Человек ведёт внутреннее досье на каждого члена команды: что ему будет полезно, в каком формате, в какой момент. [S1, S3]</p>
+<p><strong>Input + Maximizer</strong> — риск: перфекционизм накопления, сбор сверх утилитарного. Сильная сторона: человек ведёт несколько наборов заметок одновременно для разных аудиторий по одному источнику — выжимает максимум применимости из каждого материала. [S1]</p>
+<p><strong>Input + Activator</strong> — нетерпение к действию вытаскивает из режима вечного сбора. Человек поглощает информацию параллельно с жизнью — в дороге, в паузах — а не откладывает жизнь ради поглощения. [S1]</p>
+<h3>Маловероятная пара</h3>
+<p><strong>Input + Self-Assurance</strong> — 1% вероятности. Self-Assurance — уверенность в себе как таковом: «я сам достаточен». Input — уверенность через коллекцию: «у меня есть нужные ресурсы». Редко встречаются вместе, потому что Self-Assurance опирается на внутреннее, а Input — на внешнее. Если оба присутствуют — человек точно знает ценность своей коллекции и без колебаний предлагает её другим. [S1, S2]</p>
+<h3>Темы-балансиры (помогают управлять Input)</h3>
+<p><strong>Discipline</strong> — человек с этим талантом наводит порядок в коллекции. Несортированные и недоступные ресурсы не имеют утилитарной ценности. [S1]</p>
+<p><strong>Focus</strong> — помогает решать, что включать в коллекцию, а от чего отказываться. [S1]</p>
+<p><strong>Arranger</strong> — человек с талантом к организации видит, как части складываются в целое, и замечает, какой информации не хватает для полной картины. Input может заполнить именно эти пробелы. [S2]</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

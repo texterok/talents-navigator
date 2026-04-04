@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Communication — Коммуникация · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain infl">Влияние</div>
+    <h1>Communication</h1>
+    <div class="hero-sub">Коммуникация</div>
+    <p class="hero-def">Что такое талант Коммуникации</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое талант Коммуникации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое талант Коммуникации</p>
+<p><strong>Официальное краткое определение:</strong> Люди с исключительно развитым талантом Коммуникации, как правило, легко облекают мысли в слова. Они хорошие собеседники и хорошие ораторы.</p>
+<p><strong>Более глубокое определение:</strong> Коммуникация — это живое, страстное владение словом, устным и письменным, которые рождают одновременно ясность смысла и социальную связь через речевое выражение. В основе — стремление быть понятым и помочь другим быть понятыми. Талант относится к категории <strong>влияния</strong> (Influencing) — одной из четырёх тематических категорий CliftonStrengths (исполнение, стратегическое мышление, влияние, выстраивание отношений), куда входят таланты, побуждающие других действовать и думать по-новому. При этом в зависимости от набора других сильных сторон этот талант может преимущественно проявляться не в убеждении, а в поддержании и углублении личных связей — то есть смещаться в сферу построения отношений.</p>
+<p>Коммуникация входит в топ-5 примерно у 13% людей — средняя частота встречаемости.</p>
+<p><strong>Чем этот талант не является:</strong></p>
+<ul class="marker-list">
+<li>Не просто разговорчивость. Он включает умение слушать, вести диалог и давать слова тому, что другие не могут выразить.</li>
+<li>Не манипуляция. Умение выстраивать послание и подбирать слова — это не обман.</li>
+<li>Не исполнительский талант. Коммуникация влияет на то, что люди чувствуют и думают, но сама по себе не толкает к завершению задач.</li>
+</ul>
+<p><strong>Отличие от похожих талантов:</strong></p>
+<ul class="marker-list">
+<li><strong>Vs. Командование (Command):</strong> Командование использует прямолинейность и решительность, чтобы направить внимание — «Вот что нам нужно сделать». Коммуникация использует лёгкость со словом, чтобы вовлечь людей — «Мне кажется, мы все говорим об одном...»</li>
+<li><strong>Vs. Обаяние (Woo — умение расположить к себе):</strong> Обаяние даёт людям ощущение, что их <em>видят</em> — через харизму и контакт. Коммуникация даёт ощущение, что их <em>слышат</em> — через точное выражение. Обаяние открывает дверь — создаёт первый контакт, притягивает к себе; Коммуникация удерживает внимание и наполняет разговор содержанием.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как это проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как это проявляется</p>
+<p><strong>Осмысление через слово.</strong> В моменты растерянности или раздражения человек с этим талантом находит ясность, когда говорит или пишет. Идеи существуют в голове в форме размытых образов, ощущений и смутных предчувствий — ещё не переведённых в слова, — и становятся понятными только после того, как их произнесёшь или запишешь. Вербализация — это перевод, а не демонстрация.</p>
+<p><strong>Умение дать слова чужой мысли.</strong> Такой человек мгновенно превращает полуоформленную идею в точные слова — как свои, так и чужие. «Именно это я и имел в виду, просто не мог сформулировать» — фраза, которую он слышит постоянно.</p>
+<p><strong>Ориентация на историю.</strong> Человек с этим талантом тяготеет к нарративу как способу придавать смысл — создаёт истории и коллекционирует их. Он склонен «разбирать» события после их завершения, объяснять отношения через рассказ, формулировать проблемы в форме сюжета.</p>
+<p><strong>Чувство аудитории.</strong> Он постоянно считывает язык тела и реакцию группы — в разговоре один на один и в зале на несколько сотен человек. Он отслеживает, доходит ли послание, а не просто произносит слова.</p>
+<p><strong>Поиск «жемчужин».</strong> В абзаце, который другие воспринимают как обычный текст, человек с развитой Коммуникацией замечает «блестящие» фразы — ёмкие формулировки, эмоционально заряженные слова, которые способны кристаллизовать идею и сделать её запоминающейся.</p>
+<p><strong>Потребность быть понятым.</strong> Непонимание вызывает особый дискомфорт, который невозможно просто отпустить. Такой человек попробует объяснить снова — с другого угла, через другой пример — пока послание не дойдёт.</p>
+<p><strong>Зеркалирование языка.</strong> Он быстро подхватывает жаргон, аббревиатуры и культурный словарь клиентов или новой среды и органично вплетает это в свою речь. Это создаёт быстрый кредит доверия и ощущение у собеседника: «он понимает нас».</p>
+<p><strong>Личный стиль.</strong> За пределами работы: фирменные шутки, привычные способы разрядить атмосферу, привычка спрашивать разрешения перед историей («Можно расскажу?»), пересказ прошедшего дня через нарратив.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">Ценность для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Ценность для команды и организации</p>
+<p><strong>Перевод сложного в понятное.</strong> Такой человек преобразует сложные или абстрактные идеи в доступный язык, который разные люди могут воспринять. Как хороший учитель, он находит несколько способов сказать одно и то же — пока не дойдёт.</p>
+<p><strong>Управление вниманием.</strong> Он может переключить фокус группы — от конфликта к результатам, от информационного шума к ключевому посланию. Особенно ценно в хаосе или переменах: он способен чётко подытожить, дать контекст, удержать группу на главном.</p>
+<p><strong>Прогресс измеряется через охват и принятие идей.</strong> Человек с этим талантом отслеживает, сколько людей разобралось, насколько широко распространилась идея, насколько выросло согласие. Для него мерилом успеха служат не выполненные задачи, а охват и принятие: сколько людей поняло, как далеко разошлась идея, насколько вырос консенсус.</p>
+<p><strong>Внутренний PR.</strong> Он знает, что сказать, когда сказать и с кем это обсудить (а не только кому сказать). Умеет упаковать послание команды для разных аудиторий — внутренних стейкхолдеров, клиентов, руководства — не теряя сути.</p>
+<p><strong>Защитник чужих идей.</strong> Может отстаивать идею другого человека с такой же энергией и мастерством, как и свою собственную. Усилит послание, которое заслуживает большего внимания, или вытащит на поверхность точку зрения, которую не слышали.</p>
+<p><strong>Думающий партнёр.</strong> Помогает другим переформулировать то, что они пытаются сказать — «позволь отразить то, что я слышу» — и понять, действительно ли это то, что они имели в виду.</p>
+<p><strong>Доверие через язык.</strong> Говоря с человеком на его языке, он создаёт быстрый контакт и авторитет — особенно с новыми клиентами, незнакомой аудиторией или в новой корпоративной культуре.</p>
+<p><strong>Как лидер:</strong> даёт команде слова, которые ей нужны. Превращает мозговой штурм в запоминающиеся, ёмкие формулировки, которые люди могут унести с собой. Вдыхает жизнь и эмоцию в сухие концепции — так, что они не скучны. Помогает людям увидеть потенциал, который они ещё не чувствуют, — рисуя яркую картину того, как выглядит успех.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Теневая сторона и риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Теневая сторона и риски</p>
+<p><strong>Необработанный талант vs. зрелый:</strong> один и тот же дар, рождающий ясность, способен порождать шум. В недоразвитой форме — когда талант есть, но в его развитие не вложено осознанного усилия:</p>
+<table class="maturity-table"><thead><tr><th>Необработанная форма</th><th>Зрелая форма</th></tr></thead><tbody><tr><td>Болтливость — всё, что в голове, выходит через рот</td><td>Живость — слова отбираются и взвешиваются</td></tr><tr><td>Многословие — нет фильтра</td><td>Ёмкость — ровно нужные слова</td></tr><tr><td>Растянутость — заполняет паузы</td><td>Весомость — слова имеют силу</td></tr><tr><td>Несдержанность — открытость без разбора</td><td>Искренность — открытый, но контролируемый</td></tr><tr><td>Режим «всегда включён» — выступает перед любой доступной аудиторией</td><td>Чуткость к аудитории — подстраивает выражение под конкретных людей и момент</td></tr></tbody></table>
+<p><strong>Красивое многословие — всё равно многословие.</strong> Успех в речи может создавать иллюзию содержательности. Человек с развитой Коммуникацией звучит убедительно даже когда только обрабатывает мысль — а значит, собеседники могут воспринять незавершённое размышление как окончательную позицию.</p>
+<p><strong>Непреднамеренные обязательства.</strong> Мышление вслух иногда приводит к тому, что слова произносятся раньше, чем за ними стоит окончательное решение. Другие могут держать его за слова, которые были частью процесса, а не выводом.</p>
+<p><strong>Несоответствие темпа.</strong> Большинству людей требуется больше времени на то, чтобы сформировать и выразить мысль. Молчание или медленный ответ — не безразличие, но человек с высокой Коммуникацией может воспринять это именно так и заполнить паузу без необходимости.</p>
+<p><strong>Вытеснение слушания.</strong> Успех в речи может снижать вложения в умение слушать. Мастерская Коммуникация требует столь же мастерского слушания.</p>
+<p><strong>Не инструмент равного доступа к слову.</strong> Коммуникация сама по себе не замечает, у кого в комнате нет голоса. Это осознание, как правило, приходит из талантов в сфере построения отношений — Эмпатии (Empathy), Включения (Includer), Развития других (Developer). Не стоит предполагать, что человек с Коммуникацией в команде автоматически следит за тем, чтобы все были услышаны: он работает над точностью и убедительностью послания, а не над равным доступом каждого участника к слову.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать этот талант</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать этот талант</p>
+<p><strong>Инвестировать в слушание осознанно.</strong> На совещаниях — записать вопрос вместо того, чтобы сразу высказать наблюдение. Практиковать умение давать другим договорить. Освоить три уровня слушания: (1) что говорится прямым текстом; (2) что не проговаривается словами — невербальные сигналы (жесты, интонация, паузы); (3) что намеренно или неосознанно обходится стороной — темы, которые человек устойчиво избегает. Третий уровень отличается от домыслов тем, что опирается на повторяющийся паттерн: одни и те же вопросы неизменно остаются без ответа, разговор при определённых темах уходит в обобщения или меняет направление. Практически это означает: замечать не разовую паузу, а то, что раз за разом не произносится.</p>
+<p><strong>Репетировать вслух, а не про себя.</strong> Прежде чем выступление, учебная сессия или важный разговор состоятся по-настоящему, их нужно произнести вслух. Иначе первая попытка и будет «боевой» — и это будет заметно. Найти надёжного партнёра для отработки, чья роль — услышать ход мышления, а не держать за каждое слово.</p>
+<p><strong>Разработать несколько версий послания.</strong> Отработать 90-секундный вариант и 5-минутный вариант любого ключевого сообщения. Знать, какой из них подходит для текущего момента.</p>
+<p><strong>Сделать редактуру привычкой.</strong> Писать более короткие письма: сначала сказать то, что хочется сказать, затем сократить. Применять принцип Коко Шанель: перед выходом снять одну вещь — убрать один абзац, одну идею или одно предложение из уже готового письма. Если текст понятен без этого фрагмента, значит, он лишний. Хорошая коммуникация — это не добавление, а вычитание.</p>
+<p><strong>Фиксировать инсайты в момент их появления.</strong> Часть лучших мыслей всплывает прямо в середине разговора. Держать под рукой блокнот или диктофон. Идеи, произнесённые вслух и незафиксированные, нередко исчезают совсем.</p>
+<p><strong>Изучать мастерство.</strong> Вступить в Toastmasters (международный клуб публичных выступлений, где участники тренируют речь перед живой аудиторией; есть отделения в большинстве крупных городов — toastmasters.org), пройти курс по творческому письму, посмотреть сериал с многослойным сюжетом и обратить внимание на то, как он выстроен и как развивается ритм. Читать — не чтобы потреблять, а чтобы изучать, почему одни слова работают, а другие нет.</p>
+<p><strong>Задавать хорошие вопросы.</strong> Глубокий, продуманный вопрос — это тоже проявление Коммуникации, а не замена ей. Вопросы, которые добираются до сердцевины ответа, дают больше, чем самые точные наблюдения.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком, у которого есть этот талант</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком, у которого есть этот талант</p>
+<p><strong>Для руководителей:</strong></p>
+<ul class="marker-list">
+<li>Дайте им аудиторию. Соедините их с клиентами, стейкхолдерами, подписчиками. Помогите им понять, кто получает их послание — это кратно усиливает талант.</li>
+<li>Используйте их как ресурс в коммуникации, а не только как «говорящего». Когда сложно достучаться до кого-то или нужно сформулировать ключевое послание, спросите: «Какие вопросы мне стоит задавать?» или «Как вам кажется, что я на самом деле пытаюсь сказать?»</li>
+<li>Создайте выделенное время для разговора. Им не нужна проблема, чтобы поговорить. Регулярный получасовой обмен, где они могут думать вслух, ценен сам по себе.</li>
+<li>Не принимайте фазу мышления вслух за окончательную позицию. Спросите: «Теперь, когда ты это проговорил, что ты на самом деле думаешь?» Это уважает их процесс и гарантирует, что вы услышали вывод.</li>
+</ul>
+<p><strong>Для коллег:</strong></p>
+<ul class="marker-list">
+<li>Когда они как будто говорят противоречивые вещи, не торопитесь прижать их к стенке в середине процесса. Дайте им дойти до конца. Вернитесь позже.</li>
+<li>Прощайте длинные рассуждения. Часто именно так они приходят к точной мысли. Терпение окупается.</li>
+<li>Если они необычно молчаливы на совещании, возможно, они сдерживаются намеренно. Уточните — не принимайте молчание за пассивность.</li>
+<li>Не цепляйтесь за каждое слово как за постоянную истину. Они могут говорить что-то, чтобы проверить, правда ли это для них.</li>
+<li>Если вы хотите, чтобы те, кому трудно высказаться, получили больше голоса — соедините их с человеком с Коммуникацией. Сам по себе он не сделает это автоматически, но как усилитель — очень эффективен, если направить в нужную сторону.</li>
+</ul>
+<p><strong>Для тех, у кого Коммуникация слабо выражена:</strong></p>
+<ul class="marker-list">
+<li>Выделяйте больше времени на подготовку перед важными публичными моментами.</li>
+<li>Найдите надёжного рецензента для писем, презентаций и ключевых сообщений до того, как они уходят.</li>
+<li>Думайте о том, какая история стоит за данными — цифры сами по себе послания не несут.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">Сочетание с другими талантами</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Сочетание с другими талантами</p>
+<h3>Естественное партнёрство: Обаяние (Woo — Winning Others Over)</h3>
+<p>Самый статистически частый партнёр. Оба таланта направлены вовне и ориентированы на других. Вместе: они притягивают людей и выстраивают с ними долгосрочные отношения (Обаяние открывает двери, Коммуникация выстраивает историю), создавая личные связи через нарратив. Сочетание рождает харизматичное влияние, основанное на личных отношениях.</p>
+<h3>Наименее вероятное партнёрство: Осмотрительность (Deliberative)</h3>
+<p>Осмотрительность — это осторожность, оценка рисков и взвешенность перед принятием решений. В сочетании с Коммуникацией получается более сдержанный коммуникатор: такой человек всё ещё нуждается в проговаривании, но у него есть чёткий внутренний сигнал, когда обдумывание завершено и пора высказываться. Редкое сочетание, но не противоречивое.</p>
+<h3>Таланты, усиливающие Коммуникацию</h3>
+<table class="maturity-table"><thead><tr><th>Талант</th><th>Эффект</th></tr></thead><tbody><tr><td><strong>Убеждённость (Belief)</strong> — ведомость глубокими ценностями</td><td>Страстный коммуникатор с выраженной миссией — говорит с настоящей убеждённостью</td></tr><tr><td><strong>Дальновидность (Futuristic)</strong> — притяжение к будущему</td><td>Вдохновляющий коммуникатор, рисующий яркие образы возможного</td></tr><tr><td><strong>Обаяние (Woo)</strong></td><td>Притягательный, неотразимо вовлекающий; соединяет магнетизм с точностью слова</td></tr><tr><td><strong>Жизнерадостность (Positivity)</strong> — оптимизм, энтузиазм</td><td>Харизматичный, воодушевляющий; общается так, что люди заряжаются энергией</td></tr></tbody></table>
+<h3>Таланты, смягчающие Коммуникацию</h3>
+<table class="maturity-table"><thead><tr><th>Талант</th><th>Эффект</th></tr></thead><tbody><tr><td><strong>Осмотрительность (Deliberative)</strong> — осторожность, внимание к рискам</td><td>Фильтрует слова перед высказыванием; взвешенный и тщательный коммуникатор</td></tr><tr><td><strong>Ответственность (Responsibility)</strong> — обязательность, этичность</td><td>Внимателен к тому, как слова будут восприняты; этичный коммуникатор</td></tr><tr><td><strong>Рефлексия (Intellection)</strong> — склонность к внутреннему размышлению</td><td>Нужно время на обдумывание перед высказыванием; думает, прежде чем говорить</td></tr><tr><td><strong>Индивидуализация (Individualization)</strong> — видит уникальность каждого</td><td>Глубоко адаптирует послание под каждого конкретного человека; сопротивляется шаблонной коммуникации</td></tr></tbody></table>
+<h3>Дополняющие партнёрства</h3>
+<p><strong>Коммуникация + Восстановление (Restorative — талант замечать, что сломалось, и находить способ это починить):</strong> Коммуникация привносит внимание и энергию; Восстановление — фокус на конкретной проблеме. Вместе они эффективные «диагносты», способные и распознать проблему, и чётко сформулировать путь вперёд.</p>
+<p><strong>Коммуникация + Максимизация (Maximizer</strong> — талант доводить хорошее до превосходного, фокусируясь на развитии сильных сторон, а не на исправлении слабых<strong>):</strong> Максимизация выбирает идеи с наибольшим потенциалом; Коммуникация упаковывает их и даёт инструмент для распространения лучших. Максимизация поднимает качество; Коммуникация умножает охват.</p>
+<p><strong>Коммуникация + Фокус (Focus</strong> — чёткое направление<strong>):</strong> Фокус даёт конкретность цели и единственность энергии; Коммуникация преобразует этот индивидуальный порыв в коллективный импульс. Вместе: не просто «я знаю, куда иду», а «давайте все туда пойдём».</p>
+<p><strong>Коммуникация + Гармония (Harmony</strong> — стремление к согласию<strong>):</strong> Рождает спокойный, практичный голос, способный переформулировать высокоуровневые концепции в доступный язык, снижать напряжение в острых разговорах и донести послание без лишнего трения.</p>
+<p><strong>Коммуникация + Рефлексия (Intellection):</strong> Требует намеренной подготовки — нужно подумать, прежде чем говорить, — но результат необычно содержателен и точен. Медленнее в выражении, но более обдуман.</p>
+<p><strong>Коммуникация без исполнительских талантов:</strong> Коммуникация — не исполнительский талант, она не тяготеет сама по себе к завершению задач. Сочетание с такими талантами, как Достижение (Achiever), Восстановление (Restorative), Дисциплина (Discipline) или Ответственность (Responsibility), добавляет ориентацию на результат — то, что превращает сформулированные идеи в завершённую работу.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

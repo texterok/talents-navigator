@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harmony — Гармония · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain rel">Отношения</div>
+    <h1>Harmony</h1>
+    <div class="hero-sub">Гармония</div>
+    <p class="hero-def">Что такое Гармония</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое Гармония</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое Гармония</p>
+<p><strong>Официальное определение:</strong> Люди с исключительно развитым талантом Гармонии стремятся к согласию. Им не нравятся конфликты — они ищут точки соприкосновения.</p>
+<p><strong>Суть таланта:</strong> Гармония — это не пассивная уступчивость и не избегание конфликтов ради самого мира. Это точный инструмент — лазер, который быстро находит зону уже существующего согласия в группе, чтобы люди могли двигаться вперёд, не тратя энергию на трение, которое не даст результата. В таланте живёт сильная практическая ориентация: цель — эффективное, реальное, совместное движение.</p>
+<blockquote class="md-quote">«Гармония — это лазерный луч или радар: способность очень чётко видеть, в чём именно группа людей уже согласна, чтобы можно было двигаться дальше.» [S2]</blockquote>
+<p>Глубинная мотивация — не «мне нужен мир». Она звучит иначе: «Трение почти ничего не даёт. Давайте найдём общее и воспользуемся этим, чтобы двигаться».</p>
+<p><strong>Распространённость:</strong> 7-я по частоте тема в базе данных Gallup; у 19% людей она входит в топ-5.</p>
+<p><strong>Отличие от похожих тем:</strong></p>
+<ul class="marker-list">
+<li><strong>Эмпатия (Empathy)</strong> чувствует, что другие <em>переживают</em>. Гармония чувствует, в чём другие <em>согласны</em> — разные цели, разные действия.</li>
+<li><strong>Вовлечённость (Includer)</strong> замечает, кого исключили, и включает в круг. Гармония видит сквозь эмоции — находит взгляды, которые разделяют все.</li>
+<li><strong>Индивидуализация (Individualization)</strong> улавливает различия между людьми и подстраивается под каждого. Гармония замечает точки согласия и предлагает поле для компромисса.</li>
+<li><strong>Близость (Relator)</strong> черпает энергию из глубины отношений с небольшим кругом людей. Гармония черпает энергию, помогая любой группе найти общий язык.</li>
+</ul>
+<p><strong>Музыкальная аналогия:</strong> В музыке гармония требует разных нот — не одной и той же, звучащей снова и снова. Противоположность гармонии — диссонанс. Переход от диссонанса к гармонии называется разрешением — это действие, а не просто состояние. [S2]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как это проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как это проявляется</p>
+<p><strong>Наблюдаемые модели поведения:</strong></p>
+<ul class="marker-list">
+<li>Быстро замечает, что люди говорят одно и то же разными словами — и порой удивляется, что остальные этого не видят.</li>
+<li>Инстинктивно начинает любые переговоры или встречу с поиска общей почвы — отправной точки, с которой согласны все, до того как в разговор внесены спорные вопросы.</li>
+<li>Следит за тем, как меняется степень согласия в команде по мере работы; замечает смещение ещё до того, как оно переходит в конфликт.</li>
+<li>В группах выступает в роли арбитра: вытягивает тех, кто молчит, фиксирует договорённости, возвращает людей к цели.</li>
+<li>Предпочитает разрядить напряжение в частных разговорах один на один — до или после встречи, а не в разгар группового столкновения.</li>
+<li>Регулирует эмоциональный фон: сглаживает крайности командного настроения, не гася его совсем.</li>
+<li>Задаёт вопросы раньше, чем высказывает мнение — «Что для вас важно в этом?» вместо немедленной декларации позиции.</li>
+<li>Может ощущать дискомфорт от конфликта, который его напрямую не касается — эмоциональный радар улавливает разлад за пределами личной вовлечённости.</li>
+<li>Внешне не демонстрирует сильных эмоций; руководствуется практическими соображениями.</li>
+</ul>
+<p><strong>В личной жизни:</strong> Производит впечатление охотно соглашающегося человека. Отстаивает изменения через предложение решений, а не через споры. Тяготеет к темам сотрудничества, единства и социальной справедливости.</p>
+<p><strong>Незрелое и зрелое проявление</strong> (зрелость здесь — не возраст, а степень осознанности таланта: насколько человек научился управлять им, а не быть ведомым им):</p>
+<table class="maturity-table"><thead><tr><th>Незрелая Гармония</th><th>Зрелая Гармония</th></tr></thead><tbody><tr><td><em>Требует</em> мира — бежит от конфликта</td><td><em>Отвечает</em> миром — проходит через конфликт</td></tr><tr><td>Как камень: ничего не воспринимает, при конфликте замыкается и уходит в себя</td><td>Как губка: впитывает напряжение, эмоции и позиции сторон — и возвращает группе то, что помогает двигаться: конкретную точку согласия или следующий шаг</td></tr><tr><td>Отмахивается — сдаётся, когда согласие кажется недостижимым</td><td>Включает — работает интенсивнее, чтобы найти хоть какие-то точки соприкосновения</td></tr><tr><td>Нетерпелива с теми, кому нужно сначала прожить эмоцию, чтобы прийти к согласию</td><td>Даёт людям их эмоциональный момент — потом возвращает к практике</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">Ценность для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Ценность для команды и организации</p>
+<p><strong>Что Гармония привносит, чего нет у других тем:</strong></p>
+<ul class="marker-list">
+<li><strong>Сокращает время на достижение общего понимания.</strong> Команда с человеком, у которого высокая Гармония, меньше времени проводит в стадии «притирки» и больше — в движении вперёд. Меньше энергии на «как нам ужиться», больше — на «вот где мы согласны, идём».</li>
+<li><strong>Эмоциональный нейтрализатор.</strong> Сглаживает подъёмы и спады командного настроения, не подавляя их. Создаёт стабильную, спокойную атмосферу — её замечают, когда она исчезает.</li>
+<li><strong>Предсказатель конфликта.</strong> Может заранее чувствовать напряжённые точки и зоны потенциальных разногласий — и предупреждать других или предотвращать обострение.</li>
+<li><strong>Восстановление после перемен.</strong> Когда состав команды или отношения внутри неё меняются, Гармония находит практические первые шаги, которые возвращают общую почву.</li>
+<li><strong>Хранитель общих ценностей.</strong> Уникальная позиция: удерживать команду у её задекларированных договорённостей и мотивов — может явно напоминать, на что все подписались.</li>
+<li><strong>Магнит для совместной работы.</strong> Люди тянутся работать с тем, кто создаёт эмоциональную безопасность и концентрируется на том, в чём можно договориться. Сильная Гармония делает команду местом, куда хочется прийти.</li>
+</ul>
+<p><strong>Цена отсутствия в команде:</strong> Когда команды дисфункциональны, это бьёт по производительности, по тому, как долго люди остаются в команде, и по её устойчивости к нагрузкам. Сила Гармонии — именно в предотвращении этой цены: не через устранение конфликтов, а через сведение к минимуму бесплодного трения. [S5]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Тёмная сторона / Риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Тёмная сторона / Риски</p>
+<p><strong>Возможные слепые пятна (не гарантированные, но заслуживающие внимания):</strong></p>
+<li><strong>Слишком быстрый обход необходимого конфликта.</strong> Некоторым людям нужно пройти через эмоциональный огонь, чтобы прийти к настоящему пониманию. Человек с Гармонией может попытаться обойти конфликт слишком рано, перескочив через то, что другим необходимо. Результат: поверхностный консенсус, который не удержится.</li>
+<li><strong>Нетерпение к эмоциональной переработке.</strong> Гармония очень практична и прямолинейна. Из-за этого остаётся слишком мало времени для тех, кому нужно разобраться с эмоциями, прежде чем они смогут прийти к разумному соглашению.</li>
+<li><strong>Выход из разговора под давлением.</strong> Если давить достаточно сильно, незрелая Гармония может полностью уйти в себя, вместо того чтобы включиться — реакция «камня»: никакого поглощения, только перемещение. Риск — покинуть поле именно тогда, когда группе нужен стабилизатор.</li>
+<li><strong>Слишком быстрый отказ от человека.</strong> Если путь к согласию выглядит слишком долгим или трудным, Гармония может преждевременно сдаться — отказаться от человека или точки зрения.</li>
+<li><strong>Невидимый голос.</strong> Гармония склонна быть тихой и ненавязчивой. Влияние реально, но незаметно. В культуре, которая поощряет громкое отстаивание позиций, вклад Гармонии может оставаться незамеченным — в том числе самим её обладателем, который не присваивает себе заслугу за созданное спокойствие.</li>
+<li><strong>Гармония «выходит из строя».</strong> Когда кто-то продолжает давить за разумные пределы, даже зрелый человек с Гармонией может сорваться — и когда это происходит, это часто удивляет обе стороны, потому что совсем не в его характере. Распознавать порог и называть его до того, как он пройден — это практика зрелости.</li>
+<p><strong>Ключевое разграничение:</strong> Гармония — это не тряпка. Это не серый человек в тени. Стремление к согласию инструментально — оно служит движению вперёд, а не умиротворению ради умиротворения.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать этот талант</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать этот талант</p>
+<p><strong>Направления для вложений:</strong></p>
+<li><strong>Научиться считывать невербальные сигналы.</strong> Пройти курс по языку тела или коммуникации. Умение улавливать невысказанное напрямую питает талант Гармонии — чувствовать, где лежит согласие ещё до того, как оно произнесено вслух.</li>
+<li><strong>Изучить переговоры и разрешение конфликтов.</strong> Книги, курсы, коучи — они строятся на природном таланте к поиску среднего пути. Это не меняет Гармонию во что-то чужеродное — это затачивает инструмент, который уже есть.</li>
+<li><strong>Практиковать список «за и против».</strong> Перед важным решением выписать все варианты и сформулировать настоящие плюсы каждого. Это тренирует навык «сортировки» — видеть, где согласие уже существует среди разных вариантов. Тот же приём работает и в разногласиях с людьми: выписать, что хорошего в позиции каждой стороны, — и искать, где эти «плюсы» пересекаются.</li>
+<li><strong>Задавать три вопроса регулярно</strong> (цель — 3 раза за 7 дней):</li>
+<p>- «Что для вас важно в этом?»</p>
+<p>- «Какие ещё варианты мы могли бы рассмотреть?»</p>
+<p>- «Какой ваш любимый план Б?»</p>
+<p>Эти вопросы открывают людям варианты, которых они не замечали — и создают условия для согласия, не навязывая его.</p>
+<li><strong>Намеренно строить сеть экспертов.</strong> Зрелая форма Гармонии включает знание, чью экспертизу пригласить в комнату для конкретного вопроса. Важно вкладываться в понимание, к кому обращаться в разных областях.</li>
+<li><strong>Искать роли, включающие посредничество.</strong> Общественные организации, кросс-функциональные проекты, связующие роли на стыке команд или с ключевыми участниками (партнёрами, заказчиками, другими отделами) — любое место «между двух сторон» создаёт условия для практики Гармонии и получения обратной связи.</li>
+<li><strong>Исследовать собственные паттерны сотрудничества.</strong> Спросить себя: в каких условиях согласие даётся легче всего — в больших группах, один на один, после того как все высказались, до того как они заняли позиции? Составить карту условий, в которых Гармония работает лучше всего, и сознательно создавать больше таких ситуаций.</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком, у которого есть Гармония</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком, у которого есть Гармония</p>
+<p><strong>Для руководителей:</strong></p>
+<ul class="marker-list">
+<li><strong>Дать роль «хранителя ценностей».</strong> Прямо попросить его удерживать команду у её общих обязательств — не как контролёра, а как голос, который возвращает людей к тому, на что они договорились.</li>
+<li><strong>По возможности дать выбирать партнёров по работе.</strong> У таких людей более тонкий радар к динамике отношений, чем у большинства. Принудительное долгосрочное соседство с тем, кого они воспринимают как риск для отношений, — это прямой удар по производительности.</li>
+<li><strong>Публично поддерживать социальные договорённости.</strong> Называть недопустимое поведение в команде. Человек с Гармонией заряжается в среде, где ожидания зафиксированы, согласованы и выполняются — и теряет силы там, где нормы игнорируются.</li>
+<li><strong>Спрашивать, не ждать.</strong> Влияние Гармонии тихое. Стоит спрашивать: «Есть ли возможности для сотрудничества, которые мы упускаем?» «Есть ли напряжение в партнёрствах, о котором мне стоит знать?» «Что ты замечаешь, чего я могу не видеть?» У него есть данные, которых нет у вас — но он может не выдать их без запроса.</li>
+<li><strong>Вопросы, открывающие человека с Гармонией:</strong> «Что приносит тебе спокойствие?» / «Как ты недавно помогал людям прийти к согласию?» / «Какие занятия дают тебе ощущение спокойствия и связи?» [S6]</li>
+<li><strong>Использовать как систему раннего предупреждения о конфликтах.</strong> Он чувствует напряжённые точки до того, как они взрываются. Создать канал для этой информации.</li>
+</ul>
+<p><strong>Для коллег:</strong></p>
+<ul class="marker-list">
+<li><strong>Если нужно выговориться — скажите об этом заранее.</strong> Предупредите коллегу с Гармонией: «Мне нужно минуту просто выговориться, до того как мы начнём решать.» Без этой рамки он сразу начнёт предлагать решения — это его инстинкт — и вы почувствуете себя неуслышанным. С рамкой — даст пространство.</li>
+<li><strong>Завязывайте незакрытые эмоциональные концы.</strong> Если вы сделали острое заявление или заняли жёсткую позицию на встрече, зайдите к человеку с Гармонией потом: «Это закрыто? Осталось что-то незавершённое?» Незакрытый эмоциональный заряд продолжает висеть над ним, даже если вы уже забыли.</li>
+<li><strong>Не принимайте спокойствие за безразличие.</strong> Человек с Гармонией, который не демонстрирует эмоций, не отстранился. Он руководствуется практическими соображениями, и его устойчивость — это вклад, а не признак равнодушия.</li>
+<li><strong>Говорите о своих мотивах, а не только о позиции.</strong> В конфликте объясните, <em>почему</em> что-то важно для вас, а не только <em>что</em> вы хотите. Это даёт Гармонии больше материала для работы — она строит согласие из мотивов, а не из позиций.</li>
+<li><strong>Не путайте тихое влияние со слабостью.</strong> Его воздействие на результаты часто происходит до и после встречи, а не в видимой дискуссии.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">Сочетания с другими талантами</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Сочетания с другими талантами</p>
+<p><strong>Гармония + Достижение (Achiever)</strong> — стремление к результату и завершённости: Тяга к достижениям толкает Гармонию к быстрому поиску согласия — «давайте договоримся, чтобы поставить галочку». Согласие становится средством для продуктивности, а не самоцелью. Высокоэнергетичное миротворчество с ориентацией на результат.</p>
+<p><strong>Гармония + Позитив (Positivity)</strong> — талант к энтузиазму и оптимизму: Усиливает притягательность Гармонии — людей привлекает и эмоциональное тепло, и практическая общая почва. Сочетание облегчает удержание команды вместе в трудные моменты.</p>
+<p><strong>Гармония + Эмпатия (Empathy)</strong> — талант чувствовать эмоции других: Одно из самых частых сочетаний на практике. Эмпатия читает эмоциональное состояние; Гармония читает ландшафт согласия. Вместе они создают необычно точный социальный интеллект. Риск: оба могут втягиваться в чужие трудности и, возможно, нуждаются в явном разрешении устанавливать границы.</p>
+<p><strong>Гармония + Ответственность (Responsibility)</strong> — талант к принятию обязательств и доведению до конца: Сочетание даёт человека, который не только ищет согласие, но и выполняет общие договорённости. Его слову в сотрудничестве можно доверять.</p>
+<p><strong>Гармония + Соревновательность (Competition)</strong> — талант к сравнению, ранжированию, победе: Интересное напряжение. Соревновательный импульс переориентирует стремление Гармонии к согласию на цель-результат — «достижение консенсуса <em>приближает нас к победе</em>». Гармония берёт на себя работу по сближению людей вокруг общей цели — то, без чего Соревновательность не может выиграть в одиночку.</p>
+<p><strong>Гармония + Дисциплина (Discipline)</strong> — талант к порядку и структуре: Добавляет строгость к процессу согласования. Гармония + Дисциплина производят организованное сотрудничество — структурированные процессы для достижения договорённостей, а не только интуитивные.</p>
+<p><strong>Часто низкие, когда Гармония высока:</strong></p>
+<ul class="marker-list">
+<li><strong>Стратегическое мышление (Strategic)</strong> — поиск альтернативных путей — и <strong>Идеация (Ideation)</strong> — генерация новых идей — нередко располагаются далеко от Гармонии в профилях. Эти таланты создают разрывы и процветают в напряжении — противоположность ориентации Гармонии. Это не проблема; это указание, где Гармония больше всего выигрывает от партнёров с взаимодополняющими талантами.</li>
+</ul>
+<p><strong>В партнёрстве:</strong> Гармония повышает общую эффективность почти любого партнёра, снижая стоимость разногласий между ними. Её можно использовать как точку проверки — «давайте прогоним это через человека с Гармонией, чтобы найти практические зоны согласия, которые мы могли упустить». [S5]</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

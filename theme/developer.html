@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer — Развитие · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain rel">Отношения</div>
+    <h1>Developer</h1>
+    <div class="hero-sub">Развитие</div>
+    <p class="hero-def">Что такое Developer</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое Developer</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое Developer</p>
+<p><strong>Официальное определение:</strong> Люди с выраженным талантом Developer замечают и взращивают потенциал в других. Они улавливают малейшие признаки роста и получают настоящее удовлетворение от свидетельств прогресса.</p>
+<p>Developer — это тема из группы <strong>Выстраивание отношений</strong>. Её суть — ориентация вовне: пока другие темы могут концентрироваться на задачах, системах или идеях, Developer сосредоточен на росте людей. Отношения строятся через прогресс — через совместный опыт того, как человек становится лучше, чем был.</p>
+<p>Ключевой механизм — <strong>зеркальный момент озарения</strong>: когда обычный человек чувствует вспышку энергии от собственного открытия, Developer получает ту же вспышку от чужого. Это именно зеркало: то, что у других направлено внутрь, у Developer развёрнуто вовне. Его воодушевляет не собственное мастерство, а наблюдение за тем, как растёт другой.</p>
+<p>Developer — не про потенциал в абстракции. Это про то, как потенциал становится движением. Прогресс не обязан быть грандиозным: даже незаметный, постепенный рост имеет значение и замечается.</p>
+<p><strong>Отличие от похожих талантов:</strong></p>
+<table class="maturity-table"><thead><tr><th>Талант</th><th>На чём сосредоточен</th></tr></thead><tbody><tr><td><strong>Developer</strong></td><td>Рост других — любой шаг вперёд имеет значение</td></tr><tr><td><strong>Maximizer</strong> (доводит сильное до превосходного)</td><td>Совершенство — избирательно фокусируется на том, что уже сильно; хочет отполировать лучшее</td></tr><tr><td><strong>Learner</strong> (движим процессом обучения как таковым)</td><td>Внутреннее и личное — воодушевляется собственным мастерством и самим процессом познания</td></tr><tr><td><strong>Restorative</strong> (заряжается от решения проблем)</td><td>Устранение неисправностей — может фокусироваться на процессах или людях, но не исключительно на их росте</td></tr><tr><td><strong>Individualization</strong> (интуитивно замечает уникальные качества каждого)</td><td>Уникальность — видит, чем человек отличается, без встроенной ориентации на прогресс</td></tr><tr><td><strong>Arranger</strong> (организует людей и ресурсы для максимальной эффективности)</td><td>Оптимальная расстановка — ищет лучшее сочетание людей и ресурсов; не ориентирован на рост как таковой</td></tr></tbody></table>
+<p>Человек с талантом Achiever (заряжен на завершение дел) говорит: «Меня интересует, чтобы работа была сделана». Человек с Developer говорит: «Меня интересует, чтобы <em>люди</em> состоялись». Maximizer спрашивает: «В чём мы можем быть великолепны?» Developer спрашивает: «Где мы все можем стать чуть лучше?»</p>
+<p><strong>Статистика (база данных Gallup):</strong> Developer занимает 12-е место среди наиболее распространённых тем в топ-5 профилей. Среди женщин он встречается чаще (8-е место в женском топ-5), чем среди мужчин (25-е место в мужском топ-5). Самая частая парная комбинация — с талантом Empathy.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как это проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как это проявляется</p>
+<p><strong>Ключевые поведенческие паттерны:</strong></p>
+<ul class="marker-list">
+<li>Постоянный поиск возможностей научить, вдохновить или бросить вызов другим</li>
+<li>Замечает малейшие признаки улучшения, которые остальные не видят, — росток задолго до цветения</li>
+<li>Воспринимает прогресс как непрерывный спектр, а не как бинарную оценку «получилось / не получилось»</li>
+<li>Превращает личные открытия в уроки для других; естественным образом делится тем, что узнал сам</li>
+<li>Оценивает результаты через призму того, что они означают для роста людей, а не только через достижение цели</li>
+<li>Испытывает искреннее воодушевление и удовлетворение, когда у другого человека случается прорыв</li>
+</ul>
+<p><strong>Признаки, заметные со стороны:</strong></p>
+<ul class="marker-list">
+<li>Это тот человек, к которому идут за поддержкой — и идут именно потому, что знают: поддержка будет настоящей</li>
+<li>Говорит и пишет, разворачиваясь к другому («Я призываю тебя...» вместо «Вот что я сам делал...»)</li>
+<li>Глядя на группу людей, видит отдельных личностей, а не аудиторию</li>
+<li>Комфортно работает с тем, чего пока нет — взаимодействует с потенциалом, а не с уже доказанным</li>
+<li>Готов вкладываться в того, на кого другие давно махнули рукой</li>
+<li>Лично ощущает потерю, когда человек, в которого он вкладывался, не растёт</li>
+</ul>
+<p><strong>В роли руководителя:</strong> На уровне рядового сотрудника Developer сосредоточен на конкретных людях рядом. Став руководителем, он способен распространить этот взгляд на группу и организацию в целом: думает о коллективном потенциале, о том, чем может стать команда, где сосредоточены наибольшие возможности для роста. В таком масштабе Developer начинает напоминать таланты из группы Влияния (категории талантов, где человек воздействует на большие группы людей и системы, а не только на отдельных людей рядом): он видит, мечтает, неустанно движется к постепенному совершенствованию. Это не противоречие — просто при переходе от человека к организации ориентация вовне, свойственная Developer, начинает работать в том же масштабе, что и влияние.</p>
+<p><strong>Описывающие слова:</strong> практичный, ориентированный на рост, открытый к переменам, сфокусированный на других, наполненный надеждой, тот кто бросает вызов, наставник, учитель, помощник.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">Ценность для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Ценность для команды и организации</p>
+<p><strong>Формирует кадровый резерв.</strong> Человек с Developer активно вкладывается в развитие других, и в результате группа в целом становится сильнее. Планирование преемственности, перекрёстное обучение, подготовка будущих лидеров — всё это возникает само собой, когда в команде есть Developer.</p>
+<p><strong>Притягивает таланты.</strong> Люди хотят работать с тем, кому действительно важно, как они развиваются. Developer выстраивает связи доверия и близости через вызов и рост. Команды с активным Developer, как правило, привлекают таланты: быть объектом развития — это честь, а не давление.</p>
+<p><strong>Разрешение конфликтов через прогресс.</strong> Developer меняет рамку: вместо «выиграли мы или проиграли» возникает вопрос «как мы становимся лучше в процессе достижения этой цели?». Это удерживает команду в движении вперёд, а не в разборе полётов назад.</p>
+<p><strong>Устойчивость и терпение.</strong> Человек с Developer убеждён: нынешнее состояние — никогда не финальное. Нет предела тому, чему люди могут научиться. Это привносит в команду качество прощения и выносливости — ошибки становятся данными для роста, а не приговорами.</p>
+<p><strong>Надежда в трудных ситуациях.</strong> Developer проявляет себя, когда всё неясно или хаотично, и помогает людям увидеть даже малейшие улучшения. Это не оптимизм ради оптимизма — это конкретный навык: замечать рост там, где другие видят только трудности.</p>
+<p><strong>Умножитель вовлечённости.</strong> По данным исследований Gallup: когда сотрудники имеют рядом человека, который поддерживает их развитие, двое из трёх оказываются вовлечёнными. Менее 1% активно дистанцируются от работы. Высокоэффективные руководители в исследованиях Gallup неизменно описывают свою роль языком развития.</p>
+<p><strong>Язык прогресса.</strong> Человек с Developer делает праздники значимыми — не ожидая главного приза, а называя и отмечая каждый шаг вперёд. Это создаёт культуру, в которой улучшение замечается и ценится, а не остаётся невидимым.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Теневая сторона и риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Теневая сторона и риски</p>
+<p><strong>Чрезмерное терпение к недостаточной эффективности.</strong> Та же эмпатия к потенциалу, которая делает Developer ценным, может стать проблемой, когда человек объективно находится не на своём месте или просто не растёт. Developer может продолжать давать кредит доверия дольше, чем это служит и самому человеку, и команде.</p>
+<blockquote class="md-quote">Незрелый: «Я знаю, ты справишься» (повторяется снова и снова, пока ситуация ухудшается).</blockquote>
+<blockquote class="md-quote">Зрелый: активно думает, какое место, роль или контекст дадут <em>этому конкретному</em> человеку возможность расти — а иногда ответ означает выход из нынешней роли.</blockquote>
+<p><strong>Фокус на разрыве вместо вектора роста.</strong> Когда внимание постоянно направлено на то, что могло бы быть лучше, это может выражаться в критике без направления — человек замечает пробелы, но не предлагает пути вперёд. Разница такова: незрелый Developer говорит «тебе ещё долго расти» (обесценивает сделанный прогресс, не показывает следующий шаг), зрелый — «мы растём вместе» (называет направление, разделяет движение).</p>
+<p><strong>Перегрузка наставлениями.</strong> Перечислить 25 способов, которыми кто-то должен улучшиться, — это не развитие, это перегрузка. Зрелый Developer сначала определяет, как выглядит отличная работа, а затем даёт людям самим найти свой путь к этому.</p>
+<p><strong>Восприятие как вечного недовольного.</strong> Поскольку человек с Developer всегда видит, как что-то могло бы быть лучше, его могут воспринимать как «никогда не довольного» или «вечно гнущего своё». Важна формулировка: сообщение о том, <em>насколько лучше могут быть вещи</em>, воспринимается иначе, чем указание на <em>то, чего не хватает</em>.</p>
+<p><strong>Забывает о собственном развитии.</strong> Руководители с Developer могут настолько сосредоточиться на росте других, что перестают вкладываться в себя.</p>
+<p><strong>Размытие границ.</strong> Человек с Developer может продолжать работать с кем-то из личной вовлечённости, даже когда соответствие роли объективно неверное. Хорошим противовесом здесь служит талант Individualization — он помогает определить, есть ли у человека нужные для роли сильные стороны, а не только способность улучшаться в принципе.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать этот талант</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать этот талант</p>
+<p>Эти практики — для тех, кто хочет перевести Developer из паттерна поведения в настоящую сильную сторону:</p>
+<p><strong>Называйте то, что видите, конкретно.</strong> Незрелая форма Developer замечает потенциал абстрактно. Зрелая — переводит его в слова: говорите людям точно, что вы в них видите и как, по-вашему, это может развиться. «Я знаю, ты не пробежишь марафон завтра, но думаю, что помогу тебе подняться на этот холм к концу дня».</p>
+<p><strong>Определяйте образ отличной работы до начала наставничества.</strong> Прежде чем указывать, что кто-то мог бы делать лучше, установите, как выглядит хорошая работа и как она будет измеряться. Это смещает взаимодействие от придирчивости к целенаправленности.</p>
+<p><strong>Создавайте намеренные пространства для развития.</strong> Не ждите органичных моментов — создавайте их: регулярные встречи один на один, форматы «учёба за обедом», короткие сессии вопросов с позитивным исследованием (формат, где вопросы строятся вокруг того, что уже работает хорошо, а не вокруг проблем — это запускает размышление о росте, а не о дефиците), пары наставничества. Чем меньше барьеров между человеком с Developer и теми, кого он может развивать, тем эффективнее работает этот талант.</p>
+<p><strong>Отслеживайте постепенный прогресс явно.</strong> Developer работает на модели непрерывного спектра — отмечайте каждый шаг, а не только конечную точку. Выработайте привычку называть вслух то, что улучшилось, даже когда цель ещё не достигнута.</p>
+<p><strong>Делитесь собственной историей роста.</strong> Зрелый Developer не только ставит планку для других — он моделирует рост, рассказывая о том, что преодолел сам, что умеет сейчас лучше, чем год назад. Это создаёт доверие и делает рост нормальным и безопасным.</p>
+<p><strong>Задавайте вопрос о месте.</strong> Когда кто-то работает недостаточно эффективно, спросите себя: в каком контексте, роли или ситуации этот человек смог бы расти? Если ответ — не в нынешней, это важная информация, и действие на основе неё — зрелая реакция Developer.</p>
+<p><strong>Задавайте вопросы, запускающие открытие.</strong> Учитесь формулировать открытые вопросы без подсказки ответа — такие, которые побуждают человека самому прийти к выводу, а не получить его от вас. Цель — момент озарения другого человека, а не демонстрация собственной проницательности.</p>
+<p><strong>Ищите противовес в объективных данных.</strong> Если вы замечаете, что слишком много вкладываете в кого-то при скудных результатах, объективный разбор данных об эффективности поможет сохранить трезвость оценки. Хорошим партнёром здесь может стать человек с талантом Analytical — склонность к беспристрастному анализу данных без эмоциональной вовлечённости (подробнее — в разделе «Комбинации»).</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком, у которого есть Developer</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком, у которого есть Developer</p>
+<p><strong>Для руководителей:</strong></p>
+<ul class="marker-list">
+<li>Давайте такому человеку роли с прямой ответственностью за развитие других: наставничество, введение новичков, коучинг, перекрёстное обучение, преподавание. Developer находит смысл на пересечении возможности для роста и живой связи с людьми.</li>
+<li>Сделайте разговоры о развитии регулярной формальной структурой, а не только спонтанными. Developer нужна площадка — создайте её.</li>
+<li>Спросите, какие ценности или миссию организации он считает наиболее важными и что он хотел бы знать, когда только пришёл. Эти вопросы активируют его естественную ориентацию.</li>
+<li>Формулируйте цели через рост: не «выдать цифру», а «как мы становимся лучше в погоне за этой цифрой?»</li>
+<li>Доверяйте его интуиции относительно людей. Когда человек с Developer видит потенциал в ком-то — это не принятие желаемого за действительное — это настоящий навык видения потенциала. Проверяйте его оценки, прежде чем отклонять.</li>
+<li>Отмечайте успехи вместе с ним. Когда человек, которого он развивал, делает прорыв — признайте это. Developer питается совместным признанием чужого прогресса.</li>
+</ul>
+<p><strong>Вопросы, которые раскрывают этот талант:</strong></p>
+<ul class="marker-list">
+<li>Кто помогал тебе расти, и как именно?</li>
+<li>Расскажи о случае, когда тебе удалось создать у кого-то новое понимание.</li>
+<li>Какую тему ты мог бы преподавать прямо сейчас, без всякой подготовки?</li>
+<li>Что, по-твоему, люди действительно должны знать?</li>
+<li>Как ты думаешь, как люди меняются?</li>
+<li>Расскажи о чём-то, что ты недавно открыл для кого-то.</li>
+</ul>
+<p><strong>Для коллег:</strong></p>
+<ul class="marker-list">
+<li>Приглашайте его к участию в собственном развитии — он ответит на это искренне. Часто именно с таким человеком комфортнее всего просить о помощи, потому что просьба о помощи рядом с ним не ощущается признанием слабости.</li>
+<li>Когда он даёт обратную связь или бросает вызов, воспринимайте это как веру в ваш потенциал, а не критику вашего нынешнего состояния.</li>
+<li>Не берите его совет молча и не исчезайте. Покажите — пусть кратко — что воспользовались им. Это питает энергию Developer едва ли не больше всего остального.</li>
+<li>Помогайте ему сохранять трезвость оценки в ситуациях с низкой эффективностью — ему может понадобиться доверенный партнёр, который способен смотреть на данные о результатах без той же эмоциональной вовлечённости.</li>
+<li>Делитесь радостью, когда замечаете рост в себе. Developer получает свою вспышку энергии — дайте ему информацию, которая её запускает.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">Комбинации с другими талантами</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Комбинации с другими талантами</p>
+<p><strong>Developer + Empathy</strong> (чувствует эмоции других): Самая статистически частая комбинация (Empathy присутствует рядом с Developer примерно в 50% случаев). Empathy ускоряет способность Developer находить точки, где человек будет наиболее воодушевлён ростом. Взрослые меняют поведение, когда это кажется им важным — Empathy подсказывает Developer, где эта важность живёт для каждого конкретного человека. В совокупности: эмоциональная настроенность на потенциал.</p>
+<p><strong>Developer + Individualization</strong> (интуитивно замечает уникальные качества каждого): Без Individualization Developer может определять «отличный результат» одинаково для всех и вести всех к нему одним путём. С Individualization он определяет величие уникально для каждого человека и взаимодействует на индивидуальном уровне — у каждого своя траектория развития. Очень эффективная комбинация в коучинге и управлении.</p>
+<p><strong>Developer + Maximizer</strong> (доводит сильное до превосходного): Оба видят рост — но Maximizer избирателен (фокусируется на том, что уже сильно, и делает это превосходным), тогда как Developer инклюзивен (находит что-то для роста в любом человеке и в любой ситуации). В комбинации они создают фильтр: используйте Maximizer, чтобы определить, куда вложение в развитие даст наибольшую отдачу, затем применяйте Developer, чтобы стимулировать этот рост. Комбинация также помогает справляться с риском Developer — чрезмерными инвестициями в тех, кто объективно не на своём месте.</p>
+<p><strong>Developer + Arranger</strong> (организует людей и ресурсы для максимальной эффективности): Arranger — тема из группы Исполнения, он находит оптимальные конфигурации. В сочетании с Developer это порождает эффективные планы развития: не просто «тебе стоит расти в X», а «вот наиболее эффективный путь для тебя, чтобы вырасти в X, шаг за шагом».</p>
+<p><strong>Developer + Futuristic</strong> (заряжен будущим и тем, чем оно может стать): Futuristic даёт широкое видение — куда может прийти компания, команда или человек. Developer обеспечивает отдельные шаги роста, которые туда ведут. Вместе: вдохновляющее, наполненное надеждой и при этом конкретное сочетание. Futuristic в одиночку даёт пункт назначения; Developer прокладывает постепенный маршрут.</p>
+<p><strong>Developer + Analytical</strong> (ищет причины и основания; способен удерживать в уме множество факторов): Продуктивный противовес. Analytical привносит беспристрастный взгляд на результаты — когда вовлечённость Developer в чей-то потенциал начинает туманить суждение, Analytical может вытащить факты на поверхность и помочь принять ясное решение о месте, а не продолжать вкладываться туда, где нет соответствия.</p>
+<p><strong>Developer + Responsibility</strong> (ощущает психологическую ответственность за то, что берётся делать): Responsibility усиливает доведение до конца — человек с таким сочетанием не просто замечает потенциал и чувствует искру; он ощущает личную ответственность за то, чтобы что-то с этим сделать. Сильная комбинация для последовательного наставничества и устойчивых коучинговых отношений.</p>
+<p><strong>Developer + Communication</strong> (легко выражает мысли словами): Человек с Developer нередко видит потенциал в людях, но затрудняется с тем, чтобы точно сформулировать <em>что именно</em> он видит. Communication даёт язык для этого восприятия. Вместе: способность точно и убедительно назвать потенциал человека — сильная коучинговая комбинация.</p>
+<p><strong>Developer + Positivity</strong> (обладает заразительным энтузиазмом): Positivity усиливает естественную наполненность надеждой, характерную для Developer, делая отношения развития заряжающими для обеих сторон. Люди тянутся к этому сочетанию, потому что оно ощущается как искренняя поддержка, а не стратегический расчёт.</p>
+<p><strong>Developer + Woo</strong> (получает удовольствие от знакомства с новыми людьми и умеет расположить их к себе): Статистически редкая комбинация, но когда она есть — даёт Developer широкий охват. Woo открывает двери к новым отношениям; Developer затем вкладывается в рост этих людей. При этом Developer и в одиночку может действовать социально наподобие Woo — люди сами тянутся к тому, кому искренне важно помочь им стать лучше.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

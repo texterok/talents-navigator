@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context — Контекст · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain strat">Стратегическое мышление</div>
+    <h1>Context</h1>
+    <div class="hero-sub">Контекст</div>
+    <p class="hero-def">Что такое Контекст</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 01</div>
+        <div class="section-title">Что такое Контекст</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Что такое Контекст</p>
+<p>Контекст — это талант из домена <strong>стратегического мышления</strong>. Человек с этим талантом понимает настоящее, изучая его историю. Его мозг автоматически тянется назад — к предыстории, к причинам и цепочкам событий — и именно это становится главным инструментом для осмысления происходящего и принятия решений.</p>
+<p><strong>Официальное краткое определение:</strong> «Вам нравится думать о прошлом. Настоящее вы понимаете через его историю.»</p>
+<p>Само слово «контекст» лучше всего описывает этот талант: такие люди инстинктивно «вписывают всё в контекст» — они объясняют события не как изолированные факты, а в рамках более широкой картины: исторической, культурной, географической, личностной.</p>
+<p><strong>Метафора, передающая суть таланта:</strong> Контекст — это как смотреть на здание не через осмотр стен, а через чтение архитектурных чертежей: оригинальных замыслов и планов, которые определили, что было построено и почему.</p>
+<p><strong>Что Контекст — это не:</strong></p>
+<ul class="marker-list">
+<li>Не ностальгия и не «застревание в прошлом». Взгляд назад нужен для того, чтобы лучше ориентироваться в настоящем и будущем.</li>
+<li>Не увлечение историей как хобби. Контекст работает как <em>когнитивный инструмент</em> — способ обрабатывать информацию, — а не обязательно как академическая страсть.</li>
+<li>Не генерация новых идей. В отличие от Идеации (Ideation — таланта создавать новые связи), Контекст опирается на то, что уже зафиксировано в истории. Это понимание через соединение с фактами, а не через изобретение.</li>
+</ul>
+<p><strong>Сравнение с близкими талантами:</strong></p>
+<table class="maturity-table"><thead><tr><th>Талант</th><th>В чём уверенность</th><th>Как распознаёт паттерны</th></tr></thead><tbody><tr><td><strong>Контекст</strong></td><td>«Я наиболее уверен, когда знаю, что было раньше.»</td><td>Паттерны на линейной временной шкале</td></tr><tr><td><strong>Стратегия</strong> (Strategic — талант находить оптимальный путь вперёд)</td><td>«Я наиболее уверен, когда изучил варианты.»</td><td>Паттерны в пространстве вариантов, нелинейно</td></tr><tr><td><strong>Обучаемость</strong> (Learner — талант к процессу познания)</td><td>«Мне нравится двигаться от незнания к знанию в любой теме.»</td><td>Любопытство без привязки к направлению</td></tr><tr><td><strong>Аналитика</strong> (Analytical — талант находить доказательства через данные)</td><td>«Покажите мне данные и логику.»</td><td>Доказательства; Контекст добавляет <em>истории и последовательность</em></td></tr></tbody></table>
+<p>Контекст и Обучаемость объединяет любопытство к тому, что ещё неизвестно, но Контекст настаивает: прошлое — обязательная отправная точка. Контекст и Аналитика оба требуют строгости, но Аналитика ищет истину и доказательства, а Контекст добавляет нарратив и историческую последовательность.</p>
+<p><strong>Отличие от Связанности</strong> (Connectedness — таланта чувствовать невидимые связи между вещами): человек с Connectedness верит, что случайностей не бывает, даже если объяснить это невозможно. Человек с Контекстом, скорее всего, убеждён: случайности лишь кажутся случайными — просто мы недостаточно внимательно смотрим на исторические признаки, которые уже были.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 02</div>
+        <div class="section-title">Как это проявляется</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как это проявляется</p>
+<p><strong>Когнитивный почерк:</strong></p>
+<ul class="marker-list">
+<li>Первая реакция на новую проблему: «Что мы уже знаем об этом? Что было раньше? Как мы сюда пришли?»</li>
+<li>Внутренняя временна́я шкала — события не просто «в прошлом», они происходили в определённом порядке, с причинами и следствиями, которые создали нынешнюю ситуацию.</li>
+<li>«Интеллектуальное сравнение»: каждая новая ситуация автоматически сопоставляется с предыдущими для понимания.</li>
+<li>Прогресс отслеживается через вопросы «Как мы изменились по сравнению с прошлым годом?» или «Что мы делаем иначе, чем раньше?» — а не «Как мы справляемся прямо сейчас?»</li>
+</ul>
+<p><strong>Поведенческие паттерны:</strong></p>
+<ul class="marker-list">
+<li>В разговоре первым делом спрашивает «откуда вы?» или «как это началось?» — это естественное начало общения.</li>
+<li>Чаще других говорит «А вы знали, что...» или «Здесь есть интересная предыстория...».</li>
+<li>Помнит конкретные детали из событий многолетней давности — особенно вокруг важных событий, отношений, организационных вех. Это, как правило, <em>эпизодическая</em> память (привязанная к конкретным ситуациям и эмоциям, а не дословная): помнит, как всё происходило, а не точные слова.</li>
+<li>Испытывает воодушевление, когда обнаруживает улики из прошлого; использует находки как точки отсчёта.</li>
+<li>Изучает кейсы с искренним интересом — воспринимает их не как упражнения, а как практически применимые данные.</li>
+</ul>
+<p><strong>В командной и рабочей среде:</strong></p>
+<ul class="marker-list">
+<li>Не чувствует уверенности в принятии решений, пока не изучит историю вопроса.</li>
+<li>Может приостановить «новую» инициативу и спросить: «Это действительно новое, или мы уже пробовали что-то похожее? Если пробовали — почему перестали?»</li>
+<li>Становится неофициальным историком команды: люди приходят к нему, чтобы узнать, как что-то началось, кто что говорил, что уже пробовали.</li>
+</ul>
+<p><strong>Спонтанные проявления, которые сигнализируют о доминирующем Контексте:</strong></p>
+<ul class="marker-list">
+<li>В детстве увешивал стены спальни картами.</li>
+<li>Тянется к истории, генеалогии, биографиям и кейсам без внешних стимулов.</li>
+<li>Физически ощущает значимость, когда стоит в исторически важном месте.</li>
+<li>В незнакомом городе быстро ориентируется, опираясь на фоновые знания — ментальные карты, построенные из предварительно усвоенной информации о месте.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 03</div>
+        <div class="section-title">Ценность для команды и организации</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Ценность для команды и организации</p>
+<p><strong>В команде человек с Контекстом выступает в роли:</strong></p>
+<ul class="marker-list">
+<li><strong>Историка и якоря:</strong> заземляет команду в том, где она уже была, прежде чем принимать важные решения.</li>
+<li><strong>Связующего звена:</strong> соединяет то, что организация делает сегодня, с тем, что она делала раньше.</li>
+<li><strong>Снижающего риски:</strong> предупреждает, когда предложенная «инновация» повторяет то, что уже пробовали, — и почему это сработало или провалилось.</li>
+<li><strong>Читателя паттернов:</strong> замечает, когда текущий конфликт или динамика напоминают паттерн, который команда уже переживала, и может предсказать вероятный исход.</li>
+<li><strong>Эмоционального стабилизатора:</strong> когда ситуация кажется катастрофической или неопределённой, находит аналогичные моменты в истории и даёт реалистичную перспективу — снижает тревогу без ложного оптимизма.</li>
+</ul>
+<blockquote class="md-quote">«Это как если бы ты смотришь на сегодняшний день через дополнительную пару очков, которая даёт тебе чуть больше информации.»</blockquote>
+<p><strong>Решения в организации становятся точнее, когда за столом есть человек с Контекстом:</strong></p>
+<ul class="marker-list">
+<li>Помогает не повторять одни и те же ошибки.</li>
+<li>Позволяет опираться на прошлые победы конкретно, а не в общих словах.</li>
+<li>Создаёт фактическую основу под будущее планирование.</li>
+<li>Превращает историю организации в ресурс, а не просто в архив.</li>
+</ul>
+<p><strong>Межфункциональный вклад:</strong></p>
+<p>Контекст относится к домену стратегического мышления, но при целенаправленном применении работает во всех доменах:</p>
+<ul class="marker-list">
+<li><em>Исполнение:</em> предотвращает напрасные усилия, указывая на то, что уже пробовали и что не сработало.</li>
+<li><em>Выстраивание отношений:</em> знание предыстории человека строит мосты доверия — особенно мощно в межкультурных или долгосрочных отношениях.</li>
+<li><em>Влияние:</em> авторитет, основанный на демонстрируемой глубине знания общей истории, делает людей более готовыми следовать за этим человеком.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 04</div>
+        <div class="section-title">Тёмная сторона / Риски</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Тёмная сторона / Риски</p>
+<p><strong>Неразвитый Контекст проявляется так:</strong></p>
+<table class="maturity-table"><thead><tr><th>Незрелое проявление</th><th>Зрелый эквивалент</th></tr></thead><tbody><tr><td>Жизнь в прошлом</td><td>Обучение на прошлом</td></tr><tr><td>«Мне нужно сначала изучить вопрос» (паралич перед действием)</td><td>Знать историю и обращаться к ней по мере необходимости</td></tr><tr><td>«Ничего нового не бывает» — используется чтобы <em>заблокировать</em> изменения</td><td>«Давайте разберём, что именно сейчас по-другому» — используется чтобы <em>обоснованно подойти</em> к изменениям</td></tr><tr><td>Перегружает других большим количеством предыстории, чем им нужно</td><td>Даёт только ту предысторию, которая важна для конкретного решения</td></tr><tr><td>«А как это было раньше?» (увлечённость прошлым ради самого прошлого)</td><td>«Как мы сюда пришли?» (использование прошлого для навигации в настоящем)</td></tr><tr><td>Смотрит только в зеркало заднего вида</td><td>Сканирует всю приборную панель — прошлое, настоящее и куда ведут текущие тенденции</td></tr></tbody></table>
+<p><strong>Конкретные риски:</strong></p>
+<li><strong>Воспринимается как сопротивляющийся изменениям.</strong> Поскольку человек с Контекстом мгновенно замечает, что «новая» идея похожа на уже опробованное, это может выглядеть как блокирование прогресса. Чаще всего это не сопротивление — это распознавание паттернов, — но без тщательной подачи воспринимается как препятствие.</li>
+<li><strong>Редкость создаёт изоляцию.</strong> Контекст — один из наиболее редких доминирующих талантов. В большинстве ситуаций человек с этим талантом будет единственным, кому важно понять историю, прежде чем двигаться вперёд. Остальные могут воспринимать это как замедление.</li>
+<li><strong>Информационная перегрузка.</strong> В незрелой форме глубина исторических знаний может привести к тому, что человек делится куда большим контекстом, чем аудитория способна усвоить или использовать. Фильтрация между «всем контекстом, который у меня есть» и «контекстом, нужным прямо сейчас» — навык, который приходится вырабатывать.</li>
+<li><strong>Избыточная привязка к прошлым паттернам.</strong> Когда доминирующая рамка — «мы это уже видели», по-настоящему новые ситуации могут быть ошибочно прочитаны как повторения исторических — и упускается то, что действительно ново.</li>
+<li><strong>Уверенность как узкое место.</strong> Поскольку без исторической опоры человек с Контекстом чувствует себя менее уверенно, в по-настоящему беспрецедентных ситуациях, где нет релевантной истории, он может застопориться.</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 05</div>
+        <div class="section-title">Как развивать этот талант</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как развивать этот талант</p>
+<p><strong>Ключевой шаг в развитии:</strong> перейти от <em>обладания</em> историческими знаниями к их <em>стратегическому применению</em>. Талант — это сырьё; сила — в умении знать, когда и как его использовать.</p>
+<p><strong>Конкретные действия:</strong></p>
+<li><strong>Выстраивайте целенаправленную базу знаний.</strong> Каждый день давайте мозгу то, что вас интересует: книги, статьи, разговоры с людьми, у которых есть глубокие знания о том, как развивались команды, отрасли или области. Для Контекста это не опция — это топливо.</li>
+<li><strong>Найдите своих хранителей истории.</strong> Ищите наставников, ветеранов или экспертов, которые знают историю вашей команды, отрасли или области изнутри. Делайте эти отношения постоянным источником пополнения знаний, а не только фоновым чтением.</li>
+<li><strong>Практикуйте сильные вопросы.</strong> Изучайте, какие вопросы стабильно побуждают людей раскрываться и рассказывать свою историю. Формируйте набор вопросов, которые используете в начале работы с клиентами, на встречах, в новых отношениях. Отслеживайте, что работает.</li>
+<li><strong>Развивайте навык избирательной подачи.</strong> Учитесь отличать «весь контекст, который я знаю» от «контекста, нужного этому человеку прямо сейчас». Практикуйте передачу исторического инсайта в одном-двух предложениях — этот навык делает Контекст полезным для других, а не обременительным.</li>
+<li><strong>Станьте осознанным рассказчиком.</strong> Незрелый Контекст хранит информацию; зрелый — переводит её в истории и примеры, которые другие могут использовать. Практикуйте превращение исторических знаний в нарратив, актуальный для текущего решения.</li>
+<li><strong>Используйте всю приборную панель, а не только зеркало заднего вида.</strong> Намеренно тренируйтесь соединять исторические находки с решениями настоящего момента и планами на будущее. Спрашивайте себя: «Что мы можем ожидать, исходя из того, что знаем о прошлом? Что это означает прямо сейчас?»</li>
+<li><strong>Запрашивайте обратную связь по калибровке.</strong> Поделившись историческим контекстом, спросите аудиторию: «Это было полезно? Не слишком ли много / мало?» Используйте это для настройки фильтра.</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 06</div>
+        <div class="section-title">Как работать с человеком, у которого есть Контекст</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Как работать с человеком, у которого есть Контекст</p>
+<p><strong>Для руководителей:</strong></p>
+<ul class="marker-list">
+<li><strong>Давайте время на изучение истории перед решениями.</strong> Если торопить человека с Контекстом, не давая возможности изучить предысторию, качество его работы упадёт, и вы увидите видимый дискомфорт. Закладывайте время на погружение в историю.</li>
+<li><strong>Назначьте его хранителем командной истории.</strong> Официально или неформально сделайте его тем, кто отслеживает, что пробовали, что сработало, что нет. Это не ограничение — это роль высокой ценности.</li>
+<li><strong>Задавайте вопросы, ориентированные на историю, чтобы вовлечь его:</strong></li>
+</ul>
+<p>- «Назовите несколько значимых моментов, которые привели нас сюда.»</p>
+<p>- «Чем вы больше всего гордитесь в истории нашей компании?»</p>
+<p>- «Если бы вы могли провести день в любом десятилетии истории, когда бы это было и чем бы вы занялись?»</p>
+<p>- «Что вдохновляет вас исследовать и задавать вопросы?»</p>
+<ul class="marker-list">
+<li><strong>Приглашайте его делать брифинг команды</strong> перед важными решениями: «Вот что мы пробовали раньше и что знаем.» Давайте чёткую ограниченную роль — не принимать решение, а информировать его.</li>
+<li><strong>Признавайте его память.</strong> Когда он приводит релевантный факт из прошлого, скажите об этом явно: «Хорошо, что вы это вспомнили.» Люди с Контекстом часто не осознают, что их память необычна, пока кто-то не отражает это обратно.</li>
+</ul>
+<p><strong>Для коллег:</strong></p>
+<ul class="marker-list">
+<li><strong>Не заставляйте вести без карты.</strong> Если вам нужно их лучшее мышление — сначала дайте контекст. «Вот откуда взялся этот проект и что мы пробовали» — намного полезнее, чем «подключайся и дай свою версию».</li>
+<li><strong>Давайте задавать вопросы.</strong> Их вопросы — это навигация, а не задержка. Дайте им возможность спросить, прежде чем ждать результата.</li>
+<li><strong>Не воспринимайте историческую осведомлённость как сопротивление.</strong> Если они говорят «мы это уже пробовали» — воспринимайте это как информацию, а не возражение. Попросите поделиться тем, что они знают: это часто открывает что-то важное.</li>
+<li><strong>Будьте терпеливы с вступлением.</strong> Люди с Контекстом могут давать больше преамбулы, чем вы ожидаете. Преамбула — это рассуждение. Если вам нужно покороче, спросите конкретно: «Дай мне одну самую релевантную вещь из прошлого по этому вопросу.»</li>
+<li><strong>Приходите подготовленными с релевантной историей</strong>, если хотите их вовлечь. «Вот что известно о том, что уже пробовали» — это приглашение к их наиболее продуктивному мышлению.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Раздел 07</div>
+        <div class="section-title">Сочетания с другими талантами</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>Сочетания с другими талантами</p>
+<p><strong>Накопление</strong> (Input — талант собирать и архивировать информацию): наиболее статистически распространённое сочетание с Контекстом. Накопление собирает артефакты, данные, материалы; Контекст создаёт исторический нарратив, придающий коллекции смысл. Вместе: мощный архив организационной памяти — не просто хранилище, а понимание всего в рамках развёртывания событий.</p>
+<p><strong>Стратегия</strong> (Strategic — талант находить оптимальные пути): Контекст даёт распознавание паттернов в прошлом; Стратегия — распознавание паттернов в будущем. Вместе: полный аналитический диапазон — где мы были <em>и</em> какие у нас варианты. По отдельности каждый из них частичен; вместе они дают исключительную глубину охвата.</p>
+<p><strong>Обучаемость</strong> (Learner — талант к познанию): оба таланта объединяет глубокое любопытство, но Контекст направлен назад, а Обучаемость — в любую сторону. Вместе: человек, который изучает историю с тем же воодушевлением, с каким погружается в любую новую область.</p>
+<p><strong>Аналитика</strong> (Analytical — аналитическое мышление на основе данных): Аналитика требует доказательств; Контекст добавляет историю и последовательность. Вместе: аргументация, основанная на фактах, которая при этом убедительна нарративно — факты, выстроенные в причинно-следственную цепь.</p>
+<p><strong>Коммуникация</strong> (Communication — талант рассказывать истории и находить нужные слова): Контекст поставляет сырьё — исторические знания, последовательности, кейсы. Коммуникация превращает это в истории. Вместе: исключительно сильный сторителлинг, укоренённый в реальных прецедентах.</p>
+<p><strong>Футуристичность</strong> (Futuristic — талант ярко представлять то, что могло бы быть): Футуристичность тянет к тому, что может быть; Контекст тянет к тому, что было. Это сочетание создаёт напряжение, но и широту охвата — человек, который понимает прецеденты и при этом воображает за их пределами. Редкое сочетание, но когда оно встречается, смягчает склонность Контекста якориться на прошлом.</p>
+<p><strong>Позитивность</strong> (Positivity — талант заряжать оптимизмом): добавляет эмоциональную энергию к историческим знаниям — отмечает героев и яркие моменты прошлого, превращая контекст в источник вдохновения, а не просто информацию.</p>
+<p><strong>Адаптивность</strong> (Adaptability — талант жить в настоящем моменте): Адаптивность ориентирована на настоящее; Контекст — на прошлое. Вместе: достоверность и смысл в моменте. Контекст объясняет, как мы сюда пришли; Адаптивность реагирует на то, где мы сейчас. Скорее дополняют, чем конфликтуют.</p>
+<p><strong>Принятие</strong> (Includer — талант давать каждому ощущение причастности): расширяет круг тех, чья история фиксируется и рассказывается, — обеспечивает, чтобы память команды о своей истории включала все голоса, а не только доминирующие.</p>
+<p><strong>Завоевание</strong> (Woo — талант быстро располагать к себе людей): использует исторические знания, чтобы удивлять и вовлекать других — превращает «а вы знали, что...» в социальную связь.</p>
+<p><strong>Замечание о статистически редких сочетаниях:</strong> Контекст реже всего встречается вместе с Командованием (Command — талант брать управление на себя), Значимостью (Significance — талант оставлять заметный след) и Сосредоточенностью (Focus — талант удерживать направление). Вероятно, это связано с тем, что эти таланты ориентированы вперёд и на результат способами, которые естественным образом не усиливают обработку информации через прошлое.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>
