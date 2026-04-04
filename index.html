@@ -204,6 +204,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .dgrid-col:not(:last-child){border-right:1px solid var(--border-light)}
 .dgrid-cell{display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--border-light);min-height:44px}
 .dgrid-cell:last-child{border-bottom:none}
+.dgrid-cell:hover{filter:brightness(.96)}
 .dgrid-cell-pos{font-size:22px;font-weight:700;line-height:1;min-width:28px;text-align:right;flex-shrink:0}
 .dgrid-cell-name{font-size:12px;font-weight:500;line-height:1.3;color:var(--text-1)}
 .dgrid-cell-ru{font-size:10px;color:var(--text-3);line-height:1.2}
@@ -824,7 +825,8 @@ function renderChips(){
     html+=`<div class="dgrid-hdr ${d.cls}">${d.key}</div>`;
     byDomain[d.key].forEach(item=>{
       const isTop=item.pos<=10;
-      html+=`<div class="dgrid-cell ${item.zone.cls}${isTop?' top10':''}">
+      const cellSlug=item.name.toLowerCase().replace(/[^a-z-]/g,'');
+      html+=`<div class="dgrid-cell ${item.zone.cls}${isTop?' top10':''}" style="cursor:pointer" onclick="openThemeOverlay('${cellSlug}','${item.ru}')">
         <div class="dgrid-cell-pos">${item.pos}</div>
         <div><div class="dgrid-cell-name">${item.name}</div><div class="dgrid-cell-ru">${item.ru}</div></div>
       </div>`;
