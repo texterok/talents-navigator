@@ -1166,9 +1166,9 @@ function renderDeepAnalysis(members) {
     const pos = {};
     (m.themes || []).forEach((t, i) => { pos[t] = i + 1; });
     const roleName = m.job_title || ('Участник ' + (m.user_id ? m.user_id.slice(0, 4) : ''));
-    const idName = m.user_id ? m.user_id.slice(0, 8) + '…' : '—';
-    const displayName = _gridNameMode === 'role' ? roleName : idName;
-    gridHtml += `<tr data-uid="${esc(m.user_id)}"><td class="name-cell" data-role="${esc(roleName)}" data-uid="${esc(idName)}" title="${esc(displayName)}">${esc(displayName)}</td>`;
+    const personName = m.display_name || (m.user_id ? m.user_id.slice(0, 8) + '…' : '—');
+    const displayName = _gridNameMode === 'role' ? roleName : personName;
+    gridHtml += `<tr data-uid="${esc(m.user_id)}"><td class="name-cell" data-role="${esc(roleName)}" data-uid="${esc(personName)}" title="${esc(displayName)}">${esc(displayName)}</td>`;
     THEMES_ORDER.forEach(t => {
       const p = pos[t];
       if (!p) { gridHtml += '<td></td>'; return; }
