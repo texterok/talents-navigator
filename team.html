@@ -1230,12 +1230,16 @@ function renderDeepAnalysis(members) {
 function sortGridByTheme(theme) {
   if (_gridSortTheme === theme) {
     if (_gridSortDir === 'asc') _gridSortDir = 'desc';
-    else { _gridSortTheme = null; _gridSortDir = 'asc'; } // third click — reset
+    else { _gridSortTheme = null; _gridSortDir = 'asc'; }
   } else {
     _gridSortTheme = theme;
     _gridSortDir = 'asc';
   }
   renderDeepAnalysis(_lastMembers);
+  // if overlay is open — refresh it too
+  if (document.getElementById('gridOverlay').classList.contains('open')) {
+    openGridOverlay();
+  }
 }
 
 function setGridNameMode(mode, btn) {
