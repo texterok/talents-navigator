@@ -171,11 +171,82 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .spin{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 
+/* PAGE TABS */
+.page-tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:28px}
+.page-tab{padding:12px 24px;font-size:14px;font-weight:600;color:var(--text-3);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none}
+.page-tab:hover{color:var(--text)}
+.page-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+
+/* DEEP ANALYSIS */
+.deep-section{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);padding:24px;margin-bottom:20px;box-shadow:var(--shadow)}
+.deep-section-title{font-size:16px;font-weight:700;margin-bottom:4px}
+.deep-section-sub{font-size:13px;color:var(--text-2);margin-bottom:20px;line-height:1.5}
+
+/* THEME RANK */
+.theme-rank-list{display:flex;flex-direction:column;gap:12px}
+.tr-item{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border-light)}
+.tr-rank{width:48px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff}
+.tr-rank.exec{background:var(--exec)}.tr-rank.infl{background:var(--infl)}.tr-rank.rel{background:var(--rel)}.tr-rank.strat{background:var(--strat)}
+.tr-body{flex:1;padding:14px 16px;display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.tr-name{font-size:15px;font-weight:700;min-width:140px}
+.tr-domain{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:12px;margin-top:3px;display:inline-block}
+.tr-domain.exec{background:var(--exec-bg);color:var(--exec)}.tr-domain.infl{background:var(--infl-bg);color:var(--infl)}.tr-domain.rel{background:var(--rel-bg);color:var(--rel)}.tr-domain.strat{background:var(--strat-bg);color:var(--strat)}
+.tr-count{font-size:12px;color:var(--text-3);margin-top:4px}
+.tr-insights{flex:1;min-width:260px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.tr-insight-col{padding:8px 10px;border-radius:7px;font-size:12px;line-height:1.5}
+.tr-insight-col.brings{background:#E8F5EF;border-left:2px solid #059669}
+.tr-insight-col.needs{background:#EBF1FF;border-left:2px solid #1856C7}
+.tr-insight-col.motiv{background:#FFF3E8;border-left:2px solid #C2590A}
+.tr-insight-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;opacity:.7}
+
+/* FULL GRID */
+.grid-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.full-grid{border-collapse:collapse;font-size:11px;min-width:900px}
+.full-grid th{padding:4px 6px;text-align:center;font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;border-bottom:2px solid var(--border)}
+.full-grid th.domain-hdr{font-size:10px;text-align:center;padding:6px 4px;letter-spacing:.04em}
+.full-grid th.domain-hdr.exec{color:var(--exec);border-bottom:3px solid var(--exec)}
+.full-grid th.domain-hdr.infl{color:var(--infl);border-bottom:3px solid var(--infl)}
+.full-grid th.domain-hdr.rel{color:var(--rel);border-bottom:3px solid var(--rel)}
+.full-grid th.domain-hdr.strat{color:var(--strat);border-bottom:3px solid var(--strat)}
+.full-grid td{padding:5px 4px;text-align:center;border-bottom:1px solid var(--border-light);border-right:1px solid var(--border-light)}
+.full-grid td.name-cell{text-align:left;padding:6px 12px;font-size:12px;font-weight:600;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:2;border-right:2px solid var(--border)}
+.full-grid tr:hover td{background:#FAFAF8}
+.full-grid tr:hover td.name-cell{background:#F5F3EF}
+.grid-cell{width:22px;height:22px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin:0 auto}
+.grid-cell.z1-5.exec{background:var(--exec);color:#fff}
+.grid-cell.z1-5.infl{background:var(--infl);color:#fff}
+.grid-cell.z1-5.rel{background:var(--rel);color:#fff}
+.grid-cell.z1-5.strat{background:var(--strat);color:#fff}
+.grid-cell.z30-34{background:var(--surface-alt);color:var(--text-3);font-size:9px}
+.full-grid .team-rank-row td{background:var(--surface-alt);font-weight:800;font-size:12px;padding:6px 4px}
+.full-grid .team-rank-row td.name-cell{background:var(--surface-alt)}
+
+/* DOMAIN INTERPRETATION */
+.domain-interp{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.di-card{border-radius:10px;padding:16px 18px;border:1px solid transparent}
+.di-card.exec{background:var(--exec-bg);border-color:rgba(109,40,217,.15)}
+.di-card.infl{background:var(--infl-bg);border-color:rgba(194,89,10,.15)}
+.di-card.rel{background:var(--rel-bg);border-color:rgba(11,122,85,.15)}
+.di-card.strat{background:var(--strat-bg);border-color:rgba(24,86,199,.15)}
+.di-card-hdr{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.di-card-title{font-size:13px;font-weight:700}
+.di-card-title.exec{color:var(--exec)}.di-card-title.infl{color:var(--infl)}.di-card-title.rel{color:var(--rel)}.di-card-title.strat{color:var(--strat)}
+.di-bar-wrap{height:6px;background:rgba(0,0,0,.08);border-radius:3px;margin-bottom:10px;overflow:hidden}
+.di-bar{height:100%;border-radius:3px;transition:width .6s ease}
+.di-bar.exec{background:var(--exec)}.di-bar.infl{background:var(--infl)}.di-bar.rel{background:var(--rel)}.di-bar.strat{background:var(--strat)}
+.di-card-text{font-size:12px;line-height:1.6;color:var(--text-2)}
+.di-card-text strong{color:var(--text)}
+
 @media(max-width:700px){
   .stats-row{grid-template-columns:repeat(2,1fr)}
   .domain-bar-label{width:130px;font-size:11px}
   .page{padding:16px 16px 60px}
   .hdr{padding:0 16px}
+  .tr-insights{grid-template-columns:1fr}
+  .domain-interp{grid-template-columns:1fr}
+  .page-tab{padding:10px 14px;font-size:13px}
 }
 </style>
 </head>
@@ -223,6 +294,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
     <!-- ORG CONTENT -->
     <div id="orgContent" style="display:none">
+
+      <!-- PAGE TABS -->
+      <div class="page-tabs">
+        <button class="page-tab active" onclick="switchTab('overview')" id="tabBtnOverview">Обзор</button>
+        <button class="page-tab" onclick="switchTab('deep')" id="tabBtnDeep">Глубокий анализ</button>
+      </div>
+
+      <!-- TAB: OVERVIEW -->
+      <div class="tab-pane active" id="tabOverview">
 
       <!-- CONSENT NOTICE -->
       <div class="consent-notice" id="consentNotice" style="display:none">
@@ -305,6 +385,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div id="inviteResultWrap" style="display:none" class="invite-result">
           <span class="invite-result-link" id="inviteResultLink"></span>
           <button class="btn-copy" onclick="copyInviteLink()">Скопировать</button>
+        </div>
+      </div>
+
+      </div><!-- /tabOverview -->
+
+      <!-- TAB: DEEP ANALYSIS -->
+      <div class="tab-pane" id="tabDeep">
+        <div id="deepContent">
+          <div class="loading"><div class="spin"></div>Загрузка анализа...</div>
         </div>
       </div>
 
@@ -394,6 +483,58 @@ const RU_NAMES = {
 let currentUser = null;
 let currentOrgId = null;
 let orgs = [];
+let _lastMembers = [];
+
+// ─── TAB SWITCHING ────────────────────────────────────────────────
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tabOverview').classList.toggle('active', tab === 'overview');
+  document.getElementById('tabDeep').classList.toggle('active', tab === 'deep');
+  document.getElementById('tabBtnOverview').classList.toggle('active', tab === 'overview');
+  document.getElementById('tabBtnDeep').classList.toggle('active', tab === 'deep');
+  if (tab === 'deep' && _lastMembers.length > 0) renderDeepAnalysis(_lastMembers);
+}
+
+// ─── THEME INSIGHTS ───────────────────────────────────────────────
+
+const THEME_INSIGHTS = {
+  Achiever:   { brings:'Стабильная продуктивность, постоянный прогресс', needs:'Видимые метрики прогресса, ощущение завершённости', motiv:'Потребность делать и завершать' },
+  Activator:  { brings:'Импульс к старту, энергия действия', needs:'Возможность начинать немедленно', motiv:'Желание сдвинуть с мёртвой точки' },
+  Adaptability:{ brings:'Гибкость в хаосе, устойчивость к неопределённости', needs:'Возможность работать в моменте', motiv:'Жить настоящим, отвечать потоку' },
+  Analytical:  { brings:'Строгая логика, устойчивые выводы', needs:'Данные и время на анализ', motiv:'Поиск истинных паттернов' },
+  Arranger:    { brings:'Оптимальная координация людей и ресурсов', needs:'Сложные логистические задачи', motiv:'Найти лучшую конфигурацию' },
+  Belief:      { brings:'Этическая стабильность, ценностный компас', needs:'Смысл и соответствие ценностям', motiv:'Работа, значимая по существу' },
+  Command:     { brings:'Чёткость, прямолинейность, лидерство в кризисе', needs:'Авторитет и возможность решать', motiv:'Навести порядок и идти вперёд' },
+  Communication:{ brings:'Ясность в объяснениях, сторителлинг', needs:'Аудитория и площадка для выражения', motiv:'Оживить идеи через слова' },
+  Competition: { brings:'Максимальная отдача, стремление победить', needs:'Ориентиры и сравнение с лучшими', motiv:'Оказаться первым' },
+  Connectedness:{ brings:'Ощущение связи между людьми и событиями', needs:'Атмосфера взаимозависимости', motiv:'Видеть смысл в каждом звене' },
+  Consistency: { brings:'Справедливость, воспроизводимые правила', needs:'Чёткие процедуры и стандарты', motiv:'Равные условия для всех' },
+  Context:     { brings:'Понимание истории, уроки прошлого', needs:'Доступ к предыстории решений', motiv:'Понять откуда пришли, чтобы идти вперёд' },
+  Deliberative:{ brings:'Тщательная оценка рисков, осторожность', needs:'Время для обдумывания', motiv:'Принимать взвешенные решения' },
+  Developer:   { brings:'Рост людей, вера в потенциал каждого', needs:'Наблюдать за чужим прогрессом', motiv:'Помочь другому стать лучше' },
+  Discipline:  { brings:'Структура, точность, предсказуемость', needs:'Планы и порядок в работе', motiv:'Контроль через организованность' },
+  Empathy:     { brings:'Чуткость к эмоциям, психологическая безопасность', needs:'Пространство для выражения эмоций', motiv:'Понять, что чувствует другой' },
+  Focus:       { brings:'Направленность, отсечение лишнего', needs:'Чёткие приоритеты и цели', motiv:'Двигаться к цели без отклонений' },
+  Futuristic:  { brings:'Вдохновляющее видение будущего', needs:'Простор для воображения и мечты', motiv:'Увидеть, что может быть' },
+  Harmony:     { brings:'Поиск консенсуса, снижение конфликтности', needs:'Среда без лишней конфронтации', motiv:'Найти точки соприкосновения' },
+  Ideation:    { brings:'Нестандартные связи, генерация концепций', needs:'Открытые задачи без жёстких рамок', motiv:'Удивляться новым идеям' },
+  Includer:    { brings:'Расширение круга, принятие аутсайдеров', needs:'Чувствовать, что никто не исключён', motiv:'Дать место каждому' },
+  Individualization:{ brings:'Тонкое понимание каждого человека', needs:'Работа с разными людьми', motiv:'Видеть уникальность каждого' },
+  Input:       { brings:'Широкая насмотренность, богатая эрудиция', needs:'Доступ к информации, ресурсам', motiv:'Собирать и хранить знания' },
+  Intellection:{ brings:'Глубокое осмысление, интеллектуальная серьёзность', needs:'Время для размышлений в одиночестве', motiv:'Думать ради самого мышления' },
+  Learner:     { brings:'Быстрое освоение нового, адаптация к изменениям', needs:'Постоянные вызовы и обучение', motiv:'Процесс познания как самоценность' },
+  Maximizer:   { brings:'Доведение до совершенства, фокус на сильных сторонах', needs:'Работа с тем, что уже хорошо', motiv:'Превратить хорошее в отличное' },
+  Positivity:  { brings:'Энтузиазм, заражающий оптимизм', needs:'Живая, радостная атмосфера', motiv:'Сделать мир ярче' },
+  Relator:     { brings:'Глубокие, искренние отношения', needs:'Близость и доверие в команде', motiv:'Углублять значимые связи' },
+  Responsibility:{ brings:'Надёжность, слово как обязательство', needs:'Задачи с личной ответственностью', motiv:'Быть тем, на кого можно положиться' },
+  Restorative: { brings:'Решение проблем, восстановление работоспособности', needs:'Сложные задачи с понятными симптомами', motiv:'Починить то, что сломано' },
+  'Self-Assurance':{ brings:'Уверенность в решениях, внутренний компас', needs:'Автономия и независимость суждений', motiv:'Доверие себе как ориентиру' },
+  Significance:{ brings:'Высокие стандарты, желание оставить след', needs:'Признание и значимые проекты', motiv:'Быть замеченным как исключительный' },
+  Strategic:   { brings:'Нахождение альтернативных путей, обход препятствий', needs:'Открытые сложные вопросы', motiv:'Найти лучший путь вперёд' },
+  Woo:         { brings:'Быстрое установление контакта, сетевой эффект', needs:'Новые люди и социальные ситуации', motiv:'Выиграть незнакомца' }
+};
 
 // ─── AUTH ───────────────────────────────────────────────────────
 
@@ -473,6 +614,7 @@ async function loadOrgData() {
   document.getElementById('membersContent').innerHTML = '<div class="loading"><div class="spin"></div>Загрузка...</div>';
   document.getElementById('domainSection').style.display = 'none';
   document.getElementById('blindSection').style.display = 'none';
+  document.getElementById('deepContent').innerHTML = '<div class="loading"><div class="spin"></div>Загрузка анализа...</div>';
 
   // Load members with profiles
   const { data, error } = await supa.rpc('get_org_members_with_profiles', { p_org_id: currentOrgId });
@@ -491,6 +633,7 @@ async function loadOrgData() {
 }
 
 function renderDashboard(members) {
+  _lastMembers = members;
   const total = members.length;
   const withProfile = members.filter(m => m.themes && m.themes.length > 0);
   const consented = members.filter(m => m.visibility_consent && m.themes && m.themes.length > 0);
@@ -771,6 +914,164 @@ function copyInviteLink() {
     btn.textContent = 'Скопировано!';
     setTimeout(() => btn.textContent = 'Скопировать', 2000);
   });
+}
+
+// ─── DEEP ANALYSIS ───────────────────────────────────────────────
+
+const THEMES_ORDER = [
+  // Execution (9)
+  'Achiever','Arranger','Belief','Consistency','Deliberative','Discipline','Focus','Responsibility','Restorative',
+  // Influence (8)
+  'Activator','Command','Communication','Competition','Maximizer','Self-Assurance','Significance','Woo',
+  // Relationship (9)
+  'Adaptability','Connectedness','Developer','Empathy','Harmony','Includer','Individualization','Positivity','Relator',
+  // Strategic (8)
+  'Analytical','Context','Futuristic','Ideation','Input','Intellection','Learner','Strategic'
+];
+
+const DOMAIN_HEADERS = [
+  { key:'exec', label:'Исполнение', count:9 },
+  { key:'infl', label:'Влияние', count:8 },
+  { key:'rel',  label:'Выстраивание отношений', count:9 },
+  { key:'strat',label:'Стратегическое мышление', count:8 }
+];
+
+const DOMAIN_NARRATIVES = {
+  exec:  { name:'Исполнение', desc:'Люди с сильными темами Исполнения умеют доводить дело до конца. Они берут ответственность, работают системно и создают стабильный результат. Риск — избыточная фокусировка на процессе в ущерб стратегии.' },
+  infl:  { name:'Влияние', desc:'Сильный домен Влияния означает команду, которая умеет убеждать, мотивировать и двигать людей. Такие команды хорошо продают идеи и лидируют в публичных контекстах. Риск — склонность к действию без достаточного анализа.' },
+  rel:   { name:'Выстраивание отношений', desc:'Высокий домен Отношений — клей команды. Такие люди создают доверие, принимают разных, слышат эмоции. Без этого домена команды распадаются под нагрузкой. Риск — сложнее принимать жёсткие решения.' },
+  strat: { name:'Стратегическое мышление', desc:'Сильный стратегический домен даёт команде любопытство, концептуальность и умение мыслить наперёд. Такие люди видят паттерны и варианты. Риск — могут перегрузить процесс анализом и откладывать действие.' }
+};
+
+function renderDeepAnalysis(members) {
+  const consented = members.filter(m => m.visibility_consent && m.themes?.length > 0);
+
+  if (consented.length < 2) {
+    document.getElementById('deepContent').innerHTML = `
+      <div class="empty-state" style="padding:48px 24px">
+        <div class="empty-state-icon">📊</div>
+        <div class="empty-state-text">Недостаточно данных</div>
+        <div class="empty-state-sub">Нужно минимум 2 участника с профилем и согласием на аналитику</div>
+      </div>`;
+    return;
+  }
+
+  // Compute theme frequency across team top-5
+  const themeFreq = {};
+  THEMES_ORDER.forEach(t => { themeFreq[t] = 0; });
+  consented.forEach(m => {
+    (m.themes || []).slice(0, 5).forEach(t => { if (themeFreq[t] !== undefined) themeFreq[t]++; });
+  });
+
+  // Team Theme Rank — top themes by frequency
+  const ranked = THEMES_ORDER
+    .map(t => ({ theme: t, count: themeFreq[t] }))
+    .filter(x => x.count > 0)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 7);
+
+  let trHtml = '';
+  ranked.forEach((item, idx) => {
+    const d = DOMAIN_MAP[item.theme];
+    const cls = DOMAIN_CLASS[d] || 'strat';
+    const ins = THEME_INSIGHTS[item.theme] || { brings:'—', needs:'—', motiv:'—' };
+    const ruName = RU_NAMES[item.theme] || item.theme;
+    trHtml += `<div class="tr-item">
+      <div class="tr-rank ${cls}">${idx + 1}</div>
+      <div class="tr-body">
+        <div>
+          <div class="tr-name">${esc(ruName)}</div>
+          <span class="tr-domain ${cls}">${esc(d || '')}</span>
+          <div class="tr-count">${item.count} из ${consented.length} чел.</div>
+        </div>
+        <div class="tr-insights">
+          <div class="tr-insight-col brings"><div class="tr-insight-label">Привносит</div>${esc(ins.brings)}</div>
+          <div class="tr-insight-col needs"><div class="tr-insight-label">Нуждается</div>${esc(ins.needs)}</div>
+          <div class="tr-insight-col motiv"><div class="tr-insight-label">Мотивация</div>${esc(ins.motiv)}</div>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  // Full Grid
+  let gridHtml = '<div class="grid-scroll"><table class="full-grid">';
+  // Domain header row
+  gridHtml += '<thead><tr><th class="name-cell" rowspan="2">Участник</th>';
+  DOMAIN_HEADERS.forEach(dh => {
+    gridHtml += `<th class="domain-hdr ${dh.key}" colspan="${dh.count}">${esc(dh.label)}</th>`;
+  });
+  gridHtml += '</tr><tr>';
+  THEMES_ORDER.forEach(t => {
+    const d = DOMAIN_MAP[t];
+    const cls = DOMAIN_CLASS[d] || '';
+    gridHtml += `<th title="${esc(RU_NAMES[t] || t)}">${esc((RU_NAMES[t]||t).slice(0,4))}</th>`;
+  });
+  gridHtml += '</tr></thead><tbody>';
+
+  // Team rank row
+  gridHtml += '<tr class="team-rank-row"><td class="name-cell">Частота ↑</td>';
+  THEMES_ORDER.forEach(t => {
+    const cnt = themeFreq[t];
+    gridHtml += `<td>${cnt > 0 ? cnt : ''}</td>`;
+  });
+  gridHtml += '</tr>';
+
+  // Member rows
+  consented.forEach(m => {
+    const pos = {};
+    (m.themes || []).forEach((t, i) => { pos[t] = i + 1; });
+    const displayName = m.job_title || (m.user_id ? m.user_id.slice(0, 8) : '—');
+    gridHtml += `<tr><td class="name-cell">${esc(displayName)}</td>`;
+    THEMES_ORDER.forEach(t => {
+      const p = pos[t];
+      if (!p) { gridHtml += '<td></td>'; return; }
+      const d = DOMAIN_MAP[t];
+      const cls = DOMAIN_CLASS[d] || '';
+      const zone = p <= 5 ? 'z1-5' : (p >= 30 ? 'z30-34' : '');
+      gridHtml += `<td><div class="grid-cell ${zone} ${zone ? cls : ''}">${p}</div></td>`;
+    });
+    gridHtml += '</tr>';
+  });
+
+  gridHtml += '</tbody></table></div>';
+
+  // Domain Interpretation
+  const domainCounts = computeDomainCounts(consented);
+  const totalThemes = Object.values(domainCounts).reduce((a, b) => a + b, 0);
+  const maxDomain = Math.max(...Object.values(domainCounts));
+  let diHtml = '<div class="domain-interp">';
+  Object.entries(DOMAIN_NARRATIVES).forEach(([cls, info]) => {
+    const domainRuName = { exec:'Исполнение', infl:'Влияние', rel:'Выстраивание отношений', strat:'Стратегическое мышление' }[cls];
+    const cnt = domainCounts[domainRuName] || 0;
+    const pct = totalThemes > 0 ? Math.round(cnt / totalThemes * 100) : 0;
+    const barPct = maxDomain > 0 ? Math.round(cnt / maxDomain * 100) : 0;
+    diHtml += `<div class="di-card ${cls}">
+      <div class="di-card-hdr">
+        <div class="di-card-title ${cls}">${esc(info.name)}</div>
+        <span style="font-size:13px;font-weight:700;color:var(--text-2)">${pct}%</span>
+      </div>
+      <div class="di-bar-wrap"><div class="di-bar ${cls}" style="width:${barPct}%"></div></div>
+      <div class="di-card-text">${esc(info.desc)}</div>
+    </div>`;
+  });
+  diHtml += '</div>';
+
+  document.getElementById('deepContent').innerHTML = `
+    <div class="deep-section">
+      <div class="deep-section-title">Топ тем команды</div>
+      <div class="deep-section-sub">Темы, чаще всего встречающиеся в топ-5 участников команды (только давшие согласие). Показывает коллективные сильные стороны.</div>
+      <div class="theme-rank-list">${trHtml}</div>
+    </div>
+    <div class="deep-section">
+      <div class="deep-section-title">Полная матрица команды</div>
+      <div class="deep-section-sub">Позиция каждой темы в профиле участника. Цветом выделены топ-5 (сильные стороны), серым — темы в зоне 30–34.</div>
+      ${gridHtml}
+    </div>
+    <div class="deep-section">
+      <div class="deep-section-title">Интерпретация по доменам</div>
+      <div class="deep-section-sub">Как распределена энергия команды по четырём доменам Gallup и что это означает для работы.</div>
+      ${diHtml}
+    </div>`;
 }
 
 // ─── BOOTSTRAP ───────────────────────────────────────────────────
