@@ -14,8 +14,8 @@
   --accent:#1B6B50;--accent-light:#E3F3EC;--accent-dark:#145A42;
   --exec:#6D28D9;--exec-bg:#F0ECFF;
   --infl:#C2590A;--infl-bg:#FFF3E8;
-  --rel:#0B7A55;--rel-bg:#E6F7F0;
-  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --rel:#1D4ED8;--rel-bg:#DBEAFE;
+  --strat:#15803D;--strat-bg:#DCFCE7;
   --r:10px;
   --shadow:0 2px 12px rgba(31,29,25,.06);
 }
@@ -200,6 +200,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .tr-insight-col.needs{background:#EBF1FF;border-left:2px solid #1856C7}
 .tr-insight-col.motiv{background:#FFF3E8;border-left:2px solid #C2590A}
 .tr-insight-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;opacity:.7}
+
+/* GRID CONTROLS ROW */
+.grid-controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.grid-toggle{display:flex;border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
+.toggle-btn{padding:5px 14px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:var(--surface);color:var(--text-2);transition:all .15s}
+.toggle-btn.active{background:var(--accent);color:#fff}
+
+/* SORTABLE HEADERS */
+.full-grid th.theme-hdr.sortable{cursor:pointer;transition:background .15s}
+.full-grid th.theme-hdr.sortable:hover .theme-hdr-inner{color:var(--text)}
+.full-grid th.theme-hdr.sort-asc .theme-hdr-inner::after{content:' ↑';font-size:9px}
+.full-grid th.theme-hdr.sort-desc .theme-hdr-inner::after{content:' ↓';font-size:9px}
+.full-grid th.theme-hdr.sort-asc,.full-grid th.theme-hdr.sort-desc{background:#F5F3EF}
 
 /* GRID ZONE FILTER */
 .grid-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
@@ -515,6 +528,9 @@ let currentUser = null;
 let currentOrgId = null;
 let orgs = [];
 let _lastMembers = [];
+let _gridNameMode = 'role'; // 'role' | 'name'
+let _gridSortTheme = null;  // theme key or null
+let _gridSortDir = 'asc';   // 'asc' | 'desc'
 
 // ─── TAB SWITCHING ────────────────────────────────────────────────
 
@@ -1044,16 +1060,31 @@ function renderDeepAnalysis(members) {
     <div class="gl-item"><div class="gl-swatch" style="background:#F3F4F6;border:1px solid #D1D5DB"></div>30–34</div>
   </div>`;
 
-  const filterHtml = `<div class="grid-filter">
+  // Sort members if needed
+  let sortedMembers = [...consented];
+  if (_gridSortTheme) {
+    sortedMembers.sort((a, b) => {
+      const pa = (a.themes || []).indexOf(_gridSortTheme) + 1 || 99;
+      const pb = (b.themes || []).indexOf(_gridSortTheme) + 1 || 99;
+      return _gridSortDir === 'asc' ? pa - pb : pb - pa;
+    });
+  }
+
+  const controlsHtml = `<div class="grid-controls">
     <span class="grid-filter-label">Показать зоны:</span>
     <button class="zone-btn" onclick="toggleAllZones(this)"><span class="zchk"></span>Все</button>
     <button class="zone-btn active" data-zone="z1-5" onclick="toggleZone(this)"><span class="zchk"></span>1–5</button>
     <button class="zone-btn" data-zone="z6-10" onclick="toggleZone(this)"><span class="zchk"></span>6–10</button>
     <button class="zone-btn" data-zone="z11-29" onclick="toggleZone(this)"><span class="zchk"></span>11–29</button>
     <button class="zone-btn" data-zone="z30-34" onclick="toggleZone(this)"><span class="zchk"></span>30–34</button>
+    <div style="flex:1"></div>
+    <div class="grid-toggle">
+      <button class="toggle-btn ${_gridNameMode==='role'?'active':''}" onclick="setGridNameMode('role',this)">Роли</button>
+      <button class="toggle-btn ${_gridNameMode==='name'?'active':''}" onclick="setGridNameMode('name',this)">Имена</button>
+    </div>
   </div>`;
 
-  let gridHtml = filterHtml + legendHtml + '<div class="grid-scroll"><table class="full-grid" id="fullGridTable">';
+  let gridHtml = controlsHtml + legendHtml + '<div class="grid-scroll"><table class="full-grid" id="fullGridTable">';
 
   // Row 1: domain headers
   gridHtml += '<thead><tr><th class="name-cell-hdr" rowspan="2"></th>';
@@ -1062,13 +1093,15 @@ function renderDeepAnalysis(members) {
   });
   gridHtml += '</tr>';
 
-  // Row 2: theme name headers (vertical)
+  // Row 2: theme name headers — sortable
   gridHtml += '<tr>';
-  THEMES_ORDER.forEach(t => {
+  THEMES_ORDER.forEach((t, idx) => {
     const d = DOMAIN_MAP[t];
     const cls = DOMAIN_CLASS[d] || '';
     const ruName = RU_NAMES[t] || t;
-    gridHtml += `<th class="theme-hdr ${cls}"><div class="theme-hdr-inner" title="${esc(t)}">${esc(ruName)}</div></th>`;
+    const isSorted = _gridSortTheme === t;
+    const sortCls = isSorted ? (_gridSortDir === 'asc' ? ' sort-asc' : ' sort-desc') : '';
+    gridHtml += `<th class="theme-hdr ${cls} sortable${sortCls}" onclick="sortGridByTheme('${t}')" title="Сортировать по: ${esc(ruName)}"><div class="theme-hdr-inner">${esc(ruName)}</div></th>`;
   });
   gridHtml += '</tr></thead><tbody>';
 
@@ -1082,7 +1115,7 @@ function renderDeepAnalysis(members) {
     if (rank) {
       gridHtml += `<td><div class="grid-cell z1-5 ${cls}">${rank}</div></td>`;
     } else if (cnt > 0) {
-      gridHtml += `<td style="font-size:10px;color:var(--text-3)">${cnt}</td>`;
+      gridHtml += `<td><span class="freq-num">${cnt}</span></td>`;
     } else {
       gridHtml += '<td></td>';
     }
@@ -1090,11 +1123,13 @@ function renderDeepAnalysis(members) {
   gridHtml += '</tr>';
 
   // Member rows
-  consented.forEach(m => {
+  sortedMembers.forEach(m => {
     const pos = {};
     (m.themes || []).forEach((t, i) => { pos[t] = i + 1; });
-    const displayName = m.job_title || (m.user_id ? m.user_id.slice(0, 8) : '—');
-    gridHtml += `<tr><td class="name-cell">${esc(displayName)}</td>`;
+    const roleName = m.job_title || '—';
+    const idName = m.user_id ? m.user_id.slice(0, 8) + '…' : '—';
+    const displayName = _gridNameMode === 'role' ? roleName : idName;
+    gridHtml += `<tr data-uid="${esc(m.user_id)}"><td class="name-cell" data-role="${esc(roleName)}" data-uid="${esc(idName)}">${esc(displayName)}</td>`;
     THEMES_ORDER.forEach(t => {
       const p = pos[t];
       if (!p) { gridHtml += '<td></td>'; return; }
@@ -1151,6 +1186,28 @@ function renderDeepAnalysis(members) {
     </div>`;
   // apply default zone filter (only 1-5 shown)
   _applyZoneVisibility();
+}
+
+function sortGridByTheme(theme) {
+  if (_gridSortTheme === theme) {
+    if (_gridSortDir === 'asc') _gridSortDir = 'desc';
+    else { _gridSortTheme = null; _gridSortDir = 'asc'; } // third click — reset
+  } else {
+    _gridSortTheme = theme;
+    _gridSortDir = 'asc';
+  }
+  renderDeepAnalysis(_lastMembers);
+}
+
+function setGridNameMode(mode, btn) {
+  _gridNameMode = mode;
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // update name cells without full re-render
+  document.querySelectorAll('#fullGridTable td.name-cell').forEach(td => {
+    if (!td.dataset.role) return;
+    td.textContent = mode === 'role' ? td.dataset.role : td.dataset.uid;
+  });
 }
 
 function _applyZoneVisibility() {
