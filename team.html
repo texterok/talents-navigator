@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Команда — Talents Navigator</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F7F5F0;--surface:#FFFFFF;--surface-alt:#F0EDE6;
+  --border:#DDD8CE;--border-light:#EAE6DD;
+  --text:#1F1D19;--text-2:#5C574E;--text-3:#8F8980;
+  --accent:#1B6B50;--accent-light:#E3F3EC;--accent-dark:#145A42;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --r:10px;
+  --shadow:0 2px 12px rgba(31,29,25,.06);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* LOGIN */
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh}
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px;width:380px;box-shadow:var(--shadow)}
+.login-logo{font-size:22px;font-weight:700;margin-bottom:6px;color:var(--text)}
+.login-logo span{color:var(--accent)}
+.login-sub{font-size:14px;color:var(--text-2);margin-bottom:28px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:5px}
+.field input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:14px;outline:none;background:var(--surface);transition:border-color .2s}
+.field input:focus{border-color:var(--accent)}
+.btn-primary{width:100%;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s}
+.btn-primary:hover{background:var(--accent-dark)}
+.btn-primary:disabled{opacity:.5;cursor:default}
+.err{color:#DC2626;font-size:13px;margin-top:10px}
+
+/* HEADER */
+.hdr{background:var(--surface);border-bottom:1px solid var(--border-light);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.hdr-left{display:flex;align-items:center;gap:16px}
+.hdr-logo{font-size:16px;font-weight:700;color:var(--text)}
+.hdr-logo a{color:inherit;text-decoration:none}
+.hdr-logo span{color:var(--accent)}
+.hdr-badge{font-size:11px;font-weight:700;padding:3px 8px;background:var(--accent-light);color:var(--accent);border-radius:20px;text-transform:uppercase;letter-spacing:.04em}
+.hdr-right{display:flex;align-items:center;gap:12px}
+.hdr-user{font-size:13px;color:var(--text-2)}
+.btn-sm{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text-2);transition:all .15s}
+.btn-sm:hover{border-color:var(--text-3);color:var(--text)}
+
+/* PAGE */
+.page{max-width:1000px;margin:0 auto;padding:32px 24px 80px}
+.page-hdr{margin-bottom:28px}
+.page-title{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+.page-sub{font-size:14px;color:var(--text-2)}
+
+/* ORG SELECTOR */
+.org-select-wrap{display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+.org-select-label{font-size:14px;font-weight:600;color:var(--text-2)}
+.org-select{border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;font-size:14px;outline:none;background:var(--surface);min-width:240px;cursor:pointer}
+.org-select:focus{border-color:var(--accent)}
+.btn-create-org{padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s}
+.btn-create-org:hover{background:var(--accent-dark)}
+
+/* CONSENT NOTICE */
+.consent-notice{background:#FEF3C7;border:1px solid #F59E0B;border-radius:var(--r);padding:16px 20px;margin-bottom:24px;font-size:14px;color:#92400E;line-height:1.55;display:flex;gap:12px;align-items:flex-start}
+.consent-notice-icon{flex-shrink:0;font-size:18px;margin-top:1px}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.stat-box{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);padding:16px 20px;box-shadow:var(--shadow)}
+.stat-num{font-size:28px;font-weight:700;color:var(--accent);line-height:1}
+.stat-label{font-size:12px;color:var(--text-2);margin-top:4px;line-height:1.4}
+.stat-sub{font-size:11px;color:var(--text-3);margin-top:2px}
+
+/* COMPLETION BAR */
+.completion-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);padding:20px 24px;margin-bottom:20px;box-shadow:var(--shadow)}
+.completion-title{font-size:15px;font-weight:700;margin-bottom:14px}
+.completion-bar-wrap{height:12px;background:var(--surface-alt);border-radius:6px;overflow:hidden;margin-bottom:8px}
+.completion-bar{height:100%;border-radius:6px;background:var(--accent);transition:width .6s ease}
+.completion-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--text-2)}
+
+/* MEMBER LIST */
+.members-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);margin-bottom:20px;box-shadow:var(--shadow);overflow:hidden}
+.members-card-hdr{padding:16px 20px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;justify-content:space-between}
+.members-card-title{font-size:15px;font-weight:700}
+.members-table{width:100%;border-collapse:collapse}
+.members-table th{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text-3);padding:10px 16px;text-align:left;border-bottom:1px solid var(--border-light);background:var(--surface-alt)}
+.members-table td{padding:12px 16px;border-bottom:1px solid var(--border-light);font-size:13px;vertical-align:middle}
+.members-table tr:last-child td{border-bottom:none}
+.members-table tr:hover td{background:#FAFAF8}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600}
+.badge-consent{background:var(--accent-light);color:var(--accent)}
+.badge-no-consent{background:var(--surface-alt);color:var(--text-3)}
+.badge-pending{background:#FEF3C7;color:#92400E}
+.member-themes{display:flex;flex-wrap:wrap;gap:4px}
+.mt-chip{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:12px;font-size:10px;font-weight:600;white-space:nowrap}
+.mt-chip.exec{background:var(--exec-bg);color:var(--exec)}
+.mt-chip.infl{background:var(--infl-bg);color:var(--infl)}
+.mt-chip.rel{background:var(--rel-bg);color:var(--rel)}
+.mt-chip.strat{background:var(--strat-bg);color:var(--strat)}
+
+/* DOMAIN DISTRIBUTION */
+.domain-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);padding:24px;margin-bottom:20px;box-shadow:var(--shadow)}
+.domain-card-title{font-size:15px;font-weight:700;margin-bottom:4px}
+.domain-card-sub{font-size:13px;color:var(--text-2);margin-bottom:20px}
+.domain-bars{display:flex;flex-direction:column;gap:12px}
+.domain-bar-row{display:flex;align-items:center;gap:12px}
+.domain-bar-label{width:200px;flex-shrink:0;font-size:13px;font-weight:600;text-align:right}
+.domain-bar-wrap{flex:1;height:32px;background:var(--surface-alt);border-radius:6px;overflow:hidden;position:relative}
+.domain-bar-fill{height:100%;border-radius:6px;transition:width .6s ease;position:relative;display:flex;align-items:center;padding-left:10px}
+.domain-bar-fill.exec{background:var(--exec)}
+.domain-bar-fill.infl{background:var(--infl)}
+.domain-bar-fill.rel{background:var(--rel)}
+.domain-bar-fill.strat{background:var(--strat)}
+.domain-bar-text{font-size:11px;font-weight:700;color:rgba(255,255,255,.9);white-space:nowrap}
+.domain-bar-count{width:50px;flex-shrink:0;font-size:13px;font-weight:700;color:var(--text)}
+.domain-insight{margin-top:16px;padding:14px 18px;background:var(--surface-alt);border-radius:8px;font-size:13px;line-height:1.6;color:var(--text-2)}
+.domain-insight strong{color:var(--text)}
+
+/* BLIND SPOTS */
+.blind-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);padding:24px;margin-bottom:20px;box-shadow:var(--shadow)}
+.blind-card-title{font-size:15px;font-weight:700;margin-bottom:4px}
+.blind-card-sub{font-size:13px;color:var(--text-2);margin-bottom:20px}
+.blind-list{display:flex;flex-direction:column;gap:10px}
+.blind-item{padding:14px 18px;border-radius:8px;border:1px solid var(--border-light);display:flex;align-items:center;gap:16px}
+.blind-item.critical{border-color:#FCA5A5;background:#FEF2F2}
+.blind-item.moderate{border-color:#FDE68A;background:#FEF9C3}
+.blind-domain{flex-shrink:0;font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap}
+.blind-domain.exec{background:var(--exec-bg);color:var(--exec)}
+.blind-domain.infl{background:var(--infl-bg);color:var(--infl)}
+.blind-domain.rel{background:var(--rel-bg);color:var(--rel)}
+.blind-domain.strat{background:var(--strat-bg);color:var(--strat)}
+.blind-theme{font-size:14px;font-weight:600;flex:1}
+.blind-meta{font-size:13px;color:var(--text-2)}
+.blind-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.blind-label.critical{color:#DC2626}
+.blind-label.moderate{color:#D97706}
+
+/* INVITE SECTION */
+.invite-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);padding:24px;margin-bottom:20px;box-shadow:var(--shadow)}
+.invite-card-title{font-size:15px;font-weight:700;margin-bottom:4px}
+.invite-card-sub{font-size:13px;color:var(--text-2);margin-bottom:20px}
+.invite-form-row{display:flex;gap:10px;align-items:flex-end;margin-bottom:14px;flex-wrap:wrap}
+.invite-form-row .field{flex:1;min-width:200px;margin-bottom:0}
+.invite-form-row .btn-primary{width:auto;padding:10px 20px}
+.invite-result{padding:14px 18px;background:var(--accent-light);border:1px solid #A7D9C5;border-radius:8px;font-size:13px;word-break:break-all;display:flex;align-items:flex-start;gap:12px}
+.invite-result-link{flex:1;font-family:monospace;font-size:12px;color:var(--accent-dark)}
+.btn-copy{padding:6px 14px;font-size:12px;font-weight:600;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;flex-shrink:0;transition:background .2s}
+.btn-copy:hover{background:var(--accent-dark)}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:56px 24px;color:var(--text-3)}
+.empty-state-icon{font-size:40px;opacity:.3;margin-bottom:12px}
+.empty-state-text{font-size:15px}
+.empty-state-sub{font-size:13px;margin-top:4px}
+
+/* CREATE ORG MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:var(--surface);border-radius:14px;padding:32px;width:420px;max-width:90vw;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.modal-title{font-size:18px;font-weight:700;margin-bottom:6px}
+.modal-sub{font-size:14px;color:var(--text-2);margin-bottom:24px}
+.modal-actions{display:flex;gap:10px;margin-top:24px}
+.btn-secondary{flex:1;padding:10px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text);transition:all .2s}
+.btn-secondary:hover{border-color:var(--text-3)}
+.modal-actions .btn-primary{flex:1}
+
+/* LOADING */
+.loading{display:flex;align-items:center;justify-content:center;padding:48px;color:var(--text-3);font-size:14px;gap:10px}
+.spin{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:700px){
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .domain-bar-label{width:130px;font-size:11px}
+  .page{padding:16px 16px 60px}
+  .hdr{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-box">
+    <div class="login-logo">Talents <span>Navigator</span></div>
+    <div class="login-sub">HR-панель команды. Войдите с аккаунтом, который имеет права администратора организации.</div>
+    <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="you@company.com" autocomplete="email"></div>
+    <div class="field"><label>Пароль</label><input type="password" id="loginPassword" autocomplete="current-password"></div>
+    <button class="btn-primary" onclick="doLogin()">Войти</button>
+    <div class="err" id="loginErr" style="display:none"></div>
+  </div>
+</div>
+
+<!-- MAIN PANEL -->
+<div id="mainPanel" style="display:none">
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="hdr-logo"><a href="index.html">Talents <span>Navigator</span></a></div>
+      <div class="hdr-badge">HR Dashboard</div>
+    </div>
+    <div class="hdr-right">
+      <span class="hdr-user" id="hdrUser"></span>
+      <button class="btn-sm" onclick="doLogout()">Выйти</button>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="page-hdr">
+      <div class="page-title">Команда</div>
+      <div class="page-sub">Аналитика по распределению талантов, прогресс прохождения, слепые зоны</div>
+    </div>
+
+    <!-- ORG SELECTOR -->
+    <div class="org-select-wrap">
+      <span class="org-select-label">Организация:</span>
+      <select class="org-select" id="orgSelect" onchange="loadOrgData()">
+        <option value="">— выбрать —</option>
+      </select>
+      <button class="btn-create-org" onclick="openCreateOrgModal()">+ Создать организацию</button>
+    </div>
+
+    <!-- ORG CONTENT -->
+    <div id="orgContent" style="display:none">
+
+      <!-- CONSENT NOTICE -->
+      <div class="consent-notice" id="consentNotice" style="display:none">
+        <span class="consent-notice-icon">🔒</span>
+        <div>
+          <strong>Данные отображаются только для участников, давших согласие на видимость.</strong><br>
+          Члены команды, не давшие согласие, отображаются как «анонимный участник». Согласие каждый даёт самостоятельно при входе через командную ссылку.
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-num" id="statTotal">—</div>
+          <div class="stat-label">участников в команде</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statCompleted">—</div>
+          <div class="stat-label">прошли Gallup</div>
+          <div class="stat-sub" id="statCompletedPct"></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statConsented">—</div>
+          <div class="stat-label">дали согласие на аналитику</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statDomains">—</div>
+          <div class="stat-label">доминирующий домен команды</div>
+        </div>
+      </div>
+
+      <!-- COMPLETION BAR -->
+      <div class="completion-card">
+        <div class="completion-title">Прогресс прохождения Gallup</div>
+        <div class="completion-bar-wrap">
+          <div class="completion-bar" id="completionBar" style="width:0%"></div>
+        </div>
+        <div class="completion-meta">
+          <span id="completionLeft">0 человек прошли тест</span>
+          <span id="completionRight">0% команды</span>
+        </div>
+      </div>
+
+      <!-- DOMAIN DISTRIBUTION -->
+      <div class="domain-card" id="domainSection" style="display:none">
+        <div class="domain-card-title">Распределение по доменам</div>
+        <div class="domain-card-sub">Сумма топ-5 тем по всем участникам, давшим согласие. Показывает где сконцентрирована энергия команды.</div>
+        <div class="domain-bars" id="domainBars"></div>
+        <div class="domain-insight" id="domainInsight" style="display:none"></div>
+      </div>
+
+      <!-- BLIND SPOTS -->
+      <div class="blind-card" id="blindSection" style="display:none">
+        <div class="blind-card-title">Слепые зоны команды</div>
+        <div class="blind-card-sub">Домены и темы, слабо представленные в топ-5 участников. Это не недостатки — это зоны для осознанного партнёрства или найма.</div>
+        <div class="blind-list" id="blindList"></div>
+      </div>
+
+      <!-- MEMBER LIST -->
+      <div class="members-card">
+        <div class="members-card-hdr">
+          <div class="members-card-title">Участники команды</div>
+        </div>
+        <div id="membersContent">
+          <div class="loading"><div class="spin"></div>Загрузка...</div>
+        </div>
+      </div>
+
+      <!-- INVITE SECTION -->
+      <div class="invite-card">
+        <div class="invite-card-title">Пригласить участника</div>
+        <div class="invite-card-sub">Пригласительная ссылка привязана к организации. При регистрации пользователь автоматически попадает в команду и видит экран с запросом согласия на аналитику.</div>
+        <div class="invite-form-row">
+          <div class="field">
+            <label>Примечание (кому)</label>
+            <input type="text" id="inviteNote" placeholder="Например: Ивана Петрова">
+          </div>
+          <button class="btn-primary" onclick="createOrgInvite()">Создать ссылку</button>
+        </div>
+        <div id="inviteResultWrap" style="display:none" class="invite-result">
+          <span class="invite-result-link" id="inviteResultLink"></span>
+          <button class="btn-copy" onclick="copyInviteLink()">Скопировать</button>
+        </div>
+      </div>
+
+    </div><!-- /orgContent -->
+
+    <!-- NO ORG STATE -->
+    <div id="noOrgState" class="empty-state">
+      <div class="empty-state-icon">🏢</div>
+      <div class="empty-state-text">Организаций пока нет</div>
+      <div class="empty-state-sub">Создайте организацию и пригласите команду</div>
+    </div>
+
+  </div><!-- /page -->
+</div><!-- /mainPanel -->
+
+<!-- CREATE ORG MODAL -->
+<div class="modal-bg" id="createOrgModal">
+  <div class="modal">
+    <div class="modal-title">Создать организацию</div>
+    <div class="modal-sub">Организация объединяет команду для просмотра совокупной аналитики по талантам.</div>
+    <div class="field">
+      <label>Название компании или команды</label>
+      <input type="text" id="orgName" placeholder="Например: Команда Продукта" maxlength="100">
+    </div>
+    <div class="err" id="orgCreateErr" style="display:none"></div>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeCreateOrgModal()">Отмена</button>
+      <button class="btn-primary" onclick="createOrg()" id="orgCreateBtn">Создать</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPA_URL = 'https://kyjwdwnooufskjsyhpts.supabase.co';
+const SUPA_KEY = 'sb_publishable_VDkk63hgmR7H6XOdoBi01g_BEQc7deP';
+const supa = supabase.createClient(SUPA_URL, SUPA_KEY, {
+  auth: { persistSession: true, autoRefreshToken: true }
+});
+
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+const DOMAIN_MAP = {
+  Achiever:'Исполнение',Arranger:'Исполнение',Belief:'Исполнение',
+  Consistency:'Исполнение',Deliberative:'Исполнение',Discipline:'Исполнение',
+  Focus:'Исполнение',Responsibility:'Исполнение',Restorative:'Исполнение',
+  Activator:'Влияние',Command:'Влияние',Communication:'Влияние',
+  Competition:'Влияние',Maximizer:'Влияние','Self-Assurance':'Влияние',
+  Significance:'Влияние',Woo:'Влияние',
+  Adaptability:'Выстраивание отношений',Connectedness:'Выстраивание отношений',
+  Developer:'Выстраивание отношений',Empathy:'Выстраивание отношений',
+  Harmony:'Выстраивание отношений',Includer:'Выстраивание отношений',
+  Individualization:'Выстраивание отношений',Positivity:'Выстраивание отношений',
+  Relator:'Выстраивание отношений',
+  Analytical:'Стратегическое мышление',Context:'Стратегическое мышление',
+  Futuristic:'Стратегическое мышление',Ideation:'Стратегическое мышление',
+  Input:'Стратегическое мышление',Intellection:'Стратегическое мышление',
+  Learner:'Стратегическое мышление',Strategic:'Стратегическое мышление'
+};
+
+const DOMAIN_CLASS = {
+  'Исполнение':'exec','Влияние':'infl',
+  'Выстраивание отношений':'rel','Стратегическое мышление':'strat'
+};
+
+const DOMAIN_THEMES = {
+  'Исполнение':['Achiever','Arranger','Belief','Consistency','Deliberative','Discipline','Focus','Responsibility','Restorative'],
+  'Влияние':['Activator','Command','Communication','Competition','Maximizer','Self-Assurance','Significance','Woo'],
+  'Выстраивание отношений':['Adaptability','Connectedness','Developer','Empathy','Harmony','Includer','Individualization','Positivity','Relator'],
+  'Стратегическое мышление':['Analytical','Context','Futuristic','Ideation','Input','Intellection','Learner','Strategic']
+};
+
+const RU_NAMES = {
+  Achiever:'Достигатель',Activator:'Активатор',Adaptability:'Адаптивность',
+  Analytical:'Аналитик',Arranger:'Организатор',Belief:'Убеждённость',
+  Command:'Командование',Communication:'Коммуникация',Competition:'Соперничество',
+  Connectedness:'Единство',Consistency:'Последовательность',Context:'Контекст',
+  Deliberative:'Осмотрительность',Developer:'Воспитатель',Discipline:'Дисциплина',
+  Empathy:'Эмпатия',Focus:'Фокус',Futuristic:'Провидение',Harmony:'Гармония',
+  Ideation:'Идеи',Includer:'Включение',Individualization:'Индивидуализация',
+  Input:'Коллекционирование',Intellection:'Размышление',Learner:'Обучение',
+  Maximizer:'Максимизация',Positivity:'Позитивность',Relator:'Взаимоотношения',
+  Responsibility:'Ответственность',Restorative:'Реставратор',
+  'Self-Assurance':'Уверенность в себе',Significance:'Значимость',
+  Strategic:'Стратегия',Woo:'Убеждение'
+};
+
+let currentUser = null;
+let currentOrgId = null;
+let orgs = [];
+
+// ─── AUTH ───────────────────────────────────────────────────────
+
+async function doLogin() {
+  const btn = event.target; btn.disabled = true;
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const errEl = document.getElementById('loginErr');
+  errEl.style.display = 'none';
+
+  const { data, error } = await supa.auth.signInWithPassword({ email, password });
+  btn.disabled = false;
+  if (error) { errEl.textContent = error.message; errEl.style.display = 'block'; return; }
+  await initPanel(data.user);
+}
+
+async function doLogout() {
+  await supa.auth.signOut(); location.reload();
+}
+
+async function initPanel(user) {
+  currentUser = user;
+  document.getElementById('loginWrap').style.display = 'none';
+  document.getElementById('mainPanel').style.display = 'block';
+  document.getElementById('hdrUser').textContent = user.email;
+  await loadOrgs();
+}
+
+// ─── ORGS ────────────────────────────────────────────────────────
+
+async function loadOrgs() {
+  const { data, error } = await supa.from('organizations')
+    .select('id, name').order('created_at', { ascending: true });
+
+  if (error) {
+    // Table might not exist yet — show helpful message
+    if (error.code === 'PGRST205') {
+      document.getElementById('noOrgState').innerHTML = `
+        <div class="empty-state-icon">⚠️</div>
+        <div class="empty-state-text">База данных не настроена</div>
+        <div class="empty-state-sub">Выполните SQL-миграцию из файла <code>db/migration_sprint1.sql</code> в Supabase Dashboard</div>`;
+    }
+    document.getElementById('noOrgState').style.display = 'block';
+    return;
+  }
+
+  orgs = data || [];
+  const sel = document.getElementById('orgSelect');
+  sel.innerHTML = '<option value="">— выбрать —</option>';
+  orgs.forEach(o => {
+    const opt = document.createElement('option');
+    opt.value = o.id; opt.textContent = o.name;
+    sel.appendChild(opt);
+  });
+
+  if (orgs.length === 0) {
+    document.getElementById('noOrgState').style.display = 'block';
+    document.getElementById('orgContent').style.display = 'none';
+  } else {
+    document.getElementById('noOrgState').style.display = 'none';
+    // Auto-select first org
+    sel.value = orgs[0].id;
+    await loadOrgData();
+  }
+}
+
+async function loadOrgData() {
+  const sel = document.getElementById('orgSelect');
+  currentOrgId = sel.value;
+
+  if (!currentOrgId) {
+    document.getElementById('orgContent').style.display = 'none';
+    return;
+  }
+
+  document.getElementById('orgContent').style.display = 'block';
+  document.getElementById('membersContent').innerHTML = '<div class="loading"><div class="spin"></div>Загрузка...</div>';
+  document.getElementById('domainSection').style.display = 'none';
+  document.getElementById('blindSection').style.display = 'none';
+
+  // Load members with profiles
+  const { data, error } = await supa.rpc('get_org_members_with_profiles', { p_org_id: currentOrgId });
+
+  if (error) {
+    if (error.code === 'PGRST202') {
+      // Function doesn't exist yet
+      document.getElementById('membersContent').innerHTML = `<div style="padding:24px;color:var(--text-2);font-size:13px">SQL-функция не создана. Выполните миграцию из <code>db/migration_sprint1.sql</code>.</div>`;
+    } else {
+      document.getElementById('membersContent').innerHTML = `<div style="padding:24px;color:#DC2626;font-size:13px">Ошибка: ${esc(error.message)}</div>`;
+    }
+    return;
+  }
+
+  renderDashboard(data || []);
+}
+
+function renderDashboard(members) {
+  const total = members.length;
+  const withProfile = members.filter(m => m.themes && m.themes.length > 0);
+  const consented = members.filter(m => m.visibility_consent && m.themes && m.themes.length > 0);
+
+  // Stats
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statCompleted').textContent = withProfile.length;
+  const pct = total > 0 ? Math.round(withProfile.length / total * 100) : 0;
+  document.getElementById('statCompletedPct').textContent = `${pct}% команды`;
+  document.getElementById('statConsented').textContent = consented.length;
+
+  // Completion bar
+  document.getElementById('completionBar').style.width = pct + '%';
+  document.getElementById('completionLeft').textContent = `${withProfile.length} из ${total} прошли тест`;
+  document.getElementById('completionRight').textContent = pct + '%';
+
+  // Show consent notice if some haven't consented
+  const noConsent = withProfile.filter(m => !m.visibility_consent).length;
+  document.getElementById('consentNotice').style.display = noConsent > 0 ? 'flex' : 'none';
+
+  // Domain distribution (only consented members)
+  if (consented.length >= 3) {
+    renderDomainDistribution(consented);
+    document.getElementById('domainSection').style.display = 'block';
+    renderBlindSpots(consented);
+    document.getElementById('blindSection').style.display = 'block';
+  }
+
+  // Dominant domain for stat
+  if (consented.length >= 3) {
+    const counts = computeDomainCounts(consented);
+    const sorted = Object.entries(counts).sort((a,b) => b[1]-a[1]);
+    const dominant = sorted[0]?.[0] || '—';
+    document.getElementById('statDomains').textContent = dominant.split(' ')[0]; // short name
+  } else {
+    document.getElementById('statDomains').textContent = '—';
+  }
+
+  renderMemberTable(members, consented);
+}
+
+function computeDomainCounts(members) {
+  const counts = {'Исполнение':0,'Влияние':0,'Выстраивание отношений':0,'Стратегическое мышление':0};
+  members.forEach(m => {
+    const top5 = (m.themes || []).slice(0, 5);
+    top5.forEach(t => {
+      const d = DOMAIN_MAP[t];
+      if (d) counts[d]++;
+    });
+  });
+  return counts;
+}
+
+function renderDomainDistribution(consented) {
+  const counts = computeDomainCounts(consented);
+  const total = Object.values(counts).reduce((a,b) => a+b, 0);
+  const sorted = Object.entries(counts).sort((a,b) => b[1]-a[1]);
+  const maxVal = sorted[0]?.[1] || 1;
+
+  let html = '';
+  sorted.forEach(([domain, count]) => {
+    const cls = DOMAIN_CLASS[domain];
+    const pct = Math.round(count / maxVal * 100);
+    const sharePct = total > 0 ? Math.round(count / total * 100) : 0;
+    html += `<div class="domain-bar-row">
+      <div class="domain-bar-label">${esc(domain)}</div>
+      <div class="domain-bar-wrap">
+        <div class="domain-bar-fill ${cls}" style="width:${pct}%">
+          <span class="domain-bar-text">${sharePct}%</span>
+        </div>
+      </div>
+      <div class="domain-bar-count">${count}</div>
+    </div>`;
+  });
+  document.getElementById('domainBars').innerHTML = html;
+
+  // Auto-insights
+  const [top1, top2, , bottom1] = sorted;
+  let insight = '';
+  if (top1[1] > 0) {
+    const ratio = total > 0 ? Math.round(top1[1]/total*100) : 0;
+    insight += `<strong>Доминирует «${top1[0]}»</strong> — ${ratio}% всех топ-5 тем команды. `;
+    if (top1[0] === 'Исполнение') insight += 'Команда сильна в реализации и доведении до результата. ';
+    if (top1[0] === 'Влияние') insight += 'Команда умеет двигать людей и идеи вперёд. ';
+    if (top1[0] === 'Выстраивание отношений') insight += 'Команда держится на доверии и людских связях. ';
+    if (top1[0] === 'Стратегическое мышление') insight += 'Команда мыслит концептуально и любит думать наперёд. ';
+  }
+  if (bottom1[1] === 0) {
+    insight += `<strong>«${bottom1[0]}»</strong> — полностью отсутствует в топ-5. Это слепая зона — рассмотрите партнёрство или найм.`;
+  } else if (top1[1] > 0 && bottom1[1] / top1[1] < 0.3) {
+    insight += `«${bottom1[0]}» значительно недопредставлен — всего ${bottom1[1]} тем против ${top1[1]}.`;
+  }
+  const insightEl = document.getElementById('domainInsight');
+  insightEl.innerHTML = insight;
+  insightEl.style.display = insight ? 'block' : 'none';
+}
+
+function renderBlindSpots(consented) {
+  const themeCounts = {};
+  consented.forEach(m => {
+    (m.themes || []).slice(0, 5).forEach(t => {
+      themeCounts[t] = (themeCounts[t] || 0) + 1;
+    });
+  });
+
+  const n = consented.length;
+  const blindItems = [];
+
+  // Find themes with 0 or very low representation
+  Object.entries(DOMAIN_THEMES).forEach(([domain, themes]) => {
+    themes.forEach(theme => {
+      const count = themeCounts[theme] || 0;
+      const presence = n > 0 ? count / n : 0;
+      if (presence === 0) {
+        blindItems.push({ theme, domain, count, severity: 'critical', label: 'Отсутствует' });
+      } else if (presence < 0.15 && n >= 5) {
+        blindItems.push({ theme, domain, count, severity: 'moderate', label: 'Редко встречается' });
+      }
+    });
+  });
+
+  // Sort: critical first, then by domain
+  blindItems.sort((a,b) => {
+    if (a.severity !== b.severity) return a.severity === 'critical' ? -1 : 1;
+    return a.domain.localeCompare(b.domain);
+  });
+
+  // Show max 8 items
+  const toShow = blindItems.slice(0, 8);
+  if (toShow.length === 0) {
+    document.getElementById('blindList').innerHTML = `<div style="padding:16px;color:var(--text-2);font-size:13px">Явных слепых зон не обнаружено — команда достаточно разнообразна по темам.</div>`;
+    return;
+  }
+
+  let html = '';
+  toShow.forEach(item => {
+    const cls = DOMAIN_CLASS[item.domain];
+    html += `<div class="blind-item ${item.severity}">
+      <span class="blind-domain ${cls}">${esc(item.domain)}</span>
+      <div class="blind-theme">${esc(item.theme)} <span style="font-size:12px;color:var(--text-3);font-weight:400">/ ${esc(RU_NAMES[item.theme] || '')}</span></div>
+      <div class="blind-meta">${item.count} чел.</div>
+      <div class="blind-label ${item.severity}">${esc(item.label)}</div>
+    </div>`;
+  });
+  document.getElementById('blindList').innerHTML = html;
+}
+
+function renderMemberTable(members, consented) {
+  if (!members.length) {
+    document.getElementById('membersContent').innerHTML = '<div class="empty-state"><div class="empty-state-icon">👥</div><div class="empty-state-text">Участников пока нет</div><div class="empty-state-sub">Создайте пригласительную ссылку ниже</div></div>';
+    return;
+  }
+
+  let html = `<table class="members-table">
+    <thead><tr>
+      <th>#</th>
+      <th>Участник</th>
+      <th>Согласие</th>
+      <th>Топ-5 тем</th>
+      <th>Присоединился</th>
+    </tr></thead><tbody>`;
+
+  members.forEach((m, i) => {
+    const consented = m.visibility_consent && m.themes?.length > 0;
+    const hasProfile = m.themes?.length > 0;
+    const joined = m.joined_at ? new Date(m.joined_at).toLocaleDateString('ru-RU') : '—';
+    const consentBadge = consented
+      ? `<span class="badge badge-consent">Дано</span>`
+      : hasProfile
+        ? `<span class="badge badge-no-consent">Не дано</span>`
+        : `<span class="badge badge-pending">Нет профиля</span>`;
+
+    let top5html = '—';
+    if (consented && m.themes) {
+      const top5 = m.themes.slice(0, 5);
+      top5html = top5.map(t => {
+        const d = DOMAIN_MAP[t];
+        const cls = DOMAIN_CLASS[d] || '';
+        return `<span class="mt-chip ${cls}">${esc(t)}</span>`;
+      }).join('');
+      top5html = `<div class="member-themes">${top5html}</div>`;
+    }
+
+    const memberLabel = consented
+      ? `<span style="font-family:monospace;font-size:11px;color:var(--text-3)">${esc(m.user_id.slice(0,8))}…</span>`
+      : `<span style="color:var(--text-3)">Анонимный участник</span>`;
+
+    const roleBadge = m.role === 'admin' ? `<span class="badge" style="background:var(--exec-bg);color:var(--exec);margin-left:6px">admin</span>` : '';
+
+    html += `<tr>
+      <td style="color:var(--text-3);font-size:12px">${i+1}</td>
+      <td>${memberLabel}${roleBadge}</td>
+      <td>${consentBadge}</td>
+      <td>${top5html}</td>
+      <td style="color:var(--text-3);font-size:12px">${esc(joined)}</td>
+    </tr>`;
+  });
+
+  html += '</tbody></table>';
+  document.getElementById('membersContent').innerHTML = html;
+}
+
+// ─── ORG CREATION ────────────────────────────────────────────────
+
+function openCreateOrgModal() {
+  document.getElementById('createOrgModal').classList.add('open');
+  document.getElementById('orgName').focus();
+}
+
+function closeCreateOrgModal() {
+  document.getElementById('createOrgModal').classList.remove('open');
+  document.getElementById('orgName').value = '';
+  document.getElementById('orgCreateErr').style.display = 'none';
+}
+
+async function createOrg() {
+  const name = document.getElementById('orgName').value.trim();
+  const errEl = document.getElementById('orgCreateErr');
+  errEl.style.display = 'none';
+  if (!name) { errEl.textContent = 'Введите название организации'; errEl.style.display = 'block'; return; }
+
+  const btn = document.getElementById('orgCreateBtn'); btn.disabled = true;
+
+  const { data: org, error } = await supa.from('organizations')
+    .insert({ name, created_by: currentUser.id })
+    .select().single();
+
+  if (error) {
+    btn.disabled = false;
+    errEl.textContent = error.message; errEl.style.display = 'block'; return;
+  }
+
+  // Add creator as admin member
+  await supa.from('org_members').insert({
+    org_id: org.id,
+    user_id: currentUser.id,
+    role: 'admin',
+    visibility_consent: true,
+    joined_at: new Date().toISOString()
+  });
+
+  btn.disabled = false;
+  closeCreateOrgModal();
+  await loadOrgs();
+
+  // Select the new org
+  document.getElementById('orgSelect').value = org.id;
+  await loadOrgData();
+}
+
+// ─── INVITE ──────────────────────────────────────────────────────
+
+async function createOrgInvite() {
+  if (!currentOrgId) return;
+  const note = document.getElementById('inviteNote').value.trim();
+  const token = crypto.randomUUID();
+
+  const { error } = await supa.from('invites').insert({
+    token,
+    note: note || null,
+    org_id: currentOrgId
+  });
+
+  if (error) { alert('Ошибка создания инвайта: ' + error.message); return; }
+
+  const base = window.location.origin + window.location.pathname.replace('team.html', 'index.html');
+  const link = `${base}?invite=${token}`;
+
+  document.getElementById('inviteResultLink').textContent = link;
+  document.getElementById('inviteResultWrap').style.display = 'flex';
+  document.getElementById('inviteNote').value = '';
+}
+
+function copyInviteLink() {
+  const link = document.getElementById('inviteResultLink').textContent;
+  navigator.clipboard.writeText(link).then(() => {
+    const btn = document.querySelector('.btn-copy');
+    btn.textContent = 'Скопировано!';
+    setTimeout(() => btn.textContent = 'Скопировать', 2000);
+  });
+}
+
+// ─── BOOTSTRAP ───────────────────────────────────────────────────
+
+supa.auth.getSession().then(async ({ data }) => {
+  if (data.session) await initPanel(data.session.user);
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeCreateOrgModal();
+});
+</script>
+</body>
+</html>
