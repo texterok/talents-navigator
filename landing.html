@@ -601,6 +601,55 @@
 
     .fc-desc { font-size: 15px; color: var(--text2); line-height: 1.55; }
 
+    /* AI PROMO BANNER */
+    .ai-promo-banner {
+      background: linear-gradient(135deg, rgba(27,107,80,0.06) 0%, rgba(24,86,199,0.06) 100%);
+      border: 1.5px solid rgba(27,107,80,0.18);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+    }
+    .ai-promo-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .ai-promo-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .ai-promo-title {
+      font-family: 'Literata', serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .ai-promo-desc { font-size: 15px; color: var(--text2); line-height: 1.5; max-width: 520px; }
+    .ai-promo-cta {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .ai-promo-cta:hover { opacity: 0.88; }
+    @media (max-width: 700px) {
+      .ai-promo-inner { flex-direction: column; align-items: flex-start; }
+      .ai-promo-cta { width: 100%; justify-content: center; }
+    }
+
     /* HOW IT WORKS */
     #how { background: var(--surface); }
 
@@ -1087,6 +1136,17 @@
         <p class="fc-desc"><span data-i18n="feat_5_desc">Персональный системный промпт под ваш стиль мышления. ChatGPT или Claude получают контекст о том, как вы думаете, принимаете решения и что для вас важно — раз и навсегда. <em>Кто вы для AI — один раз и на всю жизнь.</em></span></p>
       </div>
     </div>
+
+    <div class="ai-promo-banner fade-up" style="margin-top:32px;">
+      <div class="ai-promo-inner">
+        <div class="ai-promo-text">
+          <div class="ai-promo-label"><span data-i18n="ai_promo_label">Отдельная страница</span></div>
+          <div class="ai-promo-title"><span data-i18n="ai_promo_title">ChatGPT не знает, как вы думаете</span></div>
+          <p class="ai-promo-desc"><span data-i18n="ai_promo_desc">Полный разбор: как настроить AI под свой профиль Gallup, какие промпты работают, и как закрыть слабые зоны через AI-партнёра.</span></p>
+        </div>
+        <a href="ai-setup.html" class="ai-promo-cta"><span data-i18n="ai_promo_cta">Читать подробнее →</span></a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1290,6 +1350,10 @@
       feat_4_desc: 'Для каждого таланта — конкретные AI-инструменты: n8n, Claude, Obsidian, Notion. С готовыми промптами под боли именно вашего таланта. <em>Что делать с помощью AI — по каждому таланту отдельно.</em>',
       feat_5_title: 'Инструкции для AI',
       feat_5_desc: 'Персональный системный промпт под ваш стиль мышления. ChatGPT или Claude получают контекст о том, как вы думаете, принимаете решения и что для вас важно — раз и навсегда. <em>Кто вы для AI — один раз и на всю жизнь.</em>',
+      ai_promo_label: 'Отдельная страница',
+      ai_promo_title: 'ChatGPT не знает, как вы думаете',
+      ai_promo_desc: 'Полный разбор: как настроить AI под свой профиль Gallup, какие промпты работают, и как закрыть слабые зоны через AI-партнёра.',
+      ai_promo_cta: 'Читать подробнее →',
       how_label: 'Как это работает',
       how_h2: 'Три шага до рабочей системы',
       how_sub: 'Не нужно перечитывать методологию. Нужен список ваших талантов и пять минут.',
@@ -1396,6 +1460,10 @@
       feat_4_desc: 'For each theme — specific AI tools: n8n, Claude, Obsidian, Notion. Pre-built prompts matched to your exact strengths. <em>Concrete AI workflows, broken down by theme.</em>',
       feat_5_title: 'AI System Prompt',
       feat_5_desc: 'A custom system prompt built around how you think. Give ChatGPT or Claude real context about your decision-making style — once, and it sticks. <em>Your AI finally knows who you are.</em>',
+      ai_promo_label: 'Deep dive',
+      ai_promo_title: "ChatGPT doesn't know how you think",
+      ai_promo_desc: 'A full breakdown: how to configure AI to your Gallup profile, which prompts actually work, and how to cover your weak zones with an AI partner.',
+      ai_promo_cta: 'Read more →',
       how_label: 'How It Works',
       how_h2: 'Three steps. Then it just works.',
       how_sub: "No manual required. Just your Gallup themes and five minutes.",
