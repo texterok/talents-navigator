@@ -201,27 +201,56 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .tr-insight-col.motiv{background:#FFF3E8;border-left:2px solid #C2590A}
 .tr-insight-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;opacity:.7}
 
+/* GRID ZONE FILTER */
+.grid-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.grid-filter-label{font-size:12px;font-weight:600;color:var(--text-2);margin-right:4px}
+.zone-btn{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text-2);transition:all .15s}
+.zone-btn.active{border-color:var(--accent);background:var(--accent-light);color:var(--accent)}
+
+/* GRID LEGEND */
+.grid-legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.gl-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-2)}
+.gl-swatch{width:14px;height:14px;border-radius:3px;flex-shrink:0}
+
 /* FULL GRID */
 .grid-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.full-grid{border-collapse:collapse;font-size:11px;min-width:900px}
-.full-grid th{padding:4px 6px;text-align:center;font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;border-bottom:2px solid var(--border)}
-.full-grid th.domain-hdr{font-size:10px;text-align:center;padding:6px 4px;letter-spacing:.04em}
-.full-grid th.domain-hdr.exec{color:var(--exec);border-bottom:3px solid var(--exec)}
-.full-grid th.domain-hdr.infl{color:var(--infl);border-bottom:3px solid var(--infl)}
-.full-grid th.domain-hdr.rel{color:var(--rel);border-bottom:3px solid var(--rel)}
-.full-grid th.domain-hdr.strat{color:var(--strat);border-bottom:3px solid var(--strat)}
-.full-grid td{padding:5px 4px;text-align:center;border-bottom:1px solid var(--border-light);border-right:1px solid var(--border-light)}
-.full-grid td.name-cell{text-align:left;padding:6px 12px;font-size:12px;font-weight:600;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:2;border-right:2px solid var(--border)}
+.full-grid{border-collapse:collapse;font-size:11px}
+.full-grid th.name-cell-hdr{text-align:left;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:3;min-width:130px}
+.full-grid th.domain-hdr{text-align:center;padding:6px 4px;font-size:11px;font-weight:800;letter-spacing:.03em;border-bottom:3px solid transparent}
+.full-grid th.domain-hdr.exec{color:#5B21B6;border-bottom-color:#7C3AED;border-left:1px solid #C4B5FD}
+.full-grid th.domain-hdr.infl{color:#C2590A;border-bottom-color:#C2590A;border-left:1px solid #FCD34D}
+.full-grid th.domain-hdr.rel{color:#1D4ED8;border-bottom-color:#1D4ED8;border-left:1px solid #BFDBFE}
+.full-grid th.domain-hdr.strat{color:#15803D;border-bottom-color:#15803D;border-left:1px solid #BBF7D0}
+.full-grid th.theme-hdr{padding:0;vertical-align:bottom;border-bottom:1px solid var(--border-light);width:28px;min-width:28px;max-width:28px}
+.full-grid th.theme-hdr.exec{border-right:1px solid #E9D5FF}
+.full-grid th.theme-hdr.infl{border-right:1px solid #FDE68A}
+.full-grid th.theme-hdr.rel{border-right:1px solid #BFDBFE}
+.full-grid th.theme-hdr.strat{border-right:1px solid #BBF7D0}
+.theme-hdr-inner{writing-mode:vertical-rl;transform:rotate(180deg);padding:8px 6px 4px;font-size:10px;font-weight:600;white-space:nowrap;color:var(--text-2);text-align:left;line-height:1}
+.full-grid td{padding:2px 1px;text-align:center;border-bottom:1px solid var(--border-light);width:28px;min-width:28px;max-width:28px}
+.full-grid td.name-cell{text-align:left;padding:6px 10px;font-size:12px;font-weight:600;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:2;border-right:2px solid var(--border);min-width:130px;max-width:200px}
 .full-grid tr:hover td{background:#FAFAF8}
 .full-grid tr:hover td.name-cell{background:#F5F3EF}
-.grid-cell{width:22px;height:22px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin:0 auto}
-.grid-cell.z1-5.exec{background:var(--exec);color:#fff}
-.grid-cell.z1-5.infl{background:var(--infl);color:#fff}
-.grid-cell.z1-5.rel{background:var(--rel);color:#fff}
-.grid-cell.z1-5.strat{background:var(--strat);color:#fff}
-.grid-cell.z30-34{background:var(--surface-alt);color:var(--text-3);font-size:9px}
-.full-grid .team-rank-row td{background:var(--surface-alt);font-weight:800;font-size:12px;padding:6px 4px}
-.full-grid .team-rank-row td.name-cell{background:var(--surface-alt)}
+.grid-cell{width:24px;height:24px;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;margin:0 auto;line-height:1}
+/* z1-5 — solid fill */
+.grid-cell.z1-5.exec{background:#7C3AED;color:#fff}
+.grid-cell.z1-5.infl{background:#C2590A;color:#fff}
+.grid-cell.z1-5.rel{background:#1D4ED8;color:#fff}
+.grid-cell.z1-5.strat{background:#15803D;color:#fff}
+/* z6-10 — light fill + colored text */
+.grid-cell.z6-10.exec{background:#EDE9FE;color:#5B21B6}
+.grid-cell.z6-10.infl{background:#FFF3E8;color:#C2590A}
+.grid-cell.z6-10.rel{background:#DBEAFE;color:#1D4ED8}
+.grid-cell.z6-10.strat{background:#DCFCE7;color:#15803D}
+/* z11-29 — very light */
+.grid-cell.z11-29{background:#F8F8F8;color:#C0BDB8;font-size:9px}
+/* z30-34 — grey */
+.grid-cell.z30-34{background:#F3F4F6;color:#9CA3AF;font-size:9px}
+/* hidden zones */
+.grid-cell.hidden{display:none}
+.full-grid .team-rank-row td{background:#F7F5F0;font-size:11px;padding:3px 1px;border-top:2px solid var(--border)}
+.full-grid .team-rank-row td.name-cell{background:#F7F5F0;font-size:11px;font-weight:700;color:var(--text-2)}
+.full-grid .domain-sep{border-left:2px solid var(--border-light)}
 
 /* DOMAIN INTERPRETATION */
 .domain-interp{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -993,26 +1022,68 @@ function renderDeepAnalysis(members) {
     </div>`;
   });
 
-  // Full Grid
-  let gridHtml = '<div class="grid-scroll"><table class="full-grid">';
-  // Domain header row
-  gridHtml += '<thead><tr><th class="name-cell" rowspan="2">Участник</th>';
+  // Full Grid — compute team theme rank (rank 1 = most frequent in top-5)
+  const rankedThemes = THEMES_ORDER
+    .map(t => ({ t, cnt: themeFreq[t] }))
+    .filter(x => x.cnt > 0)
+    .sort((a, b) => b.cnt - a.cnt);
+  const teamRankMap = {}; // theme -> rank position (1-based)
+  rankedThemes.slice(0, 5).forEach((x, i) => { teamRankMap[x.t] = i + 1; });
+
+  const legendHtml = `<div class="grid-legend">
+    <div class="gl-item"><div class="gl-swatch" style="background:#7C3AED"></div>Исполнение 1–5</div>
+    <div class="gl-item"><div class="gl-swatch" style="background:#EDE9FE;border:1px solid #C4B5FD"></div>Исполнение 6–10</div>
+    <div class="gl-item"><div class="gl-swatch" style="background:#C2590A"></div>Влияние 1–5</div>
+    <div class="gl-item"><div class="gl-swatch" style="background:#FFF3E8;border:1px solid #FCD34D"></div>Влияние 6–10</div>
+    <div class="gl-item"><div class="gl-swatch" style="background:#1D4ED8"></div>Отношения 1–5</div>
+    <div class="gl-item"><div class="gl-swatch" style="background:#DBEAFE;border:1px solid #BFDBFE"></div>Отношения 6–10</div>
+    <div class="gl-item"><div class="gl-swatch" style="background:#15803D"></div>Стратегия 1–5</div>
+    <div class="gl-item"><div class="gl-swatch" style="background:#DCFCE7;border:1px solid #BBF7D0"></div>Стратегия 6–10</div>
+    <div class="gl-item"><div class="gl-swatch" style="background:#F3F4F6;border:1px solid #D1D5DB"></div>30–34</div>
+  </div>`;
+
+  const filterHtml = `<div class="grid-filter">
+    <span class="grid-filter-label">Показать зоны:</span>
+    <button class="zone-btn active" onclick="setGridZone('all',this)">Все</button>
+    <button class="zone-btn" onclick="setGridZone('z1-5',this)">1–5</button>
+    <button class="zone-btn" onclick="setGridZone('z6-10',this)">6–10</button>
+    <button class="zone-btn" onclick="setGridZone('z11-29',this)">11–29</button>
+    <button class="zone-btn" onclick="setGridZone('z30-34',this)">30–34</button>
+  </div>`;
+
+  let gridHtml = filterHtml + legendHtml + '<div class="grid-scroll"><table class="full-grid" id="fullGridTable">';
+
+  // Row 1: domain headers
+  gridHtml += '<thead><tr><th class="name-cell-hdr" rowspan="2"></th>';
   DOMAIN_HEADERS.forEach(dh => {
     gridHtml += `<th class="domain-hdr ${dh.key}" colspan="${dh.count}">${esc(dh.label)}</th>`;
   });
-  gridHtml += '</tr><tr>';
+  gridHtml += '</tr>';
+
+  // Row 2: theme name headers (vertical)
+  gridHtml += '<tr>';
   THEMES_ORDER.forEach(t => {
     const d = DOMAIN_MAP[t];
     const cls = DOMAIN_CLASS[d] || '';
-    gridHtml += `<th title="${esc(RU_NAMES[t] || t)}">${esc((RU_NAMES[t]||t).slice(0,4))}</th>`;
+    const ruName = RU_NAMES[t] || t;
+    gridHtml += `<th class="theme-hdr ${cls}"><div class="theme-hdr-inner" title="${esc(t)}">${esc(ruName)}</div></th>`;
   });
   gridHtml += '</tr></thead><tbody>';
 
-  // Team rank row
+  // Team Theme Rank row
   gridHtml += '<tr class="team-rank-row"><td class="name-cell">Частота ↑</td>';
   THEMES_ORDER.forEach(t => {
     const cnt = themeFreq[t];
-    gridHtml += `<td>${cnt > 0 ? cnt : ''}</td>`;
+    const rank = teamRankMap[t];
+    const d = DOMAIN_MAP[t];
+    const cls = DOMAIN_CLASS[d] || '';
+    if (rank) {
+      gridHtml += `<td><div class="grid-cell z1-5 ${cls}">${rank}</div></td>`;
+    } else if (cnt > 0) {
+      gridHtml += `<td style="font-size:10px;color:var(--text-3)">${cnt}</td>`;
+    } else {
+      gridHtml += '<td></td>';
+    }
   });
   gridHtml += '</tr>';
 
@@ -1027,8 +1098,12 @@ function renderDeepAnalysis(members) {
       if (!p) { gridHtml += '<td></td>'; return; }
       const d = DOMAIN_MAP[t];
       const cls = DOMAIN_CLASS[d] || '';
-      const zone = p <= 5 ? 'z1-5' : (p >= 30 ? 'z30-34' : '');
-      gridHtml += `<td><div class="grid-cell ${zone} ${zone ? cls : ''}">${p}</div></td>`;
+      let zone;
+      if (p <= 5) zone = 'z1-5';
+      else if (p <= 10) zone = 'z6-10';
+      else if (p <= 29) zone = 'z11-29';
+      else zone = 'z30-34';
+      gridHtml += `<td><div class="grid-cell ${zone} ${cls}" data-zone="${zone}">${p}</div></td>`;
     });
     gridHtml += '</tr>';
   });
@@ -1072,6 +1147,19 @@ function renderDeepAnalysis(members) {
       <div class="deep-section-sub">Как распределена энергия команды по четырём доменам Gallup и что это означает для работы.</div>
       ${diHtml}
     </div>`;
+}
+
+function setGridZone(zone, btn) {
+  document.querySelectorAll('.zone-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const cells = document.querySelectorAll('#fullGridTable .grid-cell[data-zone]');
+  cells.forEach(c => {
+    if (zone === 'all' || c.dataset.zone === zone) {
+      c.classList.remove('hidden');
+    } else {
+      c.classList.add('hidden');
+    }
+  });
 }
 
 // ─── BOOTSTRAP ───────────────────────────────────────────────────
