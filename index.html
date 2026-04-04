@@ -187,10 +187,18 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .p5-badge.rel .p5-badge-num{background:var(--rel)}
 .p5-badge.strat{background:var(--strat-bg);color:var(--strat)}
 .p5-badge.strat .p5-badge-num{background:var(--strat)}
-.profile-toggle{display:flex;align-items:center;gap:6px;padding:7px 14px;background:var(--surface);border:1.5px solid var(--border);border-radius:20px;font-size:12px;font-weight:600;color:var(--text-2);cursor:pointer;white-space:nowrap;transition:border-color .15s,color .15s;flex-shrink:0;margin-top:4px}
-.profile-toggle:hover{border-color:var(--accent);color:var(--accent)}
-.profile-toggle-arrow{font-size:10px;transition:transform .2s}
-.profile-toggle.open .profile-toggle-arrow{transform:rotate(180deg)}
+.grid-mode-toggle{display:flex;background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:2px;gap:2px;flex-shrink:0;margin-top:4px}
+.gmt-btn{padding:5px 12px;border:none;background:transparent;border-radius:17px;font-size:12px;font-weight:600;color:var(--text-2);cursor:pointer;transition:background .15s,color .15s;white-space:nowrap}
+.gmt-btn.active{background:var(--accent);color:#fff}
+.gmt-btn:not(.active):hover{color:var(--accent)}
+.olist{display:flex;flex-direction:column;gap:0;border:1px solid var(--border-light);border-radius:10px;overflow:hidden;margin:12px 0}
+.olist-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--border-light);cursor:pointer;transition:filter .15s}
+.olist-item:last-child{border-bottom:none}
+.olist-item:hover{filter:brightness(.96)}
+.olist-pos{font-size:20px;font-weight:700;min-width:28px;text-align:right;line-height:1;flex-shrink:0}
+.olist-name{font-size:13px;font-weight:600;line-height:1.3;color:var(--text-1)}
+.olist-ru{font-size:11px;color:var(--text-3)}
+.olist-domain{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:10px;margin-left:auto;flex-shrink:0}
 .domain-grid-wrap{margin-top:16px}
 
 /* Domain grid (Gallup-style) */
@@ -615,13 +623,13 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
         <div class="sec-title">Ваш профиль</div>
         <div id="profileTop5" class="profile-top5"></div>
       </div>
-      <button class="profile-toggle" id="profileToggle" onclick="toggleProfileGrid()">
-        <span id="profileToggleLabel">Все 34 таланта</span>
-        <span class="profile-toggle-arrow" id="profileToggleArrow">▾</span>
-      </button>
+      <div class="grid-mode-toggle" id="gridModeToggle">
+        <button class="gmt-btn active" id="gmtOrder" onclick="setGridMode('order')">По порядку</button>
+        <button class="gmt-btn" id="gmtDomain" onclick="setGridMode('domain')">По доменам</button>
+      </div>
     </div>
-    <div id="domainGrid" class="domain-grid-wrap" style="display:none"></div>
-    <div class="zone-legend" id="zoneLegend" style="display:none"></div>
+    <div id="domainGrid" class="domain-grid-wrap"></div>
+    <div class="zone-legend" id="zoneLegend"></div>
   </div>
 
   <!-- DOMAIN BALANCE -->
@@ -804,58 +812,82 @@ function renderChips(){
     return`<span class="p5-badge ${cls}"><span class="p5-badge-num">${i+1}</span>${t.ru||name}</span>`;
   }).join('');
 
-  // Domain grid (hidden by default)
-  const DOMAINS=[
-    {key:'Исполнение',              cls:'exec'},
-    {key:'Влияние',                 cls:'infl'},
-    {key:'Выстраивание отношений',  cls:'rel'},
-    {key:'Стратегическое мышление', cls:'strat'},
-  ];
-  const byDomain={};
-  DOMAINS.forEach(d=>{byDomain[d.key]=[]});
-  selected.forEach((name,i)=>{
-    const t=findTheme(name);
-    if(!t)return;
-    byDomain[t.domain]?.push({name,ru:t.ru,pos:i+1,zone:getZone(i+1)});
-  });
+  renderGridView();
+}
 
-  let html=`<div class="dgrid">`;
-  DOMAINS.forEach(d=>{
-    html+=`<div class="dgrid-col">`;
-    html+=`<div class="dgrid-hdr ${d.cls}">${d.key}</div>`;
-    byDomain[d.key].forEach(item=>{
-      const isTop=item.pos<=10;
-      const cellSlug=item.name.toLowerCase().replace(/[^a-z-]/g,'');
-      html+=`<div class="dgrid-cell ${item.zone.cls}${isTop?' top10':''}" style="cursor:pointer" onclick="openThemeOverlay('${cellSlug}','${item.ru}')">
-        <div class="dgrid-cell-pos">${item.pos}</div>
-        <div><div class="dgrid-cell-name">${item.name}</div><div class="dgrid-cell-ru">${item.ru}</div></div>
+let _gridMode='order';
+function setGridMode(mode){
+  _gridMode=mode;
+  document.getElementById('gmtOrder').classList.toggle('active',mode==='order');
+  document.getElementById('gmtDomain').classList.toggle('active',mode==='domain');
+  renderGridView();
+}
+function renderGridView(){
+  const grid=document.getElementById('domainGrid');
+  const legend=document.getElementById('zoneLegend');
+  if(_gridMode==='order'){
+    let html=`<div class="olist">`;
+    selected.forEach((name,i)=>{
+      const t=findTheme(name);
+      if(!t)return;
+      const z=getZone(i+1);
+      const slug=name.toLowerCase().replace(/[^a-z-]/g,'');
+      const dcls=DOMAIN_CLS[t.domain]||'strat';
+      const DOMAIN_LABELS={'Исполнение':'Исполнение','Влияние':'Влияние','Выстраивание отношений':'Отношения','Стратегическое мышление':'Стратегия'};
+      const dlabel=DOMAIN_LABELS[t.domain]||t.domain;
+      html+=`<div class="olist-item ${z.cls}" onclick="openThemeOverlay('${slug}','${t.ru||name}')">
+        <div class="olist-pos">${i+1}</div>
+        <div><div class="olist-name">${name}</div><div class="olist-ru">${t.ru||''}</div></div>
+        <span class="olist-domain ${dcls}">${dlabel}</span>
       </div>`;
     });
     html+=`</div>`;
-  });
-  html+=`</div>`;
-  grid.innerHTML=html;
-
-  // Zone legend
-  legend.innerHTML=[
-    {color:'#059669',name:'1–5 Работает само'},
-    {color:'#047857',name:'6–10 Легко включается'},
-    {color:'#B45309',name:'11–15 Доступно осознанно'},
-    {color:'#D97706',name:'16–20 Требует усилия'},
-    {color:'#DC2626',name:'21–34 Вне природной зоны'},
-  ].map(z=>`<span class="zl-item"><span class="zl-dot" style="background:${z.color}"></span>${z.name}</span>`).join('');
-}
-
-function toggleProfileGrid(){
-  const grid=document.getElementById('domainGrid');
-  const legend=document.getElementById('zoneLegend');
-  const btn=document.getElementById('profileToggle');
-  const label=document.getElementById('profileToggleLabel');
-  const isOpen=grid.style.display!=='none';
-  grid.style.display=isOpen?'none':'block';
-  legend.style.display=isOpen?'none':'block';
-  btn.classList.toggle('open',!isOpen);
-  label.textContent=isOpen?'Все 34 таланта':'Свернуть';
+    grid.innerHTML=html;
+    legend.innerHTML=[
+      {color:'#059669',name:'1–5 Работает само'},
+      {color:'#047857',name:'6–10 Легко включается'},
+      {color:'#B45309',name:'11–15 Доступно осознанно'},
+      {color:'#D97706',name:'16–20 Требует усилия'},
+      {color:'#DC2626',name:'21–34 Вне природной зоны'},
+    ].map(z=>`<span class="zl-item"><span class="zl-dot" style="background:${z.color}"></span>${z.name}</span>`).join('');
+  } else {
+    const DOMAINS=[
+      {key:'Исполнение',              cls:'exec'},
+      {key:'Влияние',                 cls:'infl'},
+      {key:'Выстраивание отношений',  cls:'rel'},
+      {key:'Стратегическое мышление', cls:'strat'},
+    ];
+    const byDomain={};
+    DOMAINS.forEach(d=>{byDomain[d.key]=[]});
+    selected.forEach((name,i)=>{
+      const t=findTheme(name);
+      if(!t)return;
+      byDomain[t.domain]?.push({name,ru:t.ru,pos:i+1,zone:getZone(i+1)});
+    });
+    let html=`<div class="dgrid">`;
+    DOMAINS.forEach(d=>{
+      html+=`<div class="dgrid-col">`;
+      html+=`<div class="dgrid-hdr ${d.cls}">${d.key}</div>`;
+      byDomain[d.key].forEach(item=>{
+        const isTop=item.pos<=10;
+        const cellSlug=item.name.toLowerCase().replace(/[^a-z-]/g,'');
+        html+=`<div class="dgrid-cell ${item.zone.cls}${isTop?' top10':''}" style="cursor:pointer" onclick="openThemeOverlay('${cellSlug}','${item.ru}')">
+          <div class="dgrid-cell-pos">${item.pos}</div>
+          <div><div class="dgrid-cell-name">${item.name}</div><div class="dgrid-cell-ru">${item.ru}</div></div>
+        </div>`;
+      });
+      html+=`</div>`;
+    });
+    html+=`</div>`;
+    grid.innerHTML=html;
+    legend.innerHTML=[
+      {color:'#059669',name:'1–5 Работает само'},
+      {color:'#047857',name:'6–10 Легко включается'},
+      {color:'#B45309',name:'11–15 Доступно осознанно'},
+      {color:'#D97706',name:'16–20 Требует усилия'},
+      {color:'#DC2626',name:'21–34 Вне природной зоны'},
+    ].map(z=>`<span class="zl-item"><span class="zl-dot" style="background:${z.color}"></span>${z.name}</span>`).join('');
+  }
 }
 
 function renderCards(){
