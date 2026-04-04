@@ -202,10 +202,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .tr-insight-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;opacity:.7}
 
 /* GRID ZONE FILTER */
-.grid-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
-.grid-filter-label{font-size:12px;font-weight:600;color:var(--text-2);margin-right:4px}
-.zone-btn{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text-2);transition:all .15s}
+.grid-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.grid-filter-label{font-size:12px;font-weight:600;color:var(--text-2);margin-right:2px}
+.zone-btn{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text-2);transition:all .15s;user-select:none}
 .zone-btn.active{border-color:var(--accent);background:var(--accent-light);color:var(--accent)}
+.zone-btn .zchk{width:14px;height:14px;border-radius:3px;border:1.5px solid currentColor;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;transition:all .15s}
+.zone-btn.active .zchk::after{content:'✓';font-weight:900}
 
 /* GRID LEGEND */
 .grid-legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
@@ -214,24 +216,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 /* FULL GRID */
 .grid-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.full-grid{border-collapse:collapse;font-size:11px}
-.full-grid th.name-cell-hdr{text-align:left;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:3;min-width:130px}
-.full-grid th.domain-hdr{text-align:center;padding:6px 4px;font-size:11px;font-weight:800;letter-spacing:.03em;border-bottom:3px solid transparent}
-.full-grid th.domain-hdr.exec{color:#5B21B6;border-bottom-color:#7C3AED;border-left:1px solid #C4B5FD}
-.full-grid th.domain-hdr.infl{color:#C2590A;border-bottom-color:#C2590A;border-left:1px solid #FCD34D}
-.full-grid th.domain-hdr.rel{color:#1D4ED8;border-bottom-color:#1D4ED8;border-left:1px solid #BFDBFE}
-.full-grid th.domain-hdr.strat{color:#15803D;border-bottom-color:#15803D;border-left:1px solid #BBF7D0}
-.full-grid th.theme-hdr{padding:0;vertical-align:bottom;border-bottom:1px solid var(--border-light);width:28px;min-width:28px;max-width:28px}
+.full-grid{border-collapse:collapse;font-size:12px}
+.full-grid th.name-cell-hdr{text-align:left;padding:4px 14px;font-size:12px;font-weight:700;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:3;min-width:220px}
+.full-grid th.domain-hdr{text-align:center;padding:8px 4px;font-size:12px;font-weight:800;letter-spacing:.03em;border-bottom:3px solid transparent}
+.full-grid th.domain-hdr.exec{color:#5B21B6;border-bottom-color:#7C3AED;border-left:2px solid #C4B5FD}
+.full-grid th.domain-hdr.infl{color:#C2590A;border-bottom-color:#C2590A;border-left:2px solid #FCD34D}
+.full-grid th.domain-hdr.rel{color:#1D4ED8;border-bottom-color:#1D4ED8;border-left:2px solid #BFDBFE}
+.full-grid th.domain-hdr.strat{color:#15803D;border-bottom-color:#15803D;border-left:2px solid #BBF7D0}
+.full-grid th.theme-hdr{padding:0;vertical-align:bottom;border-bottom:1px solid var(--border-light);width:36px;min-width:36px;max-width:36px}
 .full-grid th.theme-hdr.exec{border-right:1px solid #E9D5FF}
 .full-grid th.theme-hdr.infl{border-right:1px solid #FDE68A}
 .full-grid th.theme-hdr.rel{border-right:1px solid #BFDBFE}
 .full-grid th.theme-hdr.strat{border-right:1px solid #BBF7D0}
-.theme-hdr-inner{writing-mode:vertical-rl;transform:rotate(180deg);padding:8px 6px 4px;font-size:10px;font-weight:600;white-space:nowrap;color:var(--text-2);text-align:left;line-height:1}
-.full-grid td{padding:2px 1px;text-align:center;border-bottom:1px solid var(--border-light);width:28px;min-width:28px;max-width:28px}
-.full-grid td.name-cell{text-align:left;padding:6px 10px;font-size:12px;font-weight:600;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:2;border-right:2px solid var(--border);min-width:130px;max-width:200px}
+.theme-hdr-inner{writing-mode:vertical-rl;transform:rotate(180deg);padding:10px 8px 6px;font-size:11px;font-weight:600;white-space:nowrap;color:var(--text-2);text-align:left;line-height:1}
+.full-grid td{padding:4px 2px;text-align:center;border-bottom:1px solid var(--border-light);width:36px;min-width:36px;max-width:36px}
+.full-grid td.name-cell{text-align:left;padding:8px 14px;font-size:13px;font-weight:600;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:2;border-right:2px solid var(--border);min-width:220px;max-width:320px}
 .full-grid tr:hover td{background:#FAFAF8}
 .full-grid tr:hover td.name-cell{background:#F5F3EF}
-.grid-cell{width:24px;height:24px;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;margin:0 auto;line-height:1}
+.grid-cell{width:28px;height:28px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin:0 auto;line-height:1}
 /* z1-5 — solid fill */
 .grid-cell.z1-5.exec{background:#7C3AED;color:#fff}
 .grid-cell.z1-5.infl{background:#C2590A;color:#fff}
@@ -242,15 +244,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .grid-cell.z6-10.infl{background:#FFF3E8;color:#C2590A}
 .grid-cell.z6-10.rel{background:#DBEAFE;color:#1D4ED8}
 .grid-cell.z6-10.strat{background:#DCFCE7;color:#15803D}
-/* z11-29 — very light */
-.grid-cell.z11-29{background:#F8F8F8;color:#C0BDB8;font-size:9px}
+/* z11-29 — very light, small */
+.grid-cell.z11-29{background:transparent;color:#C0BDB8;font-size:10px;font-weight:500}
 /* z30-34 — grey */
-.grid-cell.z30-34{background:#F3F4F6;color:#9CA3AF;font-size:9px}
+.grid-cell.z30-34{background:#F3F4F6;color:#9CA3AF;font-size:10px;font-weight:600}
 /* hidden zones */
-.grid-cell.hidden{display:none}
-.full-grid .team-rank-row td{background:#F7F5F0;font-size:11px;padding:3px 1px;border-top:2px solid var(--border)}
-.full-grid .team-rank-row td.name-cell{background:#F7F5F0;font-size:11px;font-weight:700;color:var(--text-2)}
-.full-grid .domain-sep{border-left:2px solid var(--border-light)}
+.grid-cell.hidden{visibility:hidden}
+.full-grid .team-rank-row td{background:#F7F5F0;padding:4px 2px;border-top:2px solid var(--border);border-bottom:2px solid var(--border)}
+.full-grid .team-rank-row td.name-cell{background:#F7F5F0;font-size:12px;font-weight:700;color:var(--text-2)}
+.full-grid .freq-num{font-size:11px;color:var(--text-3);font-weight:500}
 
 /* DOMAIN INTERPRETATION */
 .domain-interp{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -1044,11 +1046,11 @@ function renderDeepAnalysis(members) {
 
   const filterHtml = `<div class="grid-filter">
     <span class="grid-filter-label">Показать зоны:</span>
-    <button class="zone-btn active" onclick="setGridZone('all',this)">Все</button>
-    <button class="zone-btn" onclick="setGridZone('z1-5',this)">1–5</button>
-    <button class="zone-btn" onclick="setGridZone('z6-10',this)">6–10</button>
-    <button class="zone-btn" onclick="setGridZone('z11-29',this)">11–29</button>
-    <button class="zone-btn" onclick="setGridZone('z30-34',this)">30–34</button>
+    <button class="zone-btn" onclick="toggleAllZones(this)"><span class="zchk"></span>Все</button>
+    <button class="zone-btn active" data-zone="z1-5" onclick="toggleZone(this)"><span class="zchk"></span>1–5</button>
+    <button class="zone-btn" data-zone="z6-10" onclick="toggleZone(this)"><span class="zchk"></span>6–10</button>
+    <button class="zone-btn" data-zone="z11-29" onclick="toggleZone(this)"><span class="zchk"></span>11–29</button>
+    <button class="zone-btn" data-zone="z30-34" onclick="toggleZone(this)"><span class="zchk"></span>30–34</button>
   </div>`;
 
   let gridHtml = filterHtml + legendHtml + '<div class="grid-scroll"><table class="full-grid" id="fullGridTable">';
@@ -1147,19 +1149,35 @@ function renderDeepAnalysis(members) {
       <div class="deep-section-sub">Как распределена энергия команды по четырём доменам Gallup и что это означает для работы.</div>
       ${diHtml}
     </div>`;
+  // apply default zone filter (only 1-5 shown)
+  _applyZoneVisibility();
 }
 
-function setGridZone(zone, btn) {
-  document.querySelectorAll('.zone-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const cells = document.querySelectorAll('#fullGridTable .grid-cell[data-zone]');
-  cells.forEach(c => {
-    if (zone === 'all' || c.dataset.zone === zone) {
-      c.classList.remove('hidden');
-    } else {
-      c.classList.add('hidden');
-    }
+function _applyZoneVisibility() {
+  const activeBtns = document.querySelectorAll('.zone-btn[data-zone].active');
+  const activeZones = new Set([...activeBtns].map(b => b.dataset.zone));
+  document.querySelectorAll('#fullGridTable .grid-cell[data-zone]').forEach(c => {
+    c.classList.toggle('hidden', !activeZones.has(c.dataset.zone));
   });
+  // sync "Все" button
+  const allBtn = document.querySelector('.zone-btn:not([data-zone])');
+  const zoneBtns = document.querySelectorAll('.zone-btn[data-zone]');
+  const allActive = [...zoneBtns].every(b => b.classList.contains('active'));
+  if (allBtn) allBtn.classList.toggle('active', allActive);
+}
+
+function toggleZone(btn) {
+  btn.classList.toggle('active');
+  _applyZoneVisibility();
+}
+
+function toggleAllZones(btn) {
+  const zoneBtns = document.querySelectorAll('.zone-btn[data-zone]');
+  const allActive = [...zoneBtns].every(b => b.classList.contains('active'));
+  // if all on → turn all off; if any off → turn all on
+  zoneBtns.forEach(b => b.classList.toggle('active', !allActive));
+  btn.classList.toggle('active', !allActive);
+  _applyZoneVisibility();
 }
 
 // ─── BOOTSTRAP ───────────────────────────────────────────────────
