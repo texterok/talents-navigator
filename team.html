@@ -202,10 +202,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .tr-insight-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;opacity:.7}
 
 /* GRID CONTROLS ROW */
-.grid-controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.grid-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
 .grid-toggle{display:flex;border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
 .toggle-btn{padding:5px 14px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:var(--surface);color:var(--text-2);transition:all .15s}
 .toggle-btn.active{background:var(--accent);color:#fff}
+.btn-expand-grid{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text-2);display:flex;align-items:center;gap:5px;transition:all .15s;margin-left:auto}
+.btn-expand-grid:hover{border-color:var(--text-3);color:var(--text)}
+
+/* GRID FULLSCREEN OVERLAY */
+.grid-overlay{display:none;position:fixed;inset:0;background:rgba(15,13,10,.6);z-index:300;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
+.grid-overlay.open{display:flex}
+.grid-overlay-inner{background:var(--surface);border-radius:14px;width:100%;max-width:1600px;box-shadow:0 16px 64px rgba(0,0,0,.3);display:flex;flex-direction:column;min-height:0}
+.grid-overlay-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border-light);flex-shrink:0}
+.grid-overlay-title{font-size:15px;font-weight:700}
+.btn-close-grid{width:32px;height:32px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-2);transition:all .15s}
+.btn-close-grid:hover{background:var(--surface-alt)}
+.grid-overlay-body{padding:16px 20px;overflow:auto;flex:1}
+.grid-overlay-body .grid-controls{position:sticky;top:0;background:var(--surface);padding-bottom:10px;z-index:10}
 
 /* SORTABLE HEADERS */
 .full-grid th.theme-hdr.sortable{cursor:pointer;transition:background .15s}
@@ -452,6 +465,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
   </div><!-- /page -->
 </div><!-- /mainPanel -->
+
+<!-- GRID FULLSCREEN OVERLAY -->
+<div class="grid-overlay" id="gridOverlay" onclick="closeGridOverlay(event)">
+  <div class="grid-overlay-inner">
+    <div class="grid-overlay-hdr">
+      <div class="grid-overlay-title">Полная матрица команды</div>
+      <button class="btn-close-grid" onclick="closeGridOverlay()">✕</button>
+    </div>
+    <div class="grid-overlay-body" id="gridOverlayBody"></div>
+  </div>
+</div>
 
 <!-- CREATE ORG MODAL -->
 <div class="modal-bg" id="createOrgModal">
@@ -1003,11 +1027,17 @@ function renderDeepAnalysis(members) {
     return;
   }
 
-  // Compute theme frequency across team top-5
-  const themeFreq = {};
-  THEMES_ORDER.forEach(t => { themeFreq[t] = 0; });
+  // Compute theme frequency — top-5 and top 6-10 separately
+  const themeFreq = {};   // top 1-5
+  const themeFreq610 = {}; // top 6-10
+  THEMES_ORDER.forEach(t => { themeFreq[t] = 0; themeFreq610[t] = 0; });
   consented.forEach(m => {
-    (m.themes || []).slice(0, 5).forEach(t => { if (themeFreq[t] !== undefined) themeFreq[t]++; });
+    (m.themes || []).forEach((t, i) => {
+      if (themeFreq[t] !== undefined) {
+        if (i < 5) themeFreq[t]++;
+        else if (i < 10) themeFreq610[t]++;
+      }
+    });
   });
 
   // Team Theme Rank — top themes by frequency
@@ -1077,11 +1107,11 @@ function renderDeepAnalysis(members) {
     <button class="zone-btn" data-zone="z6-10" onclick="toggleZone(this)"><span class="zchk"></span>6–10</button>
     <button class="zone-btn" data-zone="z11-29" onclick="toggleZone(this)"><span class="zchk"></span>11–29</button>
     <button class="zone-btn" data-zone="z30-34" onclick="toggleZone(this)"><span class="zchk"></span>30–34</button>
-    <div style="flex:1"></div>
     <div class="grid-toggle">
       <button class="toggle-btn ${_gridNameMode==='role'?'active':''}" onclick="setGridNameMode('role',this)">Роли</button>
       <button class="toggle-btn ${_gridNameMode==='name'?'active':''}" onclick="setGridNameMode('name',this)">Имена</button>
     </div>
+    <button class="btn-expand-grid" onclick="openGridOverlay()">⛶ Развернуть</button>
   </div>`;
 
   let gridHtml = controlsHtml + legendHtml + '<div class="grid-scroll"><table class="full-grid" id="fullGridTable">';
@@ -1105,17 +1135,28 @@ function renderDeepAnalysis(members) {
   });
   gridHtml += '</tr></thead><tbody>';
 
-  // Team Theme Rank row
-  gridHtml += '<tr class="team-rank-row"><td class="name-cell">Частота ↑</td>';
+  // Frequency row — top 1-5
+  gridHtml += '<tr class="team-rank-row" id="freqRow15"><td class="name-cell" style="font-size:11px">Топ 1–5</td>';
   THEMES_ORDER.forEach(t => {
     const cnt = themeFreq[t];
-    const rank = teamRankMap[t];
     const d = DOMAIN_MAP[t];
     const cls = DOMAIN_CLASS[d] || '';
-    if (rank) {
-      gridHtml += `<td><div class="grid-cell z1-5 ${cls}">${rank}</div></td>`;
-    } else if (cnt > 0) {
-      gridHtml += `<td><span class="freq-num">${cnt}</span></td>`;
+    if (cnt > 0) {
+      gridHtml += `<td><div class="grid-cell z1-5 ${cls}" style="width:26px;height:26px">${cnt}</div></td>`;
+    } else {
+      gridHtml += '<td></td>';
+    }
+  });
+  gridHtml += '</tr>';
+
+  // Frequency row — top 6-10
+  gridHtml += '<tr class="team-rank-row" id="freqRow610"><td class="name-cell" style="font-size:11px">Топ 6–10</td>';
+  THEMES_ORDER.forEach(t => {
+    const cnt = themeFreq610[t];
+    const d = DOMAIN_MAP[t];
+    const cls = DOMAIN_CLASS[d] || '';
+    if (cnt > 0) {
+      gridHtml += `<td><div class="grid-cell z6-10 ${cls}" style="width:26px;height:26px">${cnt}</div></td>`;
     } else {
       gridHtml += '<td></td>';
     }
@@ -1216,11 +1257,97 @@ function _applyZoneVisibility() {
   document.querySelectorAll('#fullGridTable .grid-cell[data-zone]').forEach(c => {
     c.classList.toggle('hidden', !activeZones.has(c.dataset.zone));
   });
+  // show/hide freq rows based on active zones
+  const row15 = document.getElementById('freqRow15');
+  const row610 = document.getElementById('freqRow610');
+  if (row15) row15.style.display = activeZones.has('z1-5') ? '' : 'none';
+  if (row610) row610.style.display = activeZones.has('z6-10') ? '' : 'none';
   // sync "Все" button
   const allBtn = document.querySelector('.zone-btn:not([data-zone])');
   const zoneBtns = document.querySelectorAll('.zone-btn[data-zone]');
   const allActive = [...zoneBtns].every(b => b.classList.contains('active'));
   if (allBtn) allBtn.classList.toggle('active', allActive);
+}
+
+function openGridOverlay() {
+  const src = document.getElementById('gridOverlayBody');
+  // clone grid controls + table into overlay
+  const gridSection = document.querySelector('.deep-section .grid-controls')?.closest('.deep-section') ||
+    document.getElementById('deepContent')?.querySelector('.grid-controls')?.parentElement;
+  // just move the grid scroll + controls HTML into overlay
+  const controlsEl = document.querySelector('#deepContent .grid-controls');
+  const scrollEl = document.querySelector('#deepContent .grid-scroll');
+  const legendEl = document.querySelector('#deepContent .grid-legend');
+  if (!scrollEl) return;
+  src.innerHTML = '';
+  if (controlsEl) src.appendChild(controlsEl.cloneNode(true));
+  if (legendEl) src.appendChild(legendEl.cloneNode(true));
+  src.appendChild(scrollEl.cloneNode(true));
+  document.getElementById('gridOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // wire zone buttons in overlay
+  src.querySelectorAll('.zone-btn[data-zone]').forEach(b => {
+    b.onclick = function() { toggleZoneInOverlay(this); };
+  });
+  src.querySelectorAll('.zone-btn:not([data-zone])').forEach(b => {
+    b.onclick = function() { toggleAllZonesInOverlay(this); };
+  });
+  src.querySelectorAll('.toggle-btn').forEach((b, i) => {
+    const mode = i === 0 ? 'role' : 'name';
+    b.onclick = function() { setGridNameModeOverlay(mode, this); };
+  });
+  src.querySelectorAll('.btn-expand-grid').forEach(b => { b.style.display = 'none'; });
+  // wire sort headers
+  src.querySelectorAll('th.theme-hdr.sortable').forEach(th => {
+    const m = th.getAttribute('onclick')?.match(/'([^']+)'/);
+    if (m) { th.onclick = () => sortGridByTheme(m[1]); }
+  });
+  _applyZoneVisibilityIn(src);
+}
+
+function closeGridOverlay(e) {
+  if (e && e.target !== document.getElementById('gridOverlay')) return;
+  document.getElementById('gridOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function _applyZoneVisibilityIn(container) {
+  const activeBtns = container.querySelectorAll('.zone-btn[data-zone].active');
+  const activeZones = new Set([...activeBtns].map(b => b.dataset.zone));
+  container.querySelectorAll('.grid-cell[data-zone]').forEach(c => {
+    c.classList.toggle('hidden', !activeZones.has(c.dataset.zone));
+  });
+  const row15 = container.querySelector('#freqRow15');
+  const row610 = container.querySelector('#freqRow610');
+  if (row15) row15.style.display = activeZones.has('z1-5') ? '' : 'none';
+  if (row610) row610.style.display = activeZones.has('z6-10') ? '' : 'none';
+  const allBtn = container.querySelector('.zone-btn:not([data-zone])');
+  const zoneBtns = container.querySelectorAll('.zone-btn[data-zone]');
+  const allActive = [...zoneBtns].every(b => b.classList.contains('active'));
+  if (allBtn) allBtn.classList.toggle('active', allActive);
+}
+
+function toggleZoneInOverlay(btn) {
+  btn.classList.toggle('active');
+  _applyZoneVisibilityIn(document.getElementById('gridOverlayBody'));
+}
+
+function toggleAllZonesInOverlay(btn) {
+  const body = document.getElementById('gridOverlayBody');
+  const zoneBtns = body.querySelectorAll('.zone-btn[data-zone]');
+  const allActive = [...zoneBtns].every(b => b.classList.contains('active'));
+  zoneBtns.forEach(b => b.classList.toggle('active', !allActive));
+  btn.classList.toggle('active', !allActive);
+  _applyZoneVisibilityIn(body);
+}
+
+function setGridNameModeOverlay(mode, btn) {
+  const body = document.getElementById('gridOverlayBody');
+  body.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  body.querySelectorAll('td.name-cell[data-role]').forEach(td => {
+    td.textContent = mode === 'role' ? td.dataset.role : td.dataset.uid;
+  });
 }
 
 function toggleZone(btn) {
