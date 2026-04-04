@@ -1112,7 +1112,8 @@ function renderDeepAnalysis(members) {
       <button class="toggle-btn ${_gridNameMode==='role'?'active':''}" onclick="setGridNameMode('role',this)">Роли</button>
       <button class="toggle-btn ${_gridNameMode==='name'?'active':''}" onclick="setGridNameMode('name',this)">Имена</button>
     </div>
-    <button class="btn-expand-grid" onclick="openGridOverlay()">⛶ Развернуть</button>
+    <button class="btn-expand-grid" id="btnExpandGrid" onclick="openGridOverlay()">⛶ Развернуть</button>
+    <button class="btn-expand-grid" id="btnCollapseGrid" onclick="closeGridOverlay()" style="display:none">✕ Свернуть</button>
   </div>`;
 
   let gridHtml = controlsHtml + legendHtml + '<div class="grid-scroll"><table class="full-grid" id="fullGridTable">';
@@ -1213,7 +1214,7 @@ function renderDeepAnalysis(members) {
       <div class="deep-section-sub">Темы, чаще всего встречающиеся в топ-5 участников команды (только давшие согласие). Показывает коллективные сильные стороны.</div>
       <div class="theme-rank-list">${trHtml}</div>
     </div>
-    <div class="deep-section">
+    <div class="deep-section" id="gridSection">
       <div class="deep-section-title">Полная матрица команды</div>
       <div class="deep-section-sub">Позиция каждой темы в профиле участника. Цветом выделены топ-5 (сильные стороны), серым — темы в зоне 30–34.</div>
       ${gridHtml}
@@ -1223,7 +1224,6 @@ function renderDeepAnalysis(members) {
       <div class="deep-section-sub">Как распределена энергия команды по четырём доменам Gallup и что это означает для работы.</div>
       ${diHtml}
     </div>`;
-  // apply default zone filter (only 1-5 shown)
   _applyZoneVisibility();
 }
 
@@ -1236,10 +1236,6 @@ function sortGridByTheme(theme) {
     _gridSortDir = 'asc';
   }
   renderDeepAnalysis(_lastMembers);
-  // if overlay is open — refresh it too
-  if (document.getElementById('gridOverlay').classList.contains('open')) {
-    openGridOverlay();
-  }
 }
 
 function setGridNameMode(mode, btn) {
@@ -1264,39 +1260,32 @@ function _applyZoneVisibility() {
 }
 
 function openGridOverlay() {
-  const src = document.getElementById('gridOverlayBody');
-  // clone grid controls + table into overlay
-  const gridSection = document.querySelector('.deep-section .grid-controls')?.closest('.deep-section') ||
-    document.getElementById('deepContent')?.querySelector('.grid-controls')?.parentElement;
-  // just move the grid scroll + controls HTML into overlay
-  const controlsEl = document.querySelector('#deepContent .grid-controls');
-  const scrollEl = document.querySelector('#deepContent .grid-scroll');
-  const legendEl = document.querySelector('#deepContent .grid-legend');
-  if (!scrollEl) return;
-  src.innerHTML = '';
-  if (controlsEl) src.appendChild(controlsEl.cloneNode(true));
-  if (legendEl) src.appendChild(legendEl.cloneNode(true));
-  src.appendChild(scrollEl.cloneNode(true));
+  // Move the real grid section into the overlay (not a clone)
+  const gridSection = document.getElementById('gridSection');
+  const overlayBody = document.getElementById('gridOverlayBody');
+  if (!gridSection) return;
+  overlayBody.appendChild(gridSection);
   document.getElementById('gridOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
-  // wire zone buttons in overlay
-  src.querySelectorAll('.zone-btn[data-zone]').forEach(b => {
-    b.onclick = function() { toggleZoneInOverlay(this); };
-  });
-  src.querySelectorAll('.zone-btn:not([data-zone])').forEach(b => {
-    b.onclick = function() { toggleAllZonesInOverlay(this); };
-  });
-  src.querySelectorAll('.toggle-btn').forEach((b, i) => {
-    const mode = i === 0 ? 'role' : 'name';
-    b.onclick = function() { setGridNameModeOverlay(mode, this); };
-  });
-  src.querySelectorAll('.btn-expand-grid').forEach(b => { b.style.display = 'none'; });
-  // wire sort headers
-  src.querySelectorAll('th.theme-hdr.sortable').forEach(th => {
-    const m = th.getAttribute('onclick')?.match(/'([^']+)'/);
-    if (m) { th.onclick = () => sortGridByTheme(m[1]); }
-  });
-  _applyZoneVisibilityIn(src);
+  document.getElementById('btnExpandGrid').style.display = 'none';
+  document.getElementById('btnCollapseGrid').style.display = 'inline-flex';
+}
+
+function closeGridOverlay(e) {
+  if (e && e.target !== document.getElementById('gridOverlay')) return;
+  // Move grid section back to deepContent
+  const gridSection = document.getElementById('gridSection');
+  const deepContent = document.getElementById('deepContent');
+  if (gridSection && deepContent) {
+    // insert before domain interpretation section (last .deep-section)
+    const sections = deepContent.querySelectorAll('.deep-section');
+    const lastSection = sections[sections.length - 1];
+    deepContent.insertBefore(gridSection, lastSection);
+  }
+  document.getElementById('gridOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('btnExpandGrid').style.display = 'inline-flex';
+  document.getElementById('btnCollapseGrid').style.display = 'none';
 }
 
 function closeGridOverlay(e) {
@@ -1305,44 +1294,6 @@ function closeGridOverlay(e) {
   document.body.style.overflow = '';
 }
 
-function _applyZoneVisibilityIn(container) {
-  const activeBtns = container.querySelectorAll('.zone-btn[data-zone].active');
-  const activeZones = new Set([...activeBtns].map(b => b.dataset.zone));
-  container.querySelectorAll('td[data-zone]').forEach(td => {
-    td.classList.toggle('zone-hidden', !activeZones.has(td.dataset.zone));
-  });
-  const row15 = container.querySelector('#freqRow15');
-  const row610 = container.querySelector('#freqRow610');
-  if (row15) row15.style.display = activeZones.has('z1-5') ? '' : 'none';
-  if (row610) row610.style.display = activeZones.has('z6-10') ? '' : 'none';
-  const allBtn = container.querySelector('.zone-btn:not([data-zone])');
-  const zoneBtns = container.querySelectorAll('.zone-btn[data-zone]');
-  const allActive = [...zoneBtns].every(b => b.classList.contains('active'));
-  if (allBtn) allBtn.classList.toggle('active', allActive);
-}
-
-function toggleZoneInOverlay(btn) {
-  btn.classList.toggle('active');
-  _applyZoneVisibilityIn(document.getElementById('gridOverlayBody'));
-}
-
-function toggleAllZonesInOverlay(btn) {
-  const body = document.getElementById('gridOverlayBody');
-  const zoneBtns = body.querySelectorAll('.zone-btn[data-zone]');
-  const allActive = [...zoneBtns].every(b => b.classList.contains('active'));
-  zoneBtns.forEach(b => b.classList.toggle('active', !allActive));
-  btn.classList.toggle('active', !allActive);
-  _applyZoneVisibilityIn(body);
-}
-
-function setGridNameModeOverlay(mode, btn) {
-  const body = document.getElementById('gridOverlayBody');
-  body.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  body.querySelectorAll('td.name-cell[data-role]').forEach(td => {
-    td.textContent = mode === 'role' ? td.dataset.role : td.dataset.uid;
-  });
-}
 
 function toggleZone(btn) {
   const zone = btn.dataset.zone;
