@@ -146,17 +146,17 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .method-body p{margin:10px 0}
 
 /* ZONE TABLE */
-.zone-table{margin:14px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border-light)}
-.zt-row{display:flex;align-items:stretch;border-bottom:1px solid var(--border-light);font-size:13px}
+.zone-table{margin:14px 0;border-radius:10px;overflow:hidden;border:none;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.zt-row{display:flex;align-items:stretch;border-bottom:2px solid rgba(255,255,255,.6);font-size:13px}
 .zt-row:last-child{border-bottom:none}
-.zt-pos{width:56px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px}
-.zt-name{width:140px;flex-shrink:0;padding:10px 12px;font-weight:600;font-size:12px;display:flex;align-items:center}
-.zt-desc{flex:1;padding:10px 14px;font-size:12px;line-height:1.5;color:var(--text-2)}
-.zt-z1{background:#D1FAE5}.zt-z1 .zt-pos{color:#064E3B}
-.zt-z2{background:#A7F3D0}.zt-z2 .zt-pos{color:#065F46}
-.zt-z3{background:#FEF9C3}.zt-z3 .zt-pos{color:#78350F}
-.zt-z4{background:#FEF3C7}.zt-z4 .zt-pos{color:#78350F}
-.zt-z5{background:#FEF2F2}.zt-z5 .zt-pos{color:#7F1D1D}
+.zt-pos{width:64px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+.zt-name{width:150px;flex-shrink:0;padding:12px 14px;font-weight:700;font-size:13px;display:flex;align-items:center}
+.zt-desc{flex:1;padding:12px 16px;font-size:13px;line-height:1.5}
+.zt-z1{background:#059669}.zt-z1 .zt-pos,.zt-z1 .zt-name{color:#fff}.zt-z1 .zt-desc{color:rgba(255,255,255,.88)}
+.zt-z2{background:#34D399}.zt-z2 .zt-pos,.zt-z2 .zt-name{color:#064E3B}.zt-z2 .zt-desc{color:#065F46}
+.zt-z3{background:#FCD34D}.zt-z3 .zt-pos,.zt-z3 .zt-name{color:#78350F}.zt-z3 .zt-desc{color:#92400E}
+.zt-z4{background:#FB923C}.zt-z4 .zt-pos,.zt-z4 .zt-name{color:#fff}.zt-z4 .zt-desc{color:rgba(255,255,255,.92)}
+.zt-z5{background:#EF4444}.zt-z5 .zt-pos,.zt-z5 .zt-name{color:#fff}.zt-z5 .zt-desc{color:rgba(255,255,255,.92)}
 
 /* DOMAIN LEGEND */
 .domain-legend{display:flex;gap:16px;flex-wrap:wrap;margin:8px 0;font-size:13px;font-weight:600}
@@ -539,7 +539,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
   <!-- METHODOLOGY TOGGLE -->
   <div class="method-toggle">
     <div class="method-hdr" onclick="this.parentElement.classList.toggle('open')">
-      <span>📐 О методологии и шкале зон</span>
+      <span>⚡ Сколько энергии стоит каждый талант</span>
       <span class="method-arrow">▾</span>
     </div>
     <div class="method-body">
