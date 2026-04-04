@@ -648,7 +648,7 @@ function renderMemberTable(members, consented) {
     <thead><tr>
       <th>#</th>
       <th>Участник</th>
-      <th>Согласие</th>
+      <th>Роль в команде</th>
       <th>Топ-5 тем</th>
       <th>Присоединился</th>
     </tr></thead><tbody>`;
@@ -657,11 +657,6 @@ function renderMemberTable(members, consented) {
     const consented = m.visibility_consent && m.themes?.length > 0;
     const hasProfile = m.themes?.length > 0;
     const joined = m.joined_at ? new Date(m.joined_at).toLocaleDateString('ru-RU') : '—';
-    const consentBadge = consented
-      ? `<span class="badge badge-consent">Дано</span>`
-      : hasProfile
-        ? `<span class="badge badge-no-consent">Не дано</span>`
-        : `<span class="badge badge-pending">Нет профиля</span>`;
 
     let top5html = '—';
     if (consented && m.themes) {
@@ -672,18 +667,23 @@ function renderMemberTable(members, consented) {
         return `<span class="mt-chip ${cls}">${esc(t)}</span>`;
       }).join('');
       top5html = `<div class="member-themes">${top5html}</div>`;
+    } else if (!hasProfile) {
+      top5html = `<span style="color:var(--text-3);font-size:12px">Нет профиля</span>`;
+    } else {
+      top5html = `<span style="color:var(--text-3);font-size:12px">Скрыто</span>`;
     }
 
-    const memberLabel = consented
-      ? `<span style="font-family:monospace;font-size:11px;color:var(--text-3)">${esc(m.user_id.slice(0,8))}…</span>`
-      : `<span style="color:var(--text-3)">Анонимный участник</span>`;
-
-    const roleBadge = m.role === 'admin' ? `<span class="badge" style="background:var(--exec-bg);color:var(--exec);margin-left:6px">admin</span>` : '';
+    const adminBadge = m.role === 'admin'
+      ? `<span class="badge" style="background:var(--exec-bg);color:var(--exec);margin-left:6px;font-size:10px">admin</span>`
+      : '';
+    const jobTitle = m.job_title
+      ? `<div style="font-size:13px;font-weight:600;color:var(--text)">${esc(m.job_title)}${adminBadge}</div>`
+      : `<div style="color:var(--text-3);font-size:12px">—${adminBadge}</div>`;
 
     html += `<tr>
       <td style="color:var(--text-3);font-size:12px">${i+1}</td>
-      <td>${memberLabel}${roleBadge}</td>
-      <td>${consentBadge}</td>
+      <td style="font-family:monospace;font-size:11px;color:var(--text-3)">${esc(m.user_id.slice(0,8))}…</td>
+      <td>${jobTitle}</td>
       <td>${top5html}</td>
       <td style="color:var(--text-3);font-size:12px">${esc(joined)}</td>
     </tr>`;
