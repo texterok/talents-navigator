@@ -1136,30 +1136,26 @@ function renderDeepAnalysis(members) {
   gridHtml += '</tr></thead><tbody>';
 
   // Frequency row — top 1-5
-  gridHtml += '<tr class="team-rank-row" id="freqRow15"><td class="name-cell" style="font-size:11px">Топ 1–5</td>';
+  gridHtml += '<tr class="team-rank-row" id="freqRow15"><td class="name-cell">Топ 1–5</td>';
   THEMES_ORDER.forEach(t => {
     const cnt = themeFreq[t];
     const d = DOMAIN_MAP[t];
     const cls = DOMAIN_CLASS[d] || '';
-    if (cnt > 0) {
-      gridHtml += `<td><div class="grid-cell z1-5 ${cls}" style="width:26px;height:26px">${cnt}</div></td>`;
-    } else {
-      gridHtml += '<td></td>';
-    }
+    gridHtml += cnt > 0
+      ? `<td><div class="grid-cell z1-5 ${cls}">${cnt}</div></td>`
+      : '<td></td>';
   });
   gridHtml += '</tr>';
 
   // Frequency row — top 6-10
-  gridHtml += '<tr class="team-rank-row" id="freqRow610"><td class="name-cell" style="font-size:11px">Топ 6–10</td>';
+  gridHtml += '<tr class="team-rank-row" id="freqRow610"><td class="name-cell">Топ 6–10</td>';
   THEMES_ORDER.forEach(t => {
     const cnt = themeFreq610[t];
     const d = DOMAIN_MAP[t];
     const cls = DOMAIN_CLASS[d] || '';
-    if (cnt > 0) {
-      gridHtml += `<td><div class="grid-cell z6-10 ${cls}" style="width:26px;height:26px">${cnt}</div></td>`;
-    } else {
-      gridHtml += '<td></td>';
-    }
+    gridHtml += cnt > 0
+      ? `<td><div class="grid-cell z6-10 ${cls}">${cnt}</div></td>`
+      : '<td></td>';
   });
   gridHtml += '</tr>';
 
@@ -1167,7 +1163,7 @@ function renderDeepAnalysis(members) {
   sortedMembers.forEach(m => {
     const pos = {};
     (m.themes || []).forEach((t, i) => { pos[t] = i + 1; });
-    const roleName = m.job_title || '—';
+    const roleName = m.job_title || ('Участник ' + (m.user_id ? m.user_id.slice(0, 4) : ''));
     const idName = m.user_id ? m.user_id.slice(0, 8) + '…' : '—';
     const displayName = _gridNameMode === 'role' ? roleName : idName;
     gridHtml += `<tr data-uid="${esc(m.user_id)}"><td class="name-cell" data-role="${esc(roleName)}" data-uid="${esc(idName)}">${esc(displayName)}</td>`;
