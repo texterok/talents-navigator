@@ -807,7 +807,7 @@ function renderMemberTable(members, consented) {
       top5html = top5.map(t => {
         const d = DOMAIN_MAP[t];
         const cls = DOMAIN_CLASS[d] || '';
-        return `<span class="mt-chip ${cls}">${esc(t)}</span>`;
+        return `<span class="mt-chip ${cls}">${esc(RU_NAMES[t] || t)}</span>`;
       }).join('');
       top5html = `<div class="member-themes">${top5html}</div>`;
     } else if (!hasProfile) {
