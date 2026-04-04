@@ -1288,13 +1288,6 @@ function closeGridOverlay(e) {
   document.getElementById('btnCollapseGrid').style.display = 'none';
 }
 
-function closeGridOverlay(e) {
-  if (e && e.target !== document.getElementById('gridOverlay')) return;
-  document.getElementById('gridOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-
 function toggleZone(btn) {
   const zone = btn.dataset.zone;
   if (_gridActiveZones.has(zone)) _gridActiveZones.delete(zone);
