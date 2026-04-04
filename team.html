@@ -260,16 +260,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .full-grid tr:hover td{background:#FAFAF8}
 .full-grid tr:hover td.name-cell{background:#F5F3EF}
 .grid-cell{width:28px;height:28px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin:0 auto;line-height:1}
-/* z1-5 — medium tint, bold colored text */
-.grid-cell.z1-5.exec{background:rgba(124,58,237,.18);color:#5B21B6}
-.grid-cell.z1-5.infl{background:rgba(194,89,10,.18);color:#9E3D00}
-.grid-cell.z1-5.rel{background:rgba(29,78,216,.18);color:#1D4ED8}
-.grid-cell.z1-5.strat{background:rgba(21,128,61,.18);color:#15803D}
-/* z6-10 — light tint */
-.grid-cell.z6-10.exec{background:rgba(124,58,237,.08);color:#7C3AED}
-.grid-cell.z6-10.infl{background:rgba(194,89,10,.08);color:#C2590A}
-.grid-cell.z6-10.rel{background:rgba(29,78,216,.08);color:#3B6FE8}
-.grid-cell.z6-10.strat{background:rgba(21,128,61,.08);color:#15803D}
+/* z1-5 — subtle tint, bold colored text */
+.grid-cell.z1-5.exec{background:rgba(124,58,237,.10);color:#6D28D9;font-weight:800}
+.grid-cell.z1-5.infl{background:rgba(194,89,10,.10);color:#B45309;font-weight:800}
+.grid-cell.z1-5.rel{background:rgba(29,78,216,.10);color:#1D4ED8;font-weight:800}
+.grid-cell.z1-5.strat{background:rgba(21,128,61,.10);color:#166534;font-weight:800}
+/* z6-10 — very light tint */
+.grid-cell.z6-10.exec{background:rgba(124,58,237,.05);color:#8B5CF6}
+.grid-cell.z6-10.infl{background:rgba(194,89,10,.05);color:#D97706}
+.grid-cell.z6-10.rel{background:rgba(29,78,216,.05);color:#3B82F6}
+.grid-cell.z6-10.strat{background:rgba(21,128,61,.05);color:#22C55E}
 /* z11-29 — very light, small */
 .grid-cell.z11-29{background:transparent;color:#C0BDB8;font-size:10px;font-weight:500}
 /* z30-34 — grey */
@@ -1258,21 +1258,14 @@ function setGridNameMode(mode, btn) {
 }
 
 function _applyZoneVisibility() {
-  const activeBtns = document.querySelectorAll('.zone-btn[data-zone].active');
-  const activeZones = new Set([...activeBtns].map(b => b.dataset.zone));
+  // Always read from canonical state, never from DOM buttons
   document.querySelectorAll('#fullGridTable .grid-cell[data-zone]').forEach(c => {
-    c.classList.toggle('hidden', !activeZones.has(c.dataset.zone));
+    c.classList.toggle('hidden', !_gridActiveZones.has(c.dataset.zone));
   });
-  // show/hide freq rows based on active zones
   const row15 = document.getElementById('freqRow15');
   const row610 = document.getElementById('freqRow610');
-  if (row15) row15.style.display = activeZones.has('z1-5') ? '' : 'none';
-  if (row610) row610.style.display = activeZones.has('z6-10') ? '' : 'none';
-  // sync "Все" button
-  const allBtn = document.querySelector('.zone-btn:not([data-zone])');
-  const zoneBtns = document.querySelectorAll('.zone-btn[data-zone]');
-  const allActive = [...zoneBtns].every(b => b.classList.contains('active'));
-  if (allBtn) allBtn.classList.toggle('active', allActive);
+  if (row15) row15.style.display = _gridActiveZones.has('z1-5') ? '' : 'none';
+  if (row610) row610.style.display = _gridActiveZones.has('z6-10') ? '' : 'none';
 }
 
 function openGridOverlay() {
@@ -1357,24 +1350,28 @@ function setGridNameModeOverlay(mode, btn) {
 }
 
 function toggleZone(btn) {
-  btn.classList.toggle('active');
   const zone = btn.dataset.zone;
-  if (btn.classList.contains('active')) _gridActiveZones.add(zone);
-  else _gridActiveZones.delete(zone);
+  if (_gridActiveZones.has(zone)) _gridActiveZones.delete(zone);
+  else _gridActiveZones.add(zone);
+  _syncZoneButtons();
   _applyZoneVisibility();
 }
 
 function toggleAllZones(btn) {
-  const zoneBtns = document.querySelectorAll('.zone-btn[data-zone]');
   const allActive = _gridActiveZones.size === 4;
-  if (allActive) {
-    _gridActiveZones.clear();
-  } else {
-    _gridActiveZones = new Set(['z1-5','z6-10','z11-29','z30-34']);
-  }
-  zoneBtns.forEach(b => b.classList.toggle('active', !allActive));
-  btn.classList.toggle('active', !allActive);
+  if (allActive) _gridActiveZones.clear();
+  else _gridActiveZones = new Set(['z1-5','z6-10','z11-29','z30-34']);
+  _syncZoneButtons();
   _applyZoneVisibility();
+}
+
+function _syncZoneButtons() {
+  document.querySelectorAll('.zone-btn[data-zone]').forEach(b => {
+    b.classList.toggle('active', _gridActiveZones.has(b.dataset.zone));
+  });
+  document.querySelectorAll('.zone-btn:not([data-zone])').forEach(b => {
+    b.classList.toggle('active', _gridActiveZones.size === 4);
+  });
 }
 
 // ─── BOOTSTRAP ───────────────────────────────────────────────────
