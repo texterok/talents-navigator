@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallup CliftonStrengths — что это и как использовать · Talents Navigator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #1B6B50;
+      --accent-light: #e8f4f0;
+      --bg: #F7F5F0;
+      --surface: #FFFFFF;
+      --text: #1F1D19;
+      --text2: #5C574E;
+      --exec: #6D28D9;
+      --infl: #C2590A;
+      --rel: #0B7A55;
+      --strat: #1856C7;
+      --radius: 16px;
+      --shadow: 0 1px 3px rgba(31,29,25,0.07), 0 4px 16px rgba(31,29,25,0.06);
+      --shadow-hover: 0 4px 8px rgba(31,29,25,0.09), 0 12px 32px rgba(31,29,25,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,245,240,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(31,29,25,0.08);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Literata', serif;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; gap: 32px; align-items: center; }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 8px;
+      transition: opacity 0.2s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.88; }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text2);
+      background: rgba(31,29,25,0.06);
+      border: none;
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .lang-switcher:hover { background: rgba(31,29,25,0.1); }
+
+    .invite-notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(27,107,80,0.08);
+      border: 1px solid rgba(27,107,80,0.2);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin: 24px auto 0;
+    }
+
+    /* LAYOUT */
+    section { padding: 96px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Literata', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 18px;
+      color: var(--text2);
+      max-width: 560px;
+      line-height: 1.55;
+    }
+
+    /* HERO */
+    #hero {
+      padding: 120px 24px 96px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(27,107,80,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: 'Literata', serif;
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      max-width: 840px;
+      margin: 0 auto 24px;
+    }
+
+    .hero-title em { font-style: italic; color: var(--accent); }
+
+    .hero-sub {
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--text2);
+      max-width: 560px;
+      margin: 0 auto 48px;
+      font-weight: 400;
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      box-shadow: 0 2px 8px rgba(27,107,80,0.25), 0 1px 2px rgba(27,107,80,0.15);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(27,107,80,0.30);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 16px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 1.5px solid rgba(31,29,25,0.15);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(31,29,25,0.3);
+      background: rgba(31,29,25,0.04);
+    }
+
+    .hero-note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    /* WHAT YOU GET */
+    #what-you-get { background: var(--surface); }
+
+    .wyg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 56px;
+    }
+
+    .wyg-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 32px;
+      border: 1px solid rgba(31,29,25,0.06);
+    }
+
+    .wyg-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .wyg-title {
+      font-family: 'Literata', serif;
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .wyg-desc { font-size: 15px; color: var(--text2); line-height: 1.55; }
+
+    /* PDF PROBLEM */
+    #pdf-problem { background: var(--text); color: #fff; }
+
+    #pdf-problem .section-label { color: rgba(255,255,255,0.45); }
+
+    .pdf-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .pdf-quote {
+      font-family: 'Literata', serif;
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      font-style: italic;
+    }
+
+    .pdf-quote strong {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .pdf-text {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.65;
+    }
+
+    .pdf-text p + p { margin-top: 16px; }
+
+    /* HOW TO USE */
+    #how-to-use { background: var(--bg); }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 56px;
+      max-width: 760px;
+    }
+
+    .step-row {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(31,29,25,0.08);
+    }
+
+    .step-row:last-child { border-bottom: none; }
+
+    .step-num-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Literata', serif;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 6px var(--accent-light);
+    }
+
+    .step-row-body {}
+
+    .step-row-title {
+      font-family: 'Literata', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-row-desc { font-size: 15px; color: var(--text2); line-height: 1.55; }
+
+    /* FAQ */
+    #faq { background: var(--surface); }
+
+    .faq-header { max-width: 640px; margin-bottom: 48px; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 0; max-width: 800px; }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(31,29,25,0.09);
+      padding: 24px 0;
+    }
+
+    .faq-item:first-child { border-top: 1px solid rgba(31,29,25,0.09); }
+
+    .faq-q {
+      font-family: 'Literata', serif;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      letter-spacing: -0.01em;
+      user-select: none;
+    }
+
+    .faq-q .faq-arrow {
+      font-size: 20px;
+      color: var(--accent);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(45deg); }
+
+    .faq-a {
+      font-size: 15px;
+      color: var(--text2);
+      line-height: 1.65;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 400px;
+      padding-top: 14px;
+    }
+
+    /* FINAL CTA */
+    #cta {
+      background: var(--text);
+      text-align: center;
+      color: #fff;
+    }
+
+    .cta-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .cta-title {
+      font-family: 'Literata', serif;
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      max-width: 680px;
+      margin: 0 auto 24px;
+    }
+
+    .cta-title em { font-style: italic; color: var(--accent); }
+
+    .cta-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.55;
+    }
+
+    .cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.4); }
+
+    #cta .invite-notice {
+      background: rgba(27,107,80,0.15);
+      border-color: rgba(27,107,80,0.35);
+      margin-top: 16px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 24px;
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      font-size: 13px;
+    }
+
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    footer a:hover { color: rgba(255,255,255,0.75); }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav { display: none; }
+      nav.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 64px 0 0;
+        background: var(--bg);
+        padding: 32px 24px;
+        gap: 24px;
+        z-index: 99;
+      }
+      nav.open a { font-size: 20px; }
+      .burger { display: flex; }
+      .wyg-grid { grid-template-columns: 1fr; }
+      .pdf-grid { grid-template-columns: 1fr; gap: 48px; }
+      section { padding: 72px 20px; }
+      #hero { padding: 88px 20px 72px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title { font-size: 34px; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .hero-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="landing.html" class="logo">Talents<span>.</span>Navigator</a>
+    <nav id="nav">
+      <a href="landing.html" data-i18n="nav_home">На главную</a>
+      <a href="#what-you-get" data-i18n="nav_what">Что вы получите</a>
+      <a href="#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="https://www.gallup.com/cliftonstrengths/en/253868/popular-cliftonstrengths-assessment-products.aspx" target="_blank" rel="noopener" class="nav-cta" data-i18n="nav_take_test">Пройти тест →</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="lang-switcher" id="lang-btn" onclick="switchLang(window._currentLang === 'ru' ? 'en' : 'ru')">EN</button>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-eyebrow"><span data-i18n="hero_eyebrow">✦ Gallup CliftonStrengths</span></div>
+    <h1 class="hero-title">
+      <span data-i18n="hero_h1_1">Ваши таланты уже есть.</span><br>
+      <span data-i18n="hero_h1_2">Вы просто их <em>ещё не знаете.</em></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-i18n="hero_sub">40 минут онлайн — и у вас на руках отчёт, который действителен всю жизнь. Не тест на тип личности. Карта ваших природных сильных сторон.</span>
+    </p>
+    <div class="hero-actions">
+      <a href="https://www.gallup.com/cliftonstrengths/en/253868/popular-cliftonstrengths-assessment-products.aspx" target="_blank" rel="noopener" class="btn-primary">
+        <span data-i18n="hero_cta_primary">Пройти тест на Gallup.com →</span>
+      </a>
+      <a href="landing.html" class="btn-secondary">
+        <span data-i18n="hero_cta_secondary">Открыть Talents Navigator</span>
+      </a>
+    </div>
+    <p class="hero-note"><span data-i18n="hero_note">Тест на сайте Gallup · ~$20–50 · Результат доступен сразу · Подходит навсегда</span></p>
+    <div style="text-align:center;">
+      <div class="invite-notice">
+        <span>🔒</span>
+        <span data-i18n="invite_notice">Talents Navigator — только по приглашениям от существующих пользователей</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section id="what-you-get">
+  <div class="container">
+    <div class="section-label fade-up"><span data-i18n="wyg_label">Что вы получаете</span></div>
+    <h2 class="section-title fade-up fade-up-delay-1"><span data-i18n="wyg_h2">Один отчёт. Данные на всю жизнь.</span></h2>
+    <p class="section-sub fade-up fade-up-delay-2"><span data-i18n="wyg_sub">CliftonStrengths не меняется кардинально со временем — это карта того, как вы устроены.</span></p>
+
+    <div class="wyg-grid">
+      <div class="wyg-card fade-up">
+        <div class="wyg-icon">📊</div>
+        <div class="wyg-title"><span data-i18n="wyg_1_title">34 темы в порядке силы</span></div>
+        <p class="wyg-desc"><span data-i18n="wyg_1_desc">Все 34 таланта ранжированы от самого выраженного к наименее доминантному. Топ-10 — ваша природная зона силы. Нижние — то, что требует усилий.</span></p>
+      </div>
+      <div class="wyg-card fade-up fade-up-delay-1">
+        <div class="wyg-icon">📖</div>
+        <div class="wyg-title"><span data-i18n="wyg_2_title">Описание каждого таланта</span></div>
+        <p class="wyg-desc"><span data-i18n="wyg_2_desc">Развёрнутое описание того, как каждая тема проявляется именно у вас — не шаблонный текст, а персонализированное описание на основе вашей последовательности.</span></p>
+      </div>
+      <div class="wyg-card fade-up fade-up-delay-2">
+        <div class="wyg-icon">♾️</div>
+        <div class="wyg-title"><span data-i18n="wyg_3_title">Подходит на всю жизнь</span></div>
+        <p class="wyg-desc"><span data-i18n="wyg_3_desc">Таланты меняются очень медленно — если вы проходили тест 3–5 лет назад, отчёт по-прежнему актуален. Не нужно перепроходить каждый год.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PDF PROBLEM -->
+<section id="pdf-problem">
+  <div class="container">
+    <div class="pdf-grid">
+      <div>
+        <div class="section-label fade-up"><span data-i18n="pdf_label">Тест — только начало</span></div>
+        <p class="pdf-quote fade-up fade-up-delay-1">
+          <span data-i18n="pdf_quote">Тест стоит пройти.<br>Но отчёт — <strong>только начало.</strong></span>
+        </p>
+      </div>
+      <div class="pdf-text fade-up fade-up-delay-2">
+        <p><span data-i18n="pdf_text_1">PDF с вашими 34 темами — это сырые данные. Они точные, они ценные, но сами по себе не дают ответа на вопрос «что мне с этим делать».</span></p>
+        <p><span data-i18n="pdf_text_2">Talents Navigator берёт эти данные и превращает их в рабочую систему: лидерский профиль, карту связок между талантами, диагностику рабочей среды и персональный AI-промпт.</span></p>
+        <p><span data-i18n="pdf_text_3">Сначала — тест. Потом — Navigator. Это правильная последовательность.</span></p>
+        <div style="margin-top:28px;">
+          <a href="landing.html" class="btn-primary" style="font-size:15px;padding:12px 24px;">
+            <span data-i18n="pdf_cta">Открыть Talents Navigator →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO USE -->
+<section id="how-to-use">
+  <div class="container">
+    <div class="section-label fade-up"><span data-i18n="htu_label">Как использовать результаты</span></div>
+    <h2 class="section-title fade-up fade-up-delay-1"><span data-i18n="htu_h2">От теста до ежедневной практики</span></h2>
+
+    <div class="steps-list">
+      <div class="step-row fade-up">
+        <div class="step-num-badge">1</div>
+        <div class="step-row-body">
+          <div class="step-row-title"><span data-i18n="htu_step_1_title">Пройдите тест на Gallup.com</span></div>
+          <p class="step-row-desc"><span data-i18n="htu_step_1_desc">Зайдите на gallup.com/cliftonstrengths, выберите пакет Top 5 (~$20) или All 34 (~$50). Пройдите 177 вопросов — около 40 минут. Получите отчёт сразу после завершения.</span></p>
+        </div>
+      </div>
+      <div class="step-row fade-up fade-up-delay-1">
+        <div class="step-num-badge">2</div>
+        <div class="step-row-body">
+          <div class="step-row-title"><span data-i18n="htu_step_2_title">Скопируйте ваш список талантов</span></div>
+          <p class="step-row-desc"><span data-i18n="htu_step_2_desc">Откройте отчёт и скопируйте ваш список — топ-10 или все 34. Названия на русском или английском — Navigator понимает оба языка.</span></p>
+        </div>
+      </div>
+      <div class="step-row fade-up fade-up-delay-2">
+        <div class="step-num-badge">3</div>
+        <div class="step-row-body">
+          <div class="step-row-title"><span data-i18n="htu_step_3_title">Введите таланты в Talents Navigator</span></div>
+          <p class="step-row-desc"><span data-i18n="htu_step_3_desc">Перейдите в Talents Navigator, вставьте список. Порядок и домены определяются автоматически. Регистрация не нужна — но требуется приглашение.</span></p>
+        </div>
+      </div>
+      <div class="step-row fade-up fade-up-delay-3">
+        <div class="step-num-badge">4</div>
+        <div class="step-row-body">
+          <div class="step-row-title"><span data-i18n="htu_step_4_title">Получите ваш профиль</span></div>
+          <p class="step-row-desc"><span data-i18n="htu_step_4_desc">За несколько секунд: лидерский профиль, карта связок талантов, зоны энергии, диагностика среды и готовые AI-промпты — конкретно под ваш набор.</span></p>
+        </div>
+      </div>
+      <div class="step-row fade-up fade-up-delay-4">
+        <div class="step-num-badge">5</div>
+        <div class="step-row-body">
+          <div class="step-row-title"><span data-i18n="htu_step_5_title">Используйте каждый день</span></div>
+          <p class="step-row-desc"><span data-i18n="htu_step_5_desc">Скопируйте персональный системный промпт в Claude или ChatGPT. Работайте в своих зонах энергии. Возвращайтесь к профилю при принятии карьерных или управленческих решений.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <div class="section-label fade-up"><span data-i18n="faq_label">Частые вопросы</span></div>
+      <h2 class="section-title fade-up fade-up-delay-1"><span data-i18n="faq_h2">FAQ</span></h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item fade-up">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq_1_q">Сколько стоит тест?</span>
+          <span class="faq-arrow">+</span>
+        </div>
+        <div class="faq-a"><span data-i18n="faq_1_a">Gallup предлагает несколько пакетов. Top 5 Strengths — около $20, открывает ваши пять главных талантов. All 34 Strengths — около $50, даёт полный ранжированный список всех 34 тем. Для Talents Navigator рекомендуется пакет All 34 — чем больше тем, тем точнее анализ связок и зон энергии.</span></div>
+      </div>
+      <div class="faq-item fade-up fade-up-delay-1">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq_2_q">Нужно ли проходить все 34 или достаточно топ-5?</span>
+          <span class="faq-arrow">+</span>
+        </div>
+        <div class="faq-a"><span data-i18n="faq_2_a">Для базового использования Talents Navigator достаточно топ-10. Но полный список (все 34) даёт значительно больше: точные зоны энергии, анализ нижних талантов, которые требуют делегирования, и более богатую карту связок. Если у вас есть выбор — берите All 34.</span></div>
+      </div>
+      <div class="faq-item fade-up fade-up-delay-2">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq_3_q">Меняются ли результаты со временем?</span>
+          <span class="faq-arrow">+</span>
+        </div>
+        <div class="faq-a"><span data-i18n="faq_3_a">Таланты по природе стабильны — они формируются в детстве и меняются очень медленно в течение жизни. Gallup рекомендует не пересдавать тест чаще, чем раз в несколько лет. Если вы проходили тест 3–5 лет назад, результаты по-прежнему актуальны. Небольшие сдвиги в порядке тем возможны, но топ-10 остаётся стабильным.</span></div>
+      </div>
+      <div class="faq-item fade-up fade-up-delay-3">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq_4_q">Можно ли использовать старый отчёт?</span>
+          <span class="faq-arrow">+</span>
+        </div>
+        <div class="faq-a"><span data-i18n="faq_4_a">Да. Если у вас есть отчёт Gallup с вашими темами — неважно, когда вы его проходили — вы можете использовать его в Talents Navigator прямо сейчас. Никакой дополнительной верификации не требуется. Просто скопируйте список тем в порядке их ранжирования.</span></div>
+      </div>
+      <div class="faq-item fade-up fade-up-delay-4">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-i18n="faq_5_q">Нужно ли регистрироваться в Talents Navigator?</span>
+          <span class="faq-arrow">+</span>
+        </div>
+        <div class="faq-a"><span data-i18n="faq_5_a">Нет, регистрация не требуется. Но Talents Navigator работает только по приглашениям от существующих пользователей. Если у вас нет приглашения — попросите коллегу или руководителя, который уже использует инструмент, пригласить вас.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="cta">
+  <div class="container">
+    <span class="cta-label fade-up"><span data-i18n="cta_label">Следующий шаг</span></span>
+    <h2 class="cta-title fade-up fade-up-delay-1">
+      <span data-i18n="cta_h2_1">Тест — первый шаг.</span><br>
+      <em><span data-i18n="cta_h2_em">Navigator — следующий.</span></em>
+    </h2>
+    <p class="cta-sub fade-up fade-up-delay-2"><span data-i18n="cta_sub">Пройдите тест, получите отчёт — и сразу откройте Talents Navigator, чтобы превратить список тем в рабочую систему лидерства.</span></p>
+    <div class="fade-up fade-up-delay-3" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://www.gallup.com/cliftonstrengths/en/253868/popular-cliftonstrengths-assessment-products.aspx" target="_blank" rel="noopener" class="btn-primary" style="font-size:17px;padding:18px 40px;">
+        <span data-i18n="cta_btn_gallup">Пройти тест на Gallup.com →</span>
+      </a>
+      <a href="landing.html" class="btn-secondary" style="font-size:17px;padding:18px 36px;">
+        <span data-i18n="cta_btn_nav">Открыть Talents Navigator</span>
+      </a>
+    </div>
+    <div style="text-align:center;">
+      <div class="invite-notice fade-up fade-up-delay-4">
+        <span>🔒</span>
+        <span data-i18n="invite_notice">Talents Navigator — только по приглашениям от существующих пользователей</span>
+      </div>
+    </div>
+    <p class="cta-note fade-up fade-up-delay-4"><span data-i18n="cta_note">Talents Navigator бесплатен · Без регистрации · Нужен Gallup-отчёт</span></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><span data-i18n="footer_text">© 2025 Talents Navigator · На основе методологии Gallup CliftonStrengths · <a href="landing.html">На главную</a> · <a href="https://texterok.github.io/talents-navigator/">Открыть приложение</a></span></p>
+</footer>
+
+<script>
+  // Burger menu
+  var burger = document.getElementById('burger');
+  var nav = document.getElementById('nav');
+  burger.addEventListener('click', function() {
+    nav.classList.toggle('open');
+  });
+  nav.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { nav.classList.remove('open'); });
+  });
+
+  // Scroll animations
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+
+  // FAQ accordion
+  function toggleFaq(el) {
+    var item = el.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // i18n
+  var translations = {
+    ru: {
+      nav_home: 'На главную',
+      nav_what: 'Что вы получите',
+      nav_faq: 'FAQ',
+      nav_take_test: 'Пройти тест →',
+      hero_eyebrow: '✦ Gallup CliftonStrengths',
+      hero_h1_1: 'Ваши таланты уже есть.',
+      hero_h1_2: 'Вы просто их <em>ещё не знаете.</em>',
+      hero_sub: '40 минут онлайн — и у вас на руках отчёт, который действителен всю жизнь. Не тест на тип личности. Карта ваших природных сильных сторон.',
+      hero_cta_primary: 'Пройти тест на Gallup.com →',
+      hero_cta_secondary: 'Открыть Talents Navigator',
+      hero_note: 'Тест на сайте Gallup · ~$20–50 · Результат доступен сразу · Действителен на всю жизнь',
+      invite_notice: 'Работает по приглашениям — попросите коллегу, который уже использует',
+      wyg_label: 'Что вы получаете',
+      wyg_h2: 'Один отчёт. Данные на всю жизнь.',
+      wyg_sub: 'CliftonStrengths не меняется кардинально со временем — это карта того, как вы устроены. Более 30 миллионов человек прошли тест по всему миру. Используется в 90% компаний из Fortune 500.',
+      wyg_1_title: '34 темы в порядке силы',
+      wyg_1_desc: 'Все 34 таланта ранжированы от самого выраженного к наименее доминантному. Топ-10 — ваша природная зона силы. Нижние — то, что требует усилий.',
+      wyg_2_title: 'Описание каждого таланта',
+      wyg_2_desc: 'Развёрнутое описание того, как каждая тема проявляется именно у вас — не шаблонный текст, а персонализированное описание на основе вашей последовательности.',
+      wyg_3_title: 'Действителен на всю жизнь',
+      wyg_3_desc: 'Таланты формируются в детстве и практически не меняются. Пройти один раз — и данные актуальны всю карьеру.',
+      pdf_label: 'Тест — только начало',
+      pdf_quote: 'PDF с вашими темами — это данные.<br>Talents Navigator — это <strong>то, что с ними делать.</strong>',
+      pdf_text_1: 'PDF с вашими 34 темами — это сырые данные. Они точные, они ценные, но сами по себе не дают ответа на вопрос «что мне с этим делать».',
+      pdf_text_2: 'Talents Navigator берёт эти данные и превращает их в рабочую систему: лидерский профиль, карту связок между талантами, диагностику рабочей среды и персональный AI-промпт.',
+      pdf_text_3: 'Сначала — тест. Потом — Navigator. Это правильная последовательность.',
+      pdf_cta: 'Открыть Talents Navigator →',
+      htu_label: 'Как использовать результаты',
+      htu_h2: 'От теста до ежедневной практики',
+      htu_step_1_title: 'Пройдите тест на Gallup.com',
+      htu_step_1_desc: 'Зайдите на gallup.com/cliftonstrengths, выберите пакет Top 5 (~$20) или All 34 (~$50). Пройдите 177 вопросов — около 40 минут. Получите отчёт сразу после завершения.',
+      htu_step_2_title: 'Скопируйте ваш список талантов',
+      htu_step_2_desc: 'Откройте отчёт и скопируйте ваш список — топ-10 или все 34. Названия на русском или английском — Navigator понимает оба языка.',
+      htu_step_3_title: 'Введите таланты в Talents Navigator',
+      htu_step_3_desc: 'Перейдите в Talents Navigator, вставьте список. Порядок и домены определяются автоматически. Регистрация не нужна — но требуется приглашение.',
+      htu_step_4_title: 'Получите ваш профиль',
+      htu_step_4_desc: 'За несколько секунд: лидерский профиль, карта связок талантов, зоны энергии, диагностика среды и готовые AI-промпты — конкретно под ваш набор.',
+      htu_step_5_title: 'Используйте каждый день',
+      htu_step_5_desc: 'Скопируйте персональный системный промпт в Claude или ChatGPT. Работайте в своих зонах энергии. Возвращайтесь к профилю при принятии карьерных или управленческих решений.',
+      faq_label: 'Частые вопросы',
+      faq_h2: 'FAQ',
+      faq_1_q: 'Сколько стоит тест?',
+      faq_1_a: 'Gallup предлагает несколько пакетов. Top 5 Strengths — около $20, открывает ваши пять главных талантов. All 34 Strengths — около $50, даёт полный ранжированный список всех 34 тем. Для Talents Navigator рекомендуется пакет All 34 — чем больше тем, тем точнее анализ связок и зон энергии.',
+      faq_2_q: 'Нужно ли проходить все 34 или достаточно топ-5?',
+      faq_2_a: 'Для базового использования Talents Navigator достаточно топ-10. Но полный список (все 34) даёт значительно больше: точные зоны энергии, анализ нижних талантов, которые требуют делегирования, и более богатую карту связок. Если у вас есть выбор — берите All 34.',
+      faq_3_q: 'Меняются ли результаты со временем?',
+      faq_3_a: 'Таланты по природе стабильны — они формируются в детстве и меняются очень медленно в течение жизни. Gallup рекомендует не пересдавать тест чаще, чем раз в несколько лет. Если вы проходили тест 3–5 лет назад, результаты по-прежнему актуальны. Небольшие сдвиги в порядке тем возможны, но топ-10 остаётся стабильным.',
+      faq_4_q: 'Можно ли использовать старый отчёт?',
+      faq_4_a: 'Да. Если у вас есть отчёт Gallup с вашими темами — неважно, когда вы его проходили — вы можете использовать его в Talents Navigator прямо сейчас. Никакой дополнительной верификации не требуется. Просто скопируйте список тем в порядке их ранжирования.',
+      faq_5_q: 'Нужно ли регистрироваться в Talents Navigator?',
+      faq_5_a: 'Нет, регистрация не требуется. Но Talents Navigator работает только по приглашениям от существующих пользователей. Если у вас нет приглашения — попросите коллегу или руководителя, который уже использует инструмент, пригласить вас.',
+      cta_label: 'Следующий шаг',
+      cta_h2_1: 'Тест — первый шаг.',
+      cta_h2_em: 'Navigator — следующий.',
+      cta_sub: 'Пройдите тест, получите список талантов — и сразу вставьте его в Talents Navigator. Профиль готов за пять минут.',
+      cta_btn_gallup: 'Пройти тест на Gallup.com →',
+      cta_btn_nav: 'Открыть Talents Navigator',
+      cta_note: 'Talents Navigator бесплатен · Без регистрации · Нужен Gallup-отчёт',
+      footer_text: '© 2025 Talents Navigator · На основе методологии Gallup CliftonStrengths · <a href="landing.html">На главную</a> · <a href="https://texterok.github.io/talents-navigator/">Открыть приложение</a>'
+    },
+    en: {
+      nav_home: 'Back to Home',
+      nav_what: 'What You Get',
+      nav_faq: 'FAQ',
+      nav_take_test: 'Take the Test →',
+      hero_eyebrow: '✦ Gallup CliftonStrengths',
+      hero_h1_1: 'Your strengths are already there.',
+      hero_h1_2: "You just haven\'t <em>mapped them yet.</em>",
+      hero_sub: '40 minutes online — and you have a report that\'s valid for life. Not a personality type test. A map of your natural strengths.',
+      hero_cta_primary: 'Take the Test on Gallup.com →',
+      hero_cta_secondary: 'Open Talents Navigator',
+      hero_note: 'Test on Gallup.com · ~$20–50 · Results available immediately · Valid for life',
+      invite_notice: 'Early access · Invite only',
+      wyg_label: 'What\'s in the report',
+      wyg_h2: 'One report. Data for life.',
+      wyg_sub: 'CliftonStrengths doesn\'t change dramatically over time — it\'s a map of how you\'re wired. Backed by 50+ years of Gallup research and used at 90% of Fortune 500 companies.',
+      wyg_1_title: '34 themes ranked by strength',
+      wyg_1_desc: 'All 34 talents ranked from most dominant to least. Your top-10 is your natural strength zone. The lower themes are where things take effort.',
+      wyg_2_title: 'Personalized insight for each theme',
+      wyg_2_desc: 'A detailed breakdown of how each theme plays out for you specifically — not generic copy, but a personalized read based on your rank order.',
+      wyg_3_title: 'Valid for life',
+      wyg_3_desc: 'Talents change very slowly — if you took the test 3–5 years ago, your report is still accurate. No need to retake it every year.',
+      pdf_label: 'The test is just the beginning',
+      pdf_quote: 'The assessment is worth taking.<br>But the report is <strong>just the beginning.</strong>',
+      pdf_text_1: 'The PDF with your 34 themes is raw data. It\'s accurate, it\'s valuable — but on its own it doesn\'t answer "what do I do with this?"',
+      pdf_text_2: 'Talents Navigator takes that data and turns it into a working system: leadership profile, talent bond map, environment checkup, and a personal AI prompt.',
+      pdf_text_3: 'First the assessment. Then Navigator. That\'s the right order.',
+      pdf_cta: 'Open Talents Navigator →',
+      htu_label: 'How to use your results',
+      htu_h2: 'From test to daily practice',
+      htu_step_1_title: 'Take the test on Gallup.com',
+      htu_step_1_desc: 'Go to gallup.com/cliftonstrengths, choose the Top 5 (~$20) or All 34 (~$50) package. Answer 177 questions — about 40 minutes. Your report is available immediately after.',
+      htu_step_2_title: 'Copy your talent list',
+      htu_step_2_desc: 'Open your report and copy your theme list — top-10 or all 34. Navigator works with English theme names.',
+      htu_step_3_title: 'Enter your themes in Talents Navigator',
+      htu_step_3_desc: 'Go to Talents Navigator, paste your list. Order and domains are determined automatically. No signup required — but an invitation is needed.',
+      htu_step_4_title: 'Get your full profile',
+      htu_step_4_desc: 'In seconds: leadership profile, talent bond map, energy zones, environment checkup, and AI prompts — all tailored to your specific themes.',
+      htu_step_5_title: 'Use it every day',
+      htu_step_5_desc: 'Copy your personal system prompt into Claude or ChatGPT. Work in your energy zones. Come back to your profile when making career or leadership decisions.',
+      faq_label: 'Common questions',
+      faq_h2: 'FAQ',
+      faq_1_q: 'How much does the assessment cost?',
+      faq_1_a: 'Gallup offers several packages. Top 5 Strengths — around $20, reveals your five dominant themes. All 34 Strengths — around $50, gives you the full ranked list. For Talents Navigator, All 34 is recommended — more themes means more accurate bond analysis and energy zones.',
+      faq_2_q: 'Do I need all 34 or is top-5 enough?',
+      faq_2_a: 'Top-10 is enough for basic Talents Navigator use. But the full list (all 34) gives significantly more: precise energy zones, analysis of lower themes that need delegation, and a richer bond map. If you have the choice — go with All 34.',
+      faq_3_q: 'Do results change over time?',
+      faq_3_a: 'Talents are naturally stable — they form in childhood and change very slowly over a lifetime. Gallup recommends not retaking the assessment more than once every few years. If you took the test 3–5 years ago, your results are still valid. Minor shifts in theme order are possible, but your top-10 stays stable.',
+      faq_4_q: 'Can I use an old report?',
+      faq_4_a: 'Yes. If you have a Gallup report with your themes — regardless of when you took it — you can use it in Talents Navigator right now. No additional verification is needed. Just copy your theme list in ranked order.',
+      faq_5_q: 'Do I need to create an account?',
+      faq_5_a: 'No account needed. Talents Navigator is invite-only — you\'ll need an existing user to send you an invite. Don\'t have one? Ask a colleague or manager who\'s already using it.',
+      cta_label: 'Next step',
+      cta_h2_1: 'The test is step one.',
+      cta_h2_em: 'Navigator is your next move.',
+      cta_sub: 'Take the test, get your report — then open Talents Navigator to turn your theme list into a working leadership system.',
+      cta_btn_gallup: 'Take the Test on Gallup.com →',
+      cta_btn_nav: 'Open Talents Navigator',
+      cta_note: 'Talents Navigator is free · No signup · You need your Gallup report',
+      footer_text: '© 2025 Talents Navigator · Based on the Gallup CliftonStrengths methodology · <a href="landing.html">Home</a> · <a href="https://texterok.github.io/talents-navigator/">Open app</a>'
+    }
+  };
+
+  function switchLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.dataset.i18n;
+      if (translations[lang] && translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+    document.getElementById('lang-btn').textContent = lang === 'ru' ? 'EN' : 'RU';
+    document.title = lang === 'ru'
+      ? 'Gallup CliftonStrengths — что это и как использовать · Talents Navigator'
+      : 'Gallup CliftonStrengths — What It Is & How to Use It · Talents Navigator';
+    localStorage.setItem('lang', lang);
+    window._currentLang = lang;
+  }
+
+  var savedLang = localStorage.getItem('lang') || 'ru';
+  window._currentLang = savedLang;
+  if (savedLang === 'en') switchLang('en');
+</script>
+</body>
+</html>
