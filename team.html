@@ -260,16 +260,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .full-grid tr:hover td{background:#FAFAF8}
 .full-grid tr:hover td.name-cell{background:#F5F3EF}
 .grid-cell{width:28px;height:28px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin:0 auto;line-height:1}
-/* z1-5 — solid fill */
-.grid-cell.z1-5.exec{background:#7C3AED;color:#fff}
-.grid-cell.z1-5.infl{background:#C2590A;color:#fff}
-.grid-cell.z1-5.rel{background:#1D4ED8;color:#fff}
-.grid-cell.z1-5.strat{background:#15803D;color:#fff}
-/* z6-10 — light fill + colored text */
-.grid-cell.z6-10.exec{background:#EDE9FE;color:#5B21B6}
-.grid-cell.z6-10.infl{background:#FFF3E8;color:#C2590A}
-.grid-cell.z6-10.rel{background:#DBEAFE;color:#1D4ED8}
-.grid-cell.z6-10.strat{background:#DCFCE7;color:#15803D}
+/* z1-5 — medium tint, bold colored text */
+.grid-cell.z1-5.exec{background:rgba(124,58,237,.18);color:#5B21B6}
+.grid-cell.z1-5.infl{background:rgba(194,89,10,.18);color:#9E3D00}
+.grid-cell.z1-5.rel{background:rgba(29,78,216,.18);color:#1D4ED8}
+.grid-cell.z1-5.strat{background:rgba(21,128,61,.18);color:#15803D}
+/* z6-10 — light tint */
+.grid-cell.z6-10.exec{background:rgba(124,58,237,.08);color:#7C3AED}
+.grid-cell.z6-10.infl{background:rgba(194,89,10,.08);color:#C2590A}
+.grid-cell.z6-10.rel{background:rgba(29,78,216,.08);color:#3B6FE8}
+.grid-cell.z6-10.strat{background:rgba(21,128,61,.08);color:#15803D}
 /* z11-29 — very light, small */
 .grid-cell.z11-29{background:transparent;color:#C0BDB8;font-size:10px;font-weight:500}
 /* z30-34 — grey */
@@ -564,6 +564,7 @@ let _lastMembers = [];
 let _gridNameMode = 'role'; // 'role' | 'name'
 let _gridSortTheme = null;  // theme key or null
 let _gridSortDir = 'asc';   // 'asc' | 'desc'
+let _gridActiveZones = new Set(['z1-5']); // persisted across re-renders
 
 // ─── TAB SWITCHING ────────────────────────────────────────────────
 
@@ -1111,11 +1112,11 @@ function renderDeepAnalysis(members) {
 
   const controlsHtml = `<div class="grid-controls">
     <span class="grid-filter-label">Показать зоны:</span>
-    <button class="zone-btn" onclick="toggleAllZones(this)"><span class="zchk"></span>Все</button>
-    <button class="zone-btn active" data-zone="z1-5" onclick="toggleZone(this)"><span class="zchk"></span>1–5</button>
-    <button class="zone-btn" data-zone="z6-10" onclick="toggleZone(this)"><span class="zchk"></span>6–10</button>
-    <button class="zone-btn" data-zone="z11-29" onclick="toggleZone(this)"><span class="zchk"></span>11–29</button>
-    <button class="zone-btn" data-zone="z30-34" onclick="toggleZone(this)"><span class="zchk"></span>30–34</button>
+    <button class="zone-btn ${_gridActiveZones.size===4?'active':''}" onclick="toggleAllZones(this)"><span class="zchk"></span>Все</button>
+    <button class="zone-btn ${_gridActiveZones.has('z1-5')?'active':''}" data-zone="z1-5" onclick="toggleZone(this)"><span class="zchk"></span>1–5</button>
+    <button class="zone-btn ${_gridActiveZones.has('z6-10')?'active':''}" data-zone="z6-10" onclick="toggleZone(this)"><span class="zchk"></span>6–10</button>
+    <button class="zone-btn ${_gridActiveZones.has('z11-29')?'active':''}" data-zone="z11-29" onclick="toggleZone(this)"><span class="zchk"></span>11–29</button>
+    <button class="zone-btn ${_gridActiveZones.has('z30-34')?'active':''}" data-zone="z30-34" onclick="toggleZone(this)"><span class="zchk"></span>30–34</button>
     <div class="grid-toggle">
       <button class="toggle-btn ${_gridNameMode==='role'?'active':''}" onclick="setGridNameMode('role',this)">Роли</button>
       <button class="toggle-btn ${_gridNameMode==='name'?'active':''}" onclick="setGridNameMode('name',this)">Имена</button>
@@ -1357,13 +1358,20 @@ function setGridNameModeOverlay(mode, btn) {
 
 function toggleZone(btn) {
   btn.classList.toggle('active');
+  const zone = btn.dataset.zone;
+  if (btn.classList.contains('active')) _gridActiveZones.add(zone);
+  else _gridActiveZones.delete(zone);
   _applyZoneVisibility();
 }
 
 function toggleAllZones(btn) {
   const zoneBtns = document.querySelectorAll('.zone-btn[data-zone]');
-  const allActive = [...zoneBtns].every(b => b.classList.contains('active'));
-  // if all on → turn all off; if any off → turn all on
+  const allActive = _gridActiveZones.size === 4;
+  if (allActive) {
+    _gridActiveZones.clear();
+  } else {
+    _gridActiveZones = new Set(['z1-5','z6-10','z11-29','z30-34']);
+  }
   zoneBtns.forEach(b => b.classList.toggle('active', !allActive));
   btn.classList.toggle('active', !allActive);
   _applyZoneVisibility();
