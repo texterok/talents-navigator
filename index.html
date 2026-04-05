@@ -536,13 +536,13 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .ob-fab:hover{box-shadow:0 6px 24px rgba(0,0,0,.2);transform:translateY(-1px)}
 .ob-fab-icon{font-size:16px}
 .ob-fab-badge{background:rgba(255,255,255,.25);padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700}
-.ob-panel{position:fixed;bottom:20px;right:20px;z-index:190;width:380px;max-height:calc(100vh - 40px);background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:none;flex-direction:column;overflow:hidden}
+.ob-panel{position:fixed;bottom:20px;right:20px;z-index:190;width:380px;max-height:calc(100vh - 40px);background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:none;flex-direction:column}
 .ob-panel.open{display:flex}
 .ob-panel-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border-light);flex-shrink:0}
 .ob-panel-title{font-family:var(--serif);font-size:16px;font-weight:700}
 .ob-panel-close{width:28px;height:28px;border-radius:50%;border:none;background:var(--surface-alt);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;color:var(--text-2)}
 .ob-panel-close:hover{background:var(--border)}
-.ob-panel-body{overflow-y:auto;padding:16px 18px;flex:1}
+.ob-panel-body{overflow-y:auto;padding:16px 18px;flex:1;max-height:calc(100vh - 120px)}
 .ob-choose{display:flex;flex-direction:column;gap:10px}
 .ob-choose-card{padding:16px;border:1.5px solid var(--border);border-radius:12px;cursor:pointer;transition:all .15s}
 .ob-choose-card:hover{border-color:var(--accent);background:var(--accent-light)}
@@ -561,10 +561,13 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .ob-step-content{flex:1;min-width:0}
 .ob-step-title{font-size:13px;font-weight:600;line-height:1.3;color:var(--text)}
 .ob-step.done .ob-step-title{color:var(--text-3);text-decoration:line-through}
-.ob-step-why{font-size:11px;color:var(--text-3);line-height:1.4;margin-top:3px}
-.ob-step-meta{display:flex;align-items:center;gap:8px;margin-top:4px}
-.ob-step-time{font-size:10px;color:var(--text-3)}
-.ob-step-go{font-size:10px;font-weight:600;color:var(--accent);cursor:pointer}
+.ob-step-why{font-size:12px;color:var(--text-2);line-height:1.45;margin-top:4px}
+.ob-step-meta{display:flex;align-items:center;gap:8px;margin-top:6px}
+.ob-step-time{font-size:11px;color:var(--text-2)}
+.ob-step-where{display:flex;align-items:center;gap:6px;margin-top:6px;padding:6px 10px;background:var(--surface-alt);border-radius:6px;font-size:11px;color:var(--text-2)}
+.ob-step-where-label{color:var(--text-3);font-weight:400}
+.ob-step-where-section{font-weight:600;color:var(--text)}
+.ob-step-go{font-size:11px;font-weight:700;color:var(--accent);cursor:pointer;margin-left:auto;white-space:nowrap}
 .ob-step-go:hover{text-decoration:underline}
 @media(max-width:600px){.ob-panel{width:calc(100vw - 16px);right:8px;bottom:8px;max-height:70vh}.ob-fab{bottom:12px;right:12px}}
 </style>
@@ -2593,14 +2596,26 @@ function renderObPanel(){
       const isDone=_obState.steps[st.id];
       const title=_lang==='en'?st.title_en:st.title_ru;
       const why=_lang==='en'?st.why_en:st.why_ru;
-      const goLabel=_lang==='en'?'Go':'Перейти';
-      const goHtml=st.target?`<span class="ob-step-go" onclick="event.stopPropagation();obNavigate('${st.target.page}','${st.target.sub}','${st.target.scroll}')">${goLabel} →</span>`:'';
+      const SUB_NAMES={explore:{ru:'Карта талантов',en:'Talent Map'},dynamics:{ru:'Связки',en:'Dynamics'},leadership:{ru:'Лидерство',en:'Leadership'},environment:{ru:'Среда',en:'Environment'},setup:{ru:'Настройка',en:'Setup'},compensators:{ru:'Компенсаторы',en:'Compensators'},multipliers:{ru:'Усилители',en:'Multipliers'}};
+      const PAGE_NAMES={talents:{ru:'Обзор талантов',en:'Talent Overview'},ai:{ru:'AI-усиление',en:'AI Boost'}};
+      let whereHtml='';
+      if(st.target){
+        const pageName=_lang==='en'?(PAGE_NAMES[st.target.page]||{}).en:(PAGE_NAMES[st.target.page]||{}).ru;
+        const subName=_lang==='en'?(SUB_NAMES[st.target.sub]||{}).en:(SUB_NAMES[st.target.sub]||{}).ru;
+        const goLabel=_lang==='en'?'Go →':'Перейти →';
+        whereHtml=`<div class="ob-step-where" onclick="event.stopPropagation();obNavigate('${st.target.page}','${st.target.sub}','${st.target.scroll}')">
+          <span class="ob-step-where-label">${_lang==='en'?'Where:':'Где:'}</span>
+          <span class="ob-step-where-section">${pageName} → ${subName}</span>
+          <span class="ob-step-go">${goLabel}</span>
+        </div>`;
+      }
       html+=`<div class="ob-step${isDone?' done':''}" onclick="obToggleStep('${st.id}')">
         <div class="ob-step-check">✓</div>
         <div class="ob-step-content">
           <div class="ob-step-title">${title}</div>
           <div class="ob-step-why">${why}</div>
-          <div class="ob-step-meta">${st.time?`<span class="ob-step-time">~${st.time} ${_lang==='en'?'min':'мин'}</span>`:''}${goHtml}</div>
+          ${st.time?`<div class="ob-step-meta"><span class="ob-step-time">~${st.time} ${_lang==='en'?'min':'мин'}</span></div>`:''}
+          ${whereHtml}
         </div>
       </div>`;
     });
@@ -2624,8 +2639,11 @@ function obNavigate(page,sub,scrollId){
   if(sub)switchSubTab(page,sub);
   setTimeout(()=>{
     const el=document.getElementById(scrollId);
-    if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
-  },100);
+    if(el){
+      const y=el.getBoundingClientRect().top+window.scrollY-80;
+      window.scrollTo({top:y,behavior:'smooth'});
+    }
+  },150);
 }
 
 </script></body></html>
