@@ -2167,6 +2167,58 @@ function renderMultipliers(){
 
 let _lang = localStorage.getItem('tn-lang') || 'ru';
 let _obState = JSON.parse(localStorage.getItem('tn_onboarding')||'null') || {checklist:null,steps:{},dismissed:false};
+const OB_CHECKLISTS = {
+  self: {
+    title_ru: 'Путь к себе', title_en: 'Your Path',
+    phases: [
+      { label_ru: 'Осознать', label_en: 'Awareness', steps: [
+        { id:'s1', title_ru:'Я увидел свои топ-5 талантов и узнал, к каким доменам они относятся', title_en:'I saw my top-5 talents and learned which domains they belong to', why_ru:'Домены показывают, какая энергия доминирует: думать, действовать, влиять или строить отношения.', why_en:'Domains show which energy dominates: thinking, executing, influencing, or relationship building.', time:2, target:{page:'talents',sub:'explore',scroll:'domainBalance'}},
+        { id:'s2', title_ru:'Я прочитал подробное описание своего таланта #1', title_en:'I read the deep description of my #1 talent', why_ru:'Талант #1 — ваш автопилот. Он включается первым в любой ситуации.', why_en:'Talent #1 is your autopilot. It activates first in any situation.', time:3, target:{page:'talents',sub:'explore',scroll:'domainGrid'}},
+      ]},
+      { label_ru: 'Захотеть', label_en: 'Desire', steps: [
+        { id:'s3', title_ru:'Я нашёл связку между двумя талантами, которая объяснила мою привычку или реакцию', title_en:'I found a talent pair that explained a habit or reaction of mine', why_ru:'Связки — то, что делает вас уникальным. Здесь возникает момент «вот почему я так делаю».', why_en:'Pairs are what make you unique. This is where the "aha" moment happens.', time:5, target:{page:'talents',sub:'dynamics',scroll:'dynControls'}},
+        { id:'s4', title_ru:'Я прочитал свой лидерский профиль и нашёл описание, которое точно про меня', title_en:'I read my leadership profile and found a description that fits me exactly', why_ru:'Карточки показывают, как ваши таланты строят доверие, заботу, опору и направление.', why_en:'Cards show how your talents build trust, care, stability and direction.', time:4, target:{page:'talents',sub:'leadership',scroll:'cardsArea'}},
+      ]},
+      { label_ru: 'Научиться', label_en: 'Knowledge', steps: [
+        { id:'s5', title_ru:'Я прошёл чекап рабочей среды и увидел, насколько моя работа подходит моим талантам', title_en:'I completed the environment checkup and saw how well my work fits my talents', why_ru:'Чекап показывает, раскрывает ли ваша роль сильные стороны или гасит их.', why_en:'Checkup shows whether your role leverages your strengths or suppresses them.', time:4, target:{page:'talents',sub:'environment',scroll:'checkupContent'}},
+        { id:'s6', title_ru:'Я скопировал AI-инструкции и вставил в свой ChatGPT или Claude', title_en:'I copied AI instructions and pasted them into ChatGPT or Claude', why_ru:'AI начинает учитывать ваш стиль мышления — разница ощущается с первого запроса.', why_en:'AI starts considering your thinking style — the difference is felt from the first query.', time:2, target:{page:'ai',sub:'setup',scroll:'aiInstrContent'}},
+      ]},
+      { label_ru: 'Применить', label_en: 'Ability', steps: [
+        { id:'s7', title_ru:'Я нашёл компенсатор для слабого таланта и попробовал промпт в деле', title_en:'I found a compensator for a weak talent and tried the prompt', why_ru:'Один использованный промпт ценнее, чем прочитанный весь отчёт.', why_en:'One used prompt is worth more than reading the entire report.', time:5, target:{page:'ai',sub:'compensators',scroll:'compensatorsContent'}},
+        { id:'s8', title_ru:'Я нашёл усилитель для сильного таланта и применил его', title_en:'I found a multiplier for a strong talent and applied it', why_ru:'Инвестировать в сильные стороны в 6 раз эффективнее, чем латать слабые.', why_en:'Investing in strengths is 6x more effective than fixing weaknesses.', time:5, target:{page:'ai',sub:'multipliers',scroll:'multipliersContent'}},
+      ]},
+      { label_ru: 'Закрепить', label_en: 'Reinforce', steps: [
+        { id:'s9', title_ru:'Я рассказал одному человеку, какие у меня топ-5 и чем они помогают', title_en:'I told someone about my top-5 and how they help me', why_ru:'Пока таланты только в вашей голове — они забудутся. Когда объяснили другому — знание закрепляется.', why_en:'While talents stay only in your head, they fade. Explaining to someone else makes the knowledge stick.', time:5, target:null},
+      ]},
+    ]
+  },
+  expert: {
+    title_ru: 'Путь эксперта', title_en: 'Expert Path',
+    phases: [
+      { label_ru: 'Освоить самому', label_en: 'Master it yourself', steps: [
+        { id:'e1', title_ru:'Я прошёл все разделы Talents Navigator как обычный пользователь', title_en:'I went through all Talents Navigator sections as a regular user', why_ru:'Невозможно фасилитировать опыт, который вы не прожили сами.', why_en:'You cannot facilitate an experience you haven\'t lived yourself.', time:15, target:{page:'talents',sub:'explore',scroll:'domainBalance'}},
+        { id:'e2', title_ru:'Я создал организацию и получил инвайт-ссылку', title_en:'I created an organization and got an invite link', why_ru:'Без этого вся командная аналитика недоступна.', why_en:'Without this, all team analytics are unavailable.', time:2, target:null},
+        { id:'e3', title_ru:'Минимум 3 человека ввели свои таланты по инвайт-ссылке', title_en:'At least 3 people entered their talents via invite link', why_ru:'Командная аналитика становится содержательной начиная с 3-4 участников.', why_en:'Team analytics become meaningful starting from 3-4 participants.', time:0, target:null},
+      ]},
+      { label_ru: 'Подготовить данные', label_en: 'Prepare data', steps: [
+        { id:'e4', title_ru:'Я изучил доменный баланс и зафиксировал слепые зоны команды', title_en:'I studied domain balance and documented team blind spots', why_ru:'«60% в Стратегическом мышлении и 0% во Влиянии» — конкретный аргумент, а не абстрактная теория.', why_en:'"60% Strategic Thinking, 0% Influencing" — a concrete argument, not abstract theory.', time:3, target:null},
+        { id:'e5', title_ru:'Я открыл матрицу команды и нашёл хотя бы одну неожиданность', title_en:'I opened the team matrix and found at least one surprise', why_ru:'Человек с талантом в топ-3, которого никогда не привлекали к таким задачам, — это упущенный ресурс.', why_en:'A person with a talent in top-3 who was never assigned such tasks is a wasted resource.', time:5, target:null},
+        { id:'e6', title_ru:'Я подготовил 3 ключевых инсайта для презентации руководству', title_en:'I prepared 3 key insights for a leadership presentation', why_ru:'Руководителю нужны 3 факта: сила команды, критическая слепая зона, одно конкретное действие.', why_en:'A leader needs 3 facts: team strength, critical blind spot, one concrete action.', time:5, target:null},
+      ]},
+      { label_ru: 'Провести воркшоп', label_en: 'Run a workshop', steps: [
+        { id:'e7', title_ru:'Я составил план воркшопа на 60 минут', title_en:'I created a 60-minute workshop plan', why_ru:'Без плана воркшоп превращается в «давайте все расскажут топ-5» — скучно и бесполезно.', why_en:'Without a plan, the workshop becomes "let\'s all share our top-5" — boring and useless.', time:10, target:null},
+        { id:'e8', title_ru:'Я провёл воркшоп и собрал обратную связь', title_en:'I ran the workshop and collected feedback', why_ru:'Обратная связь после первого воркшопа определяет, будет ли второй.', why_en:'Feedback after the first workshop determines whether there will be a second one.', time:60, target:null},
+        { id:'e9', title_ru:'Я помог каждому настроить AI-инструкции под его профиль', title_en:'I helped everyone set up AI instructions for their profile', why_ru:'Настроенный AI — осязаемый результат воркшопа, а не просто «интересный разговор».', why_en:'A configured AI is a tangible workshop outcome, not just an "interesting conversation".', time:5, target:null},
+      ]},
+      { label_ru: 'Встроить в процессы', label_en: 'Embed in processes', steps: [
+        { id:'e10', title_ru:'Я использовал данные матрицы для конкретного решения', title_en:'I used matrix data for a concrete decision', why_ru:'Пока данные не повлияли на реальное решение — это демо, а не инструмент.', why_en:'Until data influences a real decision, it\'s a demo, not a tool.', time:10, target:null},
+        { id:'e11', title_ru:'Я настроил квартальный чекпоинт для пересмотра данных команды', title_en:'I set up a quarterly checkpoint to review team data', why_ru:'Без регулярного пересмотра дашборд устаревает и забывается.', why_en:'Without regular review, the dashboard becomes stale and forgotten.', time:2, target:null},
+        { id:'e12', title_ru:'Я подготовил одностраничный отчёт с ROI для руководства', title_en:'I prepared a one-page ROI report for leadership', why_ru:'Продолжение программы зависит от того, может ли HR показать результат.', why_en:'Program continuation depends on whether HR can demonstrate results.', time:15, target:null},
+      ]},
+    ]
+  }
+};
+
 render();
 
 
@@ -2490,57 +2542,6 @@ document.addEventListener('keydown', e => {
 });
 
 // ── ONBOARDING ──────────────────────────────────────────────────
-const OB_CHECKLISTS = {
-  self: {
-    title_ru: 'Путь к себе', title_en: 'Your Path',
-    phases: [
-      { label_ru: 'Осознать', label_en: 'Awareness', steps: [
-        { id:'s1', title_ru:'Я увидел свои топ-5 талантов и узнал, к каким доменам они относятся', title_en:'I saw my top-5 talents and learned which domains they belong to', why_ru:'Домены показывают, какая энергия доминирует: думать, действовать, влиять или строить отношения.', why_en:'Domains show which energy dominates: thinking, executing, influencing, or relationship building.', time:2, target:{page:'talents',sub:'explore',scroll:'domainBalance'}},
-        { id:'s2', title_ru:'Я прочитал подробное описание своего таланта #1', title_en:'I read the deep description of my #1 talent', why_ru:'Талант #1 — ваш автопилот. Он включается первым в любой ситуации.', why_en:'Talent #1 is your autopilot. It activates first in any situation.', time:3, target:{page:'talents',sub:'explore',scroll:'domainGrid'}},
-      ]},
-      { label_ru: 'Захотеть', label_en: 'Desire', steps: [
-        { id:'s3', title_ru:'Я нашёл связку между двумя талантами, которая объяснила мою привычку или реакцию', title_en:'I found a talent pair that explained a habit or reaction of mine', why_ru:'Связки — то, что делает вас уникальным. Здесь возникает момент «вот почему я так делаю».', why_en:'Pairs are what make you unique. This is where the "aha" moment happens.', time:5, target:{page:'talents',sub:'dynamics',scroll:'dynControls'}},
-        { id:'s4', title_ru:'Я прочитал свой лидерский профиль и нашёл описание, которое точно про меня', title_en:'I read my leadership profile and found a description that fits me exactly', why_ru:'Карточки показывают, как ваши таланты строят доверие, заботу, опору и направление.', why_en:'Cards show how your talents build trust, care, stability and direction.', time:4, target:{page:'talents',sub:'leadership',scroll:'cardsArea'}},
-      ]},
-      { label_ru: 'Научиться', label_en: 'Knowledge', steps: [
-        { id:'s5', title_ru:'Я прошёл чекап рабочей среды и увидел, насколько моя работа подходит моим талантам', title_en:'I completed the environment checkup and saw how well my work fits my talents', why_ru:'Чекап показывает, раскрывает ли ваша роль сильные стороны или гасит их.', why_en:'Checkup shows whether your role leverages your strengths or suppresses them.', time:4, target:{page:'talents',sub:'environment',scroll:'checkupContent'}},
-        { id:'s6', title_ru:'Я скопировал AI-инструкции и вставил в свой ChatGPT или Claude', title_en:'I copied AI instructions and pasted them into ChatGPT or Claude', why_ru:'AI начинает учитывать ваш стиль мышления — разница ощущается с первого запроса.', why_en:'AI starts considering your thinking style — the difference is felt from the first query.', time:2, target:{page:'ai',sub:'setup',scroll:'aiInstrContent'}},
-      ]},
-      { label_ru: 'Применить', label_en: 'Ability', steps: [
-        { id:'s7', title_ru:'Я нашёл компенсатор для слабого таланта и попробовал промпт в деле', title_en:'I found a compensator for a weak talent and tried the prompt', why_ru:'Один использованный промпт ценнее, чем прочитанный весь отчёт.', why_en:'One used prompt is worth more than reading the entire report.', time:5, target:{page:'ai',sub:'compensators',scroll:'compensatorsContent'}},
-        { id:'s8', title_ru:'Я нашёл усилитель для сильного таланта и применил его', title_en:'I found a multiplier for a strong talent and applied it', why_ru:'Инвестировать в сильные стороны в 6 раз эффективнее, чем латать слабые.', why_en:'Investing in strengths is 6x more effective than fixing weaknesses.', time:5, target:{page:'ai',sub:'multipliers',scroll:'multipliersContent'}},
-      ]},
-      { label_ru: 'Закрепить', label_en: 'Reinforce', steps: [
-        { id:'s9', title_ru:'Я рассказал одному человеку, какие у меня топ-5 и чем они помогают', title_en:'I told someone about my top-5 and how they help me', why_ru:'Пока таланты только в вашей голове — они забудутся. Когда объяснили другому — знание закрепляется.', why_en:'While talents stay only in your head, they fade. Explaining to someone else makes the knowledge stick.', time:5, target:null},
-      ]},
-    ]
-  },
-  expert: {
-    title_ru: 'Путь эксперта', title_en: 'Expert Path',
-    phases: [
-      { label_ru: 'Освоить самому', label_en: 'Master it yourself', steps: [
-        { id:'e1', title_ru:'Я прошёл все разделы Talents Navigator как обычный пользователь', title_en:'I went through all Talents Navigator sections as a regular user', why_ru:'Невозможно фасилитировать опыт, который вы не прожили сами.', why_en:'You cannot facilitate an experience you haven\'t lived yourself.', time:15, target:{page:'talents',sub:'explore',scroll:'domainBalance'}},
-        { id:'e2', title_ru:'Я создал организацию и получил инвайт-ссылку', title_en:'I created an organization and got an invite link', why_ru:'Без этого вся командная аналитика недоступна.', why_en:'Without this, all team analytics are unavailable.', time:2, target:null},
-        { id:'e3', title_ru:'Минимум 3 человека ввели свои таланты по инвайт-ссылке', title_en:'At least 3 people entered their talents via invite link', why_ru:'Командная аналитика становится содержательной начиная с 3-4 участников.', why_en:'Team analytics become meaningful starting from 3-4 participants.', time:0, target:null},
-      ]},
-      { label_ru: 'Подготовить данные', label_en: 'Prepare data', steps: [
-        { id:'e4', title_ru:'Я изучил доменный баланс и зафиксировал слепые зоны команды', title_en:'I studied domain balance and documented team blind spots', why_ru:'«60% в Стратегическом мышлении и 0% во Влиянии» — конкретный аргумент, а не абстрактная теория.', why_en:'"60% Strategic Thinking, 0% Influencing" — a concrete argument, not abstract theory.', time:3, target:null},
-        { id:'e5', title_ru:'Я открыл матрицу команды и нашёл хотя бы одну неожиданность', title_en:'I opened the team matrix and found at least one surprise', why_ru:'Человек с талантом в топ-3, которого никогда не привлекали к таким задачам, — это упущенный ресурс.', why_en:'A person with a talent in top-3 who was never assigned such tasks is a wasted resource.', time:5, target:null},
-        { id:'e6', title_ru:'Я подготовил 3 ключевых инсайта для презентации руководству', title_en:'I prepared 3 key insights for a leadership presentation', why_ru:'Руководителю нужны 3 факта: сила команды, критическая слепая зона, одно конкретное действие.', why_en:'A leader needs 3 facts: team strength, critical blind spot, one concrete action.', time:5, target:null},
-      ]},
-      { label_ru: 'Провести воркшоп', label_en: 'Run a workshop', steps: [
-        { id:'e7', title_ru:'Я составил план воркшопа на 60 минут', title_en:'I created a 60-minute workshop plan', why_ru:'Без плана воркшоп превращается в «давайте все расскажут топ-5» — скучно и бесполезно.', why_en:'Without a plan, the workshop becomes "let\'s all share our top-5" — boring and useless.', time:10, target:null},
-        { id:'e8', title_ru:'Я провёл воркшоп и собрал обратную связь', title_en:'I ran the workshop and collected feedback', why_ru:'Обратная связь после первого воркшопа определяет, будет ли второй.', why_en:'Feedback after the first workshop determines whether there will be a second one.', time:60, target:null},
-        { id:'e9', title_ru:'Я помог каждому настроить AI-инструкции под его профиль', title_en:'I helped everyone set up AI instructions for their profile', why_ru:'Настроенный AI — осязаемый результат воркшопа, а не просто «интересный разговор».', why_en:'A configured AI is a tangible workshop outcome, not just an "interesting conversation".', time:5, target:null},
-      ]},
-      { label_ru: 'Встроить в процессы', label_en: 'Embed in processes', steps: [
-        { id:'e10', title_ru:'Я использовал данные матрицы для конкретного решения', title_en:'I used matrix data for a concrete decision', why_ru:'Пока данные не повлияли на реальное решение — это демо, а не инструмент.', why_en:'Until data influences a real decision, it\'s a demo, not a tool.', time:10, target:null},
-        { id:'e11', title_ru:'Я настроил квартальный чекпоинт для пересмотра данных команды', title_en:'I set up a quarterly checkpoint to review team data', why_ru:'Без регулярного пересмотра дашборд устаревает и забывается.', why_en:'Without regular review, the dashboard becomes stale and forgotten.', time:2, target:null},
-        { id:'e12', title_ru:'Я подготовил одностраничный отчёт с ROI для руководства', title_en:'I prepared a one-page ROI report for leadership', why_ru:'Продолжение программы зависит от того, может ли HR показать результат.', why_en:'Program continuation depends on whether HR can demonstrate results.', time:15, target:null},
-      ]},
-    ]
-  }
-};
 
 function saveObState(){localStorage.setItem('tn_onboarding',JSON.stringify(_obState))}
 function toggleOnboarding(){
