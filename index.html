@@ -1062,10 +1062,10 @@ function renderCards(){
     }
     html+=`</div>`;
 
-    // Deep dive button
+    // Deep dive link — subtle, not a big button
     const themeSlug=name.toLowerCase().replace(/[^a-z-]/g,'');
-    const deepLabel=_lang==='en'?`📖 Read more — ${name}`:`📖 Читать подробнее — ${t.ru||name}`;
-    html+=`<div class="card-deep-btn" onclick="openThemeOverlay('${themeSlug}','${t.ru||name}')">${deepLabel}</div>`;
+    const deepLabel=_lang==='en'?`General description of ${name} →`:`Общее описание таланта ${t.ru||name} →`;
+    html+=`<div style="padding:0 24px 12px;text-align:right"><a style="font-size:12px;color:var(--text-3);cursor:pointer;text-decoration:none" onclick="openThemeOverlay('${themeSlug}','${t.ru||name}')" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">${deepLabel}</a></div>`;
 
     // Use mgmt_title for management section label
     // z1-z2: all sections; z3: management only; z4-z5: no leadership sections
