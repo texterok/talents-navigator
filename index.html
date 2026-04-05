@@ -45,11 +45,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .sec-desc{color:var(--text-2);font-size:13px;margin-bottom:20px;line-height:1.5}
 
 /* ============ INPUT AREA ============ */
-.input-area{margin-bottom:36px}
-.paste-box{width:100%;min-height:120px;padding:14px 16px;border:1.5px solid var(--border);border-radius:var(--r);font-family:var(--sans);font-size:14px;line-height:1.7;resize:vertical;background:var(--surface);color:var(--text);outline:none;transition:border-color .2s}
-.paste-box:focus{border-color:var(--accent)}
-.paste-box::placeholder{color:var(--text-3);font-size:13px}
-.paste-hint{font-size:11px;color:var(--text-3);margin-top:6px;line-height:1.5}
 
 /* SELECTED CHIPS - drag & drop */
 .chips-area{margin-bottom:32px;display:none}
@@ -682,7 +677,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
             <div class="zt-row zt-z2"><span class="zt-pos">6–10</span><span class="zt-name">Легко включается</span><span class="zt-desc">Активируется быстро, работает надёжно. Минимальное усилие.</span></div>
             <div class="zt-row zt-z3"><span class="zt-pos">11–15</span><span class="zt-name">Доступно осознанно</span><span class="zt-desc">Включается при намерении. Работает устойчиво при правильной среде.</span></div>
             <div class="zt-row zt-z4"><span class="zt-pos">16–20</span><span class="zt-name">Требует усилия</span><span class="zt-desc">Каждый раз стоит ресурса. Лучше делегировать.</span></div>
-            <div class="zt-row zt-z5"><span class="zt-pos">21–34</span><span class="zt-name">Вне природной зоны</span><span class="zt-desc">Максимальные затраты при минимальной отдаче.</span></div>
+            <div class="zt-row zt-z5"><span class="zt-pos">21–34</span><span class="zt-name">За пределами природных сил</span><span class="zt-desc">Максимальные затраты при минимальной отдаче.</span></div>
           </div>
         </div>
       </div>
@@ -766,7 +761,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
   <!-- EMPTY STATE -->
   <div class="empty" id="emptyState">
     <div class="empty-ico">◇</div>
-    <div class="empty-txt">Вставьте список талантов, чтобы увидеть руководство</div>
+    <div class="empty-txt">Профиль не загружен. Попробуйте обновить страницу.</div>
   </div>
 
   <!-- NEXT STEPS -->
@@ -889,7 +884,7 @@ function getZone(pos){
   if(pos<=10)return{cls:'z2',name:'Легко включается'};
   if(pos<=15)return{cls:'z3',name:'Доступно осознанно'};
   if(pos<=24)return{cls:'z4',name:'Требует усилия'};
-  return{cls:'z5',name:'Вне природной зоны'};
+  return{cls:'z5',name:'За пределами природных сил'};
 }
 
 const DOMAIN_CLS={'Исполнение':'exec','Влияние':'infl','Выстраивание отношений':'rel','Стратегическое мышление':'strat'};
@@ -1790,7 +1785,7 @@ function renderAiInstr(){
 <div class="amp-wrap">
   <div class="amp-adkar">
     <div class="amp-adkar-title">AI уже знает, как вы думаете</div>
-    <div class="amp-adkar-text">Вы потратили время, чтобы разобраться в своих талантах. Теперь передайте это знание вашему AI-ассистенту — и он перестанет давать советы, которые не подходят вашему стилю мышления.</div>
+    <div class="amp-adkar-text">Вы разобрались в своих талантах. Теперь передайте это знание вашему AI-ассистенту — и он перестанет давать советы, которые не подходят вашему стилю мышления.</div>
     <div class="amp-adkar-cta"><strong>Один раз вставить — работает в каждом чате.</strong></div>
   </div>
 
@@ -1798,13 +1793,13 @@ function renderAiInstr(){
     <div class="amp-card-hdr" onclick="this.closest('.amp-card').classList.toggle('open')">
       <span class="amp-card-icon">📖</span>
       <div class="amp-card-hdr-info">
-        <div class="amp-card-hdr-top"><span class="amp-theme-name">Почему этот формат работает</span></div>
+        <div class="amp-card-hdr-top"><span class="amp-theme-name">Как это работает</span></div>
         <div class="amp-card-subtitle">Как устроены инструкции и зачем нужны примеры</div>
       </div>
       <span class="amp-card-arrow">▾</span>
     </div>
     <div class="amp-card-body-wrap">
-      <div class="amp-card-body">Запреты («никогда не делай») LLM выполняет надёжнее, чем предписания. Добавление причины усиливает эффект. 3–5 примеров (few-shot) работают лучше абстрактных принципов — больше примеров даёт падение качества.</div>
+      <div class="amp-card-body">Запреты («никогда не делай») AI выполняет надёжнее, чем предписания. Добавление причины усиливает эффект. 3–5 примеров (few-shot) работают лучше абстрактных принципов — больше примеров даёт падение качества.</div>
     </div>
   </div>
 
@@ -1812,7 +1807,7 @@ function renderAiInstr(){
     <div class="amp-card-hdr" onclick="this.closest('.amp-card').classList.toggle('open')">
       <span class="amp-card-icon">🧬</span>
       <div class="amp-card-hdr-info">
-        <div class="amp-card-hdr-top"><span class="amp-theme-name">Почему именно такие инструкции</span></div>
+        <div class="amp-card-hdr-top"><span class="amp-theme-name">Логика ваших персональных правил</span></div>
         <div class="amp-card-subtitle">Логика правил под ваш профиль</div>
       </div>
       <span class="amp-card-arrow">▾</span>
@@ -2058,7 +2053,7 @@ function renderAmplifyFiltered(el, filterFn, mode){
     const weakestName=weakestT?weakestT.ru:weakest||'';
     const weakestPos=weakest?selected.indexOf(weakest)+1:'';
     lines.push(`<div class="amp-adkar">`);
-    lines.push(`<div class="amp-adkar-title">Ваши таланты ${selected.length>20?'21':'16'}–${selected.length} стоят вам энергии каждый день</div>`);
+    lines.push(`<div class="amp-adkar-title">Ваши таланты ${selected.length>20?'21':'16'}–${selected.length} забирают вашу энергию каждый день</div>`);
     lines.push(`<div class="amp-adkar-text">Gallup говорит: закрой слабое через партнёра. Раньше это значило — найди коллегу. Теперь у вас есть AI-партнёр, который работает 24/7 и не устаёт.</div>`);
     lines.push(`<div class="amp-adkar-text">Ниже — готовые решения под ваш профиль. Каждое закрывает конкретную боль, которую создаёт ваша слабая зона.</div>`);
     lines.push(`<div class="amp-adkar-cta"><strong>Скопируйте промпт → вставьте в ChatGPT или Claude → получите результат.</strong></div>`);
@@ -2066,7 +2061,7 @@ function renderAmplifyFiltered(el, filterFn, mode){
     lines.push(`</div>`);
   } else {
     lines.push(`<div class="amp-adkar">`);
-    lines.push(`<div class="amp-adkar-title">Ваши топ-таланты — уже мощные. AI делает их ещё мощнее</div>`);
+    lines.push(`<div class="amp-adkar-title">Ваши топ-таланты — уже сила. AI умножает её</div>`);
     lines.push(`<div class="amp-adkar-text">Вы и так используете свои сильные стороны каждый день. Но даже природный талант упирается в ограничения: не хватает времени, внимания, рутина съедает энергию.</div>`);
     lines.push(`<div class="amp-adkar-text">AI-усилитель берёт на себя рутинную часть вашего таланта — чтобы вы тратили энергию только на то, что делаете лучше всех.</div>`);
     lines.push(`<div class="amp-adkar-cta"><strong>Каждая карточка — готовый рецепт. Боль → решение → промпт для копирования.</strong></div>`);
@@ -2438,7 +2433,7 @@ const I18N = {
 };
 
 const ZONE_I18N = {
-  ru: ['Работает само','Легко включается','Доступно осознанно','Требует усилия','Вне природной зоны'],
+  ru: ['Работает само','Легко включается','Доступно осознанно','Требует усилия','За пределами природных сил'],
   en: ['Works naturally','Easily activated','Consciously accessible','Requires effort','Outside natural zone'],
 };
 
@@ -2487,15 +2482,15 @@ const OB_CHECKLISTS = {
     title_ru: 'Путь к себе', title_en: 'Your Path',
     phases: [
       { label_ru: 'Осознать', label_en: 'Awareness', steps: [
-        { id:'s1', title_ru:'Я увидел свои топ-5 талантов и запомнил, в каких они доменах', title_en:'I saw my top-5 talents and which domains they belong to', why_ru:'Домены показывают, какая энергия доминирует: думать, действовать, влиять или строить отношения.', why_en:'Domains show which energy dominates: thinking, executing, influencing, or relationship building.', time:2, target:{page:'talents',sub:'explore',scroll:'domainBalance'}},
+        { id:'s1', title_ru:'Я увидел свои топ-5 талантов и узнал, к каким доменам они относятся', title_en:'I saw my top-5 talents and learned which domains they belong to', why_ru:'Домены показывают, какая энергия доминирует: думать, действовать, влиять или строить отношения.', why_en:'Domains show which energy dominates: thinking, executing, influencing, or relationship building.', time:2, target:{page:'talents',sub:'explore',scroll:'domainBalance'}},
         { id:'s2', title_ru:'Я прочитал подробное описание своего таланта #1', title_en:'I read the deep description of my #1 talent', why_ru:'Талант #1 — ваш автопилот. Он включается первым в любой ситуации.', why_en:'Talent #1 is your autopilot. It activates first in any situation.', time:3, target:{page:'talents',sub:'explore',scroll:'domainGrid'}},
       ]},
       { label_ru: 'Захотеть', label_en: 'Desire', steps: [
-        { id:'s3', title_ru:'Я нашёл связку между двумя талантами, которая объяснила мне что-то про себя', title_en:'I found a talent pair that explained something about myself', why_ru:'Связки — то, что делает вас уникальным. Здесь возникает момент «вот почему я так делаю».', why_en:'Pairs are what make you unique. This is where the "aha" moment happens.', time:5, target:{page:'talents',sub:'dynamics',scroll:'dynControls'}},
+        { id:'s3', title_ru:'Я нашёл связку между двумя талантами, которая объяснила мою привычку или реакцию', title_en:'I found a talent pair that explained a habit or reaction of mine', why_ru:'Связки — то, что делает вас уникальным. Здесь возникает момент «вот почему я так делаю».', why_en:'Pairs are what make you unique. This is where the "aha" moment happens.', time:5, target:{page:'talents',sub:'dynamics',scroll:'dynControls'}},
         { id:'s4', title_ru:'Я прочитал свой лидерский профиль и нашёл описание, которое точно про меня', title_en:'I read my leadership profile and found a description that fits me exactly', why_ru:'Карточки показывают, как ваши таланты строят доверие, заботу, опору и направление.', why_en:'Cards show how your talents build trust, care, stability and direction.', time:4, target:{page:'talents',sub:'leadership',scroll:'cardsArea'}},
       ]},
       { label_ru: 'Научиться', label_en: 'Knowledge', steps: [
-        { id:'s5', title_ru:'Я прошёл чекап рабочей среды и увидел свой процент совпадения', title_en:'I completed the environment checkup and saw my fit score', why_ru:'Чекап показывает, раскрывает ли ваша роль сильные стороны или гасит их.', why_en:'Checkup shows whether your role leverages your strengths or suppresses them.', time:4, target:{page:'talents',sub:'environment',scroll:'checkupContent'}},
+        { id:'s5', title_ru:'Я прошёл чекап рабочей среды и увидел, насколько моя работа подходит моим талантам', title_en:'I completed the environment checkup and saw how well my work fits my talents', why_ru:'Чекап показывает, раскрывает ли ваша роль сильные стороны или гасит их.', why_en:'Checkup shows whether your role leverages your strengths or suppresses them.', time:4, target:{page:'talents',sub:'environment',scroll:'checkupContent'}},
         { id:'s6', title_ru:'Я скопировал AI-инструкции и вставил в свой ChatGPT или Claude', title_en:'I copied AI instructions and pasted them into ChatGPT or Claude', why_ru:'AI начинает учитывать ваш стиль мышления — разница ощущается с первого запроса.', why_en:'AI starts considering your thinking style — the difference is felt from the first query.', time:2, target:{page:'ai',sub:'setup',scroll:'aiInstrContent'}},
       ]},
       { label_ru: 'Применить', label_en: 'Ability', steps: [
@@ -2511,9 +2506,9 @@ const OB_CHECKLISTS = {
     title_ru: 'Путь эксперта', title_en: 'Expert Path',
     phases: [
       { label_ru: 'Освоить самому', label_en: 'Master it yourself', steps: [
-        { id:'e1', title_ru:'Я прошёл все разделы продукта как обычный пользователь', title_en:'I went through all product sections as a regular user', why_ru:'Невозможно фасилитировать опыт, который вы не прожили сами.', why_en:'You cannot facilitate an experience you haven\'t lived yourself.', time:15, target:{page:'talents',sub:'explore',scroll:'domainBalance'}},
+        { id:'e1', title_ru:'Я прошёл все разделы Talents Navigator как обычный пользователь', title_en:'I went through all Talents Navigator sections as a regular user', why_ru:'Невозможно фасилитировать опыт, который вы не прожили сами.', why_en:'You cannot facilitate an experience you haven\'t lived yourself.', time:15, target:{page:'talents',sub:'explore',scroll:'domainBalance'}},
         { id:'e2', title_ru:'Я создал организацию и получил инвайт-ссылку', title_en:'I created an organization and got an invite link', why_ru:'Без этого вся командная аналитика недоступна.', why_en:'Without this, all team analytics are unavailable.', time:2, target:null},
-        { id:'e3', title_ru:'Минимум 3 человека ввели свои таланты по инвайт-ссылке', title_en:'At least 3 people entered their talents via invite link', why_ru:'Командная аналитика становится содержательной начиная с 3-4 участников.', why_en:'Team analytics become meaningful starting from 3-4 participants.', time:1, target:null},
+        { id:'e3', title_ru:'Минимум 3 человека ввели свои таланты по инвайт-ссылке', title_en:'At least 3 people entered their talents via invite link', why_ru:'Командная аналитика становится содержательной начиная с 3-4 участников.', why_en:'Team analytics become meaningful starting from 3-4 participants.', time:0, target:null},
       ]},
       { label_ru: 'Подготовить данные', label_en: 'Prepare data', steps: [
         { id:'e4', title_ru:'Я изучил доменный баланс и зафиксировал слепые зоны команды', title_en:'I studied domain balance and documented team blind spots', why_ru:'«60% в Стратегическом мышлении и 0% во Влиянии» — конкретный аргумент, а не абстрактная теория.', why_en:'"60% Strategic Thinking, 0% Influencing" — a concrete argument, not abstract theory.', time:3, target:null},
@@ -2545,6 +2540,14 @@ function showObFab(){
   const fab=document.getElementById('obFab');
   fab.style.display='flex';
   updateObBadge();
+  // Auto-open on first visit
+  if(!_obState.checklist&&!localStorage.getItem('tn_ob_seen')){
+    localStorage.setItem('tn_ob_seen','1');
+    setTimeout(()=>toggleOnboarding(),600);
+  }
+  // Offset logout button so it doesn't overlap FAB
+  const logout=document.getElementById('logoutBtn');
+  if(logout)logout.style.bottom='60px';
 }
 function updateObBadge(){
   if(!_obState.checklist)return;
@@ -2565,7 +2568,7 @@ function renderObPanel(){
       </div>
       <div class="ob-choose-card" onclick="chooseChecklist('expert')">
         <div class="ob-choose-title">${_lang==='en'?'Expert Path':'Путь эксперта'}</div>
-        <div class="ob-choose-desc">${_lang==='en'?'12 steps: from personal experience to team workshop and ROI report.':'12 шагов: от личного опыта до воркшопа для команды и отчёта для руководства.'}</div>
+        <div class="ob-choose-desc">${_lang==='en'?'12 steps: from personal experience to workshop and ROI report. ~2 hours excluding workshop.':'12 шагов: от личного опыта до воркшопа и отчёта для руководства. ~2 часа без учёта воркшопа.'}</div>
       </div>
     </div>`;
     return;
@@ -2588,7 +2591,7 @@ function renderObPanel(){
         <div class="ob-step-content">
           <div class="ob-step-title">${title}</div>
           <div class="ob-step-why">${why}</div>
-          <div class="ob-step-meta"><span class="ob-step-time">~${st.time} ${_lang==='en'?'min':'мин'}</span>${goHtml}</div>
+          <div class="ob-step-meta">${st.time?`<span class="ob-step-time">~${st.time} ${_lang==='en'?'min':'мин'}</span>`:''}${goHtml}</div>
         </div>
       </div>`;
     });
