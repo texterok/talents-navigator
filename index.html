@@ -211,7 +211,11 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .olist-pos{font-size:18px;font-weight:700;min-width:24px;text-align:right;line-height:1;flex-shrink:0}
 .olist-name{font-size:12px;font-weight:600;line-height:1.3;color:var(--text-1)}
 .olist-ru{font-size:10px;color:var(--text-3)}
-.olist-domain{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 6px;border-radius:10px;margin-left:auto;flex-shrink:0}
+.olist-domain{font-size:9px;font-weight:700;letter-spacing:.03em;padding:3px 8px;border-radius:10px;margin-left:auto;flex-shrink:0;color:#fff}
+.olist-domain.exec{background:var(--exec)}
+.olist-domain.infl{background:var(--infl)}
+.olist-domain.rel{background:var(--rel)}
+.olist-domain.strat{background:var(--strat)}
 .domain-grid-wrap{margin-top:16px}
 
 /* Domain grid (Gallup-style) */
@@ -597,40 +601,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
       </div>
     </div>
 
-    <!-- Energy zones — context for top-10 badges above -->
-    <div class="method-toggle">
-      <div class="method-hdr" onclick="this.parentElement.classList.toggle('open')">
-        <span>⚡ Сколько энергии стоит каждый талант</span>
-        <span class="method-arrow">▾</span>
-      </div>
-      <div class="method-body">
-        <p>Каждый человек делает одни вещи легко — это его природные таланты. Другие требуют сознательного усилия. Позиция таланта в вашем профиле определяет, в какой зоне он находится — и сколько энергии стоит его использование.</p>
-        <div class="zone-table">
-          <div class="zt-row zt-z1"><span class="zt-pos">1–5</span><span class="zt-name">Работает само</span><span class="zt-desc">Природный талант. Включается рефлекторно, даёт энергию. Это то, что вы делаете лучше всего и с удовольствием.</span></div>
-          <div class="zt-row zt-z2"><span class="zt-pos">6–10</span><span class="zt-name">Легко включается</span><span class="zt-desc">Почти как топ-5. Активируется быстро, в рабочих условиях работает надёжно. Требует минимального усилия.</span></div>
-          <div class="zt-row zt-z3"><span class="zt-pos">11–15</span><span class="zt-name">Доступно осознанно</span><span class="zt-desc">Включается при намерении. Работает устойчиво при правильной структуре и среде. Но не автоматично.</span></div>
-          <div class="zt-row zt-z4"><span class="zt-pos">16–20</span><span class="zt-name">Требует усилия</span><span class="zt-desc">Каждый раз стоит ресурса. При постоянном использовании накапливается усталость. Лучше делегировать.</span></div>
-          <div class="zt-row zt-z5"><span class="zt-pos">21–34</span><span class="zt-name">Вне природной зоны</span><span class="zt-desc">Максимальные затраты при минимальной отдаче. Если роль требует постоянно — стоит закрыть через команду.</span></div>
-        </div>
-        <p style="margin-top:14px">Важно не то, насколько силён отдельный талант в баллах, а то, как ваши ведущие таланты сочетаются с тем, что вы реально делаете каждый день.</p>
-        <p><strong>Четыре зоны лидерской энергии</strong> — каждая тема принадлежит одной из четырёх зон:</p>
-        <div class="domain-legend">
-          <span class="dl-item" style="color:var(--exec)">● Исполнение</span>
-          <span class="dl-item" style="color:var(--infl)">● Влияние</span>
-          <span class="dl-item" style="color:var(--rel)">● Выстраивание отношений</span>
-          <span class="dl-item" style="color:var(--strat)">● Стратегическое мышление</span>
-        </div>
-        <p style="margin-top:18px"><strong>Почему это работает — цифры Gallup</strong></p>
-        <div class="stats-grid">
-          <div class="stat-card"><div class="stat-num">×6</div><div class="stat-desc">вовлечённость у тех, кто фокусируется на сильных сторонах</div></div>
-          <div class="stat-card"><div class="stat-num">+23%</div><div class="stat-desc">прибыльность у команд в верхнем квартиле вовлечённости</div></div>
-          <div class="stat-card"><div class="stat-num">+18%</div><div class="stat-desc">продуктивность у вовлечённых команд</div></div>
-          <div class="stat-card"><div class="stat-num">−15%</div><div class="stat-desc">текучесть после обратной связи по талантам</div></div>
-        </div>
-        <p class="stats-source">Источник: Gallup Meta-Analysis Q12®, Strengths-Based Employee Development 2016.</p>
-      </div>
-    </div>
-
   </div>
 
   <!-- PAGE: ТАЛАНТЫ -->
@@ -644,6 +614,22 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
     <div class="tab-content active" id="tabExplore">
       <div class="domain-balance" id="domainBalance"></div>
       <div class="sec-title" id="detailedTitle" style="margin-top:20px">Подробный разбор талантов</div>
+      <div class="method-toggle" style="margin-bottom:16px">
+        <div class="method-hdr" onclick="this.parentElement.classList.toggle('open')">
+          <span>⚡ Сколько энергии стоит каждый талант</span>
+          <span class="method-arrow">▾</span>
+        </div>
+        <div class="method-body">
+          <p>Позиция таланта в вашем профиле определяет, сколько энергии стоит его использование.</p>
+          <div class="zone-table">
+            <div class="zt-row zt-z1"><span class="zt-pos">1–5</span><span class="zt-name">Работает само</span><span class="zt-desc">Природный талант. Включается рефлекторно, даёт энергию.</span></div>
+            <div class="zt-row zt-z2"><span class="zt-pos">6–10</span><span class="zt-name">Легко включается</span><span class="zt-desc">Активируется быстро, работает надёжно. Минимальное усилие.</span></div>
+            <div class="zt-row zt-z3"><span class="zt-pos">11–15</span><span class="zt-name">Доступно осознанно</span><span class="zt-desc">Включается при намерении. Работает устойчиво при правильной среде.</span></div>
+            <div class="zt-row zt-z4"><span class="zt-pos">16–20</span><span class="zt-name">Требует усилия</span><span class="zt-desc">Каждый раз стоит ресурса. Лучше делегировать.</span></div>
+            <div class="zt-row zt-z5"><span class="zt-pos">21–34</span><span class="zt-name">Вне природной зоны</span><span class="zt-desc">Максимальные затраты при минимальной отдаче.</span></div>
+          </div>
+        </div>
+      </div>
       <div class="grid-mode-toggle" id="gridModeToggle">
         <button class="gmt-btn active" id="gmtOrder" onclick="setGridMode('order')">По порядку</button>
         <button class="gmt-btn" id="gmtDomain" onclick="setGridMode('domain')">По доменам</button>
@@ -846,8 +832,8 @@ function renderGridView(){
       {from:21,to:34,name:zn[4],color:'#DC2626'},
     ];
     const DOMAIN_LABELS=_lang==='en'
-      ?{'Исполнение':'Exec','Влияние':'Infl','Выстраивание отношений':'Rel','Стратегическое мышление':'Strat'}
-      :{'Исполнение':'Исп','Влияние':'Вл','Выстраивание отношений':'Отн','Стратегическое мышление':'Стр'};
+      ?{'Исполнение':'Executing','Влияние':'Influencing','Выстраивание отношений':'Relationship','Стратегическое мышление':'Strategic'}
+      :{'Исполнение':'Исполнение','Влияние':'Влияние','Выстраивание отношений':'Отношения','Стратегическое мышление':'Стратегия'};
     const col1=[],col2=[];
     ZONES.forEach(zone=>{
       const items=[];
