@@ -949,12 +949,16 @@ function renderBlindSpots(consented) {
       if (impact) detailHtml = `<div class="blind-impact">${esc(impact)}</div>`;
     } else if (item.severity === 'weak') {
       const names = (item.people||[]).map(p => `<strong>${esc(p.name)}</strong> (#${p.pos})`).join(', ');
-      detailHtml = `<div class="blind-explain">Ресурс в зоне 6-10: ${names}</div>`;
+      detailHtml = `<div class="blind-explain"><div style="margin-bottom:6px">Ресурс в зоне 6-10: ${names}</div>`;
+      if (impact) detailHtml += `<div class="blind-impact" style="margin-top:6px"><strong>Риск:</strong> этот талант не работает на автопилоте. Если не задействовать осознанно — ${esc(impact).charAt(0).toLowerCase() + esc(impact).slice(1)}</div>`;
+      detailHtml += `</div>`;
     } else if (item.severity === 'fragile') {
       const holderNames = (item.top5People||[]).map(p => `<strong>${esc(p.name)}</strong> (#${p.pos})`).join(', ');
       const supportNames = (item.people||[]).map(p => `<strong>${esc(p.name)}</strong> (#${p.pos})`).join(', ');
-      let explain = `Носитель: ${holderNames}`;
+      let explain = `<div style="margin-bottom:6px">Носитель: ${holderNames}`;
       if (supportNames) explain += `. Подстраховка 6-10: ${supportNames}`;
+      explain += `</div>`;
+      if (impact) explain += `<div class="blind-impact" style="margin-top:6px"><strong>Если этот человек уходит:</strong> ${esc(impact)}</div>`;
       detailHtml = `<div class="blind-explain">${explain}</div>`;
     }
 
