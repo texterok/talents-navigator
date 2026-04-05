@@ -318,6 +318,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .dyn-check-box{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;transition:all .15s;flex-shrink:0}
 .dyn-check.checked .dyn-check-box{background:var(--accent);border-color:var(--accent);color:#fff}
 .dyn-check-pos{font-size:10px;font-weight:700;color:var(--text-3);min-width:16px}
+.dyn-show-all{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px dashed var(--border);background:transparent;color:var(--text-2);transition:all .15s}
+.dyn-show-all:hover{border-color:var(--accent);color:var(--accent)}
 
 /* REFLECTION QUESTIONS */
 .card-questions{border-top:1px solid var(--border-light);padding:20px 24px}
@@ -1158,26 +1160,35 @@ function renderDomainBalance(){
 
 let dynChecked=new Set();
 
+let _dynShowAll=false;
 function renderDynControls(){
   const checksEl=document.getElementById('dynChecks');
-  const top10=selected;
-  if(top10.length<2){checksEl.innerHTML='';return}
-  const validChecked=new Set([...dynChecked].filter(n=>top10.includes(n)));
-  if(validChecked.size===0)top10.slice(0,Math.min(5,top10.length)).forEach(n=>validChecked.add(n));
+  const all=selected;
+  if(all.length<2){checksEl.innerHTML='';return}
+  const validChecked=new Set([...dynChecked].filter(n=>all.includes(n)));
+  if(validChecked.size===0)all.slice(0,Math.min(5,all.length)).forEach(n=>validChecked.add(n));
   dynChecked=validChecked;
+  const visible=_dynShowAll?all:all.slice(0,10);
   let html='';
-  top10.forEach((name,i)=>{
+  visible.forEach((name,i)=>{
     const t=findTheme(name);if(!t)return;
+    const label=_lang==='en'?name:(t.ru||name);
     const checked=dynChecked.has(name)?' checked':'';
     html+=`<label class="dyn-check${checked}" onclick="toggleDynCheck('${name}',event)">
       <span class="dyn-check-box">✓</span>
       <span class="dyn-check-pos">#${i+1}</span>
-      <span>${name}</span>
+      <span>${label}</span>
     </label>`;
   });
+  if(all.length>10){
+    const toggleLabel=_dynShowAll
+      ?(_lang==='en'?'Show top-10':'Показать топ-10')
+      :(_lang==='en'?'Show all':'Показать все');
+    html+=`<button class="dyn-show-all" onclick="_dynShowAll=!_dynShowAll;renderDynControls();renderDynamics()">${toggleLabel}</button>`;
+  }
   checksEl.innerHTML=html;
   const btn=document.getElementById('dynSelectAll');
-  btn.textContent=dynChecked.size===top10.length?'Снять все':'Выбрать все';
+  btn.textContent=dynChecked.size===all.length?(_lang==='en'?'Deselect all':'Снять все'):(_lang==='en'?'Select all':'Выбрать все');
 }
 
 function toggleDynCheck(name,e){
@@ -1194,13 +1205,27 @@ function toggleAllDynChecks(){
 }
 
 const CAT_LABELS={
-  synergy:{ru:'Усиление',en:'Synergy',cls:'synergy'},
-  productive_tension:{ru:'Напряжение',en:'Tension',cls:'tension'},
-  compensating:{ru:'Компенсация',en:'Compensating',cls:'compensating'},
-  statistical:{ru:'Частая пара',en:'Common pair',cls:'statistical'},
-  statistical_rare:{ru:'Редкая пара',en:'Rare pair',cls:'rare'},
-  complementary:{ru:'Дополнение',en:'Complement',cls:'complementary'},
-  moderating:{ru:'Балансировка',en:'Moderating',cls:'moderating'},
+  synergy:{ru:'Усиление',en:'Synergy',cls:'synergy',
+    hint_ru:'Таланты усиливают друг друга — вместе дают больше, чем по отдельности',
+    hint_en:'Talents amplify each other — together they produce more than separately'},
+  productive_tension:{ru:'Напряжение',en:'Tension',cls:'tension',
+    hint_ru:'Таланты тянут в разные стороны — это создаёт продуктивный конфликт, которым нужно управлять',
+    hint_en:'Talents pull in different directions — productive conflict that needs managing'},
+  compensating:{ru:'Компенсация',en:'Compensating',cls:'compensating',
+    hint_ru:'Один талант закрывает слабую сторону другого',
+    hint_en:'One talent covers the blind spot of another'},
+  statistical:{ru:'Частая пара',en:'Common pair',cls:'statistical',
+    hint_ru:'Эти таланты часто встречаются вместе в топ-5 по данным Gallup',
+    hint_en:'These talents frequently appear together in top-5 according to Gallup data'},
+  statistical_rare:{ru:'Редкая пара',en:'Rare pair',cls:'rare',
+    hint_ru:'Эти таланты редко встречаются вместе — необычное сочетание с особой динамикой',
+    hint_en:'These talents rarely appear together — an unusual combination with special dynamics'},
+  complementary:{ru:'Дополнение',en:'Complement',cls:'complementary',
+    hint_ru:'Таланты дополняют друг друга — каждый привносит то, чего не хватает другому',
+    hint_en:'Talents complement each other — each brings what the other lacks'},
+  moderating:{ru:'Балансировка',en:'Moderating',cls:'moderating',
+    hint_ru:'Один талант сдерживает и уравновешивает другой — помогает не уходить в крайности',
+    hint_en:'One talent moderates the other — helps avoid extremes'},
 };
 function renderDynamics(){
   const el=document.getElementById('dynamicsArea');
@@ -1239,7 +1264,7 @@ function renderDynamics(){
           <div class="dyn-pair">
             <div class="dyn-pair-names">#${posA} ${nameA} + #${posB} ${nameB}</div>
           </div>
-          <span class="dyn-pair-cat dyn-cat-${cat.cls}">${catLabel}</span>
+          <span class="dyn-pair-cat dyn-cat-${cat.cls}" title="${_lang==='en'?cat.hint_en:cat.hint_ru}">${catLabel}</span>
           ${freq}
           <span class="dyn-card-arrow">▾</span>
         </div>
