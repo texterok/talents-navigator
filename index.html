@@ -364,10 +364,25 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .cr-action{margin-top:16px;padding:14px 18px;background:var(--surface-alt);border-radius:8px;font-size:14px;line-height:1.6}
 .dyn-title{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:4px}
 .dyn-subtitle{font-size:13px;color:var(--text-2);margin-bottom:16px;line-height:1.5}
-.dyn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.dyn-card{background:var(--surface);border:1px solid var(--border-light);border-radius:8px;padding:14px 16px}
-.dyn-pair{font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px}
-.dyn-text{font-size:13px;line-height:1.55;color:var(--text)}
+.dyn-grid{display:flex;flex-direction:column;gap:10px}
+.dyn-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);overflow:hidden}
+.dyn-card-hdr{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;transition:background .15s}
+.dyn-card-hdr:hover{background:var(--surface-alt)}
+.dyn-card.open .dyn-card-hdr{border-bottom:1px solid var(--border-light)}
+.dyn-pair{flex:1;min-width:0}
+.dyn-pair-names{font-size:13px;font-weight:700;color:var(--text)}
+.dyn-pair-cat{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;flex-shrink:0}
+.dyn-cat-synergy{background:#E6F7F0;color:#0B7A55}
+.dyn-cat-tension{background:#FFF3E0;color:#C2590A}
+.dyn-cat-compensating{background:#EBF1FF;color:#1856C7}
+.dyn-cat-statistical{background:#F0ECFF;color:#6D28D9}
+.dyn-cat-complementary{background:#F0EDE6;color:#5A5A5A}
+.dyn-pair-freq{font-size:10px;font-weight:700;color:var(--accent);flex-shrink:0}
+.dyn-card-arrow{font-size:12px;color:var(--text-3);transition:transform .2s;flex-shrink:0}
+.dyn-card.open .dyn-card-arrow{transform:rotate(180deg)}
+.dyn-card-body{display:none;padding:14px 16px;font-size:13px;line-height:1.65;color:var(--text-2)}
+.dyn-card.open .dyn-card-body{display:block}
+.dyn-card-short{font-size:12px;color:var(--text-3);margin-top:2px}
 .ns-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
 .ns-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);padding:20px;text-align:center}
 .ns-icon{font-size:28px;margin-bottom:10px}
@@ -763,6 +778,7 @@ const RU_MAP={
   "Катализатор активности":"Activator"
 };
 let DYNAMICS={}
+let COMBINATIONS={}
 let selected=[];
 
 function findTheme(n){return T.find(t=>t.name.toLowerCase()===n.toLowerCase())}
@@ -1172,6 +1188,15 @@ function toggleAllDynChecks(){
   renderDynControls();renderDynamics();
 }
 
+const CAT_LABELS={
+  synergy:{ru:'Усиление',en:'Synergy',cls:'synergy'},
+  productive_tension:{ru:'Напряжение',en:'Tension',cls:'tension'},
+  compensating:{ru:'Компенсация',en:'Compensating',cls:'compensating'},
+  statistical:{ru:'Частая пара',en:'Common pair',cls:'statistical'},
+  statistical_rare:{ru:'Редкая пара',en:'Rare pair',cls:'statistical'},
+  complementary:{ru:'Дополнение',en:'Complement',cls:'complementary'},
+  moderating:{ru:'Балансировка',en:'Moderating',cls:'complementary'},
+};
 function renderDynamics(){
   const el=document.getElementById('dynamicsArea');
   const checkedArr=[...dynChecked].filter(n=>selected.includes(n));
@@ -1184,16 +1209,48 @@ function renderDynamics(){
   for(let i=0;i<checkedArr.length;i++){
     for(let j=i+1;j<checkedArr.length;j++){
       const key=[checkedArr[i],checkedArr[j]].sort().join('|');
-      const text=DYNAMICS[key];
-      if(text)pairs.push({a:checkedArr[i],b:checkedArr[j],text});
+      const combo=COMBINATIONS[key];
+      const fallback=DYNAMICS[key];
+      if(combo||fallback)pairs.push({a:checkedArr[i],b:checkedArr[j],combo,fallback});
     }
   }
-  let html=`<div class="dyn-subtitle" style="margin-bottom:16px">Как ${checkedArr.length} выбранных талантов усиливают друг друга — ${pairs.length} связок.</div>`;
+  // Sort: rich combos first, then fallbacks
+  pairs.sort((a,b)=>(b.combo?1:0)-(a.combo?1:0));
+  const richCount=pairs.filter(p=>p.combo).length;
+  let html=`<div class="dyn-subtitle">${pairs.length} связок между ${checkedArr.length} талантами${richCount?` · ${richCount} с подробным разбором`:''}</div>`;
   html+=`<div class="dyn-grid">`;
   pairs.forEach(p=>{
     const tA=findTheme(p.a);const tB=findTheme(p.b);
     const posA=selected.indexOf(p.a)+1;const posB=selected.indexOf(p.b)+1;
-    html+=`<div class="dyn-card"><div class="dyn-pair">#${posA} ${p.a} (${tA?tA.ru:''}) + #${posB} ${p.b} (${tB?tB.ru:''})</div><div class="dyn-text">${p.text}</div></div>`;
+    const nameA=_lang==='en'?p.a:(tA?tA.ru:p.a);
+    const nameB=_lang==='en'?p.b:(tB?tB.ru:p.b);
+    if(p.combo){
+      const c=p.combo;
+      const cat=CAT_LABELS[c.category]||CAT_LABELS.synergy;
+      const catLabel=_lang==='en'?cat.en:cat.ru;
+      const freq=c.frequency?`<span class="dyn-pair-freq">${c.frequency}</span>`:'';
+      html+=`<div class="dyn-card" onclick="this.classList.toggle('open')">
+        <div class="dyn-card-hdr">
+          <div class="dyn-pair">
+            <div class="dyn-pair-names">#${posA} ${nameA} + #${posB} ${nameB}</div>
+          </div>
+          <span class="dyn-pair-cat dyn-cat-${cat.cls}">${catLabel}</span>
+          ${freq}
+          <span class="dyn-card-arrow">▾</span>
+        </div>
+        <div class="dyn-card-body">${c.text}</div>
+      </div>`;
+    } else {
+      html+=`<div class="dyn-card" onclick="this.classList.toggle('open')">
+        <div class="dyn-card-hdr">
+          <div class="dyn-pair">
+            <div class="dyn-pair-names">#${posA} ${nameA} + #${posB} ${nameB}</div>
+          </div>
+          <span class="dyn-card-arrow">▾</span>
+        </div>
+        <div class="dyn-card-body">${p.fallback}</div>
+      </div>`;
+    }
   });
   html+=`</div>`;
   el.innerHTML=html;
@@ -2188,7 +2245,7 @@ async function afterLogin() {
 }
 
 async function loadAndRender(themes) {
-  const files = ['t','dynamics','theme_rules','amp_data','amp_agents','checkup_qs'];
+  const files = ['t','dynamics','theme_rules','amp_data','amp_agents','checkup_qs','combinations'];
   const baseUrl = `${SUPA_URL}/storage/v1/object/authenticated/content`;
   const { data: { session } } = await supa.auth.getSession();
   if (!session) throw new Error('Сессия истекла, войдите снова');
@@ -2205,6 +2262,7 @@ async function loadAndRender(themes) {
   AMP_DATA = results[3];
   AMP_AGENTS = results[4];
   CHECKUP_QS = results[5];
+  COMBINATIONS = results[6];
   selected = themes;
   hideOverlay();
   render();
