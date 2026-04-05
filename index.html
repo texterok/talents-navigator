@@ -1614,68 +1614,79 @@ function renderAiInstr(){
   const explanation=generateAiExplanation();
 
   el.innerHTML=`
-<div class="ai-instr-wrap">
-  <div class="ai-intro">
-    <div class="ai-intro-title">AI уже знает, как вы думаете</div>
-    <div class="ai-intro-text">Вы потратили время, чтобы разобраться в своих талантах. Теперь передайте это знание вашему AI-ассистенту — и он перестанет давать вам советы, которые не подходят вашему стилю мышления.<br><br>
-    <strong>Что изменится:</strong> AI будет учитывать вашу склонность к анализу, потребность в глубине, нетерпимость к поверхностным ответам — всё, что делает вас вами. Один раз вставить — работает в каждом чате.</div>
+<div class="amp-wrap">
+  <div class="amp-adkar">
+    <div class="amp-adkar-title">AI уже знает, как вы думаете</div>
+    <div class="amp-adkar-text">Вы потратили время, чтобы разобраться в своих талантах. Теперь передайте это знание вашему AI-ассистенту — и он перестанет давать советы, которые не подходят вашему стилю мышления.</div>
+    <div class="amp-adkar-cta"><strong>Один раз вставить — работает в каждом чате.</strong></div>
   </div>
 
-  <div class="ai-toggle">
-    <div class="ai-toggle-hdr" onclick="this.parentElement.classList.toggle('open')">
-      <span class="ai-toggle-icon">📖</span>
-      <span style="flex:1">Почему этот формат работает</span>
-      <span class="ai-toggle-arrow">▾</span>
+  <div class="amp-card">
+    <div class="amp-card-hdr" onclick="this.closest('.amp-card').classList.toggle('open')">
+      <span class="amp-card-icon">📖</span>
+      <div class="amp-card-hdr-info">
+        <div class="amp-card-hdr-top"><span class="amp-theme-name">Почему этот формат работает</span></div>
+        <div class="amp-card-subtitle">Как устроены инструкции и зачем нужны примеры</div>
+      </div>
+      <span class="amp-card-arrow">▾</span>
     </div>
-    <div class="ai-toggle-body">
-      <p>Исследования показывают, что запреты (<strong>«никогда не делай»</strong>) LLM выполняет надёжнее, чем предписания (<strong>«всегда делай»</strong>). Добавление причины усиливает эффект — модель экстраполирует правило на смежные случаи, а не применяет его буквально.</p>
-      <p>3–5 конкретных примеров (few-shot) работают лучше абстрактных принципов. Больше примеров — падение качества. При 30 правилах модель теряет способность определить, какое из них сработало.</p>
-      <p>Поэтому здесь: 3–4 запрета с причиной + 3 примера «вместо/говори» — оптимальное количество для надёжного влияния на поведение AI.</p>
-      <p style="font-size:12px;color:var(--text-2);margin-top:4px">Источники: arxiv 2311.04235, 2407.08440, Anthropic prompting docs, GPT-4.1 Prompting Guide</p>
+    <div class="amp-card-body-wrap">
+      <div class="amp-card-body">Запреты («никогда не делай») LLM выполняет надёжнее, чем предписания. Добавление причины усиливает эффект. 3–5 примеров (few-shot) работают лучше абстрактных принципов — больше примеров даёт падение качества.</div>
     </div>
   </div>
 
-  <div class="ai-explain">
-    <div class="ai-explain-title">Почему именно такие инструкции</div>
-    <div class="ai-explain-themes">${explanation}</div>
-    <div class="ai-explain-footer">↓ Из этого вытекают правила ниже</div>
+  <div class="amp-card">
+    <div class="amp-card-hdr" onclick="this.closest('.amp-card').classList.toggle('open')">
+      <span class="amp-card-icon">🧬</span>
+      <div class="amp-card-hdr-info">
+        <div class="amp-card-hdr-top"><span class="amp-theme-name">Почему именно такие инструкции</span></div>
+        <div class="amp-card-subtitle">Логика правил под ваш профиль</div>
+      </div>
+      <span class="amp-card-arrow">▾</span>
+    </div>
+    <div class="amp-card-body-wrap">
+      <div class="amp-card-body">${explanation}</div>
+    </div>
   </div>
 
-  <div class="ai-block">
-    <div class="ai-block-hdr">
-      <div class="ai-block-title">Короткий формат</div>
-      <div class="ai-block-subtitle">Для Claude.ai → Settings → Personal preferences · ChatGPT → Customize ChatGPT</div>
+  <div class="amp-card open">
+    <div class="amp-card-hdr" onclick="this.closest('.amp-card').classList.toggle('open')">
+      <span class="amp-card-icon">⚡</span>
+      <div class="amp-card-hdr-info">
+        <div class="amp-card-hdr-top"><span class="amp-theme-name">Короткий формат</span></div>
+        <div class="amp-card-subtitle">Claude.ai → Settings → Personal preferences · ChatGPT → Customize</div>
+      </div>
+      <span class="amp-card-arrow">▾</span>
     </div>
-    <div class="ai-how">
-      <div class="ai-how-title">Как использовать</div>
-      <ol class="ai-how-list">
-        <li>Скопируйте текст ниже</li>
-        <li>Откройте <strong>claude.ai</strong> → иконка профиля → <strong>Settings</strong> → <strong>Personal preferences</strong></li>
-        <li>Вставьте в поле и сохраните</li>
-        <li>Теперь в каждом новом чате Claude будет учитывать ваш стиль автоматически</li>
-      </ol>
+    <div class="amp-card-body-wrap">
+      <div class="amp-agents">
+        <div class="amp-agent-row">
+          <div class="amp-agent-pain">Как использовать</div>
+          <div class="amp-agent-jtbd">1. Скопируйте текст ниже<br>2. Откройте <strong>claude.ai</strong> → Settings → Personal preferences<br>3. Вставьте и сохраните<br>4. Каждый новый чат учитывает ваш стиль автоматически</div>
+          <div class="amp-prompt-wrap"><div class="amp-prompt-label">Промпт</div><textarea class="ai-textarea" id="aiShortText" readonly>${short}</textarea><button class="amp-copy-btn" onclick="copyAiText('aiShortText', this)">Копировать</button></div>
+        </div>
+      </div>
     </div>
-    <textarea class="ai-textarea" id="aiShortText" readonly>${short}</textarea>
-    <button class="ai-copy-btn" onclick="copyAiText('aiShortText', this)">Скопировать</button>
   </div>
 
-  <div class="ai-block">
-    <div class="ai-block-hdr">
-      <div class="ai-block-title">Расширенный формат</div>
-      <div class="ai-block-subtitle">Для Claude Code → ~/.claude/CLAUDE.md · Cursor · любого AI в IDE</div>
+  <div class="amp-card">
+    <div class="amp-card-hdr" onclick="this.closest('.amp-card').classList.toggle('open')">
+      <span class="amp-card-icon">🛠</span>
+      <div class="amp-card-hdr-info">
+        <div class="amp-card-hdr-top"><span class="amp-theme-name">Расширенный формат</span></div>
+        <div class="amp-card-subtitle">Claude Code → CLAUDE.md · Cursor · любой AI в IDE</div>
+      </div>
+      <span class="amp-card-arrow">▾</span>
     </div>
-    <div class="ai-how">
-      <div class="ai-how-title">Как использовать</div>
-      <ol class="ai-how-list">
-        <li>Скопируйте текст ниже</li>
-        <li>Откройте файл <strong>~/.claude/CLAUDE.md</strong> (создайте, если нет)</li>
-        <li>Вставьте в конец файла</li>
-        <li>Claude Code будет загружать ваш профиль в каждую сессию автоматически</li>
-      </ol>
-      <div class="ai-how-note">Также работает для Cursor: вставьте в <strong>.cursorrules</strong> в корне проекта или в <strong>~/.cursor/rules</strong> для глобального применения.</div>
+    <div class="amp-card-body-wrap">
+      <div class="amp-agents">
+        <div class="amp-agent-row">
+          <div class="amp-agent-pain">Как использовать</div>
+          <div class="amp-agent-jtbd">1. Скопируйте текст ниже<br>2. Откройте <strong>~/.claude/CLAUDE.md</strong> (создайте, если нет)<br>3. Вставьте в конец файла<br>4. Claude Code загружает ваш профиль в каждую сессию</div>
+          <div class="amp-prompt-wrap"><div class="amp-prompt-label">Промпт</div><textarea class="ai-textarea ai-textarea-tall" id="aiFullText" readonly>${full}</textarea><button class="amp-copy-btn" onclick="copyAiText('aiFullText', this)">Копировать</button></div>
+        </div>
+      </div>
     </div>
-    <textarea class="ai-textarea ai-textarea-tall" id="aiFullText" readonly>${full}</textarea>
-    <button class="ai-copy-btn" onclick="copyAiText('aiFullText', this)">Скопировать</button>
   </div>
 
 </div>`;
