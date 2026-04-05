@@ -30,6 +30,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .hdr h1{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:-.02em}
 .hdr h1 em{font-style:normal;color:var(--accent)}
 .hdr-sub{font-size:12px;color:var(--text-3);font-weight:300}
+.lang-sw{display:flex;align-items:center;font-size:13px;font-weight:600;color:var(--text-2);background:rgba(31,29,25,.06);border:none;border-radius:8px;padding:5px 11px;cursor:pointer;transition:background .2s;letter-spacing:.04em;margin-left:auto}
+.lang-sw:hover{background:rgba(31,29,25,.1)}
 
 /* CONTAINER */
 .wrap{max-width:800px;margin:0 auto;padding:28px 24px 80px}
@@ -567,7 +569,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 
 <div class="hdr"><div class="hdr-in">
   <h1>Clifton<em>Strengths</em></h1>
-  <span class="hdr-sub">Навигатор талантов — руководство по лидерству</span>
+  <span class="hdr-sub" id="hdrSub">Навигатор талантов — руководство по лидерству</span>
+  <button class="lang-sw" id="langBtn" onclick="toggleLang()">EN</button>
 </div></div>
 
 <div class="wrap">
@@ -592,7 +595,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
   <div class="chips-area" id="chipsArea">
     <div class="profile-header">
       <div>
-        <div class="sec-title">Ваш профиль</div>
+        <div class="sec-title" id="profileTitle">Ваш профиль</div>
         <div id="profileTop5" class="profile-top5"></div>
       </div>
       <div class="grid-mode-toggle" id="gridModeToggle">
@@ -834,14 +837,17 @@ function renderGridView(){
   const grid=document.getElementById('domainGrid');
   if(!selected.length){grid.innerHTML='';return}
   if(_gridMode==='order'){
+    const zn=ZONE_I18N[_lang]||ZONE_I18N.ru;
     const ZONES=[
-      {from:1,to:5,name:'Работает само',color:'#059669'},
-      {from:6,to:10,name:'Легко включается',color:'#047857'},
-      {from:11,to:15,name:'Доступно осознанно',color:'#B45309'},
-      {from:16,to:20,name:'Требует усилия',color:'#D97706'},
-      {from:21,to:34,name:'Вне природной зоны',color:'#DC2626'},
+      {from:1,to:5,name:zn[0],color:'#059669'},
+      {from:6,to:10,name:zn[1],color:'#047857'},
+      {from:11,to:15,name:zn[2],color:'#B45309'},
+      {from:16,to:20,name:zn[3],color:'#D97706'},
+      {from:21,to:34,name:zn[4],color:'#DC2626'},
     ];
-    const DOMAIN_LABELS={'Исполнение':'Исп','Влияние':'Вл','Выстраивание отношений':'Отн','Стратегическое мышление':'Стр'};
+    const DOMAIN_LABELS=_lang==='en'
+      ?{'Исполнение':'Exec','Влияние':'Infl','Выстраивание отношений':'Rel','Стратегическое мышление':'Strat'}
+      :{'Исполнение':'Исп','Влияние':'Вл','Выстраивание отношений':'Отн','Стратегическое мышление':'Стр'};
     const col1=[],col2=[];
     ZONES.forEach(zone=>{
       const items=[];
@@ -870,7 +876,7 @@ function renderGridView(){
             <div class="olist-pos" style="color:${zone.color}">${item.pos}</div>
             <div><div class="olist-name">${item.name}</div><div class="olist-ru">${item.ru||''}</div></div>
             <span class="olist-domain ${dcls}">${dlabel}</span>
-            <span class="olist-item-more">Подробнее →</span>
+            <span class="olist-item-more">${_lang==='en'?'Details →':'Подробнее →'}</span>
           </div>`;
         });
         h+=`</div>`;
@@ -901,7 +907,7 @@ function renderGridView(){
         html+=`<div class="dgrid-cell ${item.zone.cls}${isTop?' top10':''}" style="cursor:pointer" onclick="openThemeOverlay('${cellSlug}','${item.ru}')">
           <div class="dgrid-cell-pos">${item.pos}</div>
           <div><div class="dgrid-cell-name">${item.name}</div><div class="dgrid-cell-ru">${item.ru}</div></div>
-          <span class="dgrid-cell-more">Подробнее</span>
+          <span class="dgrid-cell-more">${_lang==='en'?'Details':'Подробнее'}</span>
         </div>`;
       });
       html+=`</div>`;
@@ -2128,13 +2134,44 @@ function addLogoutButton() {
   });
 })();
 
+// ── LANGUAGE SWITCHER ────────────────────────────────────────────
+let _lang = localStorage.getItem('tn-lang') || 'ru';
+
+const I18N = {
+  'hdrSub':       {ru:'Навигатор талантов — руководство по лидерству', en:'Talent Navigator — leadership guide'},
+  'profileTitle': {ru:'Ваш профиль', en:'Your Profile'},
+  'gmtOrder':     {ru:'По порядку', en:'By rank'},
+  'gmtDomain':    {ru:'По доменам', en:'By domain'},
+};
+
+const ZONE_I18N = {
+  ru: ['Работает само','Легко включается','Доступно осознанно','Требует усилия','Вне природной зоны'],
+  en: ['Works naturally','Easily activated','Consciously accessible','Requires effort','Outside natural zone'],
+};
+
+function toggleLang(){
+  _lang = _lang === 'ru' ? 'en' : 'ru';
+  localStorage.setItem('tn-lang', _lang);
+  applyLang();
+  renderGridView();
+}
+function applyLang(){
+  document.getElementById('langBtn').textContent = _lang === 'ru' ? 'EN' : 'RU';
+  for (const [id, texts] of Object.entries(I18N)) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = texts[_lang];
+  }
+}
+applyLang();
+
 // ── THEME DEEP OVERLAY ──────────────────────────────────────────
 function openThemeOverlay(slug, ruName) {
   const overlay = document.getElementById('themeOverlay');
   const frame   = document.getElementById('themeOverlayFrame');
   const title   = document.getElementById('themeOverlayTitle');
   title.textContent = ruName;
-  frame.src = `theme/${slug}.html`;
+  const dir = _lang === 'en' ? 'theme-en' : 'theme';
+  frame.src = `${dir}/${slug}.html`;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -2144,7 +2181,6 @@ function closeThemeOverlay(event) {
   const overlay = document.getElementById('themeOverlay');
   overlay.classList.remove('open');
   document.body.style.overflow = '';
-  // reset iframe after animation
   setTimeout(() => { document.getElementById('themeOverlayFrame').src = ''; }, 300);
 }
 
