@@ -14,8 +14,8 @@
   --accent:#1B6B50;--accent-light:#E3F3EC;--accent-dark:#145A42;
   --exec:#6D28D9;--exec-bg:#F0ECFF;
   --infl:#C2590A;--infl-bg:#FFF3E8;
-  --rel:#0B7A55;--rel-bg:#E6F7F0;
-  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --rel:#1856C7;--rel-bg:#EBF1FF;
+  --strat:#0B7A55;--strat-bg:#E6F7F0;
   --serif:'Literata',Georgia,serif;
   --sans:'DM Sans',-apple-system,sans-serif;
   --r:10px;
@@ -574,23 +574,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 </div></div>
 
 <div class="wrap">
-  <!-- INPUT (hidden after login — talents entered during onboarding) -->
-  <div class="input-area" id="inputArea">
-    <div class="sec-title">Ваши таланты</div>
-    <div class="sec-desc">Вставьте свои топ-10 тем из отчёта Gallup — на русском или английском, в любом формате. Чем больше тем — тем полнее анализ.</div>
-    <textarea class="paste-box" id="pasteBox">1. Input
-2. Deliberative
-3. Analytical
-4. Ideation
-5. Intellection
-6. Learner
-7. Restorative
-8. Significance
-9. Context
-10. Strategic</textarea>
-    <div class="paste-hint">Распознаёт названия на русском и английском — по одному на строку, через запятую или с номерами. Рекомендуем вставить минимум 10 тем для полного анализа связок.</div>
-  </div>
-
   <!-- SELECTED CHIPS (profile) -->
   <div class="chips-area" id="chipsArea">
     <div class="profile-header">
@@ -598,56 +581,58 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
         <div class="sec-title" id="profileTitle">Ваш профиль</div>
         <div id="profileTop5" class="profile-top5"></div>
       </div>
-      <div class="grid-mode-toggle" id="gridModeToggle">
-        <button class="gmt-btn active" id="gmtOrder" onclick="setGridMode('order')">По порядку</button>
-        <button class="gmt-btn" id="gmtDomain" onclick="setGridMode('domain')">По доменам</button>
+    </div>
+
+    <!-- METHODOLOGY TOGGLE -->
+    <div class="method-toggle">
+      <div class="method-hdr" onclick="this.parentElement.classList.toggle('open')">
+        <span>⚡ Сколько энергии стоит каждый талант</span>
+        <span class="method-arrow">▾</span>
       </div>
+      <div class="method-body">
+        <p>Каждый человек делает одни вещи легко — это его природные таланты. Другие требуют сознательного усилия. Позиция таланта в вашем профиле определяет, в какой зоне он находится — и сколько энергии стоит его использование.</p>
+
+        <div class="zone-table">
+          <div class="zt-row zt-z1"><span class="zt-pos">1–5</span><span class="zt-name">Работает само</span><span class="zt-desc">Природный талант. Включается рефлекторно, даёт энергию. Это то, что вы делаете лучше всего и с удовольствием.</span></div>
+          <div class="zt-row zt-z2"><span class="zt-pos">6–10</span><span class="zt-name">Легко включается</span><span class="zt-desc">Почти как топ-5. Активируется быстро, в рабочих условиях работает надёжно. Требует минимального усилия.</span></div>
+          <div class="zt-row zt-z3"><span class="zt-pos">11–15</span><span class="zt-name">Доступно осознанно</span><span class="zt-desc">Включается при намерении. Работает устойчиво при правильной структуре и среде. Но не автоматично.</span></div>
+          <div class="zt-row zt-z4"><span class="zt-pos">16–20</span><span class="zt-name">Требует усилия</span><span class="zt-desc">Каждый раз стоит ресурса. При постоянном использовании накапливается усталость. Лучше делегировать.</span></div>
+          <div class="zt-row zt-z5"><span class="zt-pos">21–34</span><span class="zt-name">Вне природной зоны</span><span class="zt-desc">Максимальные затраты при минимальной отдаче. Если роль требует постоянно — стоит закрыть через команду.</span></div>
+        </div>
+
+        <p style="margin-top:14px">Важно не то, насколько силён отдельный талант в баллах, а то, как ваши ведущие таланты сочетаются с тем, что вы реально делаете каждый день. Если роль требует одного, а природа даёт другое — никакой опыт и мотивация не компенсируют эту разницу надолго.</p>
+
+        <p><strong>Четыре зоны лидерской энергии</strong> — ещё один срез. Каждая тема принадлежит одной из четырёх зон:</p>
+        <div class="domain-legend">
+          <span class="dl-item" style="color:var(--exec)">● Исполнение</span>
+          <span class="dl-item" style="color:var(--infl)">● Влияние</span>
+          <span class="dl-item" style="color:var(--rel)">● Выстраивание отношений</span>
+          <span class="dl-item" style="color:var(--strat)">● Стратегическое мышление</span>
+        </div>
+        <p>Команде не нужно, чтобы каждый был одинаково силён во всех зонах. Но команде нужно покрытие всех четырёх зон — через разных людей.</p>
+
+        <p style="margin-top:18px"><strong>Почему это работает — цифры исследований Gallup</strong></p>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-num">×6</div><div class="stat-desc">Те, кто фокусируется на сильных сторонах, в 6 раз более вовлечены в работу</div></div>
+          <div class="stat-card"><div class="stat-num">+23%</div><div class="stat-desc">прибыльность у команд в верхнем квартиле вовлечённости</div></div>
+          <div class="stat-card"><div class="stat-num">+18%</div><div class="stat-desc">продуктивность у команд с высокой вовлечённостью</div></div>
+          <div class="stat-card"><div class="stat-num">−15%</div><div class="stat-desc">текучесть у сотрудников, получивших обратную связь по талантам</div></div>
+        </div>
+        <p class="stats-source">Источник: Gallup Meta-Analysis Q12® (112 000 команд, 2.7 млн сотрудников); Strengths-Based Employee Development: The Business Results, 2016; Clifton StrengthsFinder Technical Report.</p>
+      </div>
+    </div>
+
+    <!-- DOMAIN BALANCE -->
+    <div class="domain-balance" id="domainBalance"></div>
+
+    <!-- ALL TALENTS GRID -->
+    <div class="sec-title" id="detailedTitle" style="margin-top:20px">Подробный разбор талантов</div>
+    <div class="grid-mode-toggle" id="gridModeToggle">
+      <button class="gmt-btn active" id="gmtOrder" onclick="setGridMode('order')">По порядку</button>
+      <button class="gmt-btn" id="gmtDomain" onclick="setGridMode('domain')">По доменам</button>
     </div>
     <div id="domainGrid" class="domain-grid-wrap"></div>
   </div>
-
-  <!-- METHODOLOGY TOGGLE -->
-  <div class="method-toggle">
-    <div class="method-hdr" onclick="this.parentElement.classList.toggle('open')">
-      <span>⚡ Сколько энергии стоит каждый талант</span>
-      <span class="method-arrow">▾</span>
-    </div>
-    <div class="method-body">
-      <p>Каждый человек делает одни вещи легко — это его природные таланты. Другие требуют сознательного усилия. Позиция таланта в вашем профиле определяет, в какой зоне он находится — и сколько энергии стоит его использование.</p>
-      
-      <div class="zone-table">
-        <div class="zt-row zt-z1"><span class="zt-pos">1–5</span><span class="zt-name">Работает само</span><span class="zt-desc">Природный талант. Включается рефлекторно, даёт энергию. Это то, что вы делаете лучше всего и с удовольствием.</span></div>
-        <div class="zt-row zt-z2"><span class="zt-pos">6–10</span><span class="zt-name">Легко включается</span><span class="zt-desc">Почти как топ-5. Активируется быстро, в рабочих условиях работает надёжно. Требует минимального усилия.</span></div>
-        <div class="zt-row zt-z3"><span class="zt-pos">11–15</span><span class="zt-name">Доступно осознанно</span><span class="zt-desc">Включается при намерении. Работает устойчиво при правильной структуре и среде. Но не автоматично.</span></div>
-        <div class="zt-row zt-z4"><span class="zt-pos">16–20</span><span class="zt-name">Требует усилия</span><span class="zt-desc">Каждый раз стоит ресурса. При постоянном использовании накапливается усталость. Лучше делегировать.</span></div>
-        <div class="zt-row zt-z5"><span class="zt-pos">21–34</span><span class="zt-name">Вне природной зоны</span><span class="zt-desc">Максимальные затраты при минимальной отдаче. Если роль требует постоянно — стоит закрыть через команду.</span></div>
-      </div>
-
-      <p style="margin-top:14px">Важно не то, насколько силён отдельный талант в баллах, а то, как ваши ведущие таланты сочетаются с тем, что вы реально делаете каждый день. Если роль требует одного, а природа даёт другое — никакой опыт и мотивация не компенсируют эту разницу надолго.</p>
-      
-      <p><strong>Четыре зоны лидерской энергии</strong> — ещё один срез. Каждая тема принадлежит одной из четырёх зон:</p>
-      <div class="domain-legend">
-        <span class="dl-item" style="color:var(--exec)">● Исполнение</span>
-        <span class="dl-item" style="color:var(--infl)">● Влияние</span>
-        <span class="dl-item" style="color:var(--rel)">● Выстраивание отношений</span>
-        <span class="dl-item" style="color:var(--strat)">● Стратегическое мышление</span>
-      </div>
-      <p>Команде не нужно, чтобы каждый был одинаково силён во всех зонах. Но команде нужно покрытие всех четырёх зон — через разных людей.</p>
-
-      <p style="margin-top:18px"><strong>Почему это работает — цифры исследований Gallup</strong></p>
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-num">×6</div><div class="stat-desc">Те, кто фокусируется на сильных сторонах, в 6 раз более вовлечены в работу</div></div>
-        <div class="stat-card"><div class="stat-num">+23%</div><div class="stat-desc">прибыльность у команд в верхнем квартиле вовлечённости</div></div>
-        <div class="stat-card"><div class="stat-num">+18%</div><div class="stat-desc">продуктивность у команд с высокой вовлечённостью</div></div>
-        <div class="stat-card"><div class="stat-num">−15%</div><div class="stat-desc">текучесть у сотрудников, получивших обратную связь по талантам</div></div>
-      </div>
-      <p class="stats-source">Источник: Gallup Meta-Analysis Q12® (112 000 команд, 2.7 млн сотрудников); Strengths-Based Employee Development: The Business Results, 2016; Clifton StrengthsFinder Technical Report.</p>
-    </div>
-  </div>
-
-
-  <!-- DOMAIN BALANCE -->
-  <div class="domain-balance" id="domainBalance"></div>
 
   <!-- MAIN TABS -->
   <div class="main-tabs" id="mainTabs">
@@ -1057,7 +1042,7 @@ function renderCards(){
 
 function toggleCard(hdr){const card=hdr.closest('.talent-card');card.classList.toggle('open')}
 function toggleSection(hdr){const sec=hdr.closest('.card-section');sec.classList.toggle('open')}
-function removeChip(idx){selected.splice(idx,1);render();document.getElementById('pasteBox').value=selected.join('\n')}
+function removeChip(idx){selected.splice(idx,1);render()}
 
 function renderDomainBalance(){
   const el=document.getElementById('domainBalance');
@@ -1863,22 +1848,6 @@ function render(){
   if(document.getElementById('tabDynamics').classList.contains('active')){renderDynControls();renderDynamics()}
 }
 
-let debounceTimer;
-document.getElementById('pasteBox').addEventListener('input',function(){
-  clearTimeout(debounceTimer);
-  debounceTimer=setTimeout(()=>{
-    const parsed=parseInput(this.value);
-    if(parsed.length){selected=parsed;render()}
-    else if(!this.value.trim()){selected=[];render()}
-  },300);
-});
-
-// Init — parse prefilled textarea
-const initText=document.getElementById('pasteBox').value;
-if(initText.trim()){
-  const initParsed=parseInput(initText);
-  if(initParsed.length)selected=initParsed;
-}
 render();
 
 
@@ -2088,13 +2057,7 @@ async function loadAndRender(themes) {
 }
 
 function lockPasteBox(themes) {
-  const box = document.getElementById('pasteBox');
-  if (!box) return;
-  box.value = themes.map((t, i) => `${i+1}. ${t}`).join('\n');
-  box.readOnly = true;
-  // Hide input area — talents entered during onboarding
-  const inputArea = document.getElementById('inputArea');
-  if (inputArea) inputArea.style.display = 'none';
+  // no-op — input area removed, talents loaded from profile
 }
 
 function addLogoutButton() {
@@ -2142,6 +2105,7 @@ const I18N = {
   'profileTitle': {ru:'Ваш профиль', en:'Your Profile'},
   'gmtOrder':     {ru:'По порядку', en:'By rank'},
   'gmtDomain':    {ru:'По доменам', en:'By domain'},
+  'detailedTitle':{ru:'Подробный разбор талантов', en:'Detailed talent breakdown'},
 };
 
 const ZONE_I18N = {
