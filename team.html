@@ -126,7 +126,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .blind-item{padding:14px 18px;border-radius:8px;border:1px solid var(--border-light);display:flex;flex-direction:column;gap:8px}
 .blind-item-hdr{display:flex;align-items:center;gap:16px;width:100%}
 .blind-item.critical{border-color:#FCA5A5;background:#FEF2F2}
-.blind-item.moderate{border-color:#FDE68A;background:#FEF9C3}
+.blind-item.weak{border-color:#FDE68A;background:#FFFBEB}
+.blind-item.fragile{border-color:#BAE6FD;background:#F0F9FF}
 .blind-domain{flex-shrink:0;font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap}
 .blind-domain.exec{background:var(--exec-bg);color:var(--exec)}
 .blind-domain.infl{background:var(--infl-bg);color:var(--infl)}
@@ -137,7 +138,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .blind-impact{font-size:13px;color:var(--text-2);line-height:1.55;padding-left:2px;border-left:3px solid var(--border);padding-left:12px}
 .blind-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
 .blind-label.critical{color:#DC2626}
-.blind-label.moderate{color:#D97706}
+.blind-label.weak{color:#D97706}
+.blind-label.fragile{color:#0284C7}
+.blind-resource{font-size:12px;color:var(--text-3);margin-top:2px}
+.blind-resource strong{color:var(--text-2);font-weight:600}
 
 /* INVITE SECTION */
 .invite-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);padding:24px;margin-bottom:20px;box-shadow:var(--shadow)}
@@ -844,37 +848,55 @@ const BLIND_IMPACT = {
 };
 
 function renderBlindSpots(consented) {
-  const themeCounts = {};
+  // Count theme presence in top-5 and top-10
+  const top5Counts = {};
+  const top10Counts = {};
+  const top10People = {}; // theme -> [{name, pos}]
   consented.forEach(m => {
-    (m.themes || []).slice(0, 5).forEach(t => {
-      themeCounts[t] = (themeCounts[t] || 0) + 1;
+    const themes = m.themes || [];
+    const name = m.display_name || '—';
+    themes.slice(0, 5).forEach(t => { top5Counts[t] = (top5Counts[t] || 0) + 1; });
+    themes.slice(0, 10).forEach((t, i) => {
+      top10Counts[t] = (top10Counts[t] || 0) + 1;
+      if (i >= 5) { // only 6-10 zone
+        if (!top10People[t]) top10People[t] = [];
+        top10People[t].push({ name, pos: i + 1 });
+      }
     });
   });
 
   const n = consented.length;
   const blindItems = [];
+  const SEV_ORDER = { critical: 0, weak: 1, fragile: 2 };
 
-  // Find themes with 0 or very low representation
   Object.entries(DOMAIN_THEMES).forEach(([domain, themes]) => {
     themes.forEach(theme => {
-      const count = themeCounts[theme] || 0;
-      const presence = n > 0 ? count / n : 0;
-      if (presence === 0) {
-        blindItems.push({ theme, domain, count, severity: 'critical', label: 'Отсутствует' });
-      } else if (presence < 0.15 && n >= 5) {
-        blindItems.push({ theme, domain, count, severity: 'moderate', label: 'Редко встречается' });
+      const c5 = top5Counts[theme] || 0;
+      const c10 = top10Counts[theme] || 0;
+
+      if (c10 === 0) {
+        // True blind spot: no one has it in top-10
+        blindItems.push({ theme, domain, count5: c5, count10: c10, severity: 'critical',
+          label: 'Слепая зона', people: null });
+      } else if (c5 === 0 && c10 > 0) {
+        // Weak coverage: not in anyone's top-5, but exists in 6-10
+        blindItems.push({ theme, domain, count5: c5, count10: c10, severity: 'weak',
+          label: 'Слабое покрытие', people: top10People[theme] || [] });
+      } else if (c5 === 1 && n >= 4) {
+        // Fragile: only 1 person has it in top-5
+        blindItems.push({ theme, domain, count5: c5, count10: c10, severity: 'fragile',
+          label: 'Хрупкое покрытие', people: null });
       }
     });
   });
 
-  // Sort: critical first, then by domain
-  blindItems.sort((a,b) => {
-    if (a.severity !== b.severity) return a.severity === 'critical' ? -1 : 1;
+  blindItems.sort((a, b) => {
+    const sa = SEV_ORDER[a.severity] ?? 9, sb = SEV_ORDER[b.severity] ?? 9;
+    if (sa !== sb) return sa - sb;
     return a.domain.localeCompare(b.domain);
   });
 
-  // Show max 8 items
-  const toShow = blindItems.slice(0, 8);
+  const toShow = blindItems.slice(0, 12);
   if (toShow.length === 0) {
     document.getElementById('blindList').innerHTML = `<div style="padding:16px;color:var(--text-2);font-size:13px">Явных слепых зон не обнаружено — команда достаточно разнообразна по темам.</div>`;
     return;
@@ -884,14 +906,20 @@ function renderBlindSpots(consented) {
   toShow.forEach(item => {
     const cls = DOMAIN_CLASS[item.domain];
     const impact = BLIND_IMPACT[item.theme] || '';
+    const showImpact = item.severity === 'critical';
+    let resourceHtml = '';
+    if (item.severity === 'weak' && item.people && item.people.length) {
+      const names = item.people.map(p => `<strong>${esc(p.name)}</strong> (#${p.pos})`).join(', ');
+      resourceHtml = `<div class="blind-resource">Ресурс в зоне 6-10: ${names}</div>`;
+    }
     html += `<div class="blind-item ${item.severity}">
       <div class="blind-item-hdr">
         <span class="blind-domain ${cls}">${esc(item.domain)}</span>
         <div class="blind-theme">${esc(RU_NAMES[item.theme] || item.theme)} <span style="font-size:12px;color:var(--text-3);font-weight:400">${esc(item.theme)}</span></div>
-        <div class="blind-meta">${item.count} чел.</div>
         <div class="blind-label ${item.severity}">${esc(item.label)}</div>
       </div>
-      ${impact ? `<div class="blind-impact">${esc(impact)}</div>` : ''}
+      ${showImpact && impact ? `<div class="blind-impact">${esc(impact)}</div>` : ''}
+      ${resourceHtml}
     </div>`;
   });
   document.getElementById('blindList').innerHTML = html;
