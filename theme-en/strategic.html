@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain strat">Strategic Thinking</div>
+    <h1>Strategic</h1>
+    <p class="hero-def">&quot;People exceptionally talented in the Strategic theme create alternative ways to proceed. Faced with any given scenario, they can quickly spot the relevant patterns and issues.&quot;</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What Is Strategic</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition:</strong> &quot;People exceptionally talented in the Strategic theme create alternative ways to proceed. Faced with any given scenario, they can quickly spot the relevant patterns and issues.&quot;</p>
+<h3>Core mechanics</h3>
+<p>Strategic is not a skill that can be learned — it is an innate, distinct way of thinking. When organizations tell someone to &quot;be more strategic,&quot; they typically mean &quot;plan more carefully&quot; or &quot;think about how to get from A to B.&quot; The CliftonStrengths theme Strategic describes something fundamentally different: the ability to see A through Z simultaneously and navigate forward at speed. It is not linear progression; it is a 40,000-foot view of the entire map at once.</p>
+<p>The defining cognitive signature of Strategic is a continuous internal &quot;what if / if then&quot; process — a mental tree of possibilities and consequences built automatically, without effort. People with high Strategic are not consciously constructing this tree; the sorting is happening at such speed that it is nearly invisible even to themselves.</p>
+<p>Strategic sits in the <strong>Strategic Thinking</strong> domain. Crucially, it does not require execution. The theme is conceptual: identifying patterns, sorting alternatives, and navigating toward a goal in the mind — without needing to move anything tangible.</p>
+<h3>What Strategic is not</h3>
+<table class="maturity-table"><thead><tr><th>Often confused with</th><th>Key distinction</th></tr></thead><tbody><tr><td><strong>Analytical</strong> (careful, evidence-based reasoning)</td><td>Analytical simplifies to the smallest provable element; Strategic eliminates details that don&#x27;t fit the pattern and moves to the best route</td></tr><tr><td><strong>Futuristic</strong> (vision of a desired future)</td><td>Futuristic paints the destination; Strategic navigates how to get there</td></tr><tr><td><strong>Ideation</strong> (generating novel connections)</td><td>Ideation creates never-before-considered ideas from disparate inputs; Strategic starts with the pattern and connects things back to it — &quot;inside-out Ideation&quot;</td></tr><tr><td><strong>Arranger</strong> (optimal configuration of real resources)</td><td>Arranger works with what exists tangibly; Strategic operates in imagined possibilities and anticipated scenarios</td></tr><tr><td><strong>Learner</strong> (pursuit of what is unknown)</td><td>Learner notices what is known vs. unexplored; Strategic notices how pieces connect to a greater concept or plan</td></tr><tr><td><strong>Restorative</strong> (fixing what is broken)</td><td>Restorative returns something to the status quo; Strategic takes the status quo and maximizes it forward</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Thinking and perception</h3>
+<ul class="marker-list">
+<li><strong>Backwards start.</strong> Focuses on results by starting from the desired endpoint and working backward to the present. Progress is tracked by revisiting the end goal and adjusting as needed.</li>
+<li><strong>Everything is a clue.</strong> People with high Strategic treat all information — movie foreshadowing, behavioral patterns, data anomalies — as evidence pointing toward the larger pattern. They rarely feel surprised because they have been connecting pieces continuously.</li>
+<li><strong>Pattern clustering.</strong> The brain naturally groups incoming information into themes and clusters. Once the pattern is identified, irrelevant details are discarded automatically, not deliberately.</li>
+<li><strong>Pre-thought alternatives.</strong> At any moment, a person with high Strategic may already have Plans B through G worked out. When a plan fails, they are rarely defeated — the next path was pre-considered. This creates apparent flexibility that is actually anticipatory preparation.</li>
+<li><strong>Consequence-orientation.</strong> The &quot;what if / if then&quot; questioning extends not just to next steps but to residual effects: not &quot;what is the next step?&quot; but &quot;what happens after that, and then what?&quot;</li>
+<li><strong>Chess-level pattern projection.</strong> Like thinking several moves ahead on a chessboard: seeing the full board, the current move, and the likely sequence of moves that follow.</li>
+</ul>
+<h3>Behavioral signatures</h3>
+<ul class="marker-list">
+<li>Naturally resists the status quo — if things can be improved, the drive to find a better path is constant and high-energy.</li>
+<li>Can predict the outcome of an activity faster than others — not from special insight, but from paying close attention to patterns others overlook.</li>
+<li>Thinks in non-linear ways; may appear to ramble or jump topics, but is actually collecting &quot;breadcrumbs&quot; that form a coherent whole.</li>
+<li>In meetings, may silently recognize a pattern forming and ask &quot;is anyone else seeing this?&quot; or &quot;how does this tie back to where we were?&quot;</li>
+<li>Tends to apply pattern recognition to people as well: noticing recurring behaviors, development opportunities, and relational themes before the individuals themselves do.</li>
+</ul>
+<h3>Raw vs. mature expression</h3>
+<table class="maturity-table"><thead><tr><th>Stage</th><th>Pattern</th></tr></thead><tbody><tr><td><strong>Raw Strategic</strong></td><td>Asks &quot;what if?&quot; — fascinated by possibilities, can delay action; plans in isolation (lone mapmaker); instinctive but hard to show work; frustrated when &quot;others can&#x27;t see the obvious&quot;</td></tr><tr><td><strong>Mature Strategic</strong></td><td>Asks &quot;what next?&quot; — can plan in the moment and course-correct; brings plans to the group (collaborative charter); intentionally communicates milestones so others can follow and trust the path</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><ul class="marker-list">
+<li><strong>Resilience.</strong> When a path is blocked, the person with high Strategic generates three or more alternatives immediately. They function as the team&#x27;s contingency engine.</li>
+<li><strong>Zoom-out perspective.</strong> Helps the team see the full picture when they are lost in execution details: the significant steps required, the critical factors that must be right, the forest through the trees.</li>
+<li><strong>Conflict resolution by abstraction.</strong> In team conflict, Strategic can name the patterns playing out rather than focusing on individual personalities — elevating the conversation to themes rather than people.</li>
+<li><strong>Reality-checking forward motion.</strong> Picks up on what is <em>actually happening</em> (not just what was planned) and adjusts based on real-time patterns. Not married to the original plan; committed to the end goal.</li>
+<li><strong>Accelerating group thinking.</strong> Can follow seemingly disjointed thinking, find the thread, and help the group organize their thoughts in an order that makes sense — speeding up collective decisions.</li>
+<li><strong>Deep bonds through pattern memory.</strong> When applied to people, Strategic&#x27;s pattern recognition produces the effect of remembering meaningful things about others — which can feel like care, compassion, or being deeply seen. This builds trust and loyalty.</li>
+</ul>
+<p>Strategic is the 5th most common theme in Gallup&#x27;s database of 12.5+ million profiles. It appears with high frequency across roles, including in software development, research, and leadership.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Perceived as critical of existing plans</h3>
+<p>Because they can always see alternative routes, people with high Strategic may involuntarily undermine buy-in for a chosen direction. The implied message &quot;there&#x27;s another way&quot; lands as criticism of the current plan or of the person who made it.</p>
+<h3>Trust deficit from invisible process</h3>
+<p>The sorting happens so fast it is nearly invisible. Others cannot see the mental work that produced the recommendation. Without visible reasoning, they may assume the person is not being rigorous — &quot;Have they really thought this through?&quot;</p>
+<h3>Cerebral overload — doing all the thinking alone</h3>
+<p>Because generating a plan is fast and natural, it is often easier to just make the plan solo than to involve others, delegate thinking, or explain how each person fits. This creates a risk: the leader or team member who carries all the strategic thinking privately, leaving others in a passenger seat without a map or a role.</p>
+<h3>Impatience with irrelevant steps</h3>
+<p>Once a pattern is identified, steps that fall outside it feel wasteful. This can appear as dismissiveness toward legitimate concerns or as skipping communication that others need in order to follow confidently.</p>
+<h3>Status quo intolerance as a liability</h3>
+<p>The drive to improve and resist the current state is energizing in the right environment. When the environment does not allow proactive change, it becomes frustrating — and can tip into prolonged dissatisfaction.</p>
+<h3>Over-planning, under-activating</h3>
+<p>Raw Strategic can become so enamored with &quot;what if&quot; that action is delayed. The phase of exploring possibilities can expand indefinitely without a clear trigger to move into decision mode.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Shift from &quot;what if&quot; to &quot;what next&quot;</h3>
+<p>The developmental move from raw to mature Strategic is the transition from possibility-generation to action-orientation. Practice: after mapping alternatives, explicitly name the chosen path and the first committed move.</p>
+<h3>Practice visible thinking</h3>
+<p>The sorting process is invisible by default. Deliberately make it external:</p>
+<ul class="marker-list">
+<li>Journal fast conceptual thoughts at the start of each day to observe the patterns already forming.</li>
+<li>After a decision, trace the milestones backward out loud — not every step 1–12, but key checkpoints: &quot;By step 6 we&#x27;ll need to be here; at step 8 here&#x27;s how we&#x27;ll know we&#x27;re on track.&quot;</li>
+<li>In meetings, verbalize the pattern as you&#x27;re seeing it: &quot;I&#x27;m noticing a theme here...&quot;</li>
+</ul>
+<h3>Review past successes for pattern signatures</h3>
+<p>Examine what you contributed to past wins — what patterns did you notice, what paths did you choose, what did you discard? This builds an explicit record of Strategic working well and trains the ability to recognize the theme in yourself more quickly.</p>
+<h3>Move from lone mapmaker to collaborative charter</h3>
+<p>Bring the whiteboard to the group. Instead of arriving with the plan complete, chart the thinking with others — let them see the process, contribute to it, and own pieces of it.</p>
+<h3>Find the right thought partners</h3>
+<p>Identify who can:</p>
+<ul class="marker-list">
+<li>Follow the breadcrumbs without needing linear sequencing</li>
+<li>Distinguish between when you&#x27;re in possibility mode vs. decision mode</li>
+<li>Add what your Strategic doesn&#x27;t supply: emotional awareness, data evidence, messaging discipline, accountability</li>
+</ul>
+<h3>Know when to go public with &quot;what if&quot;</h3>
+<p>Strategic&#x27;s &quot;what if&quot; exploration is generative in the right setting and disorienting in others. Map the environment: when is possibility mode welcome, and when does it destabilize people who need certainty?</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work With Someone Who Has Strategic</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>For managers</h3>
+<p><strong>Lead with the end goal, then step back.</strong> Describe what success looks like clearly and completely — then give freedom on method. The person with Strategic can likely see 8–10 ways to get there. Owning the &quot;why&quot; and the destination while releasing control of the path is the most effective structure.</p>
+<blockquote class="md-quote">&quot;Here is what success looks like. Here&#x27;s one constraint we can&#x27;t break. How would you approach it?&quot; [S6]</blockquote>
+<p><strong>Don&#x27;t require ownership of execution.</strong> Strategic talent is in the thinking, the pattern spotting, the options generation. Requiring this person to own all downstream execution can drain them. Consider separating the planning role from the implementation role.</p>
+<p><strong>Invite them to investigate complex problems.</strong> Give them exposure to all relevant evidence and all key stakeholders. This is where Strategic generates the most value — with full information access, they spot patterns others miss.</p>
+<p><strong>Create a safe space for &quot;possibility mode.&quot;</strong> People with Strategic need a context where they can think out loud through alternatives without every word being treated as a committed direction. Provide a thought-partner relationship where exploring options is explicitly separate from decision-making.</p>
+<p><strong>Ask questions that surface their patterns:</strong></p>
+<ul class="marker-list">
+<li>&quot;When do you do your best thinking?&quot;</li>
+<li>&quot;What patterns are you noticing coming to life?&quot;</li>
+<li>&quot;If you had to pivot quickly on this, what&#x27;s your Plan B?&quot;</li>
+<li>&quot;What do you notice looking down at the situation from above?&quot;</li>
+</ul>
+<h3>For colleagues</h3>
+<p><strong>Don&#x27;t self-edit before speaking with them.</strong> They will find the pattern in what you&#x27;re saying even when you can&#x27;t. Bring them the raw situation and let them ask questions rather than pre-filtering.</p>
+<p><strong>Ask permission before offering alternatives in their domain.</strong> If they&#x27;ve advocated for a plan, volunteering unsolicited alternatives is experienced as criticism of their judgment. Instead: &quot;Have you thought about any other ways to approach this?&quot;</p>
+<p><strong>Communicate how much detail you need.</strong> They will naturally skip steps they&#x27;ve assessed as irrelevant. If you need more context, say explicitly: &quot;Can you walk me back through the options you considered before landing here?&quot; or &quot;I need to understand the path before I can commit to the destination.&quot;</p>
+<p><strong>Use them at key uncertainty moments.</strong> When the team is stuck, when a plan has hit an obstacle, when a conflict feels irresolvable — bring it to the person with Strategic and let them map the options. Don&#x27;t ask them to own it; ask them to illuminate it.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations With Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><table class="maturity-table"><thead><tr><th>Combination</th><th>Dynamic</th></tr></thead><tbody><tr><td><strong>Strategic + Futuristic</strong> (draws vivid pictures of possible futures)</td><td>Futuristic names where the organization wants to go; Strategic navigates the path to get there. One of the most potent planning combinations.</td></tr><tr><td><strong>Strategic + Deliberative</strong> (careful, anticipates obstacles and risks)</td><td>Strategic generates multiple paths; Deliberative scans each one for landmines. Together: comprehensive route-planning with risk-filtering.</td></tr><tr><td><strong>Strategic + Arranger</strong> (dynamic coordination of resources)</td><td>Strategic identifies the best path; Arranger optimally configures the resources to execute it. Strategic operates in possibility; Arranger operates in reality.</td></tr><tr><td><strong>Strategic + Ideation</strong> (generates novel connections and new ideas)</td><td>Ideation produces raw material (new angles, creative inputs); Strategic selects and routes through the best of them. Together: faster and more varied option generation.</td></tr><tr><td><strong>Strategic + Analytical</strong> (demands data, evidence, rigorous proof)</td><td>Analytical slows Strategic slightly — adds evidential discipline to pattern recognition. Can act as a brake against premature commitment to an elegant-but-unproven path.</td></tr><tr><td><strong>Strategic + Achiever</strong> (hardworking, driven, productive)</td><td>The most common pairing in Gallup&#x27;s database. Achiever supplies the energy and persistence to act on the paths Strategic identifies — addresses Strategic&#x27;s risk of over-planning without executing.</td></tr><tr><td><strong>Strategic + Maximizer</strong> (focuses on strengths, excellence over mediocrity)</td><td>Strategic finds the best path; Maximizer ensures the end result is as excellent as possible, not just functional.</td></tr><tr><td><strong>Strategic + Relator</strong> (builds deep, authentic, trust-based relationships)</td><td>Strategic applied through Relator becomes talent for deeply understanding specific people — positioning them for the best possible fit, anticipating their development, reading the pattern of who they are.</td></tr><tr><td><strong>Strategic + Context</strong> (looks to the past for understanding)</td><td>Strategic is naturally oriented toward possibilities; Context anchors that thinking in historical evidence. Together: pattern recognition that respects what has and hasn&#x27;t worked before.</td></tr><tr><td><strong>Strategic + Communication</strong> (shapes ideas into compelling stories)</td><td>Strategic identifies what is important; Communication finds the narrative to carry it. Together: thinking that doesn&#x27;t stay invisible.</td></tr></tbody></table></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

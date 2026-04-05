@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Positivity · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain rel">Relationship Building</div>
+    <h1>Positivity</h1>
+    <p class="hero-def">People with dominant Positivity have contagious enthusiasm. They are upbeat and can get others excited about what they are going to do.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Positivity</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition:</strong> People with dominant Positivity have contagious enthusiasm. They are upbeat and can get others excited about what they are going to do.</p>
+<p><strong>Domain:</strong> Relationship Building.</p>
+<p><strong>Core mechanism:</strong> Positivity is not about being happy. It is the ability and desire to actively affect the emotional state of others — to elevate it. The key metaphor from Gallup&#x27;s research: if Empathy (the ability to sense the feelings of other people) is an emotional thermometer, Positivity is an <strong>emotional thermostat</strong> — it doesn&#x27;t just read the temperature, it sets it. People around someone with Positivity feel more energy, not because that person is performing happiness, but because emotional uplift is the way they naturally think and operate 24 hours a day.</p>
+<p>An alternative framing that cuts through the noise: Positivity is <strong>activated hope</strong> — not a passive wish that things will improve, but an active role in creating hope in other people.</p>
+<p><strong>What it is not:</strong></p>
+<ul class="marker-list">
+<li>Happiness as a permanent state</li>
+<li>Naivety or &quot;head in the sand&quot;</li>
+<li>Spin — manufacturing false positives to manipulate people</li>
+<li>A behavior someone can consciously adopt (&quot;just be positive&quot;)</li>
+</ul>
+<p><strong>Distinction from similar themes:</strong></p>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Mechanism</th><th>Orientation</th></tr></thead><tbody><tr><td><strong>Empathy</strong> (sensing the emotions of others, feeling what they feel)</td><td>Emotional thermometer — reads the room</td><td>Receptive</td></tr><tr><td><strong>Positivity</strong></td><td>Emotional thermostat — sets the room</td><td>Active / outward</td></tr><tr><td><strong>Woo</strong> (enjoys the challenge of meeting new people and winning them over)</td><td>&quot;I want to be liked&quot;</td><td>Self-directed draw</td></tr><tr><td><strong>Positivity</strong></td><td>&quot;I want <em>you</em> to like [life / this experience]&quot;</td><td>Other-directed elevation</td></tr><tr><td><strong>Harmony</strong> (seeks consensus, avoids conflict by finding common ground)</td><td>Focuses on areas of agreement</td><td>Alignment</td></tr><tr><td><strong>Positivity</strong></td><td>Focuses on bringing a hopeful slant so emotions align with what needs to get done</td><td>Elevation</td></tr><tr><td><strong>Developer</strong> (spots and cultivates potential in others)</td><td>Drawn toward helping others improve</td><td>Growth</td></tr><tr><td><strong>Positivity</strong></td><td>Drawn toward elevating others&#x27; emotional state</td><td>Emotional lift</td></tr><tr><td><strong>Communication</strong> (finds it easy to put thoughts into words, a natural storyteller)</td><td>Verbal expression, storytelling</td><td>Articulation</td></tr><tr><td><strong>Positivity</strong></td><td>Emotional resonance, enthusiasm</td><td>Atmosphere</td></tr></tbody></table>
+<p><strong>Historical note:</strong> During the development of CliftonStrengths, Woo and Positivity were combined into a single theme called &quot;Stimulator.&quot; They were eventually separated because each can and does stand independently — but the co-occurrence rate of 31% (the highest of any pairing for Positivity) reflects this shared origin.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How it shows up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral patterns:</strong></p>
+<ul class="marker-list">
+<li>Notices not just <em>what</em> is said in an interaction but <em>how</em> it&#x27;s said — and how people are reacting emotionally</li>
+<li>Spots humor and opportunities for joy before others do, or more quickly than others</li>
+<li>Comes prepared: jokes in reserve, meaningful gifts, icebreakers — tools to shift the emotional climate of a room</li>
+<li>Generous with praise, quick to smile, consistently looking for the positive in a situation</li>
+<li>Looks for opportunities to celebrate <em>along the way</em>, not just at the finish line</li>
+<li>Can find the best of two bad options — not &quot;everything is fine,&quot; but &quot;here is what worked inside what failed&quot;</li>
+<li>Shares joy as a <em>shared</em> experience, not a personal broadcast — joy is how they create connections</li>
+</ul>
+<p><strong>Range of expression:</strong> Positivity does not always manifest as the loudest voice. It can be someone who throws an excellent party — or someone who quietly writes a note, expresses gratitude at the right moment, or simply brings food to the office to start a celebration. Stage whisper or megaphone: both are Positivity.</p>
+<p><strong>Observable signals:</strong></p>
+<ul class="marker-list">
+<li>People notice when someone with Positivity is having an off day — the contrast is felt</li>
+<li>Others rely on their energy without necessarily being aware of it</li>
+<li>Described by colleagues as &quot;lighting up a room&quot;</li>
+<li>Emotions worn externally — warmth and enthusiasm are visible, not held back</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for team and organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Team dynamics:</strong></p>
+<ul class="marker-list">
+<li>Acts as a <strong>bridge builder</strong> — creates shared laughter, shared perspective, and shared comfort among people who otherwise might not connect. Functions as &quot;the human version of a shared experience.&quot;</li>
+<li>Creates the conditions in which innovation, trust, and productivity emerge: people generate more ideas and take more risks when they can breathe easier. Positivity enables that breathing.</li>
+<li>Provides a <strong>forward lean</strong> — rallies the group toward something, generates excitement about what&#x27;s coming.</li>
+<li>Supplies energy during dark periods. When things are hardest, someone with Positivity builds a &quot;scaffolding of hope and joy&quot; that helps the group move rather than stay paralyzed.</li>
+<li>Makes the team a <strong>magnet for talent</strong> — people want to be part of an environment that feels alive.</li>
+<li>Tracks progress by looking for celebration moments, not just milestones. These &quot;touch home base&quot; moments provide a boost of energy that benefits even people who don&#x27;t have Positivity.</li>
+</ul>
+<p><strong>Recognition as a strategic advantage:</strong></p>
+<p>Gallup engagement data consistently shows that meaningful recognition is one of the hardest things to get right in workplaces. People with Positivity are naturally wired for it — they find what needs to be spotlighted in another person and they get genuine energy from the act of recognizing them. This makes Positivity a rare organizational asset, not just a pleasant personality trait.</p>
+<blockquote class="md-quote">&quot;People are attracted to that which is celebrated and people do what they&#x27;re celebrated for.&quot; — Donald Clifton, <em>Soar with Your Strengths</em> [S2]</blockquote>
+<p><strong>In leadership:</strong></p>
+<ul class="marker-list">
+<li>Builds trust through consistency — being genuinely positive repeatedly over time, not turning it off</li>
+<li>Provides stability and instills confidence in individuals and teams</li>
+<li>Disarming effect when entering difficult conversations — lowers defensive reactions and creates openness</li>
+<li>From <em>Strengths-Based Leadership</em>: a leader with Positivity can inspire hope by making &quot;everyone&#x27;s 15 minutes of fame big enough to count and important enough to last&quot;</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark side / risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>1. Perceived as insincere or naive.</strong></p>
+<p>For people who have to consciously work at being positive, authentic joy — especially during difficult times — can look impossible. The result: someone with Positivity gets labeled as a spin doctor, a Pollyanna, or someone who &quot;can&#x27;t be that happy all the time.&quot; This directly undermines the trust they&#x27;re trying to build.</p>
+<p><strong>2. Compliments lose their weight.</strong></p>
+<p>Frequent praise from someone with Positivity may be discounted by others who assume meaningful recognition must be rare. Irony: the more they practice their strength, the more it gets devalued by those around them.</p>
+<p><strong>3. High expectations and high visibility.</strong></p>
+<p>Others come to rely on their energy, often without realizing it. When someone with Positivity has a difficult day, the contrast is noticed and felt by the whole team. This creates an asymmetric emotional burden.</p>
+<p><strong>4. Over-applying positivity in the wrong moment.</strong></p>
+<p>Not every situation calls for reframing. When people are in pain, grief, or legitimate frustration, an immediate positive pivot can feel dismissive — as if their suffering isn&#x27;t being acknowledged. Blanket positivity at the wrong moment pushes people away.</p>
+<p><strong>5. Feeling responsible for erasing others&#x27; negativity.</strong></p>
+<p>People with Positivity often see negative emotion coming before others do. The risk: trying to clear it away on behalf of others, when sometimes discomfort is necessary and not as dangerous as it feels.</p>
+<p><strong>6. Drained by chronic negativity.</strong></p>
+<p>Because emotions are worn externally, negativity takes a higher toll on people with Positivity than it does on most others. Extended exposure to pure (purposeless) negativity damages their effectiveness — they feel &quot;done.&quot;</p>
+<p><strong>Raw vs. mature Positivity:</strong></p>
+<table class="maturity-table"><thead><tr><th>Raw</th><th>Mature</th></tr></thead><tbody><tr><td>Same energy level for everyone — &quot;jazz hands&quot; approach</td><td>Individualized — adjusts volume to the audience and moment</td></tr><tr><td>Avoids unhappy people (&quot;they make me unhappy&quot;)</td><td>Approaches unhappy people as an opportunity to help</td></tr><tr><td>Panics when things are negative: jumps immediately to &quot;but here&#x27;s what&#x27;s good&quot;</td><td>Patient and persistent — plants seeds, plays the long game</td></tr><tr><td>Preoccupied with the present emotional state</td><td>Looks for permanence — &quot;we are going to come out the other side of this&quot;</td></tr><tr><td>Positivity for its own sake (indiscriminate)</td><td>Positivity in service of others — &quot;leaving people better off than when I found them&quot;</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to develop it</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>1. Build variety in your toolkit.</strong></p>
+<p>Positivity is most effective when it is individualized. Identify the diverse emotional needs of the people around you. How many different ways can you build someone up? Challenge yourself to move beyond your default mode: if you usually use humor, try a written note. If you usually celebrate loudly, try a quiet one-on-one acknowledgment.</p>
+<p><strong>2. Learn to read your audience and calibrate.</strong></p>
+<p>Develop the skill of assessing what a room or person needs before entering. Pay attention to early signals — an initial greeting, body language — and adjust your energy level accordingly. Practice &quot;crescendos and decrescendos&quot;: knowing when to amp up and when to dial back is the difference between raw and mature Positivity.</p>
+<p><strong>3. Practice asking permission in hard moments.</strong></p>
+<p>Before trying to lift someone&#x27;s emotional state, ask: &quot;Is this something you want to talk about?&quot; or &quot;Is it worth exploring what could be good about this?&quot; This respects that the other person may need to sit with the difficulty before they&#x27;re ready for uplift.</p>
+<p><strong>4. Distinguish &quot;fixing&quot; from &quot;witnessing.&quot;</strong></p>
+<p>Know when you can be the fix and when someone just needs to vent and sit with something for a while. Discomfort is not always your problem to solve. Mature Positivity includes the patience to let others stay in difficulty until they&#x27;re ready to move.</p>
+<p><strong>5. Proactively protect your energy from sustained negativity.</strong></p>
+<p>Recognize that chronic negativity drains you more than it drains others. This isn&#x27;t weakness — it&#x27;s the cost of an external, relationally-oriented theme. Design environments and routines that include regular sources of genuine positive input: people, content, experiences.</p>
+<p><strong>6. Seek out consistent positive input to sharpen your craft.</strong></p>
+<p>Tune into speakers, writers, and influencers who model meaningful positive interaction. Look for: celebrators rather than critics, inclusivity rather than insider humor, seriousness about human potential rather than cynicism.</p>
+<p><strong>7. Expand your recognition practice.</strong></p>
+<p>The &quot;celebration splashback&quot; — the residual energy you receive from sharing recognition — is especially strong for people with Positivity. Leverage this. Make recognition more frequent <em>and</em> more diverse in form. Write down positive messages that inspire you; keep them in view.</p>
+<p><strong>8. State your sincerity explicitly when needed.</strong></p>
+<p>Sometimes people around you will doubt whether your positivity is real. Rather than waiting for them to draw conclusions, you can name it directly: &quot;I genuinely believe what I&#x27;m saying right now — I&#x27;m not performing.&quot; Pre-empting the doubt prevents it from eroding relationships.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to work with someone who has Positivity</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li><strong>Use their lens to track morale.</strong> Ask them regularly: &quot;What are we celebrating?&quot; / &quot;What should we be celebrating?&quot; / &quot;What&#x27;s making people hopeful right now?&quot; Their read on team emotional climate is more accurate than most.</li>
+<li><strong>Give them communication ownership.</strong> They need the freedom to inject humor, drama, or personality into how things are communicated. Scripted or rigidly formal messaging suppresses their effectiveness.</li>
+<li><strong>Assign them the recognition role.</strong> Ask them to suggest what the team can be proud of, how that pride can be shared, and who deserves acknowledgment. This is natural to them and high-value to the team.</li>
+<li><strong>Create space for rapport before business.</strong> Don&#x27;t jump straight into the agenda — a brief warm-up benefits both them and the room.</li>
+<li><strong>When they&#x27;re down, don&#x27;t panic.</strong> Their low moments are not permanent and not catastrophic. Let them be down without treating it as a problem to solve. It will pass.</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li><strong>Trust that they are as content as they seem.</strong> Second-guessing their positivity wastes everyone&#x27;s time. There is a real difference between being happy and being positive — they struggle just like anyone else; their struggle just has a more hopeful quality to it.</li>
+<li><strong>Don&#x27;t discount their compliments.</strong> Frequency ≠ insincerity. Just because they recognize people often doesn&#x27;t mean the recognition is hollow.</li>
+<li><strong>Don&#x27;t confuse energy with ignorance.</strong> People with Positivity are often <em>more</em> aware of negativity and darkness than others — they simply choose to orient toward the constructive. &quot;Just because they carry it well doesn&#x27;t mean it isn&#x27;t heavy.&quot;</li>
+<li><strong>Give them feedback if something misses the mark.</strong> If a positive reframe feels dismissive to you in a hard moment, say so directly. They want their positivity to land, not to paper over real issues.</li>
+<li><strong>You are not the opposite of Positivity.</strong> Different themes bring different value. Having less visible energy is not a deficiency — it&#x27;s a different contribution.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with other talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Woo</strong> (Winning Others Over — enjoys meeting new people and getting them to like you)</p>
+<p>The most statistically common pairing (31%). Historically these were one theme — &quot;Stimulator.&quot; Together: Woo supplies the magnetic draw that pulls people in; Positivity elevates their emotional state once they&#x27;re there. In combination, this is a powerful ability to rally groups and generate shared excitement. The distinction that holds when you have both: Woo = &quot;I want to be liked&quot;; Positivity = &quot;I want you to enjoy this experience.&quot;</p>
+<p><strong>Communication</strong> (finds it easy to put thoughts into words, a natural storyteller)</p>
+<p>Frequently appears as a triplet with Woo. Both Communication and Positivity &quot;leverage the dramatic&quot; — they care deeply about the emotional impact on the people they&#x27;re speaking to. Communication provides the narrative scaffold; Positivity provides the emotional current running through it.</p>
+<p><strong>Maximizer</strong> (focuses on taking something strong and making it exceptional)</p>
+<p>One-plus-one equals three. Positivity tends toward optimism; Maximizer tends toward excellence. Together, they create a focus on finding the best of a situation and amplifying it — while remaining genuinely committed to quality, not just comfort.</p>
+<p><strong>Futuristic</strong> (inspired by what the future might hold, energizes others with a vision)</p>
+<p>Together, idealistic and expansive. Positivity provides emotional warmth; Futuristic provides directional pull. The risk: this combination can tip toward unrealistically optimistic projections.</p>
+<p><strong>Connectedness</strong> (believes that all things are connected, sees meaning in the links between events)</p>
+<p>Connectedness can extend the <em>scope</em> of Positivity&#x27;s impact — from a moment of recognition to a lasting ripple. A partner with high Connectedness can say: &quot;This recognition moment is going to matter down the road,&quot; giving the Positivity person&#x27;s impulse a longer time horizon.</p>
+<p><strong>Responsibility</strong> (takes psychological ownership for anything they commit to)</p>
+<p>Responsibility &quot;ties up the loose ends&quot; so Positivity can live in the moment of celebration. Together: &quot;here&#x27;s what we accomplished, here&#x27;s what we have yet to accomplish, here&#x27;s who&#x27;s counting on us — and <em>here&#x27;s what we accomplished — exclamation point.</em>&quot; Responsibility ensures the follow-through; Positivity ensures the energy doesn&#x27;t go flat.</p>
+<p><strong>Achiever</strong> (has a constant need for achievement, works hard, derives satisfaction from being busy and productive)</p>
+<p>Positivity amplifies celebration of achievements — including when goals are missed. Where Achiever checks things off the list, Positivity turns those checkmarks into moments that energize the team. The combination also produces resilience in the face of setbacks: celebrate what was learned, then get back to work.</p>
+<p><strong>Developer</strong> (recognizes and cultivates the potential in others)</p>
+<p>Both are Relationship Building themes. Developer grows people; Positivity elevates their emotional state. Together, they form a particularly effective coaching or management combination — one that helps people improve <em>and</em> feel good about the process of improvement.</p>
+<p><strong>Command</strong> (takes charge, confronts challenges head-on, comfortable with directness)</p>
+<p>A less common pairing that significantly changes the character of Positivity. Command introduces directness and challenge-orientation into an otherwise warmth-and-elevation theme. The result is a version of Positivity that is more assertive and less gentle — still energizing, but with more edge.</p>
+<p><strong>Restorative</strong> (skilled at dealing with problems, energized by fixing what&#x27;s broken)</p>
+<p>A statistical outlier — one of the least common pairings. Restorative is drawn toward diagnosing and solving problems; Positivity is drawn toward elevating beyond them. These two orientations can work well in sequence but create tension when operating simultaneously.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

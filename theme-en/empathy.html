@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empathy · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain rel">Relationship Building</div>
+    <h1>Empathy</h1>
+    <p class="hero-def">&quot;You can sense the emotions of those around you. You can feel what they are feeling as though their feelings are your own.&quot;</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Empathy</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition (Gallup):</strong> &quot;You can sense the emotions of those around you. You can feel what they are feeling as though their feelings are your own.&quot;</p>
+<p><strong>Domain:</strong> Relationship Building. Themes in this domain help people form genuine connections and create groups that are stronger than the sum of their parts.</p>
+<p><strong>Core drive:</strong> to feel and understand the emotional world of others — not as an intellectual exercise, but as direct experience. People with Empathy don&#x27;t reason their way to &quot;they must be feeling sad.&quot; They feel it first, and reason about it second.</p>
+<p>The single most important distinction: <strong>Empathy is not sympathy.</strong> Sympathy is feeling <em>for</em> someone — &quot;I&#x27;m sorry that happened to you.&quot; Empathy is feeling <em>with</em> someone — actually entering their emotional experience. The person with Empathy doesn&#x27;t observe another&#x27;s grief from a distance; they inhabit it briefly. This makes them unusually effective at communicating understanding, but also unusually vulnerable to emotional overload.</p>
+<p>A useful metaphor: <strong>emotional photosynthesis.</strong> Just as a plant processes ambient light without choosing to, a person with Empathy processes emotional signals from their environment continuously and often involuntarily. Walking into a room, they sense the emotional climate before they&#x27;ve had a single conversation. This isn&#x27;t perception of surface cues — it&#x27;s a form of direct emotional access.</p>
+<p><strong>Distinction from similar themes:</strong></p>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Core sorting target</th><th>How they differ from Empathy</th></tr></thead><tbody><tr><td>Harmony (a theme about seeking consensus and avoiding conflict)</td><td>Agreement</td><td>Seeks resolution to conflict; Empathy simply feels what others feel, without necessarily needing to resolve it</td></tr><tr><td>Developer (a theme about recognizing and cultivating potential in others)</td><td>Potential</td><td>Invested in others&#x27; growth; Empathy is invested in others&#x27; present emotional state</td></tr><tr><td>Includer (a theme about ensuring no one is left out)</td><td>Belonging</td><td>Notices who is excluded; Empathy notices who is hurting</td></tr><tr><td>Relator (a theme about deep, authentic one-on-one relationships)</td><td>Close relationships</td><td>Goes deep with a few; Empathy reads emotional states across many</td></tr><tr><td>Positivity (a theme about infectious enthusiasm and optimism)</td><td>Energy</td><td>Brings emotional uplift; Empathy reflects back what&#x27;s already there</td></tr></tbody></table>
+<p><strong>Frequency in Gallup database:</strong> Empathy appears in the top 5 of approximately 17% of profiles — around 15th most common overall. Most common co-occurring themes: Developer (a theme about cultivating potential) and Harmony (a theme about seeking consensus), each appearing frequently. Least likely co-occurring: Command (a theme about taking charge in a crisis) and Self-Assurance (a theme about inner confidence in one&#x27;s own ability), reflecting opposite orientations toward emotional and social power.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How it shows up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral markers:</strong></p>
+<ul class="marker-list">
+<li>Senses the emotional temperature of a room before anything is said</li>
+<li>Notices when someone&#x27;s words don&#x27;t match their affect — the disconnect between &quot;I&#x27;m fine&quot; and what they&#x27;re actually experiencing</li>
+<li>Finds the right words to help others articulate feelings they haven&#x27;t yet named for themselves</li>
+<li>Often becomes the person others seek out when they&#x27;re struggling — not necessarily because they give advice, but because they make people feel understood</li>
+<li>Experiences physical or emotional reactions in response to others&#x27; distress — not performative, but involuntary</li>
+<li>Slows down communication to make sure the emotional dimension is addressed, not just the logical one</li>
+</ul>
+<p><strong>Inner experience:</strong></p>
+<ul class="marker-list">
+<li>Constantly processing emotional signals from the environment — it doesn&#x27;t turn off</li>
+<li>Feels a genuine internal satisfaction when someone says &quot;you get it&quot; or &quot;you understand me&quot;</li>
+<li>May have difficulty sorting their own emotions from absorbed emotions — &quot;Is this what I feel, or what they feel?&quot;</li>
+<li>Finds emotionally flat or dismissive environments draining and slightly disorienting</li>
+</ul>
+<p><strong>Raw vs. mature expression:</strong></p>
+<table class="maturity-table"><thead><tr><th>Raw</th><th>Mature</th></tr></thead><tbody><tr><td>Absorbs others&#x27; emotions completely — becomes overwhelmed or takes ownership of feelings that aren&#x27;t theirs</td><td>Uses emotional perception as a radar — reads accurately without losing themselves</td></tr><tr><td>Avoids difficult conversations because they feel the other person&#x27;s discomfort too strongly</td><td>Leans into difficult conversations because they can navigate emotion precisely</td></tr><tr><td>May be perceived as &quot;playing favorites&quot; — appears more available to those in distress</td><td>Creates consistent psychological safety across many people, not just those who are overtly struggling</td></tr><tr><td>Susceptible to manipulation — someone who expresses strong emotion gets disproportionate influence</td><td>Distinguishes between genuine distress and strategic emotional expression</td></tr><tr><td>Overshares in an attempt to demonstrate understanding — &quot;the same thing happened to me&quot;</td><td>Stays present to the other person&#x27;s experience rather than redirecting to their own</td></tr></tbody></table>
+<p>The shift from raw to mature Empathy is fundamentally about boundaries — not barriers that keep others out, but membranes that allow the person to feel accurately while maintaining their own center.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for team and organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Emotional climate monitoring:</strong> People with Empathy function as a barometer. They detect tension, disengagement, fear, or resentment before it becomes visible in behavior or performance. This gives teams early warning about relational problems that surveys and metrics will miss.</p>
+<blockquote class="md-quote">&quot;The person with Empathy is often the first to know that something is wrong in the room — before anyone has said a word.&quot; [S2]</blockquote>
+<p><strong>Translation of emotion into language:</strong> Many people experience strong emotions but lack words for them. The person with Empathy can name what&#x27;s in the air — &quot;it sounds like you&#x27;re frustrated that you weren&#x27;t consulted&quot; — which gives the team something to work with rather than an unnamed cloud of feeling.</p>
+<p><strong>Psychological safety:</strong> Research on high-performing teams consistently identifies psychological safety — the belief that one will not be punished for speaking up — as the single strongest predictor of team effectiveness. Empathy people build this climate naturally. Their presence signals that emotional honesty is welcome.</p>
+<p><strong>Retention signal:</strong> Employees who feel understood are significantly less likely to leave. The person with Empathy, in a leadership or peer role, is often a retention factor that doesn&#x27;t appear in any dashboard. People stay because of how they feel around them.</p>
+<p><strong>Communication calibration:</strong> Before delivering difficult feedback, a person with Empathy will naturally calibrate tone, timing, and framing — not to soften the message, but to maximize the chance the message will actually land. This makes them effective messengers for hard truths.</p>
+<p><strong>Conflict de-escalation:</strong> When conflict is emotionally charged, Empathy people can create a pause — not by resolving the disagreement, but by making both parties feel that their perspective is genuinely understood. This reduces the identity threat that makes conflict escalate.</p>
+<p><strong>Magnetic quality for high-performing teams:</strong> They help people feel valued, which increases discretionary effort. They catch signals that the team is heading toward a human problem before it becomes a performance problem. They make it easier for people to bring their actual concerns to the surface.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark side / risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Emotional absorption.</strong> The core risk: taking on others&#x27; emotions so completely that the person loses track of their own state and needs. This is not weakness — it&#x27;s the talent operating without boundaries. The result is burnout, emotional exhaustion, and sometimes a withdrawal from the very situations where Empathy would be most useful.</p>
+<p><strong>Difficulty with necessary friction.</strong> Because they feel others&#x27; discomfort strongly, people with high Empathy may avoid conversations that need to happen. Performance feedback, disagreement, termination, boundary-setting — all of these involve generating negative emotion in another person, which the Empathy person experiences immediately and viscerally. The cost of conflict is therefore higher for them than for most.</p>
+<p><strong>Perceived partiality.</strong> When someone is visibly in distress, the Empathy person naturally orients toward them. In a team context, this can look like favoritism — &quot;she always sides with whoever seems most upset.&quot; The talent doesn&#x27;t actually produce bias in judgment, but it can produce bias in attention and availability.</p>
+<p><strong>Susceptibility to manipulation.</strong> Unscrupulous actors learn quickly that emotional expression is a lever for the Empathy person. &quot;I&#x27;ll be devastated if you don&#x27;t do this&quot; works differently on someone who literally feels that devastation. This is not gullibility — it&#x27;s the unavoidable liability of the talent&#x27;s central mechanism.</p>
+<p><strong>Devaluing emotional signals as data.</strong> Paradoxically, someone with Empathy in a strongly analytical environment may learn to suppress their emotional perception to fit in — treating it as a liability rather than a data source. When this happens, a genuine organizational intelligence function goes offline.</p>
+<p><strong>Compassion fatigue at scale.</strong> Managing up, across, and down — while continuously absorbing emotional signals from all directions — is metabolically expensive. Without deliberate recovery practices, people with Empathy are at elevated risk of compassion fatigue, particularly in helping professions or in roles with high relational intensity.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to develop it</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>For people with Empathy as a dominant theme — specific actions to invest in the talent:</p>
+<p><strong>Name what you sense.</strong> When you pick up an emotional signal in a conversation or meeting, practice articulating it — either internally as a hypothesis or, when appropriate, aloud: &quot;It sounds like there might be some frustration underneath this.&quot; Naming transforms perception into communication.</p>
+<p><strong>Distinguish your emotions from absorbed emotions.</strong> Develop a personal practice of checking: &quot;Is this feeling mine, or did I pick it up from the environment?&quot; Journaling, short pauses after high-contact interactions, and physical grounding practices (breathing, moving, changing environments) help maintain this distinction.</p>
+<p><strong>Use Empathy as a radar, not a sponge.</strong> The goal is accurate emotional perception, not complete emotional absorption. A radar detects and transmits — it doesn&#x27;t retain. Practice acknowledging what you sense without being altered by it.</p>
+<p><strong>Seek environments that value emotional intelligence.</strong> Empathy thrives in contexts where human dynamics are treated as real and relevant. In environments that systematically dismiss emotional signals, the talent goes underground — and so does its value.</p>
+<p><strong>Build a vocabulary for emotional states.</strong> The richer your emotional vocabulary, the more precisely you can translate what you sense. Study emotional granularity — the difference between frustration, disappointment, resentment, and helplessness. More precise language makes your perception more useful to others.</p>
+<p><strong>Practice setting the container.</strong> When someone brings you their distress, you don&#x27;t have to absorb it to demonstrate understanding. You can hold the space for their emotion without filling with it yourself. This is a learnable skill, not a talent you either have or don&#x27;t.</p>
+<p><strong>Use Empathy proactively in high-stakes communication.</strong> Before important conversations — presentations, feedback sessions, negotiations — spend a moment anticipating the emotional experience of the other person. What are they carrying into this conversation? What do they need to feel to be able to hear what you&#x27;re saying? This preparation is often the difference between a message sent and a message received.</p>
+<p><strong>Exercise:</strong> After your next difficult conversation, write down: (1) what the other person appeared to be feeling, (2) what you felt during the conversation, (3) whether you could distinguish between the two in the moment. Over time, this builds the separating muscle between perception and absorption.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to work with someone who has Empathy</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li>Check in on how they&#x27;re doing before launching into the agenda. For someone with Empathy, the relational temperature matters. A cold start — treating the conversation as purely transactional — signals that their emotional attunement isn&#x27;t valued.</li>
+<li>Take seriously what they report about team dynamics. If they say &quot;something feels off with the team,&quot; treat it as a data point worth investigating, not a vague impression to dismiss. They are often detecting something real before anyone else has named it.</li>
+<li>Don&#x27;t ask them to perform emotional disconnection. Telling someone with high Empathy to &quot;leave feelings out of it&quot; is like telling someone with Analytical to stop asking questions. It removes their most important tool.</li>
+<li>Create recovery time after high-intensity interactions. If their role involves difficult conversations, conflict, or sustained relational intensity — build in space for them to reset. Without this, the talent degrades into exhaustion.</li>
+<li>Recognize the relational work they do — which is often invisible. The person who made a struggling colleague feel understood, or who sensed that the team was demoralized before anyone said it — that work rarely appears in any output metric. Name it explicitly.</li>
+<li>Ask questions that access the talent: &quot;What&#x27;s the emotional temperature of the team right now?&quot; &quot;What are you sensing that we might not be talking about?&quot; &quot;Who do you think needs attention right now?&quot;</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>Don&#x27;t mistake understanding for agreement. The person with Empathy can hold your experience, validate your feelings, and still disagree with your position. They are not saying &quot;you&#x27;re right&quot; when they say &quot;I understand.&quot;</li>
+<li>Let them know when you&#x27;re struggling — they probably already sense it, and naming it makes the interaction more honest for both of you.</li>
+<li>If you&#x27;re delivering information that involves human impact, give them a moment to process. They&#x27;re not being dramatic. They&#x27;re genuinely processing.</li>
+<li>Don&#x27;t use emotional expression strategically — they will sense it. Authenticity is the only currency that works with someone who can feel what&#x27;s real.</li>
+<li>Ask their read on how people are feeling in a team or situation. They have access to information others don&#x27;t.</li>
+</ul>
+<p><strong>Recognition:</strong> Recognize the climate they create — &quot;because of how you show up, people feel safe to bring real problems forward.&quot; Recognize specific instances where they caught something early — &quot;you were right about what was happening with that conversation.&quot; For someone with Empathy, being told they are seen and understood is the deepest form of recognition.</p>
+<p><strong>Trust-building:</strong> Leaders with Empathy build trust by demonstrating consistently that emotional reality will not be punished or dismissed. This doesn&#x27;t mean they always agree with how people feel — it means they take feelings seriously as information.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with other themes</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Empathy + Developer (a theme about cultivating potential in others):</strong></p>
+<p>A deeply human-centered pairing. Developer sees where someone can go; Empathy feels where they are right now. Together: the growth relationship is grounded in genuine understanding, not just investment in potential.</p>
+<p><strong>Empathy + Harmony (a theme about seeking consensus and avoiding conflict):</strong></p>
+<p>Both themes reduce friction, but differently. Harmony wants agreement; Empathy wants understanding. When combined, this person is strongly conflict-averse — which can be a liability unless balanced with themes that create forward motion. The path from avoidance to resolution runs through genuine understanding (Empathy) and then toward agreement (Harmony).</p>
+<p><strong>Empathy + Command (a theme about taking charge and projecting presence in a crisis):</strong></p>
+<p>An unusual combination. Command is willing to create conflict; Empathy feels its cost. When this combination works, it produces someone who can make hard calls while remaining genuinely attuned to the human impact. When it doesn&#x27;t, it creates internal tension between the drive to act decisively and the capacity to feel the consequences.</p>
+<p><strong>Empathy + Analytical (a theme about deconstruction and evidence-based thinking):</strong></p>
+<p>Empathy provides intuitive starting points — a felt sense that something is wrong, or that someone is holding back. Analytical provides the proof structure. Together: conclusions that are both felt and demonstrated. Also: Analytical can help the Empathy person structure and articulate what they sense, translating emotional perception into communicable insight.</p>
+<p><strong>Empathy + Woo (a theme about winning others over through social energy):</strong></p>
+<p>Woo creates initial connection quickly; Empathy makes it feel genuine. The combination produces someone who is both immediately likeable and actually attuned. The risk: staying at the surface (Woo&#x27;s comfort zone) rather than going deeper (Empathy&#x27;s strength).</p>
+<p><strong>Empathy + Activator (a theme about making things happen by acting now):</strong></p>
+<p>Activator wants to move; Empathy reads the room first. This can create productive tension — the Empathy person prevents Activator from moving before people are emotionally ready, while Activator prevents Empathy from staying in the processing phase indefinitely. When misaligned, Empathy experiences Activator as disregarding human reality; Activator experiences Empathy as slowing things down unnecessarily.</p>
+<p><strong>Empathy + Individualization (a theme about recognizing what makes each person unique):</strong></p>
+<p>A powerful pairing for people management. Individualization identifies the differences between people; Empathy feels into those differences. Together: genuinely tailored engagement rather than cookie-cutter management.</p>
+<p><strong>Empathy + Belief (a theme about deeply held values that guide all decisions):</strong></p>
+<p>When what Empathy senses aligns with what Belief holds, conviction deepens. This person will go to significant lengths for others — not just because they sense the need, but because they believe it matters. The combination can produce exceptional advocacy for others, and significant cost to self when the two themes are in conflict.</p>
+<p><strong>Empathy + Self-Assurance (a theme about trust in one&#x27;s own ability and judgment) — uncommon pairing:</strong></p>
+<p>When it occurs, this is a particularly effective combination. Self-Assurance provides the internal grounding that prevents Empathy from absorbing others&#x27; emotions completely. The person can feel deeply without being swept away. They perceive without being defined by the perception.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

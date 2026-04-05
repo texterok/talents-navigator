@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Input · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain strat">Strategic Thinking</div>
+    <h1>Input</h1>
+    <p class="hero-def">&quot;You have a need to collect and archive. You may accumulate information, ideas, artifacts, or even relationships.&quot;</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Input</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition (Gallup):</strong> &quot;You have a need to collect and archive. You may accumulate information, ideas, artifacts, or even relationships.&quot;</p>
+<p>Input is a Strategic Thinking theme. Its core is an insatiable craving to gather things from outside oneself — information, ideas, objects, people, stories — with a persistent sense that what is being collected may have future utility. The drive is not random accumulation; it carries an implicit agenda: <em>this might prove useful to me or someone else someday.</em></p>
+<p><strong>The key distinction from similar themes:</strong></p>
+<ul class="marker-list">
+<li><strong>Input vs. Learner (the drive to understand and grow through a subject):</strong> Input is energized by the gathering itself; Learner is energized by the journey from not-knowing to mastery. Input says &quot;the information excites me&quot;; Learner says &quot;the process of absorbing it into mastery excites me.&quot; Input is the library; Learner is the class. Input can discard something once collected without losing anything — the act of gathering was the point. Learner may let go of content once mastered; Input tends to keep things because they might connect later.</li>
+</ul>
+<blockquote class="md-quote">&quot;Input is the gathering of information, the collecting, the absorbing... Learner is the turning of knowledge into mastery.&quot; [S4]</blockquote>
+<ul class="marker-list">
+<li><strong>Input vs. Ideation (the Strategic Thinking theme for generating novel ideas):</strong> Ideation creates new concepts from within; Input imports perspectives from outside. Input brings grounded, external-sourced content to the table; Ideation generates it internally.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Input vs. Strategic (the Strategic Thinking theme for pattern-recognition and pathfinding):</strong> Strategic asks &quot;what are the options and how do they align?&quot;; Input asks &quot;what information exists, and what more can we gather?&quot; Input is the curator; Strategic is the map-maker.</li>
+</ul>
+<p><strong>Frequency:</strong> Input appears in the top 5 of approximately 20% of people in Gallup&#x27;s database of 11+ million — the 6th most common theme. Its most statistically likely co-theme is Intellection (the Strategic Thinking theme for deep reflective thinking), with roughly a 44–45% co-occurrence rate. [S1]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral signatures:</strong></p>
+<ul class="marker-list">
+<li>Gravitates to new information before taking action — researching, reading, interviewing, studying — as a natural first step to making sense of a problem.</li>
+<li>Collects across a wide range: books, articles, data, tools, contacts, physical objects, stories, experiences. The medium varies by person; the impulse is constant.</li>
+<li>Has a long time horizon for utility — something acquired today may serve a purpose years from now. This creates a high tolerance for ambiguity about <em>when</em> something will be used.</li>
+<li>Sees value in things faster than others do, because &quot;value&quot; extends into the future: &quot;I don&#x27;t just collect useless things — I collect because I see potential.&quot; [S4]</li>
+<li>Acts as the informal knowledge keeper: first to respond to a group email asking &quot;does anyone know anything about X?&quot; with a source and something specific. [S5]</li>
+<li>Feels delight when they can answer a question with exactly the right artifact — a research nugget, an article, an introduction to the right expert. That moment of relevance is a peak experience.</li>
+<li>Often has systematic personal practices for absorption: subscriptions, podcasts, audiobooks during commutes, book clubs, note-taking systems.</li>
+<li>May physically collect as a manifestation of the mental pattern: books, tools, stamps, fabric scraps — objects kept because they <em>might</em> matter one day.</li>
+</ul>
+<p><strong>Raw vs. mature state:</strong></p>
+<table class="maturity-table"><thead><tr><th>Raw</th><th>Mature</th></tr></thead><tbody><tr><td>Download-only: absorbs everything, shares little</td><td>Download and upload: absorbs and routes the right piece to the right person</td></tr><tr><td>Intimidating: overwhelms with five answers when one was needed</td><td>Intentional: gives the most appropriate piece, asks &quot;would you like more?&quot;</td></tr><tr><td>Distracted: rabbit holes everywhere, loses track of the original question</td><td>Deliberate: builds trusted source lists, specializes gathering</td></tr><tr><td>Final: collects within a closed loop of confirming sources</td><td>Fresh: actively seeks sources that challenge or update existing views</td></tr><tr><td>Collection for its own sake</td><td>Curation: takes inventory, catalogs by theme, potential utility, or current challenge</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Resourcefulness under uncertainty.</strong> A team with someone who has high Input is rarely backed into a corner — there is almost always someone who knows something, knows someone, or knows where to look. [S4]</p>
+<p><strong>Credibility through external sourcing.</strong> Input builds trust through external grounding: &quot;I didn&#x27;t just come up with this — I read a study, I cited a source, I learned it from someone.&quot; This maps directly to the credibility component of trust (Maister&#x27;s formula: credibility + reliability + intimacy / self-orientation). [S3]</p>
+<p><strong>Institutional memory and knowledge continuity.</strong> In dispersed or changing environments, someone with Input has often archived what others assumed was saved somewhere. They can retrace the breadcrumbs when systems change or team members turn over. [S6]</p>
+<p><strong>Cross-pollination of ideas.</strong> Input brings perspectives from outside the team into the room — not invented in-house, but gathered from what already exists elsewhere. This stretches the team&#x27;s thinking beyond its own boundaries. [S6]</p>
+<p><strong>First-response capability for research problems.</strong> Assigning someone with Input to &quot;first-response&quot; — fielding questions about what the team knows collectively, scanning for what&#x27;s been done before — is a high-leverage placement. [S5]</p>
+<p><strong>Stability and hope for followers.</strong> A leader with Input can build team stability by gathering and sharing information that clarifies expectations. They can build hope by surfacing possibilities and perspectives when others feel stuck. [S3]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Clutter instead of collection.</strong> If the volume of gathered material grows faster than the ability to sort and access it, the collection becomes intellectual or physical clutter. A resource that can&#x27;t be retrieved is no resource at all. [S5]</p>
+<blockquote class="md-quote">&quot;Resources that aren&#x27;t organized and accessible are worthless — if I can&#x27;t find it, I can&#x27;t share it.&quot; [S1]</blockquote>
+<p><strong>Information as a fire hose.</strong> Sharing everything one knows on a subject — when the person asked only needed one answer — creates noise, not value. This is the &quot;intimidating&quot; mode: preventative rather than prescriptive. People with high Input need to develop the habit of asking &quot;what problem are you actually trying to solve?&quot; before opening the archives. [S5]</p>
+<p><strong>Endless gathering as a substitute for action.</strong> Input can be so enthralled with the gathering phase that the second step never comes. Researching is doing — but only up to the point where it enables action. Staying perpetually in &quot;gathering mode&quot; is a risk, especially on projects with deadlines. [S2]</p>
+<p><strong>Echo chambers through curated sources.</strong> In an information-rich environment, it&#x27;s easy to follow only sources that confirm existing views. Mature Input deliberately seeks diversity of sources — different genres, different expert communities, different perspectives. [S2]</p>
+<p><strong>Hoarding vs. serving.</strong> Collecting without routing information to anyone is satisfying for the collector and useless for the team. The sponge metaphor applies: a sponge that never releases eventually smells. [S1, S2]</p>
+<p><strong>Overextension without specialization.</strong> Knowing a little about everything is a strength; knowing nothing deeply can limit credibility. Input benefits from identifying 1–2 areas to develop with real depth, rather than spreading across every available subject. [S4]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Move from collecting to curating.</strong> Take inventory of what you have. Catalog existing material by subject, theme, or potential use case. Ask: &quot;What am I missing in this area?&quot; — that question redirects the impulse toward intentional gaps rather than random accumulation. [S5]</p>
+<p><strong>Open one more focused channel.</strong> Pick a specific domain and add one structured source: subscribe to a journal, join a professional group, find an expert to have a standing conversation with. Depth in a specialty compounds faster than breadth across everything. [S4]</p>
+<p><strong>Write down the questions.</strong> Set a timer for 3 minutes and write every question that has crossed your mind in the past week. This surfaces the current flavor of your curiosity and helps you see where your Input is pointing. [S4]</p>
+<p><strong>Turn gathering into sharing.</strong> Sign up to teach, lead a breakout session, or mentor someone. Writing or speaking forces you to compress and sequence what you know — the act of creating output reveals what was actually retained and what can serve others. [S4]</p>
+<p><strong>Build a system for retrieval.</strong> Input that cannot be accessed is lost. Invest in whatever system works: searchable digital notes, a subject-tagged folder structure, a personal wiki. The goal is to be able to find something from three years ago in under two minutes. [S1]</p>
+<p><strong>Practice the &quot;shortest answer&quot; habit.</strong> When someone asks a question, lead with the most direct answer. Then offer: &quot;Would you like more?&quot; Accept &quot;no&quot; without discomfort. This keeps the interaction useful and builds a reputation as someone who helps rather than overwhelms. [S5]</p>
+<p><strong>Acknowledge that gathering is work.</strong> For people with high Input, the research phase can feel like it isn&#x27;t &quot;real&quot; work — especially when others expect visible output immediately. Reframe internally: gathering is how you prepare to perform. Give yourself dedicated time for it. [S3]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Input</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li>Ask questions that tap the archive: &quot;Have you come across anything on this topic before?&quot; &quot;Do you know anyone who&#x27;s dealt with this?&quot; These questions are experienced as energizing, not burdensome. [S5]</li>
+<li>Assign them to front-end research roles: scoping what&#x27;s known before a project starts, benchmarking, or landscape analysis. This is a high-return placement. [S5]</li>
+<li>Give them time to gather before expecting action. Input persons perform better when they feel well-informed before rolling up their sleeves. Skipping the research phase on their behalf (assigning someone else to gather and handing them a summary) often produces worse results — they want to flip through the card catalog themselves. [S6]</li>
+<li>Recognize them for credibility, not just contribution. Public acknowledgment framed as &quot;our go-to trusted advisor on X&quot; lands well. [S4]</li>
+<li>Stretch them by helping them pose a research question out loud — not just &quot;go find out about this,&quot; but &quot;what specifically are you curious about?&quot; This opens more directed pathways and commits them to a domain. [S4]</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>Cite your sources. Even informally: &quot;I heard this from X&quot; or &quot;this came out of a report from Y.&quot; This creates breadcrumbs they can follow and delight in extending. [S4, S5]</li>
+<li>Ask about current interests: &quot;What are you reading right now?&quot; &quot;Who&#x27;s influencing your thinking on this?&quot; These questions light them up and often surface something useful for you. [S6]</li>
+<li>Send them questions with explicit permission to dig: &quot;Do you know anything about Z?&quot; Even if they don&#x27;t know the answer today, they&#x27;ll enjoy finding it. [S4]</li>
+<li>Invite them to be a proofreader, fact-checker, or pre-launch reviewer — roles that put their judgment about sources and credibility to direct use. [S4]</li>
+<li>Don&#x27;t expect them to speak first in group settings without an invitation. Input is outwardly focused but often Strategic Thinking in its processing — they may need a direct ask to share what they know. [S5]</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Input + Learner:</strong> One-plus-one-equals-three. Both are curious and inquisitive; together they drive both deep absorption and systematic mastery. The tension to watch: Learner wants to move toward expertise; Input wants to keep gathering. They may need a completion mechanism to close loops. [S1]</p>
+<p><strong>Input + Intellection (the Strategic Thinking theme for deep solo reflection):</strong> The most statistically likely pairing (~44% co-occurrence). Intellection provides the internal processing loop; Input fills it with external material. Together they produce well-grounded, deeply considered thinking. [S1]</p>
+<p><strong>Input + Strategic:</strong> Input gathers the raw material; Strategic selects the paths. A powerful combination for navigating complex problems — one ensures the information landscape is fully surveyed, the other cuts through it decisively.</p>
+<p><strong>Input + Ideation:</strong> Input brings existing perspectives from outside; Ideation recombines them into new concepts. Together they create idea generation that is both novel and grounded in external reality rather than purely speculative.</p>
+<p><strong>Input + Individualization (the Relationship Building theme for reading and responding to individual differences):</strong> Input applied to people rather than information. Practitioners with both collect detailed knowledge about specific individuals — preferences, history, strengths — and use it to personalize how they engage, what they share, and what they ask. [S3]</p>
+<p><strong>Input + Woo (the Influencing theme for winning others over):</strong> Input feeds Woo with relevant material to deploy in connection-building. The collector knows a little about many topics; Woo finds the right moment to use it. [S4]</p>
+<p><strong>Input + Discipline or Focus (the Executing themes for order and priority):</strong> These themes manage Input&#x27;s primary risks. Discipline brings structure to the collection — catalogs, retrieval systems, naming conventions. Focus helps decide what is worth collecting and what to discard. Without one of these (or a strong partner who has them), Input can become hoarding. [S1]</p>
+<p><strong>Input + Context (the Strategic Thinking theme for learning from the past):</strong> Both look backward — Context to understand how the present came to be, Input to gather what has already been discovered. Together they make for an exceptionally well-sourced historical perspective and resistance to reinventing wheels.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Woo · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain infl">Influencing</div>
+    <h1>Woo</h1>
+    <p class="hero-def">stands for Winning Others Over. It belongs to the Influencing domain — themes that describe people who thrive by responding to and moving other people.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Woo</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Woo</strong> stands for <strong>Winning Others Over</strong>. It belongs to the Influencing domain — themes that describe people who thrive by responding to and moving other people.</p>
+<p>The core definition: people with dominant Woo love the challenge of meeting new people and winning them over. They derive satisfaction from breaking the ice and making that initial connection. The operative phrase is <em>initial</em> — Woo specializes in the first entry point into a relationship.</p>
+<p>Woo is a verb. It&#x27;s something you do. It is not a personality type or a charm style — it&#x27;s the active, energizing process of converting strangers into acquaintances, and acquaintances into something warmer.</p>
+<p>The underlying belief system: <em>&quot;There are no strangers — only friends you haven&#x27;t met yet.&quot;</em> This is not a slogan. For high-Woo people it reflects a genuine assumption that some common ground exists with every person, that a connection is possible, and that making it is worth pursuing.</p>
+<p>Woo is fundamentally <strong>social initiative</strong>: the willingness and the eagerness to reach out first, without waiting for permission or an introduction.</p>
+<p><strong>Prevalence:</strong> Approximately 13% of people have Woo in their top five — not rare, not common.</p>
+<p>---</p>
+<h3>Woo vs. similar themes</h3>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Core orientation</th><th>Distinction from Woo</th></tr></thead><tbody><tr><td><strong>Relator</strong> (depth of existing relationships)</td><td>Social depth — investing in already-established bonds</td><td>Woo = social breadth (going wide); Relator = social depth (going deep). Woo excels at the first handshake; Relator excels at the years after. Neither is superior — they cover different territory.</td></tr><tr><td><strong>Includer</strong> (making everyone feel part of the group)</td><td>Awareness of who is excluded and pulling them in</td><td>Woo acts on group energy and quantity — winning the room. Includer is more individual-level: noticing exactly how each person fits into the whole. Together: whole group feels important AND each person feels they belong.</td></tr><tr><td><strong>Communication</strong> (translating ideas into stories and words)</td><td>Making complex ideas accessible; helping people feel <em>heard</em></td><td>Communication = &quot;I will turn this idea into something you can understand.&quot; Woo = &quot;I see you, you matter, you are not invisible.&quot; Communication helps people feel heard; Woo helps people feel <em>seen</em>. They co-occur frequently and are easy to conflate.</td></tr><tr><td><strong>Competition</strong> (measuring against benchmarks)</td><td>Winning the contest against relevant comparisons</td><td>Competition says &quot;I want to win the contest.&quot; Woo says &quot;I want to win your favor.&quot; Both are motivated by winning — different targets entirely.</td></tr><tr><td><strong>Activator</strong> (bias to action, starting things)</td><td>Energizing others to begin</td><td>Activator infuses the team with confidence that they <em>can</em> get started. Woo infuses the team with comfort, connection, and social warmth so they <em>keep going</em>.</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How Woo Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Behavioral signatures</h3>
+<ul class="marker-list">
+<li><strong>Comfort with strangers.</strong> High-Woo people are not intimidated by unfamiliar faces or even extreme personalities. Closed, difficult people become a more interesting challenge, not a reason to disengage.</li>
+<li><strong>Social radar is always on.</strong> There is a constant internal monitor tracking who has been won over and who hasn&#x27;t. They are rarely fully disconnected from the people around them.</li>
+<li><strong>Eye contact as an entry point.</strong> Eye contact from a stranger is a trigger — a signal that an interaction is possible. Woo people act on it.</li>
+<li><strong>Hospitality instinct.</strong> They have a signature way of making people feel comfortable: a specific greeting, a natural question, a way of introducing people to each other that feels genuinely mutual rather than transactional.</li>
+<li><strong>Social credit extended by default.</strong> Even anonymous strangers — other drivers on the highway, fellow passengers — are considered as people, not as obstacles.</li>
+<li><strong>Not necessarily loud.</strong> Woo does not require extroversion in the conventional sense. A quiet knowing glance when someone is struggling is Woo. Sitting next to someone on a flight, greeting them warmly, then reading the room and leaving them to their silence is Woo. The distinguishing feature is the <em>courage to connect</em>, not volume.</li>
+<li><strong>Physical feedback loop.</strong> Making a connection produces a genuine physical sensation — a charge, a &quot;zing.&quot; This is the reward signal that makes the behavior self-reinforcing.</li>
+</ul>
+<h3>Self-recognition clues</h3>
+<ul class="marker-list">
+<li>You find it hard to let go of a pursuit (formal or informal) until you know you&#x27;ve won the person over.</li>
+<li>You are aware — sometimes acutely — of the one person in a room who hasn&#x27;t warmed to you yet.</li>
+<li>You do better work when you can interact with others during it.</li>
+<li>Your version of &quot;research&quot; often involves talking to people. Including other people in your thinking process feels natural, not performative.</li>
+<li>Being around people restores your energy rather than depleting it — even when you arrived tired.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>On a team</h3>
+<p>A person with high Woo typically functions as the <strong>social connector</strong>: the person most people on the team have some connection to, which means trust between team members is higher even when that person is not present. They are a kind of social infrastructure.</p>
+<p>Specific contributions:</p>
+<ul class="marker-list">
+<li><strong>Breaking tension.</strong> In high-stakes or awkward moments, Woo creates a lightness that lets people relax and be real.</li>
+<li><strong>Expanding the network.</strong> When resources, experts, or allies are needed, the Woo person can pull them in — because they have already met and won over people in adjacent circles.</li>
+<li><strong>Reducing invisibility.</strong> When someone with Woo is in the room, others feel less invisible. This increases the willingness to speak up, take risks, and contribute.</li>
+<li><strong>First-contact situations.</strong> Recruiting, onboarding, opening a new market, attending an industry event — these are natural territory for Woo. They do not need to already belong somewhere in order to engage confidently.</li>
+<li><strong>Spreading goals.</strong> High Woo can carry an idea or a mission through social networks — &quot;lighting tiny matches in the right places and letting sparks grow on their own&quot; rather than building one centralized fire.</li>
+</ul>
+<h3>Tactical use</h3>
+<p>Gallup practitioners report deliberately placing people with Woo at specific tables during large group sessions — one per table — to ensure every subgroup has a social activator. The effect: conversations open faster, quieter participants engage earlier, and energy distributes across the room rather than pooling near the front.</p>
+<h3>In leadership</h3>
+<p>As an individual contributor, Woo builds the leader&#x27;s personal network. As a leader, Woo expands the team&#x27;s collective influence and builds expertise through a network of relationships. The leader with Woo does not need to know everything — they know who to call.</p>
+<p>Additionally: employees feel more at home under a Woo leader. Seeing a leader engage naturally and authentically with people at all levels gives permission to others to do the same.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side and Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Perceived as superficial or insincere</h3>
+<p>To people who find social initiation effortful or who associate warmth with deep investment, Woo can look like a performance. If someone only interacts with a Woo person briefly, the ease and naturalness of the connection can read as &quot;too smooth&quot; or &quot;not real.&quot;</p>
+<p>Mitigation: Over time and repeated interaction, consistency proves authenticity. This is not a problem to fix immediately — it resolves through exposure. The concern is primarily with first impressions from reserved observers.</p>
+<h3>Over-disclosure</h3>
+<p>Woo people trust and like quickly. This can lead to sharing personal information too early in a relationship, which can discomfort more reserved people or erode professional credibility. The hospitality intended by the disclosure is not received as hospitality.</p>
+<p>Mitigation: Read the reservation level of the other person. Develop a wider range of opening moves — not every connection has to begin with personal warmth.</p>
+<h3>Raw Woo — undeveloped patterns</h3>
+<p>Three specific raw-vs-mature contrasts:</p>
+<table class="maturity-table"><thead><tr><th>Raw (undeveloped)</th><th>Mature (developed)</th></tr></thead><tbody><tr><td>&quot;I need people to like me.&quot;</td><td>&quot;I genuinely like people — the liking flows outward, not as a demand.&quot;</td></tr><tr><td>Rapport is the goal.</td><td>Rapport is a means toward a larger goal: better performance, deeper relationships, mission advancement.</td></tr><tr><td>Pleasure in the moment of connection.</td><td>Recruit and assemble — see each connection as part of building something toward a purpose.</td></tr></tbody></table>
+<h3>Indiscriminate network building</h3>
+<p>Early-stage Woo can produce a &quot;people collector&quot; pattern: meeting many people, generating energy from each encounter, but failing to track who is who or what to do with the relationships afterward. A large but unstructured network has limited leverage.</p>
+<p>Mitigation: Develop systems for remembering names and social details. Clarify where each person fits in the network. Think in terms of communities — and how to build bridges between them.</p>
+<h3>Energy mismatch</h3>
+<p>Woo energy is always on. For people with Empathy (feeling the emotions of others), Deliberative (careful risk assessment), or Analytical (need for data before trusting), the Woo person&#x27;s energy can be physically overwhelming. They experience it as a demand rather than a gift.</p>
+<p>Mitigation: Learn to modulate — lower volume, slower pace, more silence. This requires deliberate practice and is one of the marks of mature Woo.</p>
+<h3>Rejection sensitivity</h3>
+<p>Woo people can be hurt when a group is closed — when the social energy they extend is not returned or when a room clearly does not welcome new entrants. This is an emotional cost that low-Woo observers may underestimate.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop Woo</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>These actions are for people who have Woo as a talent and want to move it toward a strength.</p>
+<p><strong>1. Do not spend the entire workday in isolation.</strong></p>
+<p>Even during focused solo work, brief social interactions — a walk, saying hello to a colleague, a trip to get coffee — restore the energy that makes Woo effective. If you go too long without contact, output quality decreases and mood follows.</p>
+<p><strong>2. Lean into social situations on purpose, even when you don&#x27;t feel &quot;on.&quot;</strong></p>
+<p>The tendency to avoid social engagement when not feeling prepared (&quot;I&#x27;m not ready to be on&quot;) is a Woo trap. The experience of connecting is itself energizing — you will typically feel better after, not during. Push into the interaction.</p>
+<p><strong>3. Stay current with topics relevant to your community.</strong></p>
+<p>Knowing a little about local sports, industry news, or events important to the people you serve accelerates connection. It provides entry points. A daily update on one or two topics of interest to your network is a practical Woo development habit.</p>
+<p><strong>4. Take on first-contact roles deliberately.</strong></p>
+<p>Volunteer to run icebreakers, greet newcomers, host the opening of an event, introduce speakers. These are natural Woo contexts and function as practice environments. The more you do this with intention, the more the talent sharpens.</p>
+<p><strong>5. Calibrate approach to audience.</strong></p>
+<p>Practice reading how open versus closed someone is before initiating. Develop different opening moves for different contexts: a high-energy room, a one-on-one with a reserved colleague, a formal meeting with a potential partner. Flexibility is what separates talent from strength.</p>
+<p><strong>6. Transition from pleasure-in-the-moment to recruit-and-assemble.</strong></p>
+<p>Ask: What am I building with these connections? What initiative, goal, or community are they serving? Define an outcome — a team you&#x27;re forming, a cause you&#x27;re advancing, an audience you&#x27;re trying to reach — and use Woo in service of it.</p>
+<p><strong>7. Develop a system for names and social details.</strong></p>
+<p>High Woo + poor name recall creates a credibility gap. The urge to greet people you&#x27;ve met before, combined with forgetting their name, is frustrating and undermines the very warmth Woo is trying to create. Invest in memory systems: note names after meetings, use mnemonic associations, review before recurring events.</p>
+<p><strong>8. Find other Woos first in large groups.</strong></p>
+<p>When entering a room or session where you need to activate participation, identify the other high-Woo people first. Make early eye contact, encourage their contributions, and let them help energize the rest of the room. You multiply your effect rather than doing it alone.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Woo</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>For managers and teammates.</p>
+<h3>Understand their research process</h3>
+<p>When a Woo person is solving a problem, their instinct is to include other people — to socialize the question. This is not procrastination or indecision. It is how they think. Expecting them to produce an answer in isolation, without interaction, is working against the talent. Create space for them to consult, ask around, and test ideas conversationally.</p>
+<h3>Give them first-contact responsibilities</h3>
+<p>Introductions, new client meetings, industry events, onboarding new hires, opening networking sessions — these are exactly where Woo contributes most clearly. They do not find strangers threatening. They find them energizing.</p>
+<h3>Ask about their network</h3>
+<p>&quot;Who do you know in that space?&quot; is a legitimate and productive question to ask a Woo person. They are often sitting on connections that solve problems the team doesn&#x27;t know it has.</p>
+<h3>Frame goals in terms of people</h3>
+<p>Woo people measure success in human terms — who was affected, who joined, who changed direction because of the work. When assigning goals, communicate the social impact: who will benefit, how many people will experience the outcome, what the community will look like afterward.</p>
+<h3>Do not expect depth from breadth</h3>
+<p>Woo is the gateway to relationships, not the full relationship. Do not hold it against a Woo person that they don&#x27;t remember every detail about every person they&#x27;ve met, or that they form quick warmth that doesn&#x27;t always mature into close friendship. Partner them with people who have Relator (social depth) or Empathy (emotional attunement) to ensure relationships continue past the introduction.</p>
+<h3>Questions to draw out Woo</h3>
+<ul class="marker-list">
+<li>How do you build rapport with people?</li>
+<li>When do you know you&#x27;ve won someone&#x27;s trust?</li>
+<li>What&#x27;s your favorite way to break the ice?</li>
+<li>What community or group are you most energized by being part of?</li>
+<li>Who gives you energy?</li>
+<li>When was the last time you made someone feel genuinely welcome?</li>
+</ul>
+<h3>Modulate expectations around energy</h3>
+<p>A Woo person who has been isolated for most of the day will be less effective — not lazy, not disengaged, but under-resourced. Where possible, structure their work so that they have regular human contact. Treat isolation as a performance constraint, not a neutral condition.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Woo + Communication (storytelling and simplification)</h3>
+<p>The most frequent pairing. Communication provides the language to make ideas compelling; Woo provides the social spark that makes people open to receiving those ideas. Communication creates the message; Woo creates the audience. Together: someone who can enter any room and immediately make people want to listen.</p>
+<p>Caution: These two overlap enough that observers often can&#x27;t distinguish them. If you have both, work to understand each independently — Woo can be quiet (a glance, a presence), while Communication is always about language.</p>
+<h3>Woo + Positivity (optimism and enthusiasm)</h3>
+<p>Makes Woo more visibly bubbly and overt. Positivity amplifies the emotional energy that Woo produces — the two create an atmosphere that is noticeably warm and inviting. Common trifecta: Woo + Positivity + Communication.</p>
+<h3>Woo + Activator (bias to action, starting things)</h3>
+<p>Activator intensifies Woo by adding urgency. The result: not just wanting to connect, but needing to connect now. High urgency greeters. Also useful in organizational contexts — Activator + Woo combinations launch communities, initiatives, and relationships quickly and without overthinking.</p>
+<h3>Woo + Competition (measuring against relevant benchmarks)</h3>
+<p>An unusual pairing that creates a highly motivated connector — someone who experiences networking, influencing, and winning people over as genuinely competitive. The drive to win is funneled through social pursuit rather than rankings or metrics. Can be highly effective in sales and business development.</p>
+<h3>Woo + Individualization (curiosity about what makes each person unique)</h3>
+<p>Individualization moderates and deepens Woo. Where Woo might have a set of techniques that work for most people, Individualization customizes — it reads what this particular person needs. Together: social breadth (Woo) combined with precise personal calibration (Individualization). Produces connections that feel unusually tailored. Individualization also helps Woo people read when <em>not</em> to engage.</p>
+<h3>Woo + Relator (depth of existing relationships)</h3>
+<p>Complementary, not contradictory. Woo opens doors; Relator decides which ones to walk through more deeply. People with both often have very wide acquaintance networks and a small, intensely close inner circle — the Woo explains the width, the Relator explains the depth at the center.</p>
+<h3>Woo + Includer (awareness of who is excluded)</h3>
+<p>Both make people feel welcome, but through different mechanisms. Woo is about energy and the thrill of connection; Includer is about seeing each individual and ensuring they belong. Together: they are deeply effective at welcoming rooms — no one is invisible, and no one feels like a demographic.</p>
+<h3>Woo + Empathy (feeling the emotions of others)</h3>
+<p>A powerful pairing for coaching, facilitation, and service roles. Empathy gives Woo the emotional precision to know not just that someone is reserved — but <em>why</em>, and what they need. Empathy also slows Woo down at the right moments, preventing the over-disclosure and energy-flooding that raw Woo can produce.</p>
+<h3>Woo + Strategic (identifying the right path forward) or Arranger (organizing people and resources)</h3>
+<p>These executing and strategic themes direct Woo toward outcomes. Without them, Woo can remain in the pleasure-of-the-moment mode. With them, Woo becomes a deliberate organizational tool — assembling the right people, in the right configuration, toward a defined goal.</p>
+<p>---</p>
+<p><em>Methodology compiled from Gallup Theme Thursday transcripts, Seasons 1–6, covering Woo across multiple lenses: individual definition, leadership application, team dynamics, raw vs. mature expression, and theme combinations.</em></p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

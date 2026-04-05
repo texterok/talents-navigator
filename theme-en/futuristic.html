@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futuristic · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain strat">Strategic Thinking</div>
+    <h1>Futuristic</h1>
+    <p class="hero-def">Futuristic is a talent theme in the Strategic Thinking domain of the CliftonStrengths framework. Its core is vision: the ability to imagine a vivid, detailed, and compelling picture of what could be — and to feel genuinely energized by that image of tomorrow.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What Is Futuristic</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Futuristic is a talent theme in the <strong>Strategic Thinking domain</strong> of the CliftonStrengths framework. Its core is <strong>vision</strong>: the ability to imagine a vivid, detailed, and compelling picture of what could be — and to feel genuinely energized by that image of tomorrow.</p>
+<p>The official short definition: &quot;People exceptionally talented in the Futuristic theme are inspired by the future and what could be. They energize others with their visions of the future.&quot;</p>
+<p>Three synonyms capture it more precisely:</p>
+<ul class="marker-list">
+<li><strong>Vision</strong> — Futuristic is fundamentally about the ability to see and inhabit a future that doesn&#x27;t yet exist. This isn&#x27;t abstract optimism; it&#x27;s the capacity to form a specific, detailed mental model of a possible tomorrow.</li>
+<li><strong>Inspiration</strong> — the future that Futuristic people see is not cold or clinical. It is vivid and emotionally compelling — and that energy is transmittable. They naturally inspire others by making the future feel real and achievable.</li>
+<li><strong>Possibility</strong> — where others see the present as a constraint, Futuristic sees it as the starting point. The gap between now and what could be is not frustrating — it is interesting, even thrilling.</li>
+</ul>
+<p><strong>How Futuristic differs from similar themes:</strong></p>
+<ul class="marker-list">
+<li><strong>Strategic</strong> (Strategic Thinking — creates alternative ways to proceed, selects the best path): Strategic evaluates many possible routes and selects the best one through rigorous analysis of alternatives. Futuristic is less concerned with evaluating paths and more concerned with painting the destination. Strategic asks &quot;which way?&quot;; Futuristic asks &quot;imagine what it will look like when we get there.&quot;</li>
+<li><strong>Ideation</strong> (Strategic Thinking — excited by new ideas and connections): Ideation generates a constant stream of new ideas in the present tense — it loves the spark of a novel connection. Futuristic is anchored in time: it is specifically the <em>future</em> that energizes. Ideation can happen anywhere on the timeline; Futuristic always points forward.</li>
+<li><strong>Positivity</strong> (Relationship Building — contagious enthusiasm, sees the best in situations): Positivity creates emotional warmth and energy in the present moment. Futuristic creates energy by pointing toward tomorrow. Both can inspire, but Positivity energizes people about <em>now</em>; Futuristic energizes them about <em>what&#x27;s coming</em>.</li>
+<li><strong>Focus</strong> (Executing — takes a direction and follows through): Focus locks onto a chosen direction and pursues it with sustained intensity. Futuristic provides the vision — the vivid destination — that gives Focus something compelling to lock onto. Futuristic imagines many possible futures; Focus commits to one.</li>
+<li><strong>Belief</strong> (Executing — has enduring core values that define purpose): Belief anchors a person in deeply held values; it is oriented toward what is permanently true. Futuristic is oriented toward what is not yet true but could be. Both can give a sense of mission, but Belief is rooted in permanence; Futuristic is rooted in possibility.</li>
+<li><strong>Context</strong> (Strategic Thinking — looks to the past to understand the present): Context and Futuristic are mirror opposites on the time axis. Context understands the present by studying what came before; Futuristic understands the present as a launching pad toward what comes next. Both provide temporal depth, but in opposite directions.</li>
+</ul>
+<p><strong>Domain context:</strong> Futuristic sits in the Strategic Thinking domain alongside Analytical (searches for reasons and causes in data), Context (understands the present through the past), Ideation (generates new ideas and connections), Input (collects and archives information), Intellection (enjoys deep, introspective thinking), Learner (desires to continuously learn and improve), and Strategic (creates alternative ways to proceed).</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Vivid future narration.</strong> Futuristic people don&#x27;t just say &quot;things will be better.&quot; They describe the future in specific, sensory detail — how it will look, what it will feel like, who will be there, what will be different. This isn&#x27;t wishful thinking; it is genuine mental simulation.</p>
+<p><strong>Natural inspiration of others.</strong> When Futuristic people describe their vision, others often report feeling something shift — the future becomes real and reachable in a way it wasn&#x27;t before the conversation. The Futuristic person may not even be trying to inspire; they are simply sharing what they see.</p>
+<p><strong>Living ahead of the present.</strong> People with Futuristic often find that today&#x27;s problems feel less urgent than tomorrow&#x27;s possibilities. They may grow bored or frustrated with incremental, day-to-day work that has no clear line to a larger horizon. They are most alive when the work is explicitly pointed at a meaningful future.</p>
+<p><strong>Long-range time orientation.</strong> Futuristic people are comfortable with long time horizons — they can stay excited about something that is years away. Short-cycle work (sprints, quarterly OKRs, immediate deliverables) can feel constraining if it lacks connection to a longer arc.</p>
+<p><strong>Pattern detection in weak signals.</strong> Because Futuristic people spend mental energy imagining how things could develop, they often become early detectors of trends. They notice something small today and trace the probable line it draws toward a larger change. This isn&#x27;t prediction; it&#x27;s a trained habit of forward projection.</p>
+<p><strong>Dissatisfaction with the status quo.</strong> Futuristic people don&#x27;t see the current state of things as fixed or inevitable. This is generative — it produces energy and ambition. It can also manifest as restlessness or mild contempt for &quot;this is just how we do things,&quot; which can be uncomfortable for others.</p>
+<p><strong>Gravitating toward scenarios and prototypes.</strong> When evaluating options, Futuristic people naturally think in scenarios: &quot;If we go this direction, here&#x27;s what the world could look like in five years.&quot; They also enjoy making things concrete — sketches, prototypes, mock-ups of the future that make it tangible.</p>
+<p><strong>Communication that leads with the future.</strong> When Futuristic people make arguments, they tend to lead with the destination: &quot;Here&#x27;s where this is going, and here&#x27;s why that matters.&quot; This rhetorical pattern can be highly persuasive with visionary audiences and puzzling to people who prefer data-first reasoning.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Direction and meaning.</strong> Teams often get lost in execution and lose the sense of why the work matters. A Futuristic person reliably answers the &quot;why&quot; — by making the destination vivid enough that effort feels meaningful. This is not motivation through pressure; it is motivation through clarity of horizon.</p>
+<p><strong>Long-range planning capability.</strong> Organizations habitually underinvest in thinking about what the world will look like in five or ten years. Futuristic people are natural owners of this work — they find it energizing rather than abstract, and they produce planning artifacts that are vivid enough to guide actual decisions.</p>
+<p><strong>Early trend detection.</strong> Because Futuristic people project forward constantly, they often catch inflection points early — when a technology, a behavior pattern, or a competitive dynamic is still weak signal. This gives organizations the opportunity to prepare before something becomes an urgent problem.</p>
+<p><strong>Change leadership.</strong> Change is difficult partly because the future feels uncertain and threatening. Futuristic people reduce this threat by making the future feel real, specific, and worth reaching. They are often valuable as change champions — not because they are optimistic, but because they can make others genuinely see what&#x27;s on the other side of the transition.</p>
+<p><strong>Energizing through vision.</strong> In organizations where morale is flagging or purpose is unclear, a Futuristic voice can recalibrate the emotional temperature. The effect is not cheerleading; it is orientation — &quot;here is where we are going, and here is why it matters.&quot;</p>
+<p><strong>Inspiring innovation.</strong> Futuristic people help teams tolerate the uncertainty that real innovation requires. When others feel the anxiety of moving away from what is known, Futuristic provides a specific image of what could be built — making the unknown feel navigable.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Impracticality and disconnect.</strong> The future that Futuristic people see so vividly may have an unexamined gap with present realities — resources, constraints, timelines, and dependencies. Without grounding, vision can become untethered and frustrating to people who have to execute against it.</p>
+<p><strong>Neglecting the present.</strong> When today is primarily a springboard to tomorrow, the work of today can feel uninspiring or unworthy of full attention. Futuristic people may chronically underperform on near-term, incremental work because their energy is oriented elsewhere.</p>
+<p><strong>Frustration when the vision isn&#x27;t shared.</strong> Futuristic people can feel profoundly alone when others don&#x27;t respond to the future they see. What feels completely obvious and exciting to them can seem abstract or irrelevant to colleagues who are focused on immediate problems. The resulting frustration can curdle into cynicism or disengagement.</p>
+<p><strong>Overpromising.</strong> The vivid certainty with which Futuristic people describe the future can come across as a commitment when it is actually a scenario. Stakeholders may make decisions based on a Futuristic vision that the Futuristic person understood as one possibility among several.</p>
+<p><strong>Resistance to the iterative.</strong> Futuristic people can be impatient with small, incremental steps toward a large goal. The gap between the current state and the vision can feel like an obstacle rather than a process. This can lead to dismissal of important intermediate work or pressure to skip steps that actually matter.</p>
+<p><strong>Chasing the next vision.</strong> Once a vision is close to becoming reality, it loses some of its charge — it is no longer the future, it is almost the present. Some Futuristic people have difficulty staying engaged as a project moves from aspiration to execution and begins to feel mundane.</p>
+<p><strong>Underestimating transition costs.</strong> Because Futuristic people live in the destination, they may underweight the difficulty and discomfort of getting there. This can lead to plans that are inspiring at the vision level but unrealistic at the implementation level — creating disappointment and credibility loss.</p>
+<p><strong>Being labeled a dreamer.</strong> In cultures that prize near-term pragmatism, Futuristic can be systematically discounted. The person learns their visions are not welcome and may stop sharing them, which is a loss — both for the individual and the organization.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Build a &quot;future file.&quot;</strong> Keep a running document or notebook specifically for future-oriented observations: trends noticed, scenarios imagined, futures painted. Reviewing it periodically develops the pattern-recognition capacity and creates a record of projections to calibrate against.</p>
+<p><strong>Practice grounding visions in specifics.</strong> For any vision you hold, push yourself to answer: What does day-one look like? What are the first three observable changes? What would an outside observer see that is different from today? This makes vision useful to people who need to act on it.</p>
+<p><strong>Find the present-day connective tissue.</strong> The most powerful use of Futuristic in an organization is not abstract vision — it is connecting today&#x27;s mundane work to tomorrow&#x27;s meaningful destination. Practice explicitly narrating this connection: &quot;The reason this tedious quarterly process matters is that it builds the foundation for X.&quot;</p>
+<p><strong>Pair with executors deliberately.</strong> Futuristic provides direction and inspiration; other talents (Achiever, Discipline, Responsibility, Arranger) convert that direction into completion. Seek these partnerships explicitly rather than assuming the vision is sufficient.</p>
+<p><strong>Calibrate your timeline communication.</strong> When describing the future, be explicit about the time horizon. &quot;This is where I think we could be in five years&quot; is a different signal than &quot;This is the plan for next year.&quot; Futuristic people sometimes blend these, which creates confusion. Named time horizons build credibility.</p>
+<p><strong>Invite challenge on the vision.</strong> Futuristic visions are most valuable when they have been tested against skeptical questions. Develop the practice of actively soliciting critique: &quot;What am I missing? What would have to be true for this not to happen?&quot; This builds the analytical surround that makes vision actionable.</p>
+<p><strong>Use your vision as a tool for others, not just for yourself.</strong> The capacity to make the future feel real is rare and valuable. Practice deploying it explicitly in team contexts — when others are stuck in the weeds, offer the long view. This builds your impact and helps others see the value of the talent.</p>
+<p><strong>Stay connected to the present long enough to execute.</strong> Develop rituals that anchor you in near-term commitments: a weekly review of what is in front of you, clear agreements on what you will deliver by when. The future is the source of energy; the present is where the work gets done.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Futuristic</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li>Give them work with a meaningful long horizon. Futuristic people do not thrive in pure execution roles with no connection to a larger arc. If the role is near-term and incremental, help them see the long-range story their work contributes to.</li>
+<li>Use them as your horizon scanners. Ask explicitly: &quot;What do you think this industry looks like in five years? What are you noticing that others aren&#x27;t?&quot; This is productive use of the talent, not idle speculation.</li>
+<li>Recognize that their visions are scenarios, not commitments — and calibrate your expectations accordingly. When a Futuristic person says &quot;imagine if we…&quot; they are offering a possibility for exploration, not a deliverable.</li>
+<li>Connect them to near-term executors. Futuristic vision without grounding in execution capacity is frustrating for everyone. Build teams where Futuristic is paired with people who can convert vision to action.</li>
+<li>When they seem checked out or bored, ask about the horizon. Futuristic disengagement is often a signal that the work has lost its connection to a meaningful future. Reconnecting them to the longer arc usually re-energizes them.</li>
+<li>Don&#x27;t dismiss the vision as impractical. The reflex to say &quot;let&#x27;s be realistic&quot; in response to a Futuristic vision shuts down a capability the team actually needs. Instead, engage: &quot;This is interesting — what would need to be true for this to happen?&quot;</li>
+<li>Recognize the value of inspiration. When a Futuristic person&#x27;s vision galvanized the team — name it. &quot;The way you framed where we&#x27;re going gave everyone a reason to push through&quot; is meaningful recognition for a Futuristic person.</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>Engage with the vision before asking about execution. If you immediately respond to a Futuristic idea with &quot;but how would we pay for that?&quot; or &quot;that&#x27;s unrealistic,&quot; you are cutting off the conversation before the value is extracted. Spend time in the vision first — ask questions, explore it, understand the picture being painted. Practicalities can follow.</li>
+<li>Invite them to the beginning of strategic discussions. Futuristic people are not useful only in planning retreats once a year. They can re-orient a stuck team, offer perspective when the team has tunnel vision, and remind everyone why the work matters — at any moment.</li>
+<li>Be explicit when you need near-term focus from them. Futuristic people can deliver on the present, but they may need to be explicitly pulled back: &quot;I need to work through what we&#x27;re doing in the next 30 days specifically — can we stay there for now?&quot; This is not a criticism; it is a useful navigation signal.</li>
+<li>Share what you find inspiring about their vision. Futuristic people calibrate their communication based on response. If a vision resonates, say so specifically — not just &quot;great idea&quot; but &quot;the part about X really clarified something for me.&quot; This helps them understand which elements are landing.</li>
+<li>Don&#x27;t expect step-by-step implementation plans from them. Futuristic generates the destination; implementation is a different competency. If you need a roadmap from a vision, work with them to develop it jointly rather than expecting them to produce it alone.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Futuristic + Strategic</strong> (Strategic Thinking — creates alternative ways to proceed): The most complete visionary pairing. Futuristic provides the destination — a vivid, compelling picture of what could be. Strategic evaluates the multiple paths that could lead there and selects the most likely to succeed. Together they produce leadership that can both articulate a powerful future and navigate toward it intelligently. The risk: both themes operate primarily in the abstract; without grounding in Executing themes, the combination may produce excellent strategy that never becomes action.</p>
+<p><strong>Futuristic + Ideation</strong> (Strategic Thinking — generates new ideas and connections): Futuristic is about the direction (the future); Ideation is about the fuel (the ideas). Together, they produce a continuous stream of novel visions — each idea is quickly oriented toward a forward destination. This combination is particularly generative in innovation contexts. The risk: the volume of new ideas and new visions can overwhelm execution capacity. Ideas are generated faster than they can be realized.</p>
+<p><strong>Futuristic + Communication</strong> (Influencing — brings ideas to life through language and stories): Communication provides the vehicle for Futuristic&#x27;s vision. A person with both can take the future they see and make it felt by an audience — through stories, metaphors, and vivid language. This is rare leadership communication: not just describing where we&#x27;re going, but making others feel they are already there. The combination is powerful in change management, fundraising, and organizational rallying moments.</p>
+<p><strong>Futuristic + Activator</strong> (Influencing — makes things happen by turning thoughts into action): Futuristic paints the future; Activator insists on beginning now. Together they create momentum toward a vision — not just inspiration, but a bias toward the first step. This combination is particularly effective in entrepreneurial contexts, where the ability to both see far and start fast is critical. The risk: speed of initiation can outrun the quality of the vision; they may start before the direction is fully thought through.</p>
+<p><strong>Futuristic + Focus</strong> (Executing — takes a direction and maintains it relentlessly): Futuristic provides a vivid destination; Focus locks onto it and pursues it with unwavering intensity. This combination is particularly powerful for long-horizon work. Without Focus, Futuristic can scatter across multiple possible futures without committing to any. Without Futuristic, Focus can commit with full intensity to a destination that lacks ambition. Together: a compelling vision pursued with extraordinary persistence.</p>
+<p><strong>Futuristic + Belief</strong> (Executing — has core values that are enduring and define purpose): When the future that Futuristic imagines is aligned with the values that Belief holds sacred, the result is a mission-driven vision that is nearly unshakeable. This combination produces the kind of purpose clarity that can sustain effort over years and inspire others through difficulty. The risk: if the future and the values appear to diverge, there is genuine internal conflict — the Futuristic person may feel they are being asked to choose between their vision and their identity.</p>
+<p><strong>Futuristic + Learner</strong> (Strategic Thinking — desires to continuously learn and improve): Futuristic imagines a future worth reaching; Learner acquires the knowledge and skills to get there. Together they produce someone who is both directionally ambitious and intellectually relentless — always asking &quot;what do I need to understand to close the gap between now and the future I see?&quot; This combination drives deep, sustained personal development.</p>
+<p><strong>Futuristic + Analytical</strong> (Strategic Thinking — searches for reasons, causes, and patterns in data): An unusual but powerful pairing. Futuristic generates the vision; Analytical stress-tests it against data and logic. Together, they produce visions that are not just compelling but defensible — scenarios built on evidence and subjected to rigorous examination. The risk: Analytical&#x27;s natural skepticism can slow or temper the Futuristic energy, and the Futuristic person may feel that Analytical is always raining on the parade. But when they work in concert, the output is trusted as well as inspiring.</p>
+<p><strong>Futuristic + Responsibility</strong> (Executing — feels psychological ownership of commitments): Futuristic is most effective when paired with something that makes the vision a commitment rather than an aspiration. Responsibility provides that anchor: when a Futuristic person with Responsibility commits to a future, they take personal ownership of making it happen. The vision is not just described — it is adopted as an obligation. This combination produces visible, trustworthy leadership.</p>
+<p><strong>Futuristic + Context</strong> (Strategic Thinking — understands the present by studying the past): The complete temporal arc. Context reads the past to understand where things came from; Futuristic reads the present to imagine where things are going. Together they produce historical and forward perspective simultaneously — a person who can explain both why things are the way they are <em>and</em> where they are likely heading. This combination is unusual, and it tends to produce advisors, historians, and strategic counselors.</p>
+<p><strong>Futuristic + Maximizer</strong> (Influencing — takes what is strong and pushes it toward excellence): Futuristic imagines the excellent future version of something; Maximizer relentlessly develops existing strengths toward that standard. Together they create an aspirational excellence engine — always oriented toward a better version of what already works. The risk: the combined appetite for improvement may produce impatience with anything that is merely adequate, even when adequate is the appropriate standard.</p>
+<p><strong>Futuristic + Input</strong> (Strategic Thinking — collects and archives information for future use): Input gathers; Futuristic projects. Together, they produce someone who collects signals from the present and uses them to build richer, more detailed models of the future. The collection is always in service of the vision — every piece of information is a potential data point in a forward projection. This combination drives excellent trend analysis and scenario planning.</p>
+<p>---</p>
+<p><em>Sources: Gallup CliftonStrengths official theme descriptions; Gallup Theme Thursday video series; Gallup strengths coach training materials; cross-references from Focus, Strategic, Ideation, and Activator theme transcripts.</em></p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytical · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain strat">Strategic Thinking</div>
+    <h1>Analytical</h1>
+    <p class="hero-def">&quot;You search for reasons and causes. You have the ability to think about all of the factors that might affect a situation.&quot;</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Analytical</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition (Gallup):</strong> &quot;You search for reasons and causes. You have the ability to think about all of the factors that might affect a situation.&quot;</p>
+<p><strong>Domain:</strong> Strategic Thinking. All themes in this domain describe people who lead primarily through their internal thought process — &quot;thinking is synonymous with doing&quot; for them.</p>
+<p><strong>Core drive:</strong> the need to find objective truth by deconstructing assumptions into their components. &quot;Is this true?&quot; is the permanent filter through which Analytical people perceive the world.</p>
+<p>Data and numbers are a symptom, not the essence. The real drive is toward precision and truth in any domain — words, theories, relationships. A classic example: someone with high Analytical who hears &quot;that salesperson is literally on fire&quot; is likely to mentally note that the correct word is &quot;figuratively,&quot; because precision matters regardless of context.</p>
+<p>The best single-word summary is <strong>particular</strong> — carrying both the sense of exactness and the ability to see the particles (components) of an idea. Einstein&#x27;s formulation works here: &quot;Everything should be as simple as possible, but not simpler.&quot; The Analytical mind reduces complexity to its irreducible essence; E=MC² is the archetype.</p>
+<p><strong>Distinction from similar themes:</strong></p>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Core sorting target</th><th>How they differ from Analytical</th></tr></thead><tbody><tr><td>Ideation (a theme about generating novel connections and creative leaps)</td><td>Ideas that don&#x27;t yet exist</td><td>Creates new things from nothing; Analytical works with what exists</td></tr><tr><td>Input (a theme about collecting information and archiving it)</td><td>Additional information outside the problem</td><td>Gathers context from outside; Analytical explores components within the problem</td></tr><tr><td>Intellection (a theme about deep introspective thinking)</td><td>The thinking process itself</td><td>The journey of thinking is the goal; for Analytical, simplification and understanding is the destination</td></tr><tr><td>Strategic (a theme about finding the best route forward among multiple options)</td><td>Possibilities</td><td>Sorts intuitively; Analytical sorts evidence to find the one true reality</td></tr><tr><td>Focus (a theme about setting and maintaining clear priorities)</td><td>Priorities</td><td>Sorts for the top priority; Analytical sorts for truth</td></tr><tr><td>Deliberative (a theme about careful risk assessment before acting)</td><td>Risks</td><td>Serious about risk; Analytical is serious about proof</td></tr><tr><td>Discipline (a theme about creating structure, routine, and order)</td><td>Routine and structure</td><td>Both appear detail-focused, but Analytical&#x27;s detail comes from understanding what&#x27;s essential, not from structural preference</td></tr></tbody></table>
+<p><strong>Frequency in Gallup database:</strong> Analytical appears in the top 5 of approximately 12% of profiles — tied for 19th most common. Most common co-occurring themes: Achiever (a theme about drive for accomplishment and task completion) and Learner (a theme about the love of learning and continuous improvement), each at 35%. Least likely co-occurring: Positivity (a theme about infectious optimism and enthusiasm) and Woo (a theme about winning others over through social charm), each at 2%.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How it shows up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral markers:</strong></p>
+<ul class="marker-list">
+<li>Asks more questions than others in the same situation — and keeps asking when others have already moved on</li>
+<li>Doesn&#x27;t take claims at face value; needs to see sources, methodology, or data before accepting something as true</li>
+<li>Notices when something is missing from a logical chain — sees not just X and Z, but recognizes that Y is absent</li>
+<li>Naturally goes into &quot;discovery mode&quot; when others get swept up in emotion</li>
+<li>Comfortable sitting with complexity; finds facts calming, not threatening</li>
+<li>When presenting an idea, tends to include how they arrived at it — &quot;showing their work&quot;</li>
+</ul>
+<p><strong>Inner experience:</strong></p>
+<ul class="marker-list">
+<li>Feels more questions in their head than answers — this is normal, not a sign of indecisiveness</li>
+<li>Experiences a spark — genuine activation — when finding an interesting connection or simplifying a complex idea</li>
+<li>Finds the word &quot;error&quot; interesting rather than threatening; treats it as a curiosity cue</li>
+<li>Comfort in the research phase; sustained attention in areas that genuinely interest them</li>
+</ul>
+<p><strong>Raw vs. mature expression:</strong></p>
+<table class="maturity-table"><thead><tr><th>Raw</th><th>Mature</th></tr></thead><tbody><tr><td>Doubtful — comes across as not trusting people</td><td>Patient and curious — needs fact-finding before committing, and that&#x27;s a process, not a judgment</td></tr><tr><td>Picky — nitpicks at random pieces</td><td>Precise — catches what others missed at exactly the right moment</td></tr><tr><td>Closed for business — skepticism so strong it blocks new information</td><td>Evidence is welcome — creates an atmosphere where evidence can be brought and examined</td></tr><tr><td>Cold — removes emotion from the situation abruptly</td><td>Dispassionate and objective — useful precision that doesn&#x27;t require shared emotion to function</td></tr><tr><td>Too many building blocks — gets lost in decomposition and never produces a picture</td><td>Right elements — selects the most relevant components and assembles them toward an answer</td></tr></tbody></table>
+<p>The shift from raw to mature does not eliminate the behavior — it channels it. Raw Analytical still asks questions; mature Analytical asks them in the right place, with the right framing.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for team and organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Conflict resolution:</strong> Analytical people can defuse emotional conflict by giving evidence its own side. Instead of &quot;who&#x27;s right,&quot; the question becomes &quot;what do we actually know?&quot; This removes the identity charge from disagreements.</p>
+<blockquote class="md-quote">&quot;Let&#x27;s not get stuck in who&#x27;s on which side. Let&#x27;s give the evidence a side, and see what we discover.&quot; [S6]</blockquote>
+<p><strong>Decision quality:</strong> Analytical brings certainty to team decisions through examination. It tests whether decisions the team wants to make are actually warranted. This is the role of a reliability function — someone who checks assumptions before they become commitments.</p>
+<p><strong>Progress tracking:</strong> When tracking progress is the explicit goal, Analytical does it with detail and proof that other themes won&#x27;t naturally bring. Important caveat: this has to be a stated goal — don&#x27;t assume it will happen automatically.</p>
+<p><strong>Pattern recognition in data:</strong> For others, rows of numbers stay rows of numbers. For someone with Analytical, the numbers &quot;pop&quot; and become characters in a story — patterns emerge, and those patterns can simplify complex information for everyone else.</p>
+<p><strong>Organizational resilience:</strong> When circumstances are emotionally charged, Analytical provides stability. Instead of joining the panic, someone with this theme goes to the telescope, does the research, and brings back impartial evidence on what&#x27;s actually happening.</p>
+<p><strong>Resource protection:</strong> Analytical people naturally ask &quot;what&#x27;s the return on investment here?&quot; and &quot;what&#x27;s the evidence that this is the right direction?&quot; This protects team resources from being spent on assumptions and trend-chasing.</p>
+<p><strong>Magnetic quality for high-performing teams:</strong> They help others make sense of things when they feel chaotic. They ask questions that expand thinking beyond what&#x27;s directly in front of the team. They can find stories and patterns in data that simplify decisions.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark side / risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Paralysis by analysis.</strong> The core risk: breaking everything down to its elements and being left with a pile of elements rather than a built structure. The question is not &quot;can I decompose this further?&quot; but &quot;what are the right elements needed to build the thing I&#x27;m trying to build?&quot;</p>
+<p><strong>Skepticism misread as distrust.</strong> The questioning behavior is consistently misread as a personal challenge rather than intellectual engagement. People feel interrogated rather than helped. This is the most common interpersonal friction.</p>
+<p><strong>Devaluing qualitative evidence.</strong> Emotions are facts too — they&#x27;re qualitative data. If stripped away entirely, the analysis becomes incomplete. The blind spot: feelings contain information that quantitative data does not capture. A mature Analytical person treats emotional signals as starting points for investigation, not noise.</p>
+<p><strong>Analysis that blocks action.</strong> When skepticism is strong enough to close off new information — &quot;I don&#x27;t trust any of this, so I&#x27;ll figure it out myself&quot; — the analytical function stops serving the team and starts blocking it.</p>
+<p><strong>Overuse of &quot;overcommunicate.&quot;</strong> When someone suggests they &quot;overcommunicate&quot; a message, an Analytical person may push back — the right amount of communication is more precise than &quot;more.&quot; The analytical instinct for precision can actually make communication less accessible by resisting the repetition that different people need.</p>
+<p><strong>Too serious.</strong> Analytical-dominant groups are consistently described as less fun, more sober. This isn&#x27;t a character flaw, but it is a perception management problem in environments that value energy and enthusiasm.</p>
+<p><strong>Woo/Positivity incompatibility at the baseline level.</strong> Because Analytical challenges — probing and questioning as a default — and Woo&#x27;s (a theme about winning others over through social charm) goal is to get people to like them, the combination creates tension. The Analytical instinct is not to win someone over, but to find out if their argument holds up.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to develop it</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>For people with Analytical as a dominant theme — specific actions to invest in the talent:</p>
+<p><strong>Raise your hand for investigative work.</strong> Seek out any problem that can be researched, measured, or investigated. Look for assumptions in your workplace that haven&#x27;t been examined. Ask: what angles haven&#x27;t been considered before this decision gets made?</p>
+<p><strong>Get closer to the source.</strong> Increase proximity to raw data. If someone has already processed information, you&#x27;re getting their spin on it — which limits what you can independently find. Go to the original source whenever possible.</p>
+<p><strong>Create structure for other people&#x27;s ideas.</strong> When a team is overwhelmed by the volume of what needs to be considered, offer to navigate that space. Analytical people can be a &quot;safari guide of consideration&quot; — organizing large amounts of thought into something navigable.</p>
+<p><strong>Practice selective deployment.</strong> Polished Analytical is not analyzing everything — it&#x27;s being more selective about where to put thought energy. A useful distinction: latent Analytical will investigate everything; performance Analytical chooses where to focus.</p>
+<p><strong>Build a question set.</strong> Develop a repertoire of questions you know will open conversations rather than close them. Test: a good question gives you the information you need and also encourages the other person to think more. Questions like &quot;What evidence do we have?&quot; or &quot;What&#x27;s the real problem here?&quot; or &quot;What&#x27;s the root cause?&quot;</p>
+<p><strong>Introduce your intention before questioning.</strong> Brené Brown&#x27;s framing is useful here: &quot;Clear is kind, unclear is unkind.&quot; Before diving into &quot;what did you mean by that?&quot; — frame it: &quot;I care enough about this to ask a few questions&quot; or &quot;I&#x27;m trying to give you the clearest possible feedback.&quot; This turns interrogation into conversation.</p>
+<p><strong>Study your own Analytical.</strong> Ask yourself: who helps me do my best thinking? When have I felt most confident? What conditions (deadlines, relationships, research access) enable my clearest analysis? Build those conditions into your regular practice.</p>
+<p><strong>Embrace ambiguity as a valid finding.</strong> &quot;The answer is: people don&#x27;t know&quot; is a legitimate analytical conclusion. Don&#x27;t dismiss it as a non-answer. Ambiguity is evidence about the current state of knowledge.</p>
+<p><strong>Exercise:</strong> Read the same day&#x27;s news from four different sources for one week. Observe how the framing of identical events differs — this feeds the pattern-recognition muscle. Separately: in one meeting, commit to asking only questions and giving no opinions. See how deep the conversation goes.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to work with someone who has Analytical</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li>Give access to source material and raw data. This is not a nice-to-have — it&#x27;s the fuel for the talent. Restricting access limits contribution.</li>
+<li>Don&#x27;t expect them to be won over by enthusiasm, cheerleading, or emotional appeals. They won&#x27;t. That&#x27;s not a personality problem; it&#x27;s the design.</li>
+<li>Make tracking progress an explicit goal, not an assumed behavior. If you want rigorous measurement, assign it. It won&#x27;t happen as a side effect.</li>
+<li>Recognize their reasoning process, not just their outputs. The thinking that happens before a conclusion — often invisible, often done alone in advance — is where the work is. Acknowledge it.</li>
+<li>Ask questions that access the analytical function: &quot;What have you been researching lately?&quot; &quot;What have you been investigating?&quot; &quot;When do you do your best thinking?&quot; &quot;What&#x27;s the simplest way to describe what you&#x27;ve discovered?&quot;</li>
+<li>Build in time for thinking. Someone with Strategic Thinking themes often feels guilty for blocking time to research or think. Naming that thinking as legitimate work removes that friction.</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>When they share data with you — read it. They are sharing something they consider valuable. Ask them what they see in it, what patterns emerged.</li>
+<li>Prepare for inquiry. Questions from an Analytical colleague are not doubts about you as a person. They are a sign of genuine interest. The way they show care is by asking questions.</li>
+<li>Don&#x27;t be alarmed by critical pushback. If you present something and they probe it — that&#x27;s engagement, not rejection.</li>
+<li>If you need their help, give them the actual problem and let them ask you questions. Resist the urge to pre-package the story — that removes their ability to notice what you might have missed.</li>
+<li>Don&#x27;t try to rush them to a conclusion. The fact-finding process is not procrastination — it&#x27;s the talent at work.</li>
+</ul>
+<p><strong>Recognition:</strong> Recognize their reasoning ability specifically — not just outcomes, but the clarity of the logic. Recognize their thought time. Say explicitly that you value the rigor of their process. For someone with Analytical, &quot;that was a thorough analysis&quot; is more meaningful than &quot;great job.&quot;</p>
+<p><strong>Trust-building:</strong> Leaders with Analytical build trust by &quot;showing their work&quot; — sharing not just the conclusion, but enough of the path that led to it. This makes the analytical process visible and legible to people who don&#x27;t think that way.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with other themes</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Analytical + Achiever (a theme about drive for task completion and results):</strong></p>
+<p>&quot;I need to ground this in the data, and I&#x27;m going to do it before the end of the day.&quot; The analysis gets deadlines. The risk of paralysis is reduced because Achiever provides completion drive.</p>
+<p><strong>Analytical + Learner (a theme about love of learning and curiosity for new information):</strong></p>
+<p>&quot;I&#x27;m curious about what we&#x27;re going to understand, and I know how to evaluate every citation I encounter.&quot; Learning is directed toward verified understanding rather than broad accumulation.</p>
+<p><strong>Analytical + Arranger (a theme about organizing people and resources for maximum productivity):</strong></p>
+<p>Arranger provides focus — &quot;here&#x27;s where the analysis is most needed, here&#x27;s where we need your skepticism.&quot; Analytical can otherwise spread across too many directions; Arranger narrows it to the most relevant places.</p>
+<p><strong>Analytical + Maximizer (a theme about taking something from good to excellent):</strong></p>
+<p>After Analytical has surfaced the options and evidence, Maximizer stack-ranks them. The combination closes the gap between &quot;here are the findings&quot; and &quot;here&#x27;s the best one.&quot;</p>
+<p><strong>Analytical + Belief (a theme about deeply held values that guide decisions) or Empathy (a theme about sensing and feeling what others feel):</strong></p>
+<p>Belief and Empathy provide intuitive starting points — a sense that something is true or important before the evidence exists. Analytical then provides the proof. The combination produces conclusions that are both felt and demonstrated.</p>
+<p><strong>Analytical + Ideation (a theme about generating novel ideas and creative connections):</strong></p>
+<p>Both handle large volumes of thought, but differently. Ideation finds that X is like Z in some new way. Analytical sorts through X and Z independently, notices what&#x27;s missing, and identifies the relationship from the evidence rather than from creative intuition.</p>
+<p><strong>Analytical + Positivity (a theme about infectious optimism) — unlikely pairing (2%):</strong></p>
+<p>When it does appear, the combination produces someone who makes you want to know the truth — approachability around data, making rigor feel exciting rather than threatening.</p>
+<p><strong>Analytical + Woo (a theme about winning people over socially) — unlikely pairing (2%):</strong></p>
+<p>The word &quot;challenge&quot; appears in both definitions — Woo enjoys the challenge of winning people over; Analytical challenges claims. When combined, the result is someone who can have a rigorous intellectual confrontation and have both parties leave feeling like they won.</p>
+<p><strong>Analytical + Strategic (a theme about finding the best path forward among alternatives):</strong></p>
+<p>Strategic sorts possibilities intuitively. Analytical sorts evidence to find what&#x27;s actually true. Together: the possibilities generated by Strategic get evaluated against reality by Analytical — a strong combination for decision-making under uncertainty.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

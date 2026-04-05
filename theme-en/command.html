@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Command · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain infl">Influencing</div>
+    <h1>Command</h1>
+    <p class="hero-def">People exceptionally talented in Command have presence — they can take control of a situation and make decisions.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What Is Command</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official definition:</strong> People exceptionally talented in Command have presence — they can take control of a situation and make decisions.</p>
+<p>Command belongs to the <strong>Influencing</strong> domain. Its core mechanism is the use of emotional power and presence to move individuals and groups toward action. It is fundamentally an <em>outward</em>, <em>other-directed</em> theme: Command needs people to influence and a challenge to work against. Without opposition or a leadership gap, it lies dormant.</p>
+<p>Command is statistically the <strong>least common theme</strong> in the CliftonStrengths database — only about 5% of people have it in their top five. One likely reason: in its raw (undeveloped) form, Command is difficult to accommodate socially. Strong-willed children are often taught to suppress it, and social norms continue that pressure into adulthood. This rarity means most people have never worked closely with someone who has mature Command, which feeds misperceptions about what it actually is.</p>
+<h3>Distinctions from similar themes</h3>
+<p><strong>Command vs. Self-Assurance</strong> (confidence in one&#x27;s own judgment and abilities): Self-Assurance is internal — &quot;In chaos, I&#x27;m certain of what I can contribute, and I look inward to my sense of direction.&quot; Command is external — &quot;In chaos, I take control and offer decisions; I look for the leadership gap that needs filling.&quot; One is about inner conviction; the other is about outward presence.</p>
+<p><strong>Command vs. Activator</strong> (the impulse to act now, generate momentum from zero): Activator goes from zero to motion. Command comes alive when there is <em>resistance</em> — when something is slowing progress down or pushing against it.</p>
+<p><strong>Command vs. Competition</strong> (the drive to win by outperforming others): Command says, &quot;Here&#x27;s what we need to do.&quot; Competition says, &quot;Here&#x27;s who we need to outperform.&quot;</p>
+<p><strong>Command vs. Harmony</strong> (the drive to minimize conflict and find common ground): Both themes want the same destination — resolution. The difference is route. Harmony finds paths around conflict. Command goes <em>through</em> conflict because it sees confrontation as the first step toward resolution.</p>
+<p><strong>Command is not the same as being bossy, being the boss, or being a formal leader.</strong> Stepping into a leadership position for someone with Command doesn&#x27;t have to be on paper, and it doesn&#x27;t have to be permanent.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Behavioral patterns</h3>
+<ul class="marker-list">
+<li><strong>Fills leadership voids automatically.</strong> When a group has no clear direction, a person with Command steps in and makes decisions until someone else does — or until the situation resolves. This is often unconscious: they sense the chaos, they short-circuit it.</li>
+<li><strong>Offers opinions with clarity, not hesitation.</strong> When clarity comes to them, they share it — not because they intend to dominate, but because withholding a clear answer feels unnatural.</li>
+<li><strong>People tune in to them for direction.</strong> Others notice their guidance even when it wasn&#x27;t explicitly offered as guidance. Their presence carries weight.</li>
+<li><strong>Not afraid of confrontation.</strong> They don&#x27;t seek conflict, but they don&#x27;t avoid it either. They use confrontation instrumentally — to get to resolution, to address what everyone else is tiptoeing around.</li>
+<li><strong>Cuts through emotional noise.</strong> Command quickly sorts through ambiguity, doubt, and emotional clutter to get to the actual point — what&#x27;s true, what needs to happen.</li>
+<li><strong>Decides and moves.</strong> They don&#x27;t waffle. Once they have enough information, they make the call and expect others to act on it.</li>
+<li><strong>Uses the word &quot;need&quot; frequently.</strong> &quot;You need to do this.&quot; The directness is instinctive, not a calculated rhetorical choice.</li>
+<li><strong>Embodies connection between tension and progress.</strong> They see opposition not as a barrier to avoid but as the force that creates lift — like wind under wings.</li>
+</ul>
+<h3>What Command looks like in action</h3>
+<ul class="marker-list">
+<li>In an escape room: the person who, 30 seconds in, says &quot;Here&#x27;s what we&#x27;re going to do&quot; and gets everyone moving.</li>
+<li>After jarring news is shared with a group: the person who steps up and says what comes next, allowing everyone else to exhale.</li>
+<li>At a lunch where nobody can agree: the person who cuts through the indecision with a concrete suggestion.</li>
+<li>As a mentor: the person who says directly, &quot;You need to do this — if you don&#x27;t, things will never change; if you do, here&#x27;s what becomes possible.&quot;</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Emotional clarity.</strong> Command brings what the Clifton Strengths Reference Guide calls &quot;emotional clarity.&quot; They cut through emotional fluff — both negative drama and excessive positivity — to surface what the group actually needs to understand.</p>
+<p><strong>Progress through conflict.</strong> Where others see conflict as something to manage around, Command uses it as a lever. After addressing what needs addressing head-on, they leave space for others to focus freely on results.</p>
+<p><strong>Leadership in the absence of leadership.</strong> One of Command&#x27;s most practical contributions to teams is filling leadership voids without requiring a formal title, a permanent role, or a committee decision. When no one else steps up, they do — and when leadership is restored, they can step back.</p>
+<p><strong>Certainty during uncertainty.</strong> They provide comfort, confidence, and direction when a team is disoriented. Their presence says: someone has a handle on this.</p>
+<p><strong>Creates clarity through polarization.</strong> Command cuts through gray areas and creates binary choices — either/or — that shake people into seeing things differently and open paths to productivity and collaboration. This isn&#x27;t destructive; it&#x27;s a specific mechanism for unblocking.</p>
+<p><strong>Builds trust through transparency.</strong> People with Command are &quot;open books&quot; — you know where they stand. This is one of the fastest ways to build trust and stability on a team.</p>
+<p><strong>Advocacy.</strong> They can fight for a cause and persuade others to join it. They are effective advocates for people, ideas, and directions when they believe in them.</p>
+<p><strong>Internal preparation.</strong> A person with Command on a team can ask hard questions <em>inside</em> the team so the team is better prepared to face them externally — from clients, stakeholders, or regulators.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Raw Command (undeveloped but not inherently destructive)</h3>
+<p>Raw Command is reactive — a knee-jerk response rather than a considered one. It speaks <em>against</em> things rather than standing <em>for</em> things. It can leave people in its wake rather than leading them through.</p>
+<h3>Basement Command (Command operating under unhealthy conditions: stress, disengagement, hunger for control)</h3>
+<ul class="marker-list">
+<li><strong>Overwhelms others.</strong> Command can &quot;splatter all over people&quot; — a phrase used by someone with the theme to describe what happens when its emotional force is uncontrolled. It can steamroll over input, objections, and relationships.</li>
+<li><strong>Domination, not direction.</strong> When Command operates in the basement, it becomes about the self — what <em>I</em> want, what <em>I</em> think, what <em>I</em> decide. The theme becomes divisive rather than uniting.</li>
+<li><strong>Premature closure.</strong> The tendency to decide quickly becomes a tendency to decide <em>before</em> enough input is gathered. Others&#x27; perspectives get shut out.</li>
+<li><strong>Intimidation effect.</strong> Command&#x27;s presence is strong enough that others may hesitate to challenge or push back — which paradoxically removes something Command actually needs. People with Command often need others to confront them, but their presence prevents it.</li>
+<li><strong>Always being the decision-maker closes access to what others could contribute.</strong> The autonomy that serves Command also isolates it from information it needs.</li>
+</ul>
+<h3>Structural risk: Command without values</h3>
+<p>The theme is powerful but directionless without an explicit values framework. Command is activated by what matters — when it doesn&#x27;t know what matters, or when it&#x27;s oriented toward self rather than others, it can become genuinely harmful. The values operating underneath Command determine whether it becomes Muhammad Ali or Mike Tyson (a comparison used in the transcripts).</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Turn confrontation into persuasion.</strong> Command&#x27;s default is to go through barriers directly. The development move is to learn the &quot;local language&quot; of your audience — what words, tone, and priorities resonate with the specific group — and translate the directness into persuasion, not just force.</p>
+<p><strong>Introduce your Command before it shows up.</strong> Because Command is rare, others often don&#x27;t have a framework for it and misread it when it activates. Get ahead of this: tell people in calm moments, &quot;If something changes or goes wrong, you can count on me to stand up for what I believe is right.&quot; When your Command then appears, it looks like making good on a promise — not like an outburst.</p>
+<p><strong>Find thought partners who will actually push back.</strong> Command needs iron-sharpening-iron relationships. Because your presence tends to suppress pushback, you need to explicitly invite and seek it out — especially from people who disagree with you. Practice your ideas with people who won&#x27;t naturally be on your side before taking them to the room.</p>
+<p><strong>Align early and clearly with organizational goals.</strong> People with Command operate with fewer touch points and less oversight than most. This works well only when initial alignment is crystal clear. Before going autonomous, make sure expectations are explicit.</p>
+<p><strong>Use &quot;deputizing&quot; as a Command move.</strong> When you sense a gap in leadership, instead of always filling it yourself, try delegating the authority to someone else — explicitly, and with your backing. &quot;The command decision I&#x27;m making right now is to delegate to you. Here&#x27;s why I believe you can do it.&quot; This scales your influence without requiring you to be in charge.</p>
+<p><strong>Invest in understanding whose opinions matter — then deliberately seek them.</strong> Always having the final say is not always in your best interest. Build the habit of identifying the 3-5 people whose input genuinely changes outcomes, and make seeking their feedback part of your process.</p>
+<p><strong>Help friends and partners make commitments and follow through.</strong> Use your &quot;connect clarity to action&quot; ability as an accountability mechanism for others. This builds relationships and uses Command for others&#x27; benefit rather than directing them.</p>
+<p><strong>Identify what really matters.</strong> Command is unleashed when it knows what matters. The development practice is ongoing clarification of values and causes — what you stand for, what you will always defend. Coaching question: &quot;What causes or projects should people always expect you to protect?&quot;</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Command</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>For managers</h3>
+<ul class="marker-list">
+<li><strong>Give actual authority, not the illusion of it.</strong> Saying &quot;you&#x27;re in charge&quot; and then maintaining control behind the scenes is deeply frustrating for Command. If you delegate, delegate fully. If there are constraints, name them explicitly upfront.</li>
+<li><strong>Minimize the distance between their decision and its execution.</strong> Motivation for Command comes from making calls that are immediately acted on. Long approval chains and committee review of their decisions drain them.</li>
+<li><strong>Don&#x27;t over-supervise.</strong> People with Command perform better in independent work structures with few touch points. Give them clear expectations at the start, then let them run.</li>
+<li><strong>Ask what they think — and be clear about whether you want their opinion or their decision.</strong> There&#x27;s a difference between gathering input and handing over authority. Specify which you&#x27;re doing.</li>
+<li><strong>Circle back when you take their advice.</strong> Telling someone with Command &quot;I did what you suggested and here&#x27;s what happened&quot; feeds their understanding and helps them make better future decisions. It also reinforces that their directness is valued.</li>
+<li><strong>Challenge them.</strong> They need pushback. Their presence may have trained your team to stop giving it. As their manager, you have both the standing and the responsibility to still push back. They will respect it.</li>
+<li><strong>Assign them to cross-functional task forces, conflict resolution, or situations where there is a leadership void.</strong> You don&#x27;t have to put them &quot;in charge&quot; of an entire project — lending their presence to a situation temporarily can be just as valuable.</li>
+</ul>
+<h3>For colleagues</h3>
+<ul class="marker-list">
+<li><strong>Don&#x27;t mistake directness for aggression.</strong> Command is assertive — not passive — but assertive ≠ aggressive. Their communication style is blunt because clarity is their natural mode, not because they&#x27;re attacking.</li>
+<li><strong>Invite them to share what they&#x27;re sensing.</strong> &quot;What do you think is right here?&quot; They probably already know — they just need permission to contribute in the way that works best for them.</li>
+<li><strong>Understand they&#x27;re not trying to take over — they&#x27;re trying to fill a void.</strong> If they step in when leadership is unclear, they&#x27;ll often step back as soon as someone else takes charge. They&#x27;re not fighting to be in command; they&#x27;re filling a functional gap.</li>
+<li><strong>Give them honest pushback.</strong> They need it and they respect it. The risk is that people with Command train their environment to stop challenging them. Break that pattern.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Themes</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Most likely pair (statistical): Command + Strategic</h3>
+<p>Strategic (the ability to sort through clutter, see patterns, and identify the best path) adds <em>pattern</em> to Command&#x27;s <em>power</em>. Strategic sees where to go; Command makes it happen. The combination produces someone who not only has a plan but can mobilize people around it with authority and confidence. Think: arrives in the room, reads the situation, states what needs to happen, and has already thought through the consequences.</p>
+<h3>Command + Futuristic</h3>
+<p>Futuristic (attraction to future possibilities and vision) gives Command a direction to drive toward. The future is often scary because it&#x27;s unknown — Futuristic + Command creates a person who can articulate a compelling vision <em>and</em> project certainty about getting there, overriding the fear that stops others.</p>
+<h3>Command + Activator</h3>
+<p>A compounding acceleration combination. Activator (the impulse to act immediately) + Command = ideas must be shared, decisions must be made, action must start — now. The risk is dominance of conversation and room. The upside is tremendous momentum and no tolerance for paralysis.</p>
+<h3>Command + Ideation</h3>
+<p>Ideation (excited by novel connections and new ideas) combined with Command creates urgency around ideas. The person &quot;can&#x27;t rest until they&#x27;ve shared their opinion&quot; — and that opinion is all about their ideas. Requires discipline to not flood the conversation.</p>
+<h3>Command + Relator</h3>
+<p>Relator (deep investment in close relationships) acts as a tempering force on Command. Deep relationships trigger Command&#x27;s protective instinct rather than its combative one. The result can be Command that is softer in tone with people it&#x27;s close to — and sharper when those people are threatened.</p>
+<h3>Command + Significance</h3>
+<p>Significance (the drive to be recognized for meaningful contributions) helps Command locate <em>which battles matter most</em>. Significance reads the audience and identifies which barriers, if removed, would win over the most hearts and minds. This makes Command more targeted and strategic in where it applies force.</p>
+<h3>Command + Woo</h3>
+<p>Woo (the talent for winning others over quickly, making strangers into connections) complements Command&#x27;s tendency to blast through barriers. Woo provides a radar for where barriers are human vs. structural — and where going around might work better than going through. The combination lets Command know when to bring the hammer down and when to hold back.</p>
+<h3>Command + Developer</h3>
+<p>A rare combination (one of the statistically least likely pairs). Developer (seeing potential in others and helping them grow) combines with Command&#x27;s &quot;I believe in you&quot; certainty to create a powerful mentor — someone who sees potential in others and tells them so with absolute conviction. Not a strategy for growth so much as a declaration of belief.</p>
+<h3>Command + Discipline</h3>
+<p>Also statistically rare. Discipline (creating structure, routines, and order) combined with Command extends from &quot;I have a process&quot; to &quot;we are all going to follow the process.&quot; Command adds authority to structure — the structure isn&#x27;t just personal; it becomes an expectation for the group.</p>
+<p>---</p>
+<p><em>Sources: Gallup Theme Thursday webcasts, Seasons 1–6 (2014–2020): S1 &quot;Learning to Love All 34 Talent Themes,&quot; S2 &quot;Pairing and Expanding Your Strengths,&quot; S3 &quot;Deep Dive,&quot; S5 &quot;Highlights From Your CliftonStrengths 34,&quot; S6 &quot;Developing Teams and Managers.&quot;</em></p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

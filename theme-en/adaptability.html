@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adaptability · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain rel">Relationship Building</div>
+    <h1>Adaptability</h1>
+    <p class="hero-def">People exceptionally talented in the Adaptability theme prefer to go with the flow. They tend to be &quot;now&quot; people who take things as they come and discover the future one day at a time.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Adaptability</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition:</strong> People exceptionally talented in the Adaptability theme prefer to go with the flow. They tend to be &quot;now&quot; people who take things as they come and discover the future one day at a time.</p>
+<p><strong>Essence.</strong> Adaptability is not a general skill of &quot;being flexible&quot; — it is a specific orientation toward the present moment. People with this theme don&#x27;t just notice what&#x27;s happening around them; they confidently and enthusiastically <em>are led by it</em>. The core drive is presence: to follow and connect right here, right now. Adaptability is the currency of urgency — it operates in and is energized by the immediate.</p>
+<p>The theme lives in the <strong>Relationship Building</strong> domain, which tells you the most important thing about it: Adaptability is not primarily about getting things done (Executing domain) or thinking differently (Strategic Thinking domain). Its power is relational — the ability to stay present with other people regardless of what was planned, and to respond to what they need in the moment they need it.</p>
+<p><strong>Carpe diem logic.</strong> The Latin phrase <em>carpe diem</em> (literally: pluck the day, like ripe fruit) describes the orientation well. Adaptability treats the present as the only time that fully exists and is worth full attention.</p>
+<p><strong>Distinction from similar talents:</strong></p>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Core orientation</th></tr></thead><tbody><tr><td><strong>Adaptability</strong></td><td><em>I adjust to the moment</em> — responds to current need without requiring preparation or reason</td></tr><tr><td><strong>Connectedness</strong> (meaning and universal connection)</td><td><em>I trust the moment is happening for a reason</em> — doesn&#x27;t require proof, trusts larger meaning</td></tr><tr><td><strong>Empathy</strong> (sensing others&#x27; feelings)</td><td><em>I feel what you&#x27;re feeling</em> — emotional attunement, not necessarily action</td></tr><tr><td><strong>Harmony</strong> (seeking agreement)</td><td><em>I help the group reach neutral ground</em> — responds to conflict or tension</td></tr><tr><td><strong>Positivity</strong> (enthusiasm)</td><td><em>I set the emotional tone</em> — responds to opportunities for celebration</td></tr></tbody></table>
+<p>All four Relationship Building themes above respond to other people. The difference is <em>what filter they use</em> to decide what&#x27;s most important to respond to.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral markers:</strong></p>
+<ul class="marker-list">
+<li>Calm and focused precisely when others panic or spin out of control</li>
+<li>Genuinely &quot;up for anything&quot; — flexible without it being forced</li>
+<li>Performs better <em>without</em> heavy advance preparation; best ideas and connections come on the spot</li>
+<li>Feels a surge of energy when plans change or urgent requests arrive — rather than jarring disruption</li>
+<li>360-degree awareness of the present: more in tune to what&#x27;s going on than others in the room</li>
+<li>&quot;I don&#x27;t know what I&#x27;m doing next week&quot; is a feature, not a bug — the future doesn&#x27;t feel real or relevant until it becomes the present</li>
+<li>Sets deadline reminders 48 hours out, not months out; anything beyond a couple of days doesn&#x27;t yet exist in the brain</li>
+</ul>
+<p><strong>Raw vs. mature form:</strong></p>
+<table class="maturity-table"><thead><tr><th>Raw</th><th>Mature</th></tr></thead><tbody><tr><td>Apathy: &quot;I don&#x27;t care, do whatever&quot;</td><td>Early adopter: quickly on board with change, helps others get there</td></tr><tr><td>Needy: wants response <em>right now</em></td><td>Presence: senses what&#x27;s needed now and responds to that</td></tr><tr><td>Lacking initiative</td><td>Supporting initiative: mobilizes people around change</td></tr><tr><td>Unpredictable in the future</td><td>Reliable in the moment: can&#x27;t promise next year, can promise right now</td></tr><tr><td><strong>Blinded by the now</strong></td><td><strong>Energized by the now</strong></td></tr></tbody></table>
+<p>The most useful single distinction: raw Adaptability is <em>captured</em> by the present; mature Adaptability is <em>activated</em> by the present.</p>
+<p><strong>Two metaphors that clarify the theme:</strong></p>
+<ul class="marker-list">
+<li><strong>Jazz:</strong> Not classical, not even rehearsed rock. Picking up rhythm and chords from other people and being led by where the music should go. To go with the flow, you first have to be in tune to the flow.</li>
+<li><strong>Amoeba:</strong> Shapeless until there&#x27;s some indication of where to go. Puts out feelers, senses the environment, then changes shape accordingly. Needs something to react to.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>What Adaptability contributes that no other theme does:</strong></p>
+<ul class="marker-list">
+<li><strong>Calm under fire.</strong> In moments of chaos, Adaptability is calm and in control. When everyone else halts, people with Adaptability can say: &quot;We can continue and sort this out because we know who we are, what we need, and where we&#x27;re going right now.&quot; In extreme cases this can <em>look</em> like Command (decisive authority) — not because they&#x27;re commanding, but because the contrast with paralysis is so stark.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Speed of sensing urgent needs.</strong> Adaptability reads what the most pressing need is faster than others and without deliberation. It senses the emotional urgency in the room and finds quick, practical ways to bridge the gap between what people need and what they have.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Gap-filling without friction.</strong> Brilliant at stepping in to fill gaps in the moment, without needing a warmup period or a promise of long-term follow-up. Doesn&#x27;t require certainty about the big picture to take the next right action.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>In-the-moment recognition.</strong> Nobody is better positioned to catch someone doing something right <em>while it&#x27;s happening</em>. Adaptability&#x27;s presence means it can give real-time, specific feedback — both positive and critical — better than themes that need to step back and reflect.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Cross-group presence.</strong> Can jump from one project, team, or culture to another and remain authentically present with each. Each interaction gets full attention without the cognitive overhead of carrying the previous one.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>A stable form of stability.</strong> Adaptability creates consistency not through predictability of plans, but through consistency of <em>showing up fully</em>: &quot;I will always be in the moment with you.&quot; That is a reliable promise.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For the person:</strong></p>
+<ul class="marker-list">
+<li><strong>Shapelessness without named values.</strong> Adaptability adjusts to whatever container it&#x27;s in (like slime filling a mold). Without explicitly stated non-negotiables, it can lose track of its own priorities. The theme does not equal lack of values — but those values must be named or they become invisible to both the person and others.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Difficulty with long-horizon goals.</strong> &quot;Five years doesn&#x27;t even compute for me — I get surprised when each month turns over.&quot; Standard goal-setting frameworks built around annual objectives feel artificial and draining. The challenge is not inability to have goals, but inability to <em>feel</em> them as real until they&#x27;re close.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Blinded by the now (raw form).</strong> The current crisis or need fully occupies mental bandwidth. Planning for next weekend becomes impossible while a current problem dominates.</li>
+</ul>
+<p><strong>For others — how it can be misread:</strong></p>
+<ul class="marker-list">
+<li>Appears as laziness, apathy, or lack of direction — especially by high-Achiever (drive to accomplish) or high-Activator (bias toward action) observers who interpret flexibility as disengagement.</li>
+<li>&quot;I don&#x27;t care where we go to dinner / which direction the business goes&quot; — genuinely means &quot;I trust I can work with any outcome,&quot; but lands as &quot;I don&#x27;t care.&quot;</li>
+<li>Can be exploited: once people understand someone is adaptable and won&#x27;t push back on changes, they may default every disruption to that person. Don&#x27;t assign every last-minute fire to the Adaptability person just because they handle it well.</li>
+</ul>
+<p><strong>As a leader:</strong></p>
+<ul class="marker-list">
+<li>Without explicit statements of direction and values, Adaptability in a leadership role can appear aloof (&quot;they don&#x27;t care about the future&quot;), which erodes follower trust.</li>
+<li>The natural jumping between projects and groups must be managed. Followers don&#x27;t need to experience the full dynamic churn. Know when to absorb the variability yourself and when followers need to know about a course change.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For people with high Adaptability:</strong></p>
+<li><strong>Name your non-negotiables.</strong> What are the things you will not compromise on? State them to others. This prevents being perceived as shapeless and gives others a map of when <em>not</em> to ask you to flex. Simple format: &quot;Here&#x27;s where I won&#x27;t go. Around that, I can flex.&quot;</li>
+<li><strong>Articulate your values out loud.</strong> &quot;I stand for honesty / this team / this client.&quot; Saying it out loud accomplishes two things: it reminds you, and it builds trust in others who can&#x27;t see the direction you&#x27;re holding internally.</li>
+<li><strong>Use shorter time horizons for planning.</strong> Instead of &quot;where do you want to be in a year?&quot; ask yourself: &quot;How will I be different or better next week?&quot; Your world becomes clearer the shorter the focus. Set deadline reminders 48 hours out rather than building far-ahead task lists.</li>
+<li><strong>Create urgency and transition points in your day.</strong> Adaptability is energized by urgency, not drained by it. Design your day with social interactions, varied tasks, and short blocks — not to multitask, but to create the natural transitions that activate the theme. Think of it as building &quot;a social ensemble to your day.&quot;</li>
+<li><strong>Raise your hand in emergencies.</strong> Practice high-stakes calmness — actively look for situations where your natural calm under pressure is needed: teaching, difficult client conversations, ambiguous new projects, live events. Debrief with someone you trust afterward.</li>
+<li><strong>Give yourself roles with start-execute-finish cycles.</strong> Jobs where every day is different and you can get from idea to completion quickly are natural fits. Avoid single-topic marathon sessions — break into chunks.</li>
+<li><strong>Build trust as a leader by explaining the present.</strong> When changing course, explicitly tell people <em>why the present matters</em> and how the deviation gets closer to the shared goal. You have a better radar on the present than almost anyone — share what you&#x27;re seeing.</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Adaptability</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li><strong>Don&#x27;t mistake &quot;I&#x27;m good with anything&quot; for laziness.</strong> It&#x27;s full attunement to the environment. The direction they&#x27;re holding is often invisible because it lives in the present, not a written plan.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Give them explicit end goals, then allow detours.</strong> Adaptability doesn&#x27;t need a rigid roadmap, but it needs to know what the destination is. &quot;Here&#x27;s the target — figure out the best path in the moment&quot; is ideal framing. Bring them back to focus by naming what&#x27;s urgent, not by adding rigid milestones.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Put them in roles where flexibility is the job.</strong> Live event production, recruiting, crisis response, emergency medicine, customer-facing roles, warehouse fulfillment — any context where every day is different and responsiveness is the primary value.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Allow them to be brilliant in moments of chaos, then release them</strong> — don&#x27;t try to turn their crisis contribution into a structured weekly cadence. These are spotlights of talent that come and go as needed.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Use short-horizon check-ins.</strong> Ask &quot;what&#x27;s the most important thing you&#x27;re focused on today?&quot; rather than &quot;where do you see yourself in a year?&quot; Their world becomes clearer the closer the timeline.</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li><strong>Ask in the now.</strong> &quot;What are you sensing right now?&quot; or &quot;What changed in your world today?&quot; lands better than &quot;How was your week?&quot; The former is in their language; the latter feels distant and abstract.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Don&#x27;t assume they have no agenda.</strong> Ask permission: &quot;Would you like to respond to this right now, or should we find another time?&quot; Treating their flexibility as a given — without checking — can be a form of exploitation.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Be open and don&#x27;t hide what&#x27;s happening in the present.</strong> Adaptability people build rapport on current reality. Don&#x27;t gloss over a present problem in favor of a professional front.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Look for tight turnaround from idea to execution.</strong> Give them an urgent challenge and stay around for the answer rather than previewing it days in advance and expecting a written response.</li>
+</ul>
+<ul class="marker-list">
+<li><strong>Useful questions for bringing out their best:</strong></li>
+</ul>
+<p>- &quot;What&#x27;s your latest adventure?&quot;</p>
+<p>- &quot;What&#x27;s surprising you right now?&quot;</p>
+<p>- &quot;What&#x27;s the most important thing you&#x27;re focused on today?&quot;</p>
+<p>- &quot;What&#x27;s the bravest decision you made recently?&quot;</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Adaptability + Empathy</strong> <em>(most statistically common pairing)</em></p>
+<p>Empathy senses what others are feeling; Adaptability reacts to current need. Together: the ability to sense the emotional state of someone and <em>immediately</em> shift the approach to match what&#x27;s needed. Empathy without Adaptability = sensing but not necessarily acting. Adaptability without Empathy = responding to situational cues but potentially missing the emotional layer.</p>
+<p><strong>Adaptability + Arranger</strong> <em>(Arranger: manages complexity through reconfiguration)</em></p>
+<p>Arranger brings control to the responsiveness. In a crisis, Adaptability stays calm while Arranger scans available options to reconfigure toward a solution. Natural combination for live event production, operations under pressure, and any situation requiring &quot;reorganize quickly.&quot;</p>
+<p><strong>Adaptability + Discipline</strong> <em>(Discipline: order, predictability, structure)</em></p>
+<p>Moderating combination. Discipline creates a container of structure and routine, making the adaptability legible and predictable enough for followers to trust. The person becomes adaptable <em>within</em> a frame, rather than wholly fluid.</p>
+<p><strong>Adaptability + Focus</strong> <em>(Focus: goal-oriented tunnel vision — least statistically common pairing)</em></p>
+<p>Structural opposites. If both are present: the world can change constantly, but when it&#x27;s time to act, all energy concentrates on the single highest priority. The combination can produce someone who absorbs disruption without resistance AND executes decisively once they know what matters most.</p>
+<p><strong>Adaptability + Connectedness</strong> <em>(Connectedness: meaning, faith, universal linkage)</em></p>
+<p>Both in Relationship Building. Connectedness trusts that the moment is happening for a reason. Adaptability adjusts without needing a reason. Together: neither requires proof nor preparation — they simply trust and move into whatever is in front of them.</p>
+<p><strong>Adaptability as an accelerant across all themes</strong></p>
+<p>Regardless of which other themes are present, Adaptability functions as a time compressor: it shortens reaction time for everything else. Adding Adaptability to Strategic Thinking (seeing patterns, future scenarios) produces faster pivoting between alternatives. Adding it to Empathy produces near-simultaneous sensing and responding. The pattern: Adaptability adds the word &quot;urgently&quot; or &quot;presently&quot; to how every other theme operates.</p>
+<p>---</p>
+<p><strong>Summary in one line:</strong> Adaptability is the talent of the present tense — it senses the most urgent need in the room, assumes the authority to act on it, and moves without the friction of planning, precedent, or long-horizon commitment.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

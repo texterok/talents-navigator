@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Communication · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain infl">Influencing</div>
+    <h1>Communication</h1>
+    <p class="hero-def">People exceptionally talented in Communication generally find it easy to put their thoughts into words. They are good conversationalists and good presenters.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Communication</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition:</strong> People exceptionally talented in Communication generally find it easy to put their thoughts into words. They are good conversationalists and good presenters.</p>
+<p><strong>Deeper definition:</strong> Communication is a passionate, natural relationship with words — spoken or written — that produces both conceptual clarity and social connection through verbal expression. At its core, it is a drive to be understood and to help others be understood. It belongs to the <strong>Influencing</strong> domain, though it operates across both influencing and relationship-building directions depending on the person&#x27;s other themes.</p>
+<p>Communication occurs in approximately 13% of people&#x27;s top-5 profiles — a middle-range frequency.</p>
+<p><strong>What it is not:</strong></p>
+<ul class="marker-list">
+<li>Not just talking. It includes listening, dialogue, and the ability to give words to what <em>others</em> are struggling to say.</li>
+<li>Not manipulation. Messaging and crafting language is distinct from deception.</li>
+<li>Not an executing theme. Communication affects how people feel and think; it does not inherently drive task completion.</li>
+</ul>
+<p><strong>Distinctions from similar themes:</strong></p>
+<ul class="marker-list">
+<li><strong>vs. Command</strong> (takes charge, confronts): Command uses direct clarity of decisions to direct attention — &quot;Here&#x27;s what we need to do.&quot; Communication uses ease with words to draw people in — &quot;I think what we&#x27;re all saying is...&quot;</li>
+<li><strong>vs. Woo</strong> (winning others over): Woo makes people feel <em>seen</em> through charm and connection. Communication makes people feel <em>heard</em> through articulation. Woo opens the door; Communication furnishes the room with meaning.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Processing through words.</strong> People with high Communication find clarity by talking or writing things out when confused or frustrated. Ideas in their head exist in a language they don&#x27;t fully understand until spoken or written. Verbalization is their translation mechanism, not their performance.</p>
+<p><strong>Articulating what others can&#x27;t.</strong> They can compute quickly from a half-formed thought to precise words — both their own and other people&#x27;s. Hearing &quot;that&#x27;s exactly what I meant, I just didn&#x27;t have the words&quot; is a common experience.</p>
+<p><strong>Story orientation.</strong> They are drawn to storytelling as a structure for meaning — both creating stories and collecting them. They tend to debrief events, explain relationships, and frame problems through narrative.</p>
+<p><strong>Audience awareness.</strong> They read body language and group reactions continuously — in one-on-one conversation and in rooms of hundreds. They are tracking whether the message is landing, not just being delivered.</p>
+<p><strong>Mining for gems.</strong> Within a paragraph others hear as flat, someone with high Communication spots the &quot;shinier&quot; phrases — license-plate statements, emotionally resonant words — that can crystallize an idea and make it stick.</p>
+<p><strong>Drive to be understood.</strong> Being misunderstood produces a distinct discomfort that cannot be dropped. They will try again to clarify, often finding a different angle or a better example until the message connects.</p>
+<p><strong>Language mirroring.</strong> They pick up quickly on the lingo, acronyms, and cultural vocabulary of clients or new environments and naturally weave it back into their communication. This creates fast trust and a sense of &quot;they get us.&quot;</p>
+<p><strong>Personal signature.</strong> Outside work: signature jokes, habitual rapport-builders, asking permission before telling stories (&quot;Can I tell you a quick story?&quot;), debriefing their day to others through narrative.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Message translation.</strong> Translates complicated or abstract ideas into digestible language that different people can receive. Like great teachers, they find multiple ways to say the same thing until it lands.</p>
+<p><strong>Attention direction.</strong> Can shift where a group is focusing — away from conflict and toward results, away from noise and toward a key message. Particularly valuable in chaos or change: they can summarize clearly, provide context, and hold the group to a through-line.</p>
+<p><strong>Progress measured through adoption.</strong> Tracks how much buy-in, how many people educated, how widely an idea has spread. Progress for Communication is social and relational, not just task-based.</p>
+<p><strong>Internal public relations.</strong> Knows what to say, when to say it, and who to say it <em>with</em> (not just <em>to</em>). Can package the team&#x27;s message for different audiences — internal stakeholders, customers, leadership — without losing the core.</p>
+<p><strong>Champion of others&#x27; ideas.</strong> Can advocate for someone else&#x27;s idea with the same skill and energy as their own. Will amplify a message that deserves more airtime, or surface a perspective that wasn&#x27;t being heard.</p>
+<p><strong>Thought partnership.</strong> Helps others replay what they&#x27;re trying to say — &quot;let me reflect back what I&#x27;m hearing&quot; — and determine whether it&#x27;s actually what they mean once it&#x27;s in words.</p>
+<p><strong>Trust through language.</strong> By speaking someone&#x27;s language back to them, they create rapid rapport and credibility, particularly with new clients, audiences, or organizational cultures.</p>
+<p><strong>As a leader:</strong> Gives teams the words they need. Boils brainstormed ideas down into sticky, palatable phrases people can carry with them. Breathes life and emotion into dry concepts so they&#x27;re never boring. Helps people see potential they can&#x27;t yet feel by painting a vivid picture of what success looks like.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Raw vs. mature:</strong> The same talent that produces clarity can produce noise. In undeveloped or low-energy form:</p>
+<table class="maturity-table"><thead><tr><th>Raw form</th><th>Mature form</th></tr></thead><tbody><tr><td>Chatty — everything in the brain exits through the mouth</td><td>Energetic — words are selected and weighted</td></tr><tr><td>Verbose — no filter</td><td>Pithy — exactly the right words</td></tr><tr><td>Long-winded — fills space</td><td>Far-reaching — words have gravity</td></tr><tr><td>Loose-lipped — transparency without discretion</td><td>Sincere — transparent but controlled</td></tr><tr><td>Always on — performing for any available audience</td><td>Audience-aware — tailors expression to the specific people and moment</td></tr></tbody></table>
+<p><strong>Eloquent rambling is still rambling.</strong> Success at speaking can produce the illusion of substance. People with high Communication sound good even when they&#x27;re processing, which means others may treat unfinished thinking as a final position.</p>
+<p><strong>Unintentional commitments.</strong> Thinking out loud means occasionally saying things before fully meaning them. Others may hold them to words that were part of the process, not the conclusion.</p>
+<p><strong>Speed mismatch.</strong> Most people take longer to form and express thoughts than Communication does. Silence or slow responses are not disengagement — but someone with high Communication can read them that way and fill the gap unnecessarily.</p>
+<p><strong>Crowding out listening.</strong> High success at speaking can reduce investment in listening. World-class Communication requires equally world-class listening.</p>
+<p><strong>Not a natural equity lens.</strong> Communication does not inherently notice who isn&#x27;t getting a voice in the room. That awareness typically comes from relationship-building themes (Empathy, Includer, Developer). Don&#x27;t assume a team&#x27;s Communication person is ensuring everyone is heard — they&#x27;re optimizing for the message, not the inclusion.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Invest in listening explicitly.</strong> In meetings, write down a question rather than immediately jumping in with the observation. Practice letting others finish. Learn the three levels of listening: what is said, what is not verbalized (nonverbal cues), and what is being left out entirely.</p>
+<p><strong>Think out loud before it counts.</strong> Must rehearse by speaking, not reading. If a presentation, teaching session, or important conversation hasn&#x27;t been said out loud beforehand, the first attempt will be the live one — and it will show. Find a safe practice partner whose role is to hear the thinking, not hold you to every word.</p>
+<p><strong>Develop version control for your messages.</strong> Practice the 90-second version and the 5-minute version of any key message. Know which one fits the current moment.</p>
+<p><strong>Make editing a habit.</strong> Write shorter emails — say what you want to say, then cut it. Apply the Coco Chanel principle: before you leave the house, take one thing off. What is the <em>essence</em> of this?</p>
+<p><strong>Capture insights in the moment.</strong> Some of the best thinking surfaces mid-conversation. Keep a notepad or voice recorder nearby. Ideas said aloud that aren&#x27;t captured often disappear entirely.</p>
+<p><strong>Study the craft.</strong> Join Toastmasters, take a creative writing class, binge a show with a sophisticated plot and pay attention to how the plot is constructed and paced. Read — not just to consume but to study what makes certain language land.</p>
+<p><strong>Ask great questions.</strong> Well-researched, thoughtful questions are an extension of Communication, not a replacement for it. Questions that get to the heart of an answer produce more than observations stated pithily.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Communication</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li>Give them an audience. Connect them to customers, clients, stakeholders, or followers. Help them understand who is receiving their message — this amplifies the talent dramatically.</li>
+<li>Use them as a communication resource, not just a communicator. When you&#x27;re struggling to get through to someone, or need to craft key messaging, ask them: &quot;What questions should I be asking?&quot; or &quot;What do you think I&#x27;m really trying to say?&quot;</li>
+<li>Create dedicated communication time. They don&#x27;t need a problem to have a conversation. A 30-minute regular exchange where they can process out loud is valuable in itself.</li>
+<li>Don&#x27;t mistake the thinking-out-loud phase for the final position. Ask: &quot;Now that you&#x27;ve talked through this, what do you actually think?&quot; This respects their process and ensures you&#x27;re hearing the conclusion.</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>When they appear to go back and forth on something, resist the urge to pin them down in the middle. Let them process. Follow up.</li>
+<li>Forgive rambling. It&#x27;s often how they arrive at something precise. Staying with them through the iteration pays off.</li>
+<li>If they&#x27;re unusually quiet in a meeting, they may be holding back deliberately. Check in rather than assuming passivity.</li>
+<li>Don&#x27;t hang on every word as though it&#x27;s permanent. They may say things to find out if they mean them.</li>
+<li>Pair them with people who struggle to be heard if you want those people to get more airtime — Communication won&#x27;t do this automatically, but they&#x27;re effective amplifiers when pointed in that direction.</li>
+</ul>
+<p><strong>For people who have low Communication:</strong></p>
+<ul class="marker-list">
+<li>Allow more preparation time before high-visibility moments.</li>
+<li>Find a trusted reviewer for emails, presentations, and key messages before they go out.</li>
+<li>Think about what story belongs behind the data — the numbers alone don&#x27;t carry the message.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Natural pairing: Woo (Winning Others Over)</h3>
+<p>The most statistically common partner. Both themes are outward-focused and other-oriented. Together: they assemble a cast of characters (Woo opens doors, Communication builds the story), making personal connections through narrative. The combination produces charismatic, relational influencing.</p>
+<h3>Least likely pairing: Deliberative</h3>
+<p>Deliberative is about caution, risk assessment, and careful decision-making before acting. When combined with Communication, the result is a more careful communicator — someone who still needs to talk things through, but has a clearer internal signal for when the thinking is done and it&#x27;s time to move. Rare, but not contradictory.</p>
+<h3>Themes that intensify Communication</h3>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Effect</th></tr></thead><tbody><tr><td><strong>Belief</strong> (core values-driven)</td><td>Passionate, conviction-carrying communicator — speaks with deep purpose</td></tr><tr><td><strong>Futuristic</strong> (drawn to the future)</td><td>Inspiring communicator who paints vivid pictures of what&#x27;s possible</td></tr><tr><td><strong>Woo</strong></td><td>Charming, irresistibly engaging; combines magnetism with articulation</td></tr><tr><td><strong>Positivity</strong> (optimism, enthusiasm)</td><td>Charismatic, uplifting; communicates in ways that energize people</td></tr></tbody></table>
+<h3>Themes that moderate Communication</h3>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Effect</th></tr></thead><tbody><tr><td><strong>Deliberative</strong> (cautious, risk-aware)</td><td>Filters before speaking; careful and measured communicator</td></tr><tr><td><strong>Responsibility</strong> (accountable, ethical)</td><td>Attentive to how words will be received; ethical communicator</td></tr><tr><td><strong>Intellection</strong> (introspective thinking)</td><td>Needs reflection time before speaking; thinks before talking</td></tr><tr><td><strong>Individualization</strong> (sees unique individuals)</td><td>Deeply customizes message for each person; resists one-size-fits-all communication</td></tr></tbody></table>
+<h3>Complementary partnerships</h3>
+<p><strong>Communication + Restorative</strong> (problem-solver): Communication brings attention and energy; Restorative brings focus on a specific problem. Together they&#x27;re effective troubleshooters who can both diagnose and articulate the path forward.</p>
+<p><strong>Communication + Maximizer</strong> (best-from-good): Maximizer sorts for the highest-potential ideas; Communication generates many and provides the vehicle to socialize the best ones. Maximizer lifts the quality; Communication multiplies the reach.</p>
+<p><strong>Communication + Focus</strong> (clear direction): Focus brings goal-specificity and singular energy; Communication converts that individual drive into collective momentum. Together: not just &quot;I know where I&#x27;m going&quot; but &quot;let&#x27;s all go there together.&quot;</p>
+<p><strong>Communication + Harmony</strong> (consensus-seeking): Produces a calm, practical voice that can restate high-level concepts in accessible language, de-escalate charged conversations, and ensure the message lands without friction.</p>
+<p><strong>Communication + Intellection</strong> (deep reflection): Requires deliberate preparation — must think before speaking — but the output is unusually substantive and precise. Slower to express, but more considered.</p>
+<p><strong>Communication alone (without executing themes):</strong> Communication is not an executing theme — it does not naturally sort toward what needs to get done. Pairing with themes like Achiever, Restorative, Discipline, or Responsibility adds the action dimension that converts articulated ideas into completed work.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

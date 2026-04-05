@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain strat">Strategic Thinking</div>
+    <h1>Context</h1>
+    <p class="hero-def">Context is a strategic thinking talent. People with dominant Context understand the present by researching its history. Their brain automatically reaches backward — to backstories, blueprints, causes and chains of events — as the primary mechanism for making sense of what&#x27;s happe</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What Is Context</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Context is a <strong>strategic thinking</strong> talent. People with dominant Context understand the present by researching its history. Their brain automatically reaches backward — to backstories, blueprints, causes and chains of events — as the primary mechanism for making sense of what&#x27;s happening now and deciding what to do next.</p>
+<p><strong>Official short definition:</strong> &quot;You enjoy thinking about the past. You understand the present by researching its history.&quot;</p>
+<p>The word &quot;context&quot; is itself the best description: these people instinctively &quot;put things into context&quot; — they explain events not as isolated facts but within their broader setting: historical, cultural, geographical, or relational.</p>
+<p><strong>Metaphor that captures the theme:</strong> Context is like looking at a building not by inspecting the walls but by reading the blueprints — the original plans and ideas that determined what was built and why.</p>
+<p><strong>What Context is not:</strong></p>
+<ul class="marker-list">
+<li>It is not nostalgia or being &quot;stuck in the past.&quot; The orientation is backward <em>in order to</em> inform the present and future.</li>
+<li>It is not the same as historical interest as a hobby. Context operates as a <em>cognitive tool</em> — a way of processing information — not necessarily an academic passion.</li>
+<li>It is not about creating new ideas. Unlike Ideation (the talent for generating new connections), Context links to what already exists in the historical record. It&#x27;s about understanding by connecting to facts, not inventing.</li>
+</ul>
+<p><strong>Distinction from adjacent themes:</strong></p>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Core confidence</th><th>Pattern recognition</th></tr></thead><tbody><tr><td><strong>Context</strong></td><td>&quot;I&#x27;m most confident when I know what happened before.&quot;</td><td>Patterns on a linear timeline</td></tr><tr><td><strong>Strategic</strong> (talent for finding optimal routes forward)</td><td>&quot;I&#x27;m most confident when I&#x27;ve explored our options.&quot;</td><td>Patterns in a cluster, non-linear</td></tr><tr><td><strong>Learner</strong> (talent for the process of acquiring knowledge)</td><td>&quot;I enjoy going from not-knowing to knowing, on any topic.&quot;</td><td>Curiosity is direction-agnostic</td></tr><tr><td><strong>Analytical</strong> (talent for finding proof through data)</td><td>&quot;Show me the data and the logic.&quot;</td><td>Proof-based; Context adds <em>stories and sequence</em></td></tr></tbody></table>
+<p>Context and Learner share curiosity about what is not yet known, but Context insists the past is the essential starting point. Context and Analytical both bring rigor, but Analytical brings truth and proof; Context adds narrative and historical sequence.</p>
+<p><strong>Distinction from Connectedness</strong> (the talent for sensing invisible links between things): Connectedness believes there are no coincidences, even when the mystery can&#x27;t be explained. Context probably believes coincidences only appear to happen because we aren&#x27;t looking closely enough at historical clues that were already present.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Cognitive signature:</strong></p>
+<ul class="marker-list">
+<li>First instinct when facing a new problem: &quot;What do we already know about this? What happened before? What got us here?&quot;</li>
+<li>Mental timeline — events are not just &quot;in the past,&quot; they happened in an order, with causes and effects that created a progression.</li>
+<li>&quot;Intellectual comparison&quot;: every new situation is automatically placed against previous situations to understand it.</li>
+<li>Tracks progress by asking &quot;How do we compare to last year?&quot; or &quot;What are we doing differently than before?&quot; — rather than &quot;How are we doing right now?&quot;</li>
+</ul>
+<p><strong>Behavioral patterns:</strong></p>
+<ul class="marker-list">
+<li>Asks &quot;where are you from?&quot; or &quot;how did this start?&quot; as a natural opening to any conversation.</li>
+<li>Says &quot;Did you know...&quot; or &quot;There&#x27;s something interesting about the background here...&quot; more than others.</li>
+<li>Remembers specific details from years or decades ago — especially around significant events, relationships, and organizational milestones. This tends to be <em>situational</em> memory, not photographic memory.</li>
+<li>Gets excited when discovering past clues; uses discoveries as benchmarks.</li>
+<li>Studies case studies with genuine enthusiasm — sees them not as exercises but as actionable data.</li>
+</ul>
+<p><strong>In a team or work context:</strong></p>
+<ul class="marker-list">
+<li>Will not feel fully confident making decisions until they have researched the history of the situation.</li>
+<li>May pause a &quot;new&quot; initiative to ask: &quot;Is this truly new, or have we tried something like this before? If we have, why aren&#x27;t we still doing it?&quot;</li>
+<li>Serves as the unofficial historian: people come to them to find out how something started, who said what, what was tried before.</li>
+</ul>
+<p><strong>Spontaneous behaviors that signal dominant Context:</strong></p>
+<ul class="marker-list">
+<li>Covering bedroom walls with maps as a child.</li>
+<li>Gravitating to history, genealogy, biography, and case studies without external prompting.</li>
+<li>Feeling a visceral sense of significance when standing in a historically meaningful place.</li>
+<li>Orienting quickly in an unfamiliar city by using background knowledge — mental maps built from prior learning about a place.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>On a team, a person with Context serves as:</strong></p>
+<ul class="marker-list">
+<li><strong>Historian and anchor:</strong> grounds the team in where they&#x27;ve been before significant decisions are made.</li>
+<li><strong>Connective tissue:</strong> links what the organization is doing today to what it has done in the past.</li>
+<li><strong>Risk minimizer:</strong> flags when a proposed &quot;innovation&quot; mirrors something that was already tried — and why it succeeded or failed.</li>
+<li><strong>Pattern reader:</strong> detects when current conflict or dynamics resemble a pattern the team has experienced before, and can predict likely outcomes.</li>
+<li><strong>Emotional stabilizer:</strong> when situations feel dire or uncertain, Context can find analogous moments in history to provide realistic perspective — reducing anxiety without false optimism.</li>
+</ul>
+<blockquote class="md-quote">&quot;It&#x27;s like you&#x27;re facing today with an extra set of glasses that&#x27;s going to give you a little bit more information.&quot; [S6]</blockquote>
+<p><strong>Organizational decisions become sharper when Context is at the table:</strong></p>
+<ul class="marker-list">
+<li>Avoids repeating the same mistakes.</li>
+<li>Builds on past wins with specificity, not generalities.</li>
+<li>Creates a factual foundation under future planning.</li>
+<li>Translates organizational history into a resource, not just a record.</li>
+</ul>
+<p><strong>Cross-functional contribution:</strong></p>
+<p>Context is classified as a Strategic Thinking theme but operates across domains when applied intentionally:</p>
+<ul class="marker-list">
+<li><em>Execution</em>: prevents wasted effort by identifying what has already been tried and what didn&#x27;t work.</li>
+<li><em>Relationship building</em>: knowing someone&#x27;s backstory builds bridges of trust — especially powerful in cross-cultural or long-tenure relationships.</li>
+<li><em>Influence</em>: credibility that comes from demonstrated depth of knowledge about shared history makes others more willing to follow.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Raw (undeveloped) Context manifests as:</strong></p>
+<table class="maturity-table"><thead><tr><th>Raw behavior</th><th>Mature equivalent</th></tr></thead><tbody><tr><td>Living in the past</td><td>Learning from the past</td></tr><tr><td>&quot;I need to do my research&quot; (paralysis before acting)</td><td>Knowing the research and calling upon it when needed</td></tr><tr><td>&quot;Nothing is ever new&quot; — used to <em>shut down</em> change</td><td>&quot;Let me create a framework for nuance&quot; — used to <em>inform</em> change</td></tr><tr><td>Overwhelming others with more background than they need</td><td>Delivering the most pertinent background for the decision at hand</td></tr><tr><td>&quot;What used to be?&quot; (enthralled with the past for its own sake)</td><td>&quot;How did we get here?&quot; (using the past to navigate the present)</td></tr><tr><td>Only looking in the rearview mirror</td><td>Scanning the entire dashboard — past, present, and direction of travel</td></tr></tbody></table>
+<p><strong>Specific risks:</strong></p>
+<li><strong>Perceived as resistant to change.</strong> Because Context can immediately identify that a &quot;new&quot; idea resembles something tried before, it can appear to be blocking progress. This is often not resistance — it&#x27;s pattern recognition — but it reads as obstruction if not communicated carefully.</li>
+<li><strong>Rarity creates isolation.</strong> Context is among the rarest dominant themes. In most rooms, a person with dominant Context will be the only one who feels compelled to understand the history before moving forward. Others may experience this as slowing them down.</li>
+<li><strong>Information overload.</strong> In raw form, the depth of historical knowledge can result in sharing far more background than the audience can absorb or use. The filter between &quot;all the context I have&quot; and &quot;the context needed right now&quot; is a learned skill.</li>
+<li><strong>Over-identification with past patterns.</strong> When the dominant frame is &quot;we&#x27;ve seen this before,&quot; genuinely novel situations can be misread as repetitions of historical ones — missing what is actually new.</li>
+<li><strong>Confidence bottleneck.</strong> Because Context people feel less confident making decisions without historical grounding, they may stall in genuinely unprecedented situations where no relevant history exists.</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Core development move:</strong> shift from <em>having</em> historical knowledge to <em>applying</em> it strategically. The talent is in the raw material; the strength is in knowing when and how to use it.</p>
+<p><strong>Specific actions:</strong></p>
+<li><strong>Build a deliberate knowledge base.</strong> Every day, feed the brain with something that interests you — books, articles, conversations with people who have deep institutional knowledge. This is not optional for Context; it&#x27;s the fuel.</li>
+<li><strong>Find your institutional historians.</strong> Seek out mentors, veterans, or domain experts who know the history of your team, industry, or field. Make these relationships a regular source of input — not just background reading.</li>
+<li><strong>Practice asking great questions.</strong> Study which questions consistently prompt people to open up about their history. Develop a repertoire of questions you use at the start of client engagements, meetings, and new relationships. Track what works.</li>
+<li><strong>Develop the skill of selective delivery.</strong> Learn to distinguish between &quot;all the context I know&quot; and &quot;the context this person needs right now.&quot; Practice delivering historical insight in one or two sentences — a skill that makes Context useful to others rather than burdensome.</li>
+<li><strong>Become a deliberate storyteller.</strong> Raw Context holds information; mature Context translates it into stories and anecdotes others can use. Practice taking historical knowledge and turning it into a narrative that&#x27;s relevant to a current decision.</li>
+<li><strong>Use the dashboard, not just the rearview mirror.</strong> Intentionally practice connecting historical findings to present-moment decisions and future plans. Ask yourself: &quot;Given what I know about the past, what should we anticipate? What are the implications for right now?&quot;</li>
+<li><strong>Ask for feedback on calibration.</strong> When sharing historical context, ask the audience afterward: &quot;Was that useful? Was there too much / too little?&quot; Use this to calibrate the filter.</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Context</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li><strong>Give them time to research before decisions.</strong> Rushing someone with Context into decisions without background research will produce lower-quality output and visible discomfort. Build in time for them to look into history.</li>
+<li><strong>Assign them as the team&#x27;s institutional memory.</strong> Formally or informally, nominate them as the person who tracks what&#x27;s been tried, what worked, and what didn&#x27;t. This is not a limitation — it&#x27;s a high-value role.</li>
+<li><strong>Use history-oriented questions to engage them:</strong></li>
+</ul>
+<p>- &quot;What are a few significant moments that led us here?&quot;</p>
+<p>- &quot;What are you most proud of in our company&#x27;s past?&quot;</p>
+<p>- &quot;If you got to spend a day during any decade in history, when would you choose and what would you do?&quot;</p>
+<p>- &quot;What inspires you to do research or ask questions?&quot;</p>
+<ul class="marker-list">
+<li><strong>Invite them to brief the team</strong> before major decisions: &quot;Here&#x27;s what we&#x27;ve tried before and what we know.&quot; Give them a clear, bounded role — not to own the decision, but to inform it.</li>
+<li><strong>Acknowledge their recall.</strong> When they surface a relevant piece of history, say so explicitly: &quot;I&#x27;m glad you remembered that.&quot; People with Context often don&#x27;t realize their recall is extraordinary until someone reflects it back.</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li><strong>Don&#x27;t force them to lead without a map.</strong> If you need their best thinking, give them the background first. &quot;Here&#x27;s where this project started and what we&#x27;ve tried&quot; is more useful than &quot;jump in and give me your take.&quot;</li>
+<li><strong>Let them ask questions.</strong> Their questions are how they navigate — not delays. Give them room to ask before expecting output.</li>
+<li><strong>Don&#x27;t frame historical awareness as resistance.</strong> If they say &quot;we tried this before,&quot; treat it as information, not an objection. Ask them to share what they know — it often reveals something important.</li>
+<li><strong>Be patient with the setup.</strong> People with Context may give more preamble than you expect. The preamble is the reasoning. If you need them to be brief, ask specifically: &quot;Give me the one most relevant thing from the past on this.&quot;</li>
+<li><strong>Be prepared with relevant history</strong> when you want their engagement. &quot;Here&#x27;s what we know about what&#x27;s been tried&quot; is an invitation to their most productive thinking.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Input</strong> (talent for collecting and archiving information): The most statistically common pairing with Context. Input collects artifacts, memorabilia, data; Context provides the historical narrative that makes the collection meaningful. Together: a powerful institutional archive — not just things stored, but things understood within a progression.</p>
+<p><strong>Strategic</strong> (talent for finding optimal paths): Context provides the historical pattern recognition; Strategic provides the future-oriented pattern recognition. Together: a complete analytical range — where we&#x27;ve been <em>and</em> what our options are. Individually, each is partial; together, they are unusually thorough.</p>
+<p><strong>Learner</strong> (talent for acquiring knowledge): Both themes share deep curiosity, but Context is direction-specific (backward) while Learner is direction-agnostic. Together: someone who learns from history with the same enthusiasm they bring to any new domain.</p>
+<p><strong>Analytical</strong> (talent for data-based reasoning): Analytical demands proof; Context adds story and sequence. Together: evidence-based argument that is also narratively compelling — facts with a causal arc.</p>
+<p><strong>Communication</strong> (talent for telling stories and finding the right words): Context provides the raw material — historical knowledge, sequences, case studies. Communication turns it into stories. Together: unusually powerful storytelling grounded in real precedent.</p>
+<p><strong>Futuristic</strong> (talent for vivid imagining of what could be): Futuristic pulls toward what might be; Context pulls toward what has been. This combination creates tension but also breadth — someone who understands precedent and imagines beyond it. Rare pairing, but when it occurs, it moderates Context&#x27;s tendency to anchor on the past.</p>
+<p><strong>Positivity</strong> (talent for infectious optimism): Adds an emotional energy to historical knowledge — celebrates the heroes and highlights of the past, turning context into inspiration rather than just information.</p>
+<p><strong>Adaptability</strong> (talent for living in the present moment): Adaptability is present-focused; Context is past-focused. Together: credibility and meaning in the present moment. Context explains how we got here; Adaptability responds to where we are now. Complementary rather than conflicting.</p>
+<p><strong>Includer</strong> (talent for making everyone feel part of the group): Expands whose history gets recorded and told — ensuring that institutional memory includes all voices, not just dominant ones.</p>
+<p><strong>Woo</strong> (talent for winning people over quickly): Uses historical knowledge to delight and engage others — turning &quot;did you know...&quot; facts into social connection.</p>
+<p><strong>Note on statistically rare pairings:</strong> Context is least likely to appear alongside Command (talent for taking charge), Significance (talent for making a notable impact), and Focus (talent for maintaining direction). This may reflect that these themes are forward and outcome-oriented in ways that don&#x27;t naturally reinforce backward-oriented processing.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

@@ -145,7 +145,13 @@ def extract_sections(md_text):
     for i, title in enumerate(titles):
         body = parts[i+1] if i+1 < len(parts) else ""
         body = re.split(r'^## ', body, flags=re.MULTILINE)[0]
-        sections.append((title.strip(), body.strip()))
+        # Remove duplicate title line at start of body
+        body_lines = body.strip().split("\n")
+        if body_lines and body_lines[0].strip() == title.strip():
+            body = "\n".join(body_lines[1:]).strip()
+        else:
+            body = body.strip()
+        sections.append((title.strip(), body))
     return sections
 
 def get_definition(body):
@@ -235,9 +241,14 @@ function toggleSection(id){
 }
 """
 
-def build_html(slug, en_name, ru_name, domain, sections):
-    dlabel = DOMAIN_LABELS[domain]
+DOMAIN_LABELS_EN = {"exec":"Executing","infl":"Influencing","rel":"Relationship Building","strat":"Strategic Thinking"}
+
+def build_html(slug, en_name, ru_name, domain, sections, lang="ru"):
+    is_en = lang == "en"
+    dlabel = DOMAIN_LABELS_EN[domain] if is_en else DOMAIN_LABELS[domain]
+    subtitle = ru_name if not is_en else ""
     definition = get_definition(sections[0][1]) if sections else ""
+    section_word = "Section" if is_en else "Раздел"
 
     secs_html = ""
     for idx, (title, body) in enumerate(sections):
@@ -250,7 +261,7 @@ def build_html(slug, en_name, ru_name, domain, sections):
     <div class="section-header{oc}" onclick="toggleSection('s{idx+1}')">
       <div class="section-icon">{icon}</div>
       <div class="section-title-group">
-        <div class="section-num">Раздел {num}</div>
+        <div class="section-num">{section_word} {num}</div>
         <div class="section-title">{html_mod.escape(title)}</div>
       </div>
       <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -258,12 +269,14 @@ def build_html(slug, en_name, ru_name, domain, sections):
     <div class="section-body{oc}">{content}</div>
   </div>"""
 
+    html_lang = "en" if is_en else "ru"
+    sub_html = f'\n    <div class="hero-sub">{subtitle}</div>' if subtitle else ""
     return f"""<!DOCTYPE html>
-<html lang="ru">
+<html lang="{html_lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{en_name} — {ru_name} · CliftonStrengths</title>
+<title>{en_name} · CliftonStrengths</title>
 <base target="_parent">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>{CSS}</style>
@@ -272,8 +285,7 @@ def build_html(slug, en_name, ru_name, domain, sections):
 <div class="page">
   <div class="hero">
     <div class="hero-domain {domain}">{dlabel}</div>
-    <h1>{en_name}</h1>
-    <div class="hero-sub">{ru_name}</div>
+    <h1>{en_name}</h1>{sub_html}
     <p class="hero-def">{html_mod.escape(definition)}</p>
   </div>
 {secs_html}
@@ -282,23 +294,34 @@ def build_html(slug, en_name, ru_name, domain, sections):
 </body>
 </html>"""
 
+OUT_EN = "/Users/i1pl/talents-navigator/theme-en"
+
 def main():
     os.makedirs(OUT, exist_ok=True)
-    ok = 0
+    os.makedirs(OUT_EN, exist_ok=True)
+    ok_ru = ok_en = 0
     for slug, en_name, ru_name, domain in THEMES:
-        md_path = os.path.join(SRC, f"{slug}_ru.md")
-        if not os.path.exists(md_path):
-            print(f"SKIP {slug}")
-            continue
-        md = read_md(md_path)
-        sections = extract_sections(md)
-        page = build_html(slug, en_name, ru_name, domain, sections)
-        out_path = os.path.join(OUT, f"{slug}.html")
-        with open(out_path, "w", encoding="utf-8") as f:
-            f.write(page)
-        ok += 1
-        print(f"OK   {slug}.html ({len(sections)} sections)")
-    print(f"\nDone: {ok}/{len(THEMES)}")
+        # Russian
+        md_ru = os.path.join(SRC, f"{slug}_ru.md")
+        if os.path.exists(md_ru):
+            md = read_md(md_ru)
+            sections = extract_sections(md)
+            page = build_html(slug, en_name, ru_name, domain, sections, lang="ru")
+            with open(os.path.join(OUT, f"{slug}.html"), "w", encoding="utf-8") as f:
+                f.write(page)
+            ok_ru += 1
+            print(f"OK   theme/{slug}.html ({len(sections)} sections)")
+        # English
+        md_en = os.path.join(SRC, f"{slug}_en.md")
+        if os.path.exists(md_en):
+            md = read_md(md_en)
+            sections = extract_sections(md)
+            page = build_html(slug, en_name, ru_name, domain, sections, lang="en")
+            with open(os.path.join(OUT_EN, f"{slug}.html"), "w", encoding="utf-8") as f:
+                f.write(page)
+            ok_en += 1
+            print(f"OK   theme-en/{slug}.html ({len(sections)} sections)")
+    print(f"\nDone: {ok_ru} RU, {ok_en} EN")
 
 if __name__ == "__main__":
     main()

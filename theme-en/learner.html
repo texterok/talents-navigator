@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learner · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain strat">Strategic Thinking</div>
+    <h1>Learner</h1>
+    <p class="hero-def">&quot;You have a great desire to learn and want to continuously improve. The process of learning, rather than the outcome, is what excites you.&quot;</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What Is Learner</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition:</strong> &quot;You have a great desire to learn and want to continuously improve. The process of learning, rather than the outcome, is what excites you.&quot;</p>
+<p>The core of Learner is not a subject matter — it is the <em>experience</em> of moving from not knowing to knowing. People with dominant Learner are energized by the steady, deliberate journey from ignorance to competence, regardless of topic. The subject can be yoga, genealogy, remote work practices, or piano lessons — what matters is the trajectory of that journey, not the destination.</p>
+<p>Learner does not necessarily mean a drive to become a recognized subject-matter expert, gain academic credentials, or master one field forever. The outcome is less significant than the getting-there. Once mastery is achieved, Learner tends to look for the next learning mountain to climb.</p>
+<p>There is also an emotional dimension: people with high Learner describe something close to a physiological response when encountering new information — an endorphin or energy rush, sometimes called a &quot;learner&#x27;s high.&quot; Learning can function as a mood regulator; for those with this theme, picking up a book after a difficult day can genuinely restore energy and motivation.</p>
+<p>Learner is the second most common theme in Gallup&#x27;s database of 30+ million people (approximately 29%), behind Achiever (≈32%). [S1]</p>
+<h3>Distinctions from similar Strategic Thinking themes</h3>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Core orientation</th></tr></thead><tbody><tr><td><strong>Learner</strong></td><td>The <em>process</em> of learning — moving from ignorance to competence</td></tr><tr><td><strong>Input</strong> (drive to collect and archive information)</td><td>The <em>content</em> of learning — the stuff, the books, the tools, the information itself</td></tr><tr><td><strong>Intellection</strong> (enjoyment of thinking for its own sake)</td><td><em>Internal</em> processing — deep focused understanding generated from within</td></tr><tr><td><strong>Analytical</strong> (pattern recognition, data-driven reasoning)</td><td><em>Logical</em> breakdown — reducing complexity to its smallest provable elements</td></tr><tr><td><strong>Context</strong> (understanding the present through the past)</td><td><em>Historical</em> learning — studying what has already happened</td></tr><tr><td><strong>Futuristic</strong> (vivid vision of what could be)</td><td><em>Imagined</em> future — inspires through what hasn&#x27;t existed yet</td></tr></tbody></table>
+<p>Learner is external and present-oriented: it looks outward at what&#x27;s available to consume right now, and forward to the moment when not-knowing becomes knowing. It is broad and quick in exposure rather than deep in a single domain.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral signs:</strong></p>
+<ul class="marker-list">
+<li>Immediately goes to education when facing a new situation: before a charity golf tournament, looks for a golf lesson; before a remote-work transition, looks for a webinar on best practices — rather than just diving in or following gut instinct. [S6]</li>
+<li>Reads books, listens to podcasts, attends conferences, seeks out courses, teachers, or experts when confronted with a gap.</li>
+<li>Has a personal library or extensive reading history; may keep notes while reading to master the material.</li>
+<li>Gets visibly energized when encountering an unexpected intellectual idea — &quot;I want to be excited by something I didn&#x27;t see coming.&quot; [S3]</li>
+<li>Takes on diverse hobbies and experiences across a lifetime, not necessarily for the long term — it&#x27;s the learning curve that drives the interest, not novelty per se.</li>
+<li>Feels a letdown after mastering something and begins scanning for the next challenge.</li>
+<li>Can often name an exact interval at which they get bored in jobs: &quot;Every four years I switch&quot; or &quot;Every 18 months I look for something else.&quot; [S5]</li>
+<li>Tends to whisper &quot;I get bored&quot; like it&#x27;s a secret, even though their history of changing directions makes it obvious. [S6]</li>
+<li>Comfortable — even comfortable publicly — with not knowing something; may be the first to admit gaps in their understanding.</li>
+<li>Credibility comes from authentic curiosity, not omniscience.</li>
+</ul>
+<p><strong>The learning modality is not prescribed.</strong> Learner doesn&#x27;t mean reading books. Some Learners absorb best through audio, some visually, some by teaching others, some by doing, some by blocking structured time. The theme is about attraction to the process, not a fixed method. [S2]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Anti-groupthink radar.</strong> Learner has a sensitive radar for what the team doesn&#x27;t yet know. They can identify gaps the group hasn&#x27;t thought to ask about and ask questions that surface blind spots before they become expensive.</p>
+<blockquote class="md-quote">&quot;You don&#x27;t know what you don&#x27;t know — I&#x27;m going to go out on a limb and say it isn&#x27;t typically as true for learners as it might be for other people.&quot; [S5]</blockquote>
+<p><strong>Knowledge curator for the team.</strong> Learner can be placed in a &quot;scout&quot; role: monitoring Google News alerts, hosting briefings on industry trends, summarizing what a team needs to be aware of before major decisions. This takes what might otherwise be a solo activity and converts it into collective value.</p>
+<p><strong>Elevates team perspective.</strong> When given an organization-wide topic to investigate, Learner will expand the entire team&#x27;s view — surfacing perspectives, expert opinions, and relevant knowledge the team wouldn&#x27;t have encountered on its own. [S6]</p>
+<p><strong>Comfortable with uncertainty — a model for others.</strong> In changing environments, Learner doesn&#x27;t freeze when priorities shift or when the answer isn&#x27;t known. This ability to adapt quickly to new information can serve as a stabilizing force for teammates who are less comfortable with not knowing.</p>
+<p><strong>Freshness engine.</strong> Because Learner is always hungry for new input, teams with a high Learner tend to stay current. Their enthusiasm for what&#x27;s new can be contagious without being preachy — they don&#x27;t have to convince anyone to learn, they simply share what they&#x27;re discovering.</p>
+<p><strong>Source credibility detector.</strong> A Learner who has been actively exercising their theme over time develops a refined sense for which sources, experts, and research are credible. They know where to go and how to evaluate what they find. [S6]</p>
+<p><strong>Compassion through curiosity.</strong> Intellectual curiosity can translate into emotional empathy. Asking good questions about people produces understanding that feels, to others, like being seen. Learner can function as a relationship-building theme in practice. [S5]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Imposing learning as a universal value.</strong> People with dominant Learner can unconsciously judge others who don&#x27;t share the drive to constantly learn. Others can contribute brilliantly — through execution, consistency, relationship-building — without the same desire to add new knowledge. Applying Learner&#x27;s standards to everyone is a blind spot. [S5]</p>
+<p><strong>Joy in the journey distracts from the destination.</strong> Because Learner is comfortable with not-knowing, it can be tempting to keep exploring rabbit trails rather than completing the goal at hand. The discovery <em>en route</em> becomes more interesting than the destination.</p>
+<blockquote class="md-quote">&quot;Feed the learner or it will eat your lunch.&quot; [S5]</blockquote>
+<p>If learning isn&#x27;t built into goals explicitly, it will find its own path — often at the expense of output.</p>
+<p><strong>Raw vs. mature expression:</strong></p>
+<table class="maturity-table"><thead><tr><th>Raw Learner</th><th>Mature Learner</th></tr></thead><tbody><tr><td>Open to all possibility indiscriminately</td><td>Focused on mastery of what actually matters</td></tr><tr><td>&quot;Gotta catch &#x27;em all&quot; — overwhelmed by how much exists</td><td>Understands infinite content exists; treats boredom as a choice, not a sentence</td></tr><tr><td>Flighty — attracted to the first disequilibrium of learning, moves on before mastery</td><td>Fresh — dives deep enough to produce something of value</td></tr><tr><td>Learning at the cost of relationships (me, not we)</td><td>Relevant learning — brings discoveries to others in ways that fit them</td></tr></tbody></table>
+<p><strong>Plateau disengagement.</strong> If not encountering something genuinely new every 2–3 years, Learner can start to disengage, distract more easily, perform less well, or create friction for people around them. Stagnation is physically uncomfortable for this theme. [S5]</p>
+<p><strong>Perceived as unfocused or bookish.</strong> Without output to show, Learner can be misread as learning a lot but producing little. The theme needs connection to results and delivery to be seen as contributing rather than just accumulating. [S1]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Pay attention to what recurs in your curiosity.</strong> Track what you have wondered about more than five times. Your brain keeps returning there because it is ready to learn it — that is a signal to investigate, not ignore. (Technique adapted from David Rock&#x27;s work.) [S5]</p>
+<p><strong>Identify your best learning avenue, then use it deliberately.</strong> There is no prescribed method in the Learner theme. Do you absorb best by reading? Listening? Teaching someone else? In conversation? In movement? Answer this once and then engineer your learning around what actually works for you — rather than defaulting to the culturally expected form. [S2]</p>
+<p><strong>Build learning into goals explicitly.</strong> Define what success looks like for a project and include a learning objective inside that definition. This makes the learning legitimate and channels it toward results instead of letting it scatter into random curiosity. [S5]</p>
+<p><strong>Take stock of what you&#x27;ve already mastered.</strong> The forward-looking energy of Learner can create a constant feeling of inadequacy (&quot;there&#x27;s so much I don&#x27;t know&quot;). Regularly reviewing what you&#x27;ve improved at, and how it&#x27;s changed your practice, provides a stable foundation and counters the anxious grasping. [S5]</p>
+<p><strong>Use learning as a resilience tool.</strong> When demotivated, stuck, or in a low period, deliberately return to learning something new in an area of genuine interest. For many with high Learner, this functions as a mood reset — not as escapism, but as a genuine recharge mechanism. [S1]</p>
+<p><strong>Teach what you learn.</strong> Teaching forces integration. It also shifts the theme from &quot;me&quot; to &quot;we&quot; — transforming individual accumulation into team value. The Learner who learns and gives it away is in mature expression; the one who learns and keeps it is in raw expression. [S2]</p>
+<p><strong>Develop source credibility judgment.</strong> Practice evaluating where information comes from. With enough reps of asking &quot;how can I learn more?&quot; and then going to do it, you build a research muscle — knowing quickly which sources are deep and which are shallow, which experts are credible and which are not. This is a genuine differentiating skill. [S6]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Learner</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li><strong>Name the mission, then send them.</strong> The most motivating assignment for a Learner is: &quot;We have a gap the team needs filled. Here&#x27;s what we need to understand. Go figure it out — and here&#x27;s what I&#x27;ll expect you to do with it afterward.&quot; The expectation that what they learn will change their role is energizing. [S5]</li>
+<li><strong>Give them &quot;impossible&quot; tasks.</strong> Learners often find genuine joy in problems no one has solved yet. Saying &quot;I don&#x27;t know how to do this — can you figure it out?&quot; is not a burden; for many Learners, it is their best day. [S2]</li>
+<li><strong>Ask what they&#x27;re learning, not what they&#x27;ve done.</strong> Questions like &quot;What are you reading lately?&quot; &quot;Who are your favorite teachers?&quot; &quot;What topic have you found most interesting lately?&quot; &quot;What should our team be learning more about?&quot; open a Learner up and make them feel seen. These are not small talk — they are hot buttons. [S6]</li>
+<li><strong>Aim their curiosity at organizational problems.</strong> Present a company-wide or industry-wide challenge and supply resources. Their discovery will elevate everyone&#x27;s thinking. [S6]</li>
+<li><strong>Create variety without chaos.</strong> Learner doesn&#x27;t need to constantly change domains, but does need some element of novelty within their role. Exposure to new client groups, new communities, new challenges, or new practices keeps the engine running. [S5]</li>
+<li><strong>Don&#x27;t require the same lecture twice.</strong> If you ask a Learner to repeatedly present the same material with no room to update or evolve it, you are directly working against their talent. Structure their communication responsibilities to allow for fresh material. [S1]</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li><strong>Lead with questions, not answers.</strong> A Learner is more interested in your curiosity than in your certainty. In collaboration, try: &quot;What do we already know about this?&quot; and &quot;How can we find out more?&quot; rather than presenting yourself as the expert. They are less activated by someone who has all the answers and more activated by someone genuinely investigating alongside them. [S5]</li>
+<li><strong>Share your expertise when asked.</strong> That said, don&#x27;t withhold what you know. Learner wants to learn <em>from</em> you too — they benefit from knowing what you can teach. Share your knowledge directly when it&#x27;s relevant. [S5]</li>
+<li><strong>Be patient with their process.</strong> Learner may explore tangents that seem inefficient. Before cutting them off, check whether the tangent is producing insight that matters. Often it is.</li>
+<li><strong>Understand that boredom is a real signal, not attitude.</strong> If a colleague with high Learner seems disengaged, distracted, or edgy, check whether the work has become too repetitive. This is often a structural problem, not a motivational one.</li>
+<li><strong>Give them the role of &quot;scout.&quot;</strong> Assign them to brief the team on what&#x27;s new in your industry, curate relevant news, or summarize research before major decisions. This is a natural role and produces disproportionate value. [S5]</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Learner + Achiever</strong> (the most statistically common pairing in Gallup&#x27;s database [S2])</p>
+<p>Learner provides the curiosity and attraction to growth; Achiever (drive to accomplish and produce results) provides the push to close the loop and deliver something. Together they create productive, disciplined growth — the Learner doesn&#x27;t just explore, they finish. This pairing also tends to seek continuous improvement in existing strengths, not just new topics.</p>
+<p><strong>Learner + Input</strong> (drive to collect and archive)</p>
+<p>Both feed on information, but in different ways. Learner is energized by the process of moving from ignorance to knowing; Input collects and catalogs regardless of that journey. Together, they create a person who not only loves learning but accumulates rich archives of content along the way — encyclopedic mastery rather than just broad exposure.</p>
+<p><strong>Learner + Ideation</strong> (attraction to ideas and novel connections)</p>
+<p>Learner gathers raw material; Ideation (excitement about novel ideas and connecting disparate concepts) generates new configurations from it. This is a powerful combination for innovation: broad intake feeds a generative creative engine. The risk is that both themes favor the beginning — gathering and generating — over delivery.</p>
+<p><strong>Learner + Intellection</strong> (introspection, enjoyment of thinking)</p>
+<p>Both themes involve cognitive depth, but Learner sources from outside and Intellection processes from within. Together they create someone who absorbs extensively from the world and then retreats to integrate it deeply. Prone to long thinking cycles; may need Executing themes to produce output.</p>
+<p><strong>Learner + Strategic</strong> (spotting the best path forward)</p>
+<p>Sequential combination: Learner gathers domain knowledge → Strategic (ability to see patterns and find the best path among alternatives) selects the best path with that knowledge. Paul Allen (S1) described his top themes operating in this chronological order when starting new ventures.</p>
+<p><strong>Learner + Futuristic</strong> (vivid imagination of what could be)</p>
+<p>Futuristic knows where the world is going; Learner can get there. Futuristic helps focus Learner&#x27;s curiosity toward skills and knowledge that will actually matter — transforming open-ended exploration into strategic preparation. Both themes tolerate ambiguity, one by imagining the unmade future, the other by trusting that mastery is achievable. [S2]</p>
+<p><strong>Learner + Arranger</strong> (orchestrating resources for maximum productivity)</p>
+<p>Arranger (talent for coordinating people and resources dynamically) can act as a channel for Learner: identifying specific gaps in the team and directing the Learner toward filling them efficiently. A manager with Arranger and a team member with Learner is a natural pairing — &quot;I need this figured out, go learn it, come back and apply it.&quot; [S2]</p>
+<p><strong>Learner + Restorative</strong> (drive to identify and fix problems)</p>
+<p>Learner gathers knowledge; Restorative (energized by diagnosing and solving problems) applies it to what&#x27;s broken. Together they create a systematic problem-solver who doesn&#x27;t just patch symptoms but investigates root causes deeply. This combination tends to produce thorough diagnosticians.</p>
+<p><strong>Learner + Command</strong> (the least statistically likely pairing [S2])</p>
+<p>Command (presence and willingness to take charge and make decisions directly) tends toward &quot;this is the answer.&quot; Learner tends toward &quot;let&#x27;s find out.&quot; These orientations create internal tension: Command&#x27;s directness and comfort with certainty can suppress the Learner&#x27;s natural inquiry. In someone who has both, the themes must consciously negotiate — Command deciding <em>when</em> to act, Learner deciding <em>what</em> to investigate first.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

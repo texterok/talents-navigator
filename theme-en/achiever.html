@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Achiever · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain exec">Executing</div>
+    <h1>Achiever</h1>
+    <p class="hero-def">Achiever is a talent theme in the Executing domain of the CliftonStrengths framework. Its core is not ambition, competition, or busyness — it is completion. People with Achiever have an internal drive to finish things, and they derive real energy from the act of checking somethin</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What Is Achiever</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Achiever is a talent theme in the Executing domain of the CliftonStrengths framework. Its core is not ambition, competition, or busyness — it is <strong>completion</strong>. People with Achiever have an internal drive to finish things, and they derive real energy from the act of checking something off.</p>
+<p>The official short definition: &quot;You work hard and possess a great deal of stamina. You take immense satisfaction in being busy and productive.&quot;</p>
+<p>Three synonyms capture it better than the definition alone:</p>
+<ul class="marker-list">
+<li><strong>Complete</strong> — the drive is toward finishing, not just starting or being busy.</li>
+<li><strong>Realize</strong> — Achiever takes an idea and immediately identifies the concrete steps that could make it happen.</li>
+<li><strong>Do</strong> — at its most basic, it is a strong work ethic and a willingness to get into the work itself.</li>
+</ul>
+<p><strong>How Achiever differs from similar themes:</strong></p>
+<ul class="marker-list">
+<li><strong>Responsibility</strong> (also Executing) — Responsibility gets things done because someone is counting on them. Achiever gets things done because finishing itself is satisfying.</li>
+<li><strong>Discipline</strong> (Executing) — Discipline is motivated by order and structure. Achiever is motivated by the progress toward completion.</li>
+<li><strong>Deliberative</strong> (Executing) — Deliberative executes carefully and safely. Achiever executes because the doing is intrinsically rewarding.</li>
+<li><strong>Activator</strong> (Influencing) — Activator is energized at the starting line. Achiever is energized crossing the finish line.</li>
+<li><strong>Competition</strong> (Influencing) — Competition measures itself against others. Achiever measures itself against its own previous output.</li>
+<li><strong>Command</strong> (Influencing) — Command influences others to get things done. Achiever demonstrates by doing alongside people. Statistically, Command is the theme least likely to appear alongside Achiever in someone&#x27;s top five.</li>
+</ul>
+<p><strong>Population context:</strong> Achiever is the most frequently occurring dominant theme in the global CliftonStrengths database — present in the top 5 for approximately 35% of people who have taken the assessment.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>The &quot;starts at zero&quot; pattern.</strong> Each day begins from scratch. Achievers do not carry yesterday&#x27;s completions forward as credit. The internal clock resets at midnight. The day hasn&#x27;t been won until something gets done.</p>
+<p><strong>Counting up, not down.</strong> When covering distance — physical, temporal, or conceptual — Achievers track what they have already covered, not what remains. &quot;I&#x27;ve done 7 miles&quot; rather than &quot;3 more to go.&quot;</p>
+<p><strong>Energy from completion.</strong> Finishing a task produces a genuine physiological-emotional boost. This recharge is real: it functions the way rest or coffee functions for others. Many Achievers report needing less sleep than their peers — not because sleep is unnecessary, but because completion itself is restorative.</p>
+<p><strong>Checklists as a thinking tool.</strong> To-do lists are not organizational artifacts for Achievers — they are a way of making sense of the world. Progress feels real when it is visible and trackable.</p>
+<p><strong>&quot;What&#x27;s next&quot; orientation.</strong> The moment something is completed, attention shifts to the next task. Having nothing lined up creates genuine anxiety. Achievers want a horizon of work ahead of them at all times.</p>
+<p><strong>Milestones on long-term projects.</strong> For projects that take months, Achievers instinctively break them into percentage completions: 5%, 10%, 50%. Each milestone is a checkpoint that releases momentum for the next segment.</p>
+<p><strong>Self-motivated, internally powered.</strong> Achievers do not need external carrots. The forward motion is the reward. This also means they can operate as their own engine without needing external push — which can look like independence, and sometimes is.</p>
+<p><strong>Recognition preference.</strong> The most meaningful recognition for many Achievers is not public praise — it is being given the next important assignment. Being trusted with consequential work is itself the acknowledgment that matters.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Pace-setting.</strong> An Achiever on a team naturally sets a faster tempo. Others tend to accelerate in their presence — not through pressure, but because sustained forward energy is contagious.</p>
+<p><strong>Unsticking stuck teams.</strong> When a team is stalled, an Achiever&#x27;s momentum and willingness to just start doing things can break inertia.</p>
+<p><strong>Breaking down large goals.</strong> Achievers are skilled at taking a big, daunting objective and decomposing it into actionable milestones. This is a concrete leadership contribution — turning organizational vision into week-by-week progress indicators.</p>
+<p><strong>Dependable execution.</strong> Achievers follow through. If it&#x27;s on the list, it gets done. This reliability builds trust over time, particularly when they communicate their commitments out loud before delivering on them.</p>
+<p><strong>Attention to progress tracking.</strong> Achievers naturally notice what has been done and what hasn&#x27;t. This awareness — who is behind, what is unfinished, where the gaps are — is useful data for the whole team.</p>
+<p><strong>Energy multiplication.</strong> Achievers perform best alongside other hard workers. They run faster when surrounded by others who are also running. The effect is bidirectional: they pull the team forward, and the team pulls them further.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Raw vs. mature Achiever.</strong> In its undeveloped form, Achiever looks like busyness without direction — doing anything, in any direction, at high speed, with no filter for priority. Mature Achiever looks like productivity: doing the right things, aligned with goals, for people being served. The shift from raw to mature requires intentionality.</p>
+<p><strong>Action bias that marginalizes strategic thinking.</strong> Raw Achiever teams can create an environment where only obviously doable ideas get traction. Conceptual or long-horizon thinking does not get the same airtime because it lacks visible near-term checkboxes.</p>
+<p><strong>Burnout from not stopping.</strong> The drive to complete does not come with a built-in brake. Achievers can push through warning signs that others would heed. Over-commitment follows naturally from never wanting to say no.</p>
+<p><strong>Difficulty saying no.</strong> Because the act of taking something on (and eventually completing it) is inherently satisfying, declining projects is uncomfortable. This leads to overloaded plates that eventually stop moving.</p>
+<p><strong>Isolation.</strong> The ability to self-energize through completion means Achievers can operate independently for long periods. In the absence of deliberate effort, this becomes a lone-workhorse pattern — doing more, collaborating less.</p>
+<p><strong>Imposing one&#x27;s pace on others.</strong> Achievers can unconsciously assume their pace is everyone&#x27;s baseline. Sustained working hours, high expectations for cadence, and visible frustration when others don&#x27;t keep up can damage relationships and create resentment.</p>
+<p><strong>People become secondary to tasks.</strong> The barrier label that coaches encounter most often: &quot;work is more important than people.&quot; This is rarely the conscious intention, but the behavioral pattern is real. Working late instead of attending to relationships, choosing to finish over choosing to connect — these choices accumulate.</p>
+<p><strong>Racing past celebration.</strong> Achievers tend to move immediately from completion to the next task. The team may need to pause and acknowledge what was accomplished; the Achiever is already looking forward. This can leave teammates feeling unrecognized.</p>
+<blockquote class="md-quote">&quot;People with this Achiever theme typically hear a whisper of discontent about something to be done — something else to be accomplished. And the challenge is always: Is it the right thing.&quot; [S1]</blockquote>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Make progress visible.</strong> Use a planner, whiteboard, tracker, or dashboard. Color-coding (red/yellow/green against milestones) works well. The goal is to make the highlight reel of what you&#x27;ve completed concrete and external.</p>
+<p><strong>Distinguish busyness from productivity.</strong> The maturity test for Achiever is whether the things being completed are actually aligned with the goals that matter. Periodically ask: is this doing directed, or just doing?</p>
+<p><strong>Hone your ear for action within complex ideas.</strong> Raw Achiever hears &quot;what can be done immediately&quot; and jumps to that. Mature Achiever learns to identify the executable thread inside a conceptual or long-horizon idea — even when steps one through three aren&#x27;t obvious yet.</p>
+<p><strong>Practice promising before completing.</strong> When transitioning to leading others, Achievers need to get comfortable declaring &quot;here&#x27;s where we&#x27;re going&quot; before delivery, not after. Follow-through on stated commitments is how Achiever builds trust in a leadership role.</p>
+<p><strong>Use complementary partners as gatekeepers.</strong> Identify one or two people who know your patterns and can signal when you&#x27;re taking on too much or missing the relational dimension. This is not oversight — it is a structural support that prevents system failure.</p>
+<p><strong>Put people on the list.</strong> Relationship maintenance tasks — reaching out to someone, writing recognition, checking in — can be listed and tracked like any other task. This is not inauthentic; it is a practical way to ensure the Achiever&#x27;s task orientation doesn&#x27;t leave people-related actions perpetually displaced by project work.</p>
+<p><strong>Build in designated progress partners.</strong> Sharing your daily or weekly &quot;count-up&quot; with someone who understands how your brain works creates accountability and reduces the isolation risk. The partner does not need to have Achiever — they just need to understand your orientation.</p>
+<p><strong>Shift the list as you lead.</strong> When managing others, the relevant question changes from &quot;what do I need to do today&quot; to &quot;what does the team need to accomplish, and how do I help people understand that?&quot; Targeting your Achiever at the team level rather than at personal output is the key transition for leaders.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Achiever</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li>Define what &quot;done&quot; looks like clearly and specifically. Achievers make sense of their world through completion — vague goals create friction. A clear endpoint is motivating; an ambiguous one is demotivating.</li>
+<li>Make expectations about success concrete: what does done look like, and how will it be measured. Completion and excellence should be the same thing in the Achiever&#x27;s mind.</li>
+<li>Translate organizational goals into measurable progress indicators — not just &quot;be the provider of choice&quot; but &quot;serve 10% more customers in this market.&quot; The more quantifiable the milestone, the more quickly an Achiever can orient to it.</li>
+<li>Their personal best matters more than the leaderboard. Achievers are not primarily competing against others — they are competing against their own previous performance. Frame stretch goals in terms of beating their own record.</li>
+<li>Offer autonomy. Achievers do not need to be managed into motion. Micromanagement is demotivating. What they need is clarity on the destination and room to move.</li>
+<li>Surround them with other hard workers when possible. Achievers set a faster pace when running alongside people who also run fast. Pairing them with consistently low-output colleagues is demotivating.</li>
+<li>Do not slow them down with unnecessary process or red tape. If the environment is free of obstacles, Achievers will use that freedom to produce. Bureaucratic friction is energy-draining.</li>
+<li>Acknowledge their effort. If priorities shift and something they worked on gets deprioritized, acknowledge the work done before moving on. Failing to do this means failing to acknowledge them as a person.</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>Don&#x27;t gloss over tasks. Lead with what needs to be done — Achievers make sense of conversations through the lens of what is actionable.</li>
+<li>Ask them what they&#x27;ve accomplished today, not just what they&#x27;re working on. Celebrating what&#x27;s been completed validates how they experience progress.</li>
+<li>When they rattling off their to-do list in conversation, recognize this as connection, not deflection. Achievers connect through accomplishments.</li>
+<li>Don&#x27;t mistake their busyness for a lack of interest in people. Saying &quot;here&#x27;s what I did today&quot; is how some Achievers establish contact with the world around them.</li>
+<li>Ask big things of them. Achievers are not intimidated by daunting tasks — they break them into milestones. What demotivates them is being given work that doesn&#x27;t matter, not work that is difficult.</li>
+<li>Be willing to tell them when you need more time or capacity. Achievers can have high expectations for pace. If you can&#x27;t meet their cadence, say so directly — they generally respect clarity more than silence.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Achiever + Learner</strong> (Strategic Thinking): Statistically the most common pairing. The combination creates someone who hunts for new understanding and then drives toward completing the curriculum. They are energized by the syllabus of a new course — what will I learn and by when. Coaching question: &quot;What have you learned so far?&quot; helps the Achiever slow down and recognize milestones of knowledge gained.</p>
+<p><strong>Achiever + Responsibility</strong> (Executing): Both themes execute, but with different motivations. Achiever executes because finishing feels good. Responsibility executes because a commitment was made. Together, they amplify follow-through and create an especially reliable finisher: getting it done because it feels good <em>and</em> because someone was promised it.</p>
+<p><strong>Achiever + Focus</strong> (Executing): Focus acts as a narrowing filter — it eliminates the noise and directs effort at the highest-priority target. With Achiever added, the combination creates intense, sustained execution in a single direction. This pairing can create a person who, once locked in on something, works without interruption for days.</p>
+<p><strong>Achiever + Maximizer</strong> (Influencing): Achiever wants to get it done; Maximizer (which strengthens what is already strong and pushes toward excellent) wants to get it done right. These two themes create internal tension — completion speed vs. quality standard. When integrated, they produce high-output work at a high-quality bar. When unmanaged, they can lead to over-commitment (Achiever) and perfectionism that slows delivery (Maximizer).</p>
+<p><strong>Achiever + Relator</strong> (Relationship Building): Relator gets deep energy from a small circle of close relationships and works hard within them. Adding Achiever channels that closeness into joint accomplishment. The combination looks like: &quot;there is no better feeling than working hard with a few good friends to get a big job completed.&quot; The risk without Achiever would be getting lost in connection; without Relator, the Achiever might keep completing while losing their people.</p>
+<p><strong>Achiever + Strategic</strong> (Strategic Thinking): Strategic sees multiple paths and selects the best route. Achiever then executes down that path with momentum. The combination allows someone to see the 40,000-foot view and simultaneously hold the to-do list for every segment beneath it. For leaders, this pairing makes it easier to communicate end-state expectations clearly and then give people space to find their own path there.</p>
+<p><strong>Achiever + Futuristic</strong> (Strategic Thinking): Futuristic lives in the imagined future, comfortable with what isn&#x27;t yet. Achiever grounds that vision by identifying present-day steps. The combination creates someone with their feet on the floor and their head in the clouds simultaneously — a vision with an execution plan attached.</p>
+<p><strong>Achiever + Discipline</strong> (Executing): Discipline provides structure and routine. For an Achiever running in multiple directions, Discipline from a team member or within the person acts as a call to order — &quot;let&#x27;s back into this goal and structure how we approach it.&quot; Together they create systematic, sustained forward progress rather than chaotic productivity.</p>
+<p>---</p>
+<p><em>Sources: Gallup Theme Thursday transcripts — Season 1 (k0gjHInPHHc), Season 2 (18hEJqowZkE), Season 3 (jeuZsIQil4U), Season 5 (p5M3BvWn6fs), Season 6 (HJBWpgxrY1w).</em></p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

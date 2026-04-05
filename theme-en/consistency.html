@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consistency · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain exec">Executing</div>
+    <h1>Consistency</h1>
+    <p class="hero-def">People exceptionally talented in the Consistency theme are keenly aware of the need to treat people the same. They try to treat everyone with equality by setting up clear rules and adhering to them.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Consistency</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition:</strong> People exceptionally talented in the Consistency theme are keenly aware of the need to treat people the same. They try to treat everyone with equality by setting up clear rules and adhering to them.</p>
+<p><strong>Domain:</strong> Executing. Consistency is firmly in the executing bucket — it&#x27;s about how people get things done, not primarily about relationship-building, even though it has interpersonal effects.</p>
+<p><strong>Former name:</strong> The theme was originally called <em>Fairness</em> in early versions of StrengthsFinder (e.g., <em>Now, Discover Your Strengths</em>). That history is instructive: the rename to Consistency captures both the people-equality dimension and the process-repeatability dimension.</p>
+<p><strong>Two inseparable dimensions:</strong></p>
+<li><strong>Fairness toward people</strong> — a drive to treat everyone by the same rules regardless of status, relationship, or circumstance. This is not fairness as a moral principle but fairness as the most efficient mechanism for group performance.</li>
+<li><strong>Repeatability of process</strong> — finding what works and doing it again, building reliable personal systems and routines that produce predictable results.</li>
+<p><strong>The motivation behind both:</strong> Neither dimension is purely idealistic. The underlying driver is <em>efficiency</em>: uniform treatment removes friction, eliminates ambiguity, and lets the group move faster. Treating people the same is not an end in itself — it is the mechanism that gives everyone a &quot;fair advantage&quot; (the same starting conditions to succeed).</p>
+<blockquote class="md-quote">&quot;Consistency is not the opposite of change. Consistency is the opposite of unfair.&quot; [S2]</blockquote>
+<p><strong>What Consistency is NOT:</strong></p>
+<ul class="marker-list">
+<li>It is not &quot;being consistent in behavior&quot; in the athletic sense (throwing the same pitch, having a steady golf swing) — though people with this theme do tend to build routines. The theme is fundamentally about <em>how we treat others</em>, not personal motor consistency.</li>
+<li>It is not rigidity for its own sake. Resistance to change in the raw state comes from the concern that change will create unequal treatment, not from an irrational attachment to the status quo.</li>
+</ul>
+<p><strong>Rarity:</strong> Consistency appears in the top five for approximately 11% of the global CliftonStrengths population (25th of 34 themes), 12% in the US (moving it to ~20th). It is significantly more common among women than men. Practically: in a random room of people, fewer than 1 in 8 will have this as a dominant talent — which means the perspective it provides is genuinely uncommon.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral patterns and observable signs:</strong></p>
+<ul class="marker-list">
+<li><strong>Asks about rules before starting.</strong> Before diving into a project, someone with Consistency wants to know: what are we all agreeing to? What are the expectations and how do they apply to everyone?</li>
+<li><strong>Notices imbalance immediately.</strong> An internal alarm fires when treatment, recognition, or workload is distributed unequally — or when rules are applied selectively. They are often the only person in the room noticing this.</li>
+<li><strong>Reacts to rule-skirting.</strong> When someone gains advantage by working around the agreed-upon process, it registers as a genuine problem — not pettiness, but a signal that the system is becoming unfair.</li>
+<li><strong>Builds personal routines and sticks to them.</strong> Same wake-up time, same work structure, same response protocols. These routines are not compulsive — they are efficiency tools. The routine frees up mental energy and makes the person reliably predictable to others.</li>
+<li><strong>Operates with &quot;always&quot; language.</strong> Phrases like &quot;I always respond within X hours&quot; or &quot;I always set an agenda&quot; are not exaggerations — they are self-imposed standards. Others learn what to expect and trust it.</li>
+<li><strong>Structured meeting behavior.</strong> In meetings: sets an agenda, takes notes, recaps decisions, identifies action items. The structure allows others to participate fully without worrying that nothing will be captured.</li>
+<li><strong>Advocates for the underdog.</strong> Because Consistency doesn&#x27;t recognize favoritism based on visibility or charisma, it naturally notices who <em>follows the agreement</em> and doesn&#x27;t get credit for it. It will advocate for the person who does the right thing quietly.</li>
+<li><strong>Attends to the whole, not the parts.</strong> Like a soundboard engineer or an orchestra conductor focused on the chord rather than the solo — Consistency tracks the group as a system, not as a collection of individuals.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Consistency addresses a specific, recurring problem:</strong> without someone tracking fairness and process discipline, systems drift toward favoritism, exception-inflation, and unpredictability. Consistency is the countervailing force.</p>
+<p><strong>Concrete contributions:</strong></p>
+<ul class="marker-list">
+<li><strong>Creates trust through predictability.</strong> When team members know that rules apply to everyone — including the leader — they trust the system. A leader with Consistency builds trust quickly by modeling the same standards they set for others. Emily (Gallup S3 guest) confirmed: applying policies equally meant people knew &quot;they&#x27;re getting the same answer that their co-worker is going to get&quot; — and that created trust faster than relationship-building alone.</li>
+<li><strong>Provides stability during change.</strong> In chaos, people look for comfort. Someone with Consistency provides it not through emotional reassurance but through the constancy of the process itself. They become the reference point when everything else shifts.</li>
+<li><strong>Reduces errors by minimizing ambiguity.</strong> Agreed-upon standards eliminate both practical errors (unclear process) and emotional errors (perceived unfairness). Less ambiguity = fewer conflicts over &quot;why did they get X and I didn&#x27;t?&quot;</li>
+<li><strong>Levels the playing field — &quot;fair advantage.&quot;</strong> Rather than <em>unfair</em> advantage (gaming the system), Consistency creates conditions where everyone has equal access to succeed. This is particularly valuable in HR, compliance, team policy, and performance management contexts.</li>
+<li><strong>Serves as the group&#x27;s conscience.</strong> Consistency holds the implicit social contract visible. It notices drift before it becomes a problem and can name it.</li>
+<li><strong>Lays the foundation that enables creativity.</strong> Like a precise building foundation that allows architects to individualize later: when the structural rules are solid and agreed upon, others can customize, innovate, and take risks inside that stable frame.</li>
+</ul>
+<p><strong>In terms of Gallup&#x27;s &quot;needs of followers&quot; research (trust, stability, compassion, hope):</strong></p>
+<ul class="marker-list">
+<li><em>Trust:</em> adheres to the same rules they set for the team; no double standards.</li>
+<li><em>Stability:</em> communicates not just what the target is, but the behavioral norms for getting there.</li>
+<li><em>Compassion:</em> in times of chaos, the consistent leader&#x27;s predictable approach becomes a safe harbor.</li>
+<li><em>Hope:</em> by ensuring equal rules, Consistency champions anyone who might otherwise be passed over — the underdog who plays by the rules but lacks visibility.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>These are behaviors that emerge when Consistency operates in its <strong>raw (underdeveloped) state</strong>, or when overused without self-awareness.</p>
+<p><strong>Blinded by difference.</strong> In the raw state, the immediate awareness of imbalance becomes a shutdown reaction rather than a productive signal. &quot;That&#x27;s not fair&quot; without a path forward.</p>
+<p><strong>Rigidity that blocks necessary exceptions.</strong> Some situations require individualized responses — personal crises, high-stakes negotiations, accommodating a person with genuinely unique needs. Raw Consistency can resist this, not because it&#x27;s cruel but because it cannot yet distinguish a <em>legitimate exception</em> from <em>favoritism</em>.</p>
+<blockquote class="md-quote">&quot;Raw consistency can say &#x27;absolutely not, I&#x27;ve got my way of doing things.&#x27; Mature consistency could be a leader of change — rather than rigid, it becomes <em>safe</em>.&quot; [S2]</blockquote>
+<p><strong>Rules trumping relationships and results.</strong> In the basement state, the process becomes more important than the outcome. Compliance is enforced even when the rule no longer serves its original purpose.</p>
+<p><strong>Invisible motivation.</strong> People with Consistency are often the only person noticing an imbalance. If they don&#x27;t communicate their reasoning, their behavior reads as inflexibility or rule-worship. Others may dismiss them as a &quot;stick in the mud&quot; without understanding that the concern is about group efficiency, not personal preference.</p>
+<p><strong>Defining &quot;the greater good&quot; in a way others don&#x27;t share.</strong> Other people might not care about uniformity the way Consistency does — or might even reject it. Consistency can feel unheard or dismissed when its fairness-alerting function is not recognized.</p>
+<p><strong>The Consistency–Individualization tension.</strong> These two themes pursue the same goal (fairness) through opposite means. For someone with Consistency leading a team with diverse individual needs, the recurring question is: &quot;Am I applying the rule correctly, or am I being unfair in a different way?&quot; This tension is productive but requires active management.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For people who have Consistency in their top themes — making it stronger and more mature:</strong></p>
+<p><strong>Audit your &quot;always&quot; practices.</strong> Map your current routines: what do you do daily that makes your life run smoothly? Are any of these grooves so worn that they&#x27;re no longer efficient? Distinguish between routines that are still serving you and those that have become inertia. Rewrite the ones that are outdated.</p>
+<p><strong>Build meta-consistency for exceptions.</strong> The challenge: Consistency doesn&#x27;t like exceptions. The solution: create a consistent rule <em>about</em> making exceptions. For example: &quot;Every time I need to motivate an individual, I will ask them directly what they respond to.&quot; You&#x27;re not abandoning Consistency — you&#x27;re applying it at a higher level. [S5]</p>
+<p><strong>Be the recognition referee.</strong> Look for opportunities to ensure people are getting credit proportional to what they actually contributed — not just credit to the loudest voice or the most dramatic result. People who follow the agreements and deliver quietly are systematically under-recognized. Consistency can fix that. [S5]</p>
+<p><strong>Name your &quot;I notice&quot; statements, not just your reactions.</strong> When you sense imbalance, don&#x27;t just react. Develop a protocol: &quot;I notice X is happening, and I sense the effect might be Y.&quot; This turns the Consistency alarm into actionable information others can use.</p>
+<p><strong>Draw out your implicit rules and communicate them.</strong> Finish these sentences deliberately: &quot;To get things done, I always…&quot; / &quot;To build trust, I always…&quot; / &quot;To communicate, I always…&quot; These are your real operating standards. Make them explicit so others can understand and honor them — and so you can invest in them more purposefully. [S2]</p>
+<p><strong>Explore existing options before customizing.</strong> In consulting or creative work, Consistency can ask: &quot;Have we done something like this before that worked?&quot; This is not conservatism — it&#x27;s a way to prevent reinventing the wheel and to bring institutional memory to new problems. [S2]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Consistency</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li><strong>Lead with clarity on rules, expectations, and how they apply universally.</strong> Don&#x27;t just state the goal — state the behavioral norms for getting there. Someone with Consistency needs to know both the destination and the social contract around how we travel.</li>
+<li><strong>Make exceptions explicit.</strong> If there is an exception to a standard rule, announce it as a rule: &quot;We always accommodate X in circumstance Y.&quot; Vague exceptions feel like favoritism; named exceptions feel like policy. [S5]</li>
+<li><strong>Use them as a sounding board before deciding, not after.</strong> Go to them before you&#x27;ve made up your mind. Ask what they notice. What you get back is an assessment of how the decision will be perceived across the whole group — not just by the people it directly benefits.</li>
+<li><strong>Give them a formal platform to flag imbalance.</strong> Give explicit permission to come to you when something feels unfair. Phrase it directly: &quot;Tell me when you&#x27;re sensing this — it&#x27;s important information.&quot; Without this permission, they may either suppress the signal (bad for the team) or express it in ways that seem disruptive (bad for them). [S5]</li>
+<li><strong>Communicate your &quot;always,&quot; &quot;sometimes,&quot; and &quot;most-of-the-time.&quot;</strong> Be precise: are you stating a rule, an exception, or a preference? Someone with Consistency will parse the language and hold you to it. [S5]</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li><strong>Don&#x27;t misread the motive.</strong> When someone with Consistency pushes back on an individualized decision or an exception, they are not being difficult — they are tracking the downstream effects on people who weren&#x27;t in the room.</li>
+<li><strong>Consult them when designing team processes.</strong> Their natural radar for where processes break down or become inequitable is a resource, not an obstacle.</li>
+<li><strong>Leverage them to assess the cost of customization.</strong> Before making an exception for someone on the team, ask: &quot;What&#x27;s the cost if we make this allowance? How will others perceive it?&quot; That question is their domain. [S5]</li>
+<li><strong>Don&#x27;t surprise them with rule changes.</strong> If a process must change, introduce it as a structured transition — explain what will remain the same, what will change, and why the change is equitable.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Consistency + Individualization</strong> (relationship-building theme: focuses on each person&#x27;s unique qualities and needs)</p>
+<p>The apparent opposite pairing. Both want fairness but define it differently: Consistency = treat everyone the same; Individualization = treat everyone differently because they are different. Together, they produce something neither achieves alone: rules and systems that protect everyone equally, <em>plus</em> individualized development paths within that fair playing field. An HR leader described it: &quot;My consistency drives the rules that give everyone equal access; my individualization helps each person understand how to succeed within that space.&quot; [S2]</p>
+<p><strong>Consistency + Harmony</strong> (relationship-building theme: finds areas of agreement to move forward)</p>
+<p>The statistically most likely pairing in the CliftonStrengths database. Both take a wide view of the group. Consistency tracks whether the system is balanced; Harmony tracks whether the emotions are aligned. Together: <em>equitable agreement</em> — decisions that the group can accept not just logically but relationally. [S2]</p>
+<p><strong>Consistency + Arranger</strong> (executing theme: orchestrates resources and people for maximum flexibility and performance)</p>
+<p>Consistency: &quot;what makes us similar makes us efficient.&quot; Arranger: &quot;differences work as long as they&#x27;re organized well.&quot; Complementary tension: Consistency provides the floor of shared standards; Arranger provides the ceiling of flexible execution within them. [S5]</p>
+<p><strong>Consistency + Deliberative</strong> (executing theme: carefully considers risks and obstacles before acting)</p>
+<p>Consistency knows the rules and standards, and encourages adherence to them. Deliberative knows the risks and obstacles, and encourages avoidance of them. Both are cautionary; both protect the group. The combined effect: slower, but much more defensible decision-making. [S5]</p>
+<p><strong>Consistency + Restorative</strong> (executing theme: adept at dealing with problems and bringing things back to full functioning)</p>
+<p>Consistency spots inequalities and works to restore fairness. Restorative spots what&#x27;s broken and works to restore functioning order. They look similar but act on different triggers — one on imbalance, one on malfunction. [S5]</p>
+<p><strong>Consistency + Adaptability</strong> (relationship-building theme: lives in the moment and responds to what the present demands)</p>
+<p>These themes are almost opposite in process orientation. Consistency likes the merry-go-round (entertaining, but sameness is the point). Adaptability likes the roller coaster (the variation is the point). They can complement each other well — Consistency provides the structural baseline from which Adaptability can improvise. [S1]</p>
+<p><strong>Consistency + Achiever</strong> (executing theme: has a constant need for achievement and feels every day must be productive)</p>
+<p>Consistency provides Achiever with the clean, reliable process that allows Achiever&#x27;s energy to be channeled efficiently. Without process, Achiever burns energy on figuring out how to execute. Consistency removes that friction. [S2]</p>
+<p><strong>Consistency + Developer</strong> (relationship-building theme: recognizes and cultivates the potential in others)</p>
+<p>Developer wants to see people grow but can lack a systematic path. Consistency provides the repeatable, predictable structure that operationalizes growth — making development something that happens reliably, not just when inspiration strikes. [S2]</p>
+<p><strong>Consistency + Maximizer</strong> (influencing theme: focuses on strengths as a way to stimulate personal and group excellence)</p>
+<p>Maximizer can push Consistency to upgrade its routines (soft nudge toward best-in-class process). Consistency can remind Maximizer that not everything needs to be customized — that an already-working process is a starting point, not a limitation. [S2]</p>
+<p><strong>Consistency + Communication</strong> (influencing theme: finds it easy to put thoughts into words and loves to explain, describe, and speak)</p>
+<p>Communication gives voice to what Consistency notices but often struggles to articulate diplomatically. The fairness concern, properly framed, becomes compelling to others instead of sounding like complaint. [S2]</p>
+<p><strong>Consistency + Command</strong> (influencing theme: has presence, takes control, and makes decisions)</p>
+<p>Statistically rare pairing. The combination described as &quot;a lobbyist for justice&quot; — someone who not only knows what fair looks like but has the presence and directness to demand it. [S2]</p>
+<p><strong>Consistency + Self-Assurance</strong> (influencing theme: has confidence in the ability to manage own life and trusts own judgment)</p>
+<p>Also a rare pairing. Together: the courage to stand as the visible face of systems that work for everyone, without needing external validation for doing so. [S2]</p>
+<p><strong>Consistency + Responsibility</strong> (executing theme: takes psychological ownership of what they say they will do and feels emotionally bound to follow through)</p>
+<p>Responsibility is the commitment; Consistency is the vehicle. Responsibility says &quot;I will do this.&quot; Consistency provides the process architecture that makes doing it reliably possible. [S3]</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

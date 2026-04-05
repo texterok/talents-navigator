@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harmony · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain rel">Relationship Building</div>
+    <h1>Harmony</h1>
+    <p class="hero-def">People exceptionally talented in Harmony look for consensus. They don&#x27;t enjoy conflict — rather, they seek areas of agreement.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What Is Harmony</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official definition:</strong> People exceptionally talented in Harmony look for consensus. They don&#x27;t enjoy conflict — rather, they seek areas of agreement.</p>
+<p><strong>Essence:</strong> Harmony is not about passive niceness or conflict avoidance for its own sake. It is a precision instrument — a laser that quickly locates where a group already agrees, so that the group can move forward without wasting energy on friction that won&#x27;t produce results. The theme carries a strong performance orientation: the goal is efficient, practical, collaborative progress.</p>
+<blockquote class="md-quote">&quot;Harmony is a laser beam or a regulator — the ability to very clearly understand the place where a group of people agree so that you can move forward.&quot; [S2]</blockquote>
+<p>The deepest motivation is not &quot;I need peace.&quot; It is: &quot;There is little to be gained from friction. Let&#x27;s find what we share and use it to move.&quot;</p>
+<p><strong>Frequency:</strong> 7th most common theme in Gallup&#x27;s database; 19% of people have it in their Top 5.</p>
+<p><strong>Distinct from similar themes:</strong></p>
+<ul class="marker-list">
+<li><strong>Empathy</strong> senses what others are <em>feeling</em>. Harmony senses where others <em>agree</em> — different target, different action.</li>
+<li><strong>Includer</strong> sees who is left out and brings them in. Harmony sees past the emotion to the perspectives everyone can share.</li>
+<li><strong>Individualization</strong> spots differences between people and customizes approach. Harmony spots common agreements and offers areas of compromise.</li>
+<li><strong>Relator</strong> draws energy from depth of connection in an inner circle. Harmony draws energy from helping any group find common ground.</li>
+</ul>
+<p><strong>Musical analogy:</strong> Harmony in music requires different notes — not the same note repeated. The opposite is dissonance. Moving from dissonance to harmony is called <em>resolution</em> — an activity, not just a state of mind. [S2]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Observable behaviors and patterns:</strong></p>
+<ul class="marker-list">
+<li>Quickly spots where people are saying the same thing in different words — it can seem strange to them that others don&#x27;t see it.</li>
+<li>Instinctively starts any negotiation or meeting from the place of shared ground (&quot;the tare weight&quot; — the empty baseline before anything is put on the scale).</li>
+<li>Tracks changes in team consensus as work progresses; notices drift before it becomes conflict.</li>
+<li>Acts as a referee in group settings — drawing out quieter voices, naming action items, keeping focus on the end goal.</li>
+<li>Prefers to work out tension in side conversations (one-on-one before or after meetings) rather than in the heat of a group confrontation.</li>
+<li>Calibrates emotion: softens the highs and lows of team mood without extinguishing them.</li>
+<li>Leads with questions before opinions — asking &quot;What is important to you about that?&quot; rather than stating a position first.</li>
+<li>Can feel uncomfortable around conflict that isn&#x27;t even directly involving them — the emotional radar for discord extends beyond personal stakes.</li>
+<li>Does not display strong emotion outwardly; leads from the practical.</li>
+</ul>
+<p><strong>In personal life:</strong> Appears eagerly agreeable. Advocates for change through solutions rather than argument. Drawn to themes of collaboration, togetherness, and social justice.</p>
+<p><strong>Raw vs. mature expression:</strong></p>
+<table class="maturity-table"><thead><tr><th>Raw Harmony</th><th>Mature Harmony</th></tr></thead><tbody><tr><td><em>Requires</em> peace — runs from conflict</td><td><em>Responds with</em> peace — runs through conflict</td></tr><tr><td>Like a stone: absorbs nothing, relocates when conflict is present</td><td>Like a sponge: soaks up what&#x27;s happening, releases the right pieces</td></tr><tr><td>Dismissive — gives up when consensus seems too far</td><td>Inclusive — works harder to find the bits and pieces of agreement</td></tr><tr><td>Impatient with people who need to process emotion before reaching common ground</td><td>Allows people to have their emotional moment, then brings practicality</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>What Harmony provides that other themes don&#x27;t:</strong></p>
+<ul class="marker-list">
+<li><strong>Reduces alignment cost.</strong> A team with someone high in Harmony spends less time in the &quot;storming&quot; phase and more time moving forward. Less energy is spent on &quot;how do we get along&quot; — more on &quot;here&#x27;s where we agree, let&#x27;s go.&quot;</li>
+<li><strong>Emotional neutralizer.</strong> Softens the peaks and valleys of team emotion without suppressing them. Creates the stable, calm atmosphere that others notice when it&#x27;s absent.</li>
+<li><strong>Conflict predictor.</strong> Can sense hotspots and areas of potential discord before they surface — and alert others or pre-empt escalation.</li>
+<li><strong>Reconstruction after change.</strong> When team membership or team relationships shift, Harmony finds the practical first steps that restore common ground.</li>
+<li><strong>Defender of shared values.</strong> Uniquely positioned to hold the team to its stated agreements and shared motivations — can serve as the explicit reminder of what everyone signed up for.</li>
+<li><strong>Magnet for collaboration.</strong> People are drawn to work with someone who creates emotional safety and focuses on what can be agreed upon. Strong Harmony in a team makes the team a place others want to join.</li>
+</ul>
+<p><strong>Quantified cost of absence:</strong> When teams are dysfunctional, the cost appears in production, longevity, and sustainability. Harmony&#x27;s power lies precisely in preventing that cost — not by eliminating conflict, but by minimizing unproductive friction. [S5]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Potential blind spots (not guaranteed — but worth monitoring):</strong></p>
+<li><strong>Rushing past necessary conflict.</strong> Some people need to go through the emotional fire to reach real understanding. A Harmony person may try to route around conflict too quickly, skipping the process others require. Result: surface consensus that doesn&#x27;t hold.</li>
+<li><strong>Impatience with emotional processing.</strong> Harmony is very practical and no-nonsense. This can leave too little time for people who need to sort through emotion before they can reach a rational agreement.</li>
+<li><strong>Pulling out of conversations under pressure.</strong> If pushed hard enough, raw Harmony may withdraw entirely rather than engage — the &quot;stone&quot; response: no absorption, just relocation. The risk is abandoning the field precisely when the group needs a stabilizer.</li>
+<li><strong>Dismissing people when consensus seems unlikely.</strong> If the path to agreement looks too long or too hard, Harmony may give up on a person or perspective prematurely.</li>
+<li><strong>Invisible voice.</strong> Harmony tends to be quiet and understated. Its influence is real but subtle. In a culture that rewards loud advocacy, Harmony&#x27;s contributions may be overlooked — including by the Harmony person themselves, who may not claim credit for the calm they created.</li>
+<li><strong>Harmony &quot;going bad.&quot;</strong> When someone keeps pushing past reasonable limits, even a mature Harmony person can snap — and when it happens, it often surprises both parties because it&#x27;s out of character. Recognizing the threshold and naming it before it&#x27;s crossed is a maturity practice.</li>
+<p><strong>Key distinction:</strong> Harmony is not a pushover. It is not a wallflower. The desire to find agreement is instrumental — it serves forward progress, not appeasement.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Skill-building investments:</strong></p>
+<li><strong>Learn to read non-verbal cues.</strong> Take a class in body language or communication. The ability to pick up on unspoken signals directly feeds the Harmony talent for sensing where consensus lies before it&#x27;s stated.</li>
+<li><strong>Study negotiation and conflict resolution.</strong> There are books, courses, and coaches that build on the natural talent for finding middle ground. These don&#x27;t change Harmony into something it isn&#x27;t — they sharpen a tool that&#x27;s already there.</li>
+<li><strong>Practice the pro/con list.</strong> Before a major decision, write out every option and state the genuine benefits of each. This trains the &quot;sorting&quot; skill — seeing where consensus exists across different choices — and makes it easier to apply the same process to people.</li>
+<li><strong>Ask these three questions habitually</strong> (aim for 3 repetitions across 7 days):</li>
+<p>- &quot;What is important to you about that?&quot;</p>
+<p>- &quot;What other options could we consider?&quot;</p>
+<p>- &quot;What is your favorite plan B?&quot;</p>
+<p>These questions expose other people to options they hadn&#x27;t considered — and they create the conditions for agreement without forcing it.</p>
+<li><strong>Deliberately build a network of experts.</strong> Harmony&#x27;s mature form includes knowing whose expertise to bring into a room for a given question. Invest in knowing who your go-to voices are across different domains.</li>
+<li><strong>Seek roles that include mediation.</strong> Community organizations, cross-functional projects, interface roles between teams or constituencies — anywhere that puts you between two sides creates conditions to practice Harmony and receive feedback on it.</li>
+<li><strong>Study your own collaboration patterns.</strong> Ask: In what settings do you most easily find consensus — large groups, one-on-one, after everyone has spoken, before they&#x27;ve committed to positions? Map the conditions where your Harmony operates best and engineer more time in those conditions.</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work With Someone Who Has Harmony</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li><strong>Give them the &quot;defender of values&quot; role.</strong> Explicitly ask them to hold the team to its shared commitments — not as a monitor, but as a voice that brings people back to what they agreed to.</li>
+<li><strong>Let them choose their work partners when possible.</strong> Harmony people have a more sensitive radar for relationship dynamics than most. Forcing them into persistent discord with someone they identify as a relationship risk is a performance drain.</li>
+<li><strong>Honor social contracts publicly.</strong> Call out unacceptable behavior on your team. A Harmony person is energized by environments where expectations are stated, agreed upon, and followed through — and drained by environments where norms are ignored.</li>
+<li><strong>Ask, don&#x27;t wait.</strong> The Harmony influence is quiet. Ask: &quot;Are there collaboration opportunities we&#x27;re missing?&quot; &quot;Are there partnership tensions I should know about?&quot; &quot;What are you picking up on that I might be missing?&quot; They have data you don&#x27;t — but they may not volunteer it unprompted.</li>
+<li><strong>Questions to open a Harmony person up:</strong> &quot;What brings you peace?&quot; / &quot;How have you helped people reach agreement recently?&quot; / &quot;What activities make you feel calm and connected?&quot; [S6]</li>
+<li><strong>Allow them to be your early warning system for conflict.</strong> They can sense hotspots before they erupt. Build a channel for that intelligence.</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li><strong>When you need to vent, say so upfront.</strong> Tell a Harmony colleague &quot;I just need to vent for a minute before we problem-solve.&quot; Without that framing, they will start offering solutions — which is their instinct — and you&#x27;ll feel unheard. With the framing, they&#x27;ll give you the space.</li>
+<li><strong>Tie up loose emotional ends.</strong> If you make a charged statement or take a strong position in a meeting, check in with the Harmony person later: &quot;Is that resolved? Is there still something unfinished?&quot; The unresolved emotional charge lingers for them even if you&#x27;ve moved on.</li>
+<li><strong>Don&#x27;t read their calm as disengagement.</strong> A Harmony person who doesn&#x27;t visibly emote is not checked out. They lead from the practical, and their steadiness is the contribution — not a sign of indifference.</li>
+<li><strong>Talk about your motivation, not just your position.</strong> In a conflict, explain <em>why</em> something matters to you, not just <em>what</em> you want. This gives Harmony more material to work with — they build consensus from motivations, not from positions.</li>
+<li><strong>Don&#x27;t mistake quiet influence for weakness.</strong> Their impact on outcomes often happens before and after the meeting, not in the visible debate.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations With Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Harmony + Achiever</strong> (talent for hard work and completion): The drive to accomplish pulls Harmony toward finding consensus quickly — &quot;let&#x27;s agree so we can check this off.&quot; Consensus becomes a means to productivity, not just a value in itself. High-energy, results-oriented peacemaking.</p>
+<p><strong>Harmony + Positivity</strong> (talent for enthusiasm and optimism): Amplifies the magnetic quality of Harmony — people are drawn in by both the emotional warmth and the practical common ground. The combination makes it easier to hold a team together through difficulty.</p>
+<p><strong>Harmony + Empathy</strong> (talent for sensing others&#x27; emotions): One of the most common pairings in practice. Empathy reads the emotional state; Harmony reads the landscape for agreement. Together they create unusually precise social intelligence. The risk: both can be drawn into others&#x27; distress and may need explicit permission to set boundaries.</p>
+<p><strong>Harmony + Responsibility</strong> (talent for ownership and follow-through): The combination produces someone who not only seeks consensus but follows through on shared commitments. Their word on collaboration is reliable.</p>
+<p><strong>Harmony + Competition</strong> (talent for comparing, ranking, winning): Interesting tension. The competitive drive redirects Harmony&#x27;s agreement-seeking toward a performance goal — &quot;getting consensus <em>gets us closer to winning</em>.&quot; Harmony enables the coalition-building that competition needs.</p>
+<p><strong>Harmony + Discipline</strong> (talent for routine and structure): Adds rigor to the consensus process. Harmony + Discipline produces organized collaboration — structured processes for reaching agreement, not just intuitive ones.</p>
+<p><strong>Frequently lower when Harmony is high:</strong></p>
+<ul class="marker-list">
+<li><strong>Strategic</strong> (talent for finding alternative paths) and <strong>Ideation</strong> (talent for generating new ideas) are often widely separated from Harmony in profiles. These themes create disruption and thrive on tension — the opposite of Harmony&#x27;s orientation. This is not a problem; it identifies where Harmony benefits most from complementary partners.</li>
+</ul>
+<p><strong>In partnership:</strong> Harmony raises the overall effectiveness of almost any partner by reducing the cost of discord between them. It can be used as a checkpoint — &quot;let&#x27;s run this by the person with Harmony to find the practical areas of agreement we may have missed.&quot; [S5]</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

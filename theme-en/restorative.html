@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restorative · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain exec">Executing</div>
+    <h1>Restorative</h1>
+    <p class="hero-def">People exceptionally talented in Restorative are adept at dealing with problems. They are good at figuring out what is wrong and resolving it.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Restorative</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official definition:</strong> People exceptionally talented in Restorative are adept at dealing with problems. They are good at figuring out what is wrong and resolving it.</p>
+<p>Restorative sits in the <strong>Executing domain</strong> — it is not just a mindset about problems but a drive to move a problem forward toward a solution. The theme is characterized by three interlocking components: comfort with problems, diagnostic insight into what&#x27;s causing them, and a drive to fix.</p>
+<p>The word &quot;restore&quot; is key. Restorative isn&#x27;t about polishing what works or imagining what could be — it&#x27;s about bringing something broken back to life. One practitioner with the theme described it as &quot;the eternal optimist strength, because nothing is ever beyond the point of repair.&quot; [S3]</p>
+<p><strong>Core mechanism:</strong> A person with Restorative sees brokenness as a current state, not a permanent condition. Problems are experienced as normal and fixable — not threatening. This is what separates their emotional relationship to problems from everyone else on the team.</p>
+<h3>Distinction from similar themes</h3>
+<p><strong>Restorative vs. Maximizer</strong> (Influencing domain): These two are the statistically least likely pair across all StrengthsFinder profiles. The difference is motivational starting point. Maximizer takes something that&#x27;s already working and pushes it toward excellence. Restorative starts where something is broken and works to restore it to function or former glory. In practice, the action can look the same, but the engine is different. Maximizer is about increasing expectations; Restorative is about execution — what can we fix, what can we move forward.</p>
+<p><strong>Restorative vs. Deliberative</strong> (Executing): Deliberative anticipates risk ahead of time and chooses the path that minimizes it. Restorative sees that every path will have risk and is willing to stop mid-road to fix whatever breaks. Deliberative does the evaluation first; Restorative fixes in the moment.</p>
+<p><strong>Restorative vs. Achiever</strong> (Executing): Achiever operates step-by-step, checking off a list as it moves forward. Restorative is &quot;in the problem, moving the problem toward a solution&quot; — less linear, more responsive and diagnostic.</p>
+<p><strong>Restorative vs. Discipline</strong> (Executing): Discipline creates structure to prevent deviation from expectation. Restorative brings what&#x27;s out of bounds back within a workable structure — it makes room inside the expectation for what needs attention.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral patterns:</strong></p>
+<ul class="marker-list">
+<li>Leans into problems where others lean out. When a situation becomes messy or complicated, people with Restorative often experience increased energy rather than avoidance.</li>
+<li>Attracted to fixer-upper situations — in entertainment choices, project assignments, professional roles, personal relationships.</li>
+<li>Tracks progress by noticing milestones of improvement, not binary success/failure. Understands that a project or process is always somewhere on a continuum between broken and working.</li>
+<li>Can sense potential breakdown in a project, plan, or relationship before it fully surfaces — not just reactive, but anticipatory.</li>
+<li>More patient than most with broken things. Has the ability to focus on things others want to throw away or avoid.</li>
+<li>Responsive: gets called in. There&#x27;s a &quot;can you come and help?&quot; quality to how they&#x27;re invited into situations.</li>
+<li>Tinkering — willing to get in and play with components to see what shakes out, without needing a complete picture first.</li>
+<li>Recalls solutions from one area and tries them in another — builds a memory of what works.</li>
+<li>Emotionally stable in the face of problems. Doesn&#x27;t lose composure, doesn&#x27;t get intimidated. Problems are just problems.</li>
+</ul>
+<p><strong>In personal life:</strong></p>
+<ul class="marker-list">
+<li>More likely to evaluate stumbling blocks in a current diet than adopt a completely new one.</li>
+<li>More likely to diagnose the broken link in an existing process than redesign the whole system from scratch.</li>
+<li>May stay the course on a commitment even after others have moved on — sees the solution as still possible.</li>
+</ul>
+<p><strong>Vocabulary cluster:</strong> fixer, diagnoser, troubleshooter, investigator, rehabilitator, resuscitator, patient, involved, systems-aware, detective, calm, committed.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Safety net function:</strong> If the team is a group of trapeze artists, Restorative is the net below them. Fewer tasks get completely dropped or lost when someone with this theme offers patience, advice on new approaches, and stamina when the current method isn&#x27;t working.</p>
+<p><strong>Emotional reset:</strong> Restorative can settle the drama and anxiety of something being broken. When tensions rise and the team is panicking about failure, Restorative brings a &quot;we can get through this&quot; presence — visible in body language, not just words. Nothing cannot be fixed; it might take a different investment, but it&#x27;s fixable.</p>
+<p><strong>Unlock discarded resources:</strong> Leaders with Restorative see potential where others see roadblocks. They can unlock value in things the team has given up on — processes, relationships, products, people — by refusing to accept &quot;this can&#x27;t be saved.&quot;</p>
+<p><strong>Progress continuity:</strong> Within an executing team, Restorative ensures the team uses all its resources, including broken ones, on the way to the goal. They don&#x27;t just ask &quot;what did we do today&quot; or &quot;where are we going tomorrow&quot; — they ask &quot;what are we failing to use that we already have?&quot;</p>
+<p><strong>Loyalty perception:</strong> To teammates, Restorative can feel like personal commitment and loyalty. They don&#x27;t abandon ship. This makes them magnetically attractive on teams where people want to know someone won&#x27;t give up when things get hard.</p>
+<p><strong>Restorative is a willingness to try:</strong> Three gifts to a team — a willingness to try, a commitment to progress, and a lens for learned issues (memory of what led to problems, collection of reusable solution patterns).</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Half-baked solutions:</strong> Restorative is more attracted to and energized by a problem than anyone else involved. This can produce solutions that don&#x27;t account for human behavior or user error. The fix looks complete technically but fails in practice. <em>Mitigation:</em> Build go-to intake questions for every problem — specifically questions about people, not just plans or processes. Ask: &quot;Why is this important to fix right now?&quot; &quot;What makes the solution matter to this person?&quot;</p>
+<p><strong>Robbing others of growth:</strong> The excitement of solving can get in the way of someone needing to work through a problem themselves. Solving for someone is not always helping them. <em>Mitigation:</em> Before engaging, ask: &quot;What support do you need from me?&quot; Distinguish between owning the fix and supporting someone&#x27;s own learning. Ask permission before jumping in.</p>
+<p><strong>Overwriting non-negotiables:</strong> Without clear constraints, Restorative may try to fix the entire system when only one part was meant to change. <em>Mitigation:</em> Those working with Restorative need to communicate non-negotiables explicitly upfront.</p>
+<p><strong>Raw restorative = problem-focused, not solution-focused:</strong> In the undeveloped form, all Restorative sees are problems — everywhere, constantly. This can make the person appear negative or pessimistic to others. The distinction:</p>
+<ul class="marker-list">
+<li>Raw: &quot;Here&#x27;s where we&#x27;re going to trip and fall on our face.&quot;</li>
+<li>Mature: &quot;Here&#x27;s where we could trip, and here&#x27;s how we avoid it.&quot;</li>
+</ul>
+<p><strong>Raw restorative = &quot;I am the fix&quot;:</strong> Takes all responsibility for solving onto personal shoulders. Can come across as having a &quot;hero complex&quot; — seeking out problems to fix even when not invited, which others may experience as intrusive.</p>
+<p><strong>Mature restorative = &quot;I am the facilitator of fix&quot;:</strong> Brings other people on board toward the solution. The whole team becomes the fix, not one person.</p>
+<p><strong>Problem collecting without resolving:</strong> In basement form, problems get noticed and catalogued but not addressed — a system for containing problems rather than fixing them.</p>
+<p><strong>Anticipation communicated as pure negativity:</strong> The foresight to see what will break before it breaks is a real talent. But if communicated without care or context — just a list of things that can go wrong — it reads as pessimism, not diagnostic intelligence.</p>
+<p><strong>Staying committed to what isn&#x27;t working:</strong> In personal life or long-term projects, the belief that a solution is always possible can become a vulnerability — holding on to broken commitments past the point where others have correctly moved on.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Expand the diagnostic angle:</strong> For any problem you&#x27;re working on, find one additional channel of information you didn&#x27;t have before. A personal conversation, a video, a community, shadowing another expert. Turning the puzzle 90 degrees often reveals the solution you couldn&#x27;t see. [S5]</p>
+<p><strong>Invite problems explicitly:</strong> Let people know you enjoy them. Be specific about what types of problems you find most interesting — not all problems are equal, and when others know your preferences, they route the right ones to you. Offer to take something off someone&#x27;s plate this week. [S5]</p>
+<p><strong>Build intake questions:</strong> Develop a set of go-to questions for when someone brings you a problem. Include questions about people and their relationship to the solution, not only the technical issue. &quot;Why is this important to fix now?&quot; &quot;What&#x27;s happened when we tried to fix this before?&quot; &quot;What would success feel like for you?&quot;</p>
+<p><strong>Sharpen anticipatory foresight:</strong> As a leader, don&#x27;t stop at sensing that something is off — name specifically where the disconnect is. Practice articulating: &quot;I think the issue is specifically in X, between Y and Z.&quot; This precision improves both your diagnostic credibility and your ability to get buy-in for the fix.</p>
+<p><strong>Seek tough turnaround situations:</strong> Look for sticky problems that others are intimidated by. Quick wins in difficult situations build credibility quickly, and that credibility translates into autonomy to tackle harder problems later. [S5]</p>
+<p><strong>Shift from fix to facilitate:</strong> Practice bringing others into the fix rather than owning it alone. The question shifts from &quot;how do I fix this?&quot; to &quot;who else can I get excited about fixing this?&quot; This is the maturation arc of the theme.</p>
+<p><strong>Close the loop:</strong> After solving, follow up. &quot;We worked through this together — how is it feeling now?&quot; This is not natural for most with Restorative (the next problem is more interesting), but it builds the trust that sustains the relationship over time.</p>
+<p><strong>Frame problems with bigger picture:</strong> When communicating what you see going wrong, pair it with context and care. Communicate that you notice problems because you care about the outcome, not just because you&#x27;re cataloguing risk.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Restorative</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li><strong>Communicate non-negotiables upfront.</strong> If there are parts of a project that must stay unchanged, say so before the person starts tinkering. Without this, Restorative may try to fix the whole system in an attempt to solve the part.</li>
+<li><strong>Involve them early, not just at handoff.</strong> They are most effective when they have access to all the details — the full diagnostic picture. Narrowing the problem before bringing them in reduces their effectiveness.</li>
+<li><strong>Be explicit about three things</strong> when assigning a fix: (1) the most desirable end goal — don&#x27;t minimize expectations, Restorative can see potential you can&#x27;t; (2) their level of authority — what can they change, and who are the stakeholders they need to consult; (3) what&#x27;s been tried before and why it didn&#x27;t work.</li>
+<li><strong>Assign problems with visible outcomes.</strong> Turnaround situations where the change and its effect on people are visible are most energizing. &quot;You can see who the fix helped&quot; is a meaningful reward.</li>
+<li><strong>Use coaching questions rather than directives:</strong> &quot;What are you currently fixing or tinkering with?&quot; / &quot;What solution are you most excited about?&quot; / &quot;What kind of problems do you find most interesting?&quot;</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>You are not bothering a person with Restorative when you admit something broke. They are attracted to this — it is an invitation to engage, not a burden.</li>
+<li>Distinguish between when you want them to own the fix and when you just need a consulting boost. If it&#x27;s unclear, ask. They&#x27;ll respond better to &quot;what support do you need from me?&quot; than to unclear expectations.</li>
+<li>Ask permission before expecting them to fix your problem. &quot;Are you interested in helping me work through this?&quot; respects their time and creates a cleaner engagement.</li>
+<li>Don&#x27;t apologize for having a broken thing. That&#x27;s the wrong frame. Just bring the full picture.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Restorative + Responsibility</strong> (most statistically likely pairing across StrengthsFinder profiles): Both themes are about commitment to what already exists — working with what&#x27;s there rather than imagining something new. Responsibility follows through on promises; Restorative follows through on broken things. Together: a strong, reliable problem-resolution orientation with high accountability.</p>
+<p><strong>Restorative + Deliberative:</strong> Deliberative anticipates problems before they happen; Restorative fixes them when they occur. Together: a problem-preventing and problem-solving orientation. Can nip issues in the bud and handle the ones that get through anyway.</p>
+<p><strong>Restorative + Analytical</strong> (a strong &quot;detective partnership&quot;): Both themes share patience with detail. Analytical hunts detail in data, proof, and ideas. Restorative hunts detail in moving parts, functions, and emotional factors that explain why something is broken. Analytical brings data to inform the diagnosis; Restorative brings comfort with problems and follow-through. Together: disciplined root-cause analysis with the drive to execute the fix.</p>
+<p><strong>Restorative + Activator</strong> (Influencing domain): Activator says &quot;let&#x27;s get started.&quot; Combined with Restorative&#x27;s patience and commitment to solving, this pair can get the entire group on board and energized about moving through problems rather than around them. Activator converts Restorative&#x27;s diagnosis into collective momentum.</p>
+<p><strong>Restorative + Developer</strong> (Relationship Building domain): Developer invests in people&#x27;s potential. Restorative removes barriers to that growth. Together: not only seeing where people can grow but actively identifying what&#x27;s blocking them and fixing it. Problems aren&#x27;t obstacles to development — they are the development work.</p>
+<p><strong>Restorative + Ideation</strong> (Strategic Thinking domain): Ideation generates creative approaches; Restorative provides the execution drive to test them on broken problems. Together: creative problem solving with follow-through.</p>
+<p><strong>Restorative + Focus</strong> (Executing domain): Focus provides sustained perseverance. Restorative provides the diagnostic and repair orientation. Together: the combination stays with complex, long-horizon problems until they&#x27;re resolved.</p>
+<p><strong>Restorative + Belief</strong> (Executing domain): Belief drives action on values. Restorative is the action that brings pieces back together. Belief determines which problems are worth fixing; Restorative provides the execution engine.</p>
+<p><strong>Restorative + Maximizer</strong> (Influencing domain — least likely pair, statistically): When this combination does exist, the person can likely work on both broken things and thriving things — shifting between restoration and optimization depending on context. Rare.</p>
+<p><strong>Restorative vs. Strategic</strong> (Strategic Thinking domain): People with high Strategic tend to find ways around problems; people with high Restorative fix the problem directly. In teams where both exist, this creates a useful tension: Strategic provides alternative routes when a fix would take too long; Restorative ensures problems don&#x27;t accumulate just because they were bypassed.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

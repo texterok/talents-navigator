@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain rel">Relationship Building</div>
+    <h1>Developer</h1>
+    <p class="hero-def">People exceptionally talented in the Developer theme recognize and cultivate the potential in others. They spot the signs of each small improvement and derive satisfaction from evidence of progress.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Developer</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official definition:</strong> People exceptionally talented in the Developer theme recognize and cultivate the potential in others. They spot the signs of each small improvement and derive satisfaction from evidence of progress.</p>
+<p>Developer is a <strong>Relationship Building</strong> theme. Its core is an outward orientation: where other themes may focus on tasks, systems, or ideas, Developer focuses on human growth. The relationship itself happens through progress — through the shared experience of someone becoming more than they were.</p>
+<p>The defining mechanism is a <strong>reverse aha moment</strong>: when you discover something yourself, you feel a jolt of energy. A Developer gets that jolt for someone else&#x27;s discovery. They are energized not by their own mastery but by witnessing another person&#x27;s advancement.</p>
+<p>Developer is not about potential in the abstract — it is about that potential becoming movement. Progress does not need to be monumental. Even invisible, incremental growth matters and is noticed.</p>
+<p><strong>Distinction from similar themes:</strong></p>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Core orientation</th></tr></thead><tbody><tr><td><strong>Developer</strong></td><td>Others&#x27; growth — any incremental step forward matters</td></tr><tr><td><strong>Maximizer</strong> (focuses on taking strengths from good to great)</td><td>Excellence — selectively focuses on areas already strong; wants to polish what&#x27;s best</td></tr><tr><td><strong>Learner</strong> (driven by the process of learning itself)</td><td>Internal and individual — energized by personal mastery and the learning process</td></tr><tr><td><strong>Restorative</strong> (energized by solving problems)</td><td>Problem-fixing — can focus on processes or people, not exclusively human growth</td></tr><tr><td><strong>Individualization</strong> (instinctively observes each person&#x27;s unique qualities)</td><td>Uniqueness — sees what makes a person distinct, without a built-in progress orientation</td></tr><tr><td><strong>Arranger</strong> (organizes people and resources for maximum productivity)</td><td>Configuration — finds optimal arrangements; not inherently growth-focused</td></tr></tbody></table>
+<p>The Achiever (wired to get things done; needs to complete) says &quot;I&#x27;m interested in getting work done.&quot; Developer says &quot;I&#x27;m interested in getting <em>people</em> done.&quot; Maximizer asks &quot;Where can we be excellent?&quot; Developer asks &quot;Where can we all get a little bit better?&quot;</p>
+<p><strong>Statistical context (Gallup database):</strong> Developer is the 12th most common theme in top-5 profiles overall. It appears more frequently among women (8th most common in female top 5) than men (25th most common in male top 5). Most statistically common theme pair: Empathy.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Core behavioral patterns:</strong></p>
+<ul class="marker-list">
+<li>Constantly scanning for opportunities to teach, inspire, or challenge others</li>
+<li>Noticing small signs of improvement that others miss — the sprout before the bloom</li>
+<li>Seeing progress as a continuum, not a binary (succeeded vs. failed)</li>
+<li>Translating personal discoveries into lessons for others; naturally sharing what they&#x27;ve learned</li>
+<li>Framing results in terms of what they mean for people&#x27;s growth, not just whether the goal was reached</li>
+<li>Generating genuine energy and satisfaction when another person has a breakthrough</li>
+</ul>
+<p><strong>Observable signals:</strong></p>
+<ul class="marker-list">
+<li>The person other people come to for encouragement — and they come because they know it&#x27;s genuine</li>
+<li>Writes or communicates in an outward-facing way (&quot;I encourage you to...&quot; rather than &quot;Here&#x27;s what I did...&quot;)</li>
+<li>When looking at a group, sees individual people, not an audience</li>
+<li>Comfortable working with what isn&#x27;t there yet — engages with potential rather than proof</li>
+<li>Willing to invest time in someone others have written off</li>
+<li>Feels the cost personally when someone they&#x27;re developing doesn&#x27;t grow</li>
+</ul>
+<p><strong>In a leadership role:</strong> The individual-contributor version of Developer focuses on other individuals. As a leader, Developer can expand to group and organizational level — thinking about collective potential, what the team can become, where the greatest pockets of development opportunity are. At this scale, Developer starts to look more like an Influencing theme: visionary, dreamer, relentless pursuer of incremental improvement.</p>
+<p><strong>Descriptors:</strong> practical, growth-oriented, embraces change, others-focused, hopeful, a challenger, a guide, a teacher, a helper.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Builds bench strength.</strong> A Developer actively invests in others&#x27; development so that collectively the group becomes stronger. Succession planning, cross-training, leadership pipelines — these emerge naturally when a Developer is in the room.</p>
+<p><strong>Magnet for talent.</strong> People want to work with someone who genuinely cares about how they can improve. Developer builds bonds of trust and intimacy through challenge and growth. Teams with an active Developer tend to attract talent because being developed feels honoring.</p>
+<p><strong>Conflict resolution through progress.</strong> Developer reframes conflict: instead of &quot;did we win or lose,&quot; the question becomes &quot;how are we getting better as we pursue this goal?&quot; This keeps teams focused on forward movement rather than backward recrimination.</p>
+<p><strong>Resilience and patience.</strong> Developer holds the view that the current state is never the final state. There is no limit to what people can learn. This brings a forgiving, resilient quality to teams — mistakes become data for development rather than permanent verdicts.</p>
+<p><strong>Hope in hard situations.</strong> Developer shows up when things are unclear or chaotic, and helps people see even small improvements. This is not optimism for its own sake — it is a concrete skill of spotting growth where others see only difficulty.</p>
+<p><strong>Engagement multiplier.</strong> Gallup research: when employees have someone at work who encourages their development, two out of three are engaged. Less than 1% are actively disengaged. High-performing managers in Gallup studies consistently describe their role using the language of development.</p>
+<p><strong>Language of progress.</strong> Developer makes celebrations matter — not by holding out for the big trophy, but by naming and honoring each step forward. This creates a culture where improvement is noticed and valued, not invisible.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Too patient with underperformance.</strong> The same empathy for potential that makes Developer great can become a liability when someone is genuinely in the wrong role or isn&#x27;t growing. A Developer may extend benefit of the doubt past the point where it serves the person or the team.</p>
+<blockquote class="md-quote">Raw: &quot;I know you can do it.&quot; (repeated one too many times while the situation deteriorates)</blockquote>
+<blockquote class="md-quote">Mature: actively thinking about what placement would enable <em>this person</em> to grow — which sometimes means out of the current role.</blockquote>
+<p><strong>Picky / nitpicking.</strong> When Developer&#x27;s attention is constantly on what could be better, it can surface as criticism without direction — spotting gaps without offering a pathway forward. The distinction: raw Developer says &quot;you have a long way to go&quot;; mature Developer says &quot;together we grow.&quot;</p>
+<p><strong>Overloading with instruction.</strong> Identifying 25 ways someone needs to improve is not development — it&#x27;s overwhelming. Mature Developer defines what great performance looks like, then lets people get there in their own way.</p>
+<p><strong>Mistaken for chronic dissatisfaction.</strong> Because Developer always sees a way things could be better, it can read as &quot;never happy&quot; or &quot;always pushing the envelope.&quot; Framing matters: communicating <em>how much better things can be</em> lands differently than pointing out <em>what&#x27;s missing</em>.</p>
+<p><strong>Neglects own development.</strong> Managers with Developer can become so focused on others&#x27; growth that they forget to invest in themselves.</p>
+<p><strong>Enabling boundary confusion.</strong> Developer may continue working with someone out of personal investment even when the organizational fit is wrong. Individualization (instinctively observes each person&#x27;s unique qualities) is a useful counterbalance — it helps identify whether someone has the right talent for the role, not just whether they can improve.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop Developer</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>These actions are for someone with Developer talent who wants to take it from a pattern of behavior to a genuine strength:</p>
+<p><strong>Name what you see, specifically.</strong> The raw form of Developer notices potential abstractly. The mature form translates it into words — tell people concretely what you see in them and how you think it could grow. &quot;I know you can&#x27;t run a marathon tomorrow, but I think I can help you make it up that hill by the end of the day.&quot;</p>
+<p><strong>Define great performance before coaching toward it.</strong> Before pointing out what someone could do better, establish what good looks like and how it will be measured. This shifts the interaction from picky to purposeful.</p>
+<p><strong>Build intentional platforms for development.</strong> Don&#x27;t wait for organic moments. Create them: regular 1-on-1 conversations, Learn-at-Lunch formats, short appreciative inquiry sessions, mentoring pairings. The more barriers removed between Developer and the people they can develop, the more effective the theme becomes.</p>
+<p><strong>Track incremental progress explicitly.</strong> Developer operates on a continuum model — celebrate each step, not just the endpoint. Build a habit of naming what improved, even when the goal isn&#x27;t reached yet.</p>
+<p><strong>Share your own development story.</strong> Mature Developer doesn&#x27;t just set the bar for others — it models growth by sharing what challenges it has overcome, what it&#x27;s better at today than a year ago. This builds credibility and makes growth feel safe and normal.</p>
+<p><strong>Apply the &quot;placement&quot; question.</strong> When someone is underperforming, ask: what context, role, or opportunity would enable this person to grow? If the answer isn&#x27;t the current one, that&#x27;s useful information — and acting on it is the mature Developer response.</p>
+<p><strong>Ask generative questions.</strong> Practice formulating questions that spark self-discovery rather than delivering insights directly. The goal is the other person&#x27;s aha moment, not demonstrating your own perception.</p>
+<p><strong>Use Analytical (focuses on data and evidence) as a counterbalance.</strong> If you find yourself over-investing in someone with limited results, a fact-based review of performance data helps you stay calibrated.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Developer</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li>Give them roles with direct human development responsibility: mentoring, onboarding, coaching, cross-training, teaching. Developer finds meaning at the intersection of growth opportunity and connection with others.</li>
+<li>Make development conversations a formal, regular structure — not just spontaneous. Developer wants a platform; create one.</li>
+<li>Ask them what they think the most important values or mission of the organization is, and what they wish they&#x27;d known when they first joined. These questions activate Developer&#x27;s natural orientation.</li>
+<li>Frame targets in terms of growth: not &quot;hit the number&quot; but &quot;how are we getting better as we pursue this number?&quot;</li>
+<li>Trust their instinct on people. A Developer reading potential in someone is not wishful thinking — it is a genuine perceptual skill. Test their reads before dismissing them.</li>
+<li>Celebrate with them. When a person they&#x27;ve been developing makes a breakthrough, acknowledge it. Developer is fueled by shared recognition of others&#x27; progress.</li>
+</ul>
+<p><strong>Questions to ask someone with Developer (to draw out the talent):</strong></p>
+<ul class="marker-list">
+<li>Who has helped you grow, and how did they do it?</li>
+<li>Tell me about a time you helped create understanding in someone.</li>
+<li>What topic could you teach right now, without any preparation?</li>
+<li>What do you think people really need to know?</li>
+<li>How do you think people change?</li>
+<li>Tell me about something you&#x27;ve introduced to someone recently.</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>Invite their input on your own development — they will engage genuinely. They are often the person you feel most comfortable asking for help, because asking for help with them doesn&#x27;t feel like admitting weakness.</li>
+<li>When they offer feedback or a challenge, read it as belief in your potential, not criticism of your current state.</li>
+<li>Don&#x27;t just take their development input and disappear. Show them — even briefly — that you acted on it. This fuels the Developer&#x27;s energy more than almost anything else.</li>
+<li>Help them stay calibrated on underperforming situations — they may need a trusted partner who can look at performance data without the same emotional investment.</li>
+<li>Share the excitement when you see growth in yourself. Developer gets the jolt; give them the information that triggers it.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Developer + Empathy</strong> (sensing others&#x27; emotions): The most statistically frequent combination (Empathy appears alongside Developer in ~50% of cases). Empathy accelerates Developer&#x27;s ability to locate where someone will be most excited about growth. Adults change behavior when it feels relevant — Empathy tells Developer where relevance lives for each person. Together: emotional attunement to potential.</p>
+<p><strong>Developer + Individualization</strong> (instinctively observes each person&#x27;s unique qualities): Without Individualization, Developer may define &quot;great&quot; the same way for everyone and coach everyone toward it. With Individualization, Developer identifies greatness uniquely per person and engages at the individual level — each person gets a customized development path. Highly effective in coaching and management contexts.</p>
+<p><strong>Developer + Maximizer</strong> (focuses on taking strengths from great to excellent): Both see growth — but Maximizer is selective (focuses on what&#x27;s already strong and can be made excellent), while Developer is inclusive (finds something to grow in anyone, anywhere). Combined, they create a filter: use Maximizer to identify where development investment will yield the highest return, then apply Developer to drive the growth. This combination also helps with the Developer risk of overinvesting in poor fits.</p>
+<p><strong>Developer + Arranger</strong> (organizes people and resources for maximum productivity): Arranger is an Executing theme — it finds optimal configurations. Combined with Developer, it produces efficient development plans: not just &quot;you should grow in X&quot; but &quot;here is the most effective path for you to grow in X, step by step.&quot;</p>
+<p><strong>Developer + Futuristic</strong> (energized by the future and what it could be): Futuristic provides the broad vision — where the company, team, or person could go. Developer provides the individual growth steps that get there. Together: inspiring, hopeful, and concrete. Futuristic alone gives you the destination; Developer maps the incremental road.</p>
+<p><strong>Developer + Analytical</strong> (searches for reasons and causes; has the ability to think about all the factors that might affect a situation): A productive counterbalance. Analytical brings a dispassionate performance lens — when Developer&#x27;s investment in someone&#x27;s potential clouds judgment, Analytical can surface the facts and help the Developer make a clear placement decision rather than continuing to invest in a poor fit.</p>
+<p><strong>Developer + Responsibility</strong> (takes psychological ownership for what it says it will do): Responsibility amplifies the follow-through — a Developer with Responsibility doesn&#x27;t just notice potential and feel the spark; they feel personally accountable for doing something about it. Strong combination for consistent mentorship and sustained coaching relationships.</p>
+<p><strong>Developer + Communication</strong> (finds it easy to put thoughts into words): Developer often sees potential in people but struggles to articulate <em>what</em> they see. Communication gives language to that perception. Together: the ability to name someone&#x27;s potential precisely and compellingly — a powerful coaching combination.</p>
+<p><strong>Developer + Positivity</strong> (has an enthusiasm that is contagious): Positivity amplifies Developer&#x27;s naturally hopeful orientation, making the development relationship energizing for both parties. People are drawn to this combination because it feels genuinely affirming, not just strategic.</p>
+<p><strong>Developer + Woo</strong> (enjoys the challenge of meeting new people and winning them over): Although statistically uncommon together, when present this combination gives Developer broad reach. Woo opens doors to new relationships; Developer then invests in those people&#x27;s growth. Alternately, Developer alone can function socially like Woo — people are drawn to someone who genuinely wants to help them improve.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

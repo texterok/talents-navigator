@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Significance · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain infl">Influencing</div>
+    <h1>Significance</h1>
+    <p class="hero-def">Significance is an Influencing talent theme. People with dominant Significance are driven by a desire to do meaningful work and to leave a lasting impact — one that is visible, provable, and felt by others.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What Is Significance</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Significance is an <strong>Influencing</strong> talent theme. People with dominant Significance are driven by a desire to do meaningful work and to leave a lasting impact — one that is visible, provable, and felt by others.</p>
+<p>The theme was originally called <strong>&quot;Desire&quot;</strong> during the development of CliftonStrengths. That original name captures the essence: a magnetic pull toward work that matters and a hunger to make a detectable difference in the world.</p>
+<p><strong>Core definition (Gallup):</strong> People with dominant Significance want to make a big impact. They are independent and prioritize projects based on how much influence those projects will have on their organization or the people around them.</p>
+<p><strong>The key distinction from self-promotion:</strong> The motivation is not recognition for its own sake. Recognition functions as <em>evidence</em> — confirmation that work is landing, that the impact is real. Without that feedback loop, people with high Significance cannot calibrate whether they are on the right path. This is fundamentally an <em>others-oriented</em> drive.</p>
+<blockquote class="md-quote">&quot;What drives me is not the recognition — what drives me is being authentically worthy of the recognition.&quot; [S3]</blockquote>
+<p><strong>Meaningful ≠ Famous.</strong> The desire to be <em>visible</em> has two dimensions:</p>
+<ul class="marker-list">
+<li>Opposite of <em>invisible</em> → attracted to tangible, evidence-based work with detectable outcomes</li>
+<li>Opposite of <em>unknown</em> → drawn to proven, lasting contributions, not ephemeral efforts</li>
+</ul>
+<p>There is a strong internal correlation between <em>what I do</em> and <em>who I am</em> for people with Significance. Work is not just a function — it is an expression of identity.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral patterns:</strong></p>
+<ul class="marker-list">
+<li>Constant awareness of audience — who is watching, what they are thinking, how the message is being received</li>
+<li>Seeks feedback as fuel; without it, energy drops and performance suffers</li>
+<li>Has a personal style, brand, or &quot;signature&quot; that others recognize as distinctly theirs</li>
+<li>Naturally drawn to excellence — in people, projects, and environments</li>
+<li>Comfortable in the spotlight; senses when attention is on them, and that awareness energizes rather than paralyzes</li>
+<li>Quickly identifies which aspects of a project will be most meaningful or memorable to others, while others may see only the task list</li>
+<li>Acts as a sorting mechanism: filters time, relationships, and energy toward what will make the greatest impact. At a party, someone with Significance will identify the two or three relationships worth investing in, rather than trying to connect with everyone</li>
+<li>Eliminates busy work instinctively — low tolerance for tasks that cannot be connected to an audience, a mission, or a legacy</li>
+<li>Asks &quot;who else needs to know about the good things we&#x27;re doing?&quot; — naturally thinks about visibility of results</li>
+</ul>
+<p><strong>Descriptor words (Gallup):</strong> outgoing, externally aware, motivated to inspire, connected to audience, fueled by feedback, in touch with people, pioneering, passionate, present.</p>
+<p><strong>In personal life:</strong> tends to filter how they spend time and resources based on what will have lasting impact. Often has a recognizable &quot;swagger&quot; or presence — born of the constant awareness that other people are around and that those people matter.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>What Significance uniquely contributes:</strong></p>
+<ul class="marker-list">
+<li><strong>Elevates the stakes.</strong> Pushes the group beyond &quot;let&#x27;s build something cool&quot; toward &quot;let&#x27;s build something that will outlast us and reach the people who need it.&quot; Raises the ceiling of ambition.</li>
+<li><strong>Keeps work audience-relevant.</strong> Functions as an internal radar for how the team is perceived externally — not just what is being said, but how it is being heard.</li>
+<li><strong>Prioritizes based on splash.</strong> Helps the team narrow focus to what will make the biggest impact for key stakeholders, rather than spreading effort equally across all tasks.</li>
+<li><strong>Spots recognition opportunities.</strong> Notices awards, certifications, and social proof that make the team or product more discoverable by those who need it.</li>
+<li><strong>Celebrates meaningfully.</strong> Uniquely positioned to notice and name meaningful milestones — and to make that recognition land. Leaders with Significance become natural promoters of the people around them.</li>
+<li><strong>Attracts talent.</strong> The courage to be seen translates as transparency, honesty, and credibility — qualities that accelerate trust and make the team magnetic to other strong contributors.</li>
+<li><strong>Drives relevant customer offerings.</strong> Because what other people think genuinely matters to them, people with Significance push for constant feedback loops with clients, users, and stakeholders — keeping the work on the leading edge.</li>
+</ul>
+<p><strong>As a leader specifically:</strong></p>
+<ul class="marker-list">
+<li>Uniquely positioned to see potential in people before those people see it in themselves</li>
+<li>Provides hope — a message about what <em>could be</em> and how it affects the lives of others</li>
+<li>Naturally channels four follower needs: <em>trust</em> (articulates values and goals clearly), <em>compassion</em> (promotes team members and finds how each person likes to be recognized), <em>stability</em> (confirms metrics for goals once locked), <em>hope</em> (reaches larger and more diverse audiences)</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Misunderstanding by others.</strong> Significance is one of the least common themes in top-5 profiles and is consistently the theme that generates the most pushback — including from people who have it. Because most people are more internally motivated, the outward orientation of Significance can read as self-absorbed, ego-driven, or status-seeking. This is a perception gap, not a character flaw.</p>
+<p><strong>Raw vs. mature expression:</strong></p>
+<table class="maturity-table"><thead><tr><th>Raw Significance</th><th>Mature Significance</th></tr></thead><tbody><tr><td>Independent impact — &quot;I&#x27;ll do it alone&quot;</td><td>Influential impact — brings others along</td></tr><tr><td>Intolerant of busy work, impatient</td><td>Insightful about inefficiency, redirects focus</td></tr><tr><td>Needs <em>any</em> spotlight</td><td>Comfort in the <em>right</em> spotlight</td></tr><tr><td>Takes everything personally</td><td>Focused on performance metrics</td></tr><tr><td>Goes it alone when things seem irrelevant</td><td>Sorts to relevance and shares that lens with others</td></tr></tbody></table>
+<p><strong>Key risks:</strong></p>
+<ul class="marker-list">
+<li><strong>Masking vulnerability.</strong> May come across as overly controlled or invulnerable — making it difficult for others to know how to support them. This creates isolation.</li>
+<li><strong>Over-indexing on recognition as a proxy.</strong> When feedback is absent, the drive for significance can tip into seeking any recognition rather than meaningful confirmation of impact.</li>
+<li><strong>Impatience with the mundane.</strong> Tasks that don&#x27;t obviously connect to audience or legacy can be neglected or resented — even if those tasks are load-bearing.</li>
+<li><strong>Conflict with internally motivated colleagues.</strong> People with Belief (driven by core values), Responsibility (duty-oriented), or Achiever (internally satisfied by completion) may read Significance as performative or shallow.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Anchor to priorities:</strong></p>
+<ul class="marker-list">
+<li>Regularly identify the single most important thing to accomplish over the next 10 days. Include a note of <em>who is counting on you</em> to complete it — this activates the engine.</li>
+<li>Practice &quot;future-casting&quot;: spend time imagining the future you want to create. Find people who can discuss possibility with you and make this a regular habit, not a one-time exercise.</li>
+</ul>
+<p><strong>Build feedback loops:</strong></p>
+<ul class="marker-list">
+<li>Identify the one or two ways you can stay in closer contact with your most important stakeholders. This is not networking for its own sake — it is calibrating impact.</li>
+<li>Ask trusted advisors to challenge your direction. Feedback is fuel; actively engineer the conditions that generate it.</li>
+</ul>
+<p><strong>Articulate your mission:</strong></p>
+<ul class="marker-list">
+<li>Name the values you stand for and the difference you hope to make. When your work has a positive effect on others, name that effect out loud. This counter-acts the misreading that Significance is self-serving.</li>
+<li>Name what you <em>don&#x27;t</em> want to be known for — areas outside your strengths where you will actively partner with others rather than try to excel alone. This creates clarity and reduces the pressure to be excellent at everything.</li>
+</ul>
+<p><strong>Move from raw to mature:</strong></p>
+<ul class="marker-list">
+<li>Check: are you going it alone because things feel irrelevant, or are you finding ways to bring others along? The shift from &quot;independent impact&quot; to &quot;influential impact&quot; is the developmental arc.</li>
+<li>When looking for feedback, anchor it to performance metrics, not just subjective approval. Define what success looks like so you can evaluate feedback objectively.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work With Someone Who Has Significance</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li><strong>Connect work to end users.</strong> The closer someone with Significance can get to the client, student, community, or end beneficiary, the more energized they will be. Remove walls between the work and the people it affects.</li>
+<li><strong>Give explicit feedback — regularly.</strong> Don&#x27;t assume they know it&#x27;s going well. For Achievers (motivated by completion) or Responsibility (motivated by duty), more work is recognition. For Significance, you need to stop and say it out loud: &quot;What you did here mattered, and here is why.&quot;</li>
+<li><strong>Don&#x27;t downplay the connection between work and impact.</strong> Treating all contributions as equal (&quot;everything we do matters equally&quot;) is demotivating. Name <em>what specifically</em> made a difference.</li>
+<li><strong>Provide independence.</strong> They need autonomy in how they approach tasks. Micromanagement is particularly corrosive here.</li>
+<li><strong>Ask about legacy, not just output.</strong> Manager questions that unlock engagement:</li>
+</ul>
+<p>- What do you hope people will say at your retirement party?</p>
+<p>- How do you get feedback from the people you believe matter most?</p>
+<p>- What contribution do you hope to make this quarter?</p>
+<p>- Who inspires you?</p>
+<p>- How would you describe your signature style?</p>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>Ask them who they&#x27;re working with and what they love about those people. People with Significance have a strong connection to others&#x27; perceptions — engage that.</li>
+<li>Tell them what you&#x27;re noticing. Be an open line into the impact they&#x27;re having on you. Don&#x27;t assume they can see it themselves.</li>
+<li>Celebrate milestones. The acknowledgement that matters most is not applause — it is confirmation that the work is being absorbed and people are benefiting.</li>
+<li><strong>Do not mistake their awareness of audience for vanity.</strong> People with Significance don&#x27;t pretend to hide, and they don&#x27;t expect others to hide either. This often translates as unusual transparency and honesty — lean into it.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations With Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Significance + Self-Assurance</strong> (confidence in one&#x27;s own judgments and decisions, independent of others&#x27; opinions)</p>
+<p>Significance draws energy from audience and external feedback; Self-Assurance draws from internal conviction. Together: powerful independent leadership with both vision and grounding. In tension: Significance may want validation that Self-Assurance doesn&#x27;t seek.</p>
+<p><strong>Significance + Competition</strong> (motivation to win, measured against others)</p>
+<p>Competition wants to win and wants the win to be validated among others who cared about winning. Significance wants to win <em>if winning will make a lasting difference for people</em>. The distinction: Competition wins for the scoreboard; Significance wins for the legacy.</p>
+<p><strong>Significance + Maximizer</strong> (taking something from good to great)</p>
+<p>Both are sorting themes — both ask &quot;where should we invest energy for greatest return?&quot; Maximizer sorts to what is internally strongest (quality-driven). Significance sorts to what will be seen as meaningful by others (externally calibrated). Together: a powerful filter for high-leverage, high-visibility opportunities. Often mistaken for each other.</p>
+<p><strong>Significance + Futuristic</strong> (vision of a positive future)</p>
+<p>Futuristic provides the <em>picture</em> of where to go; Significance provides the <em>drive</em> to make that picture real and visible to others. Together: a natural combination for inspiring movements.</p>
+<p><strong>Significance + Connectedness</strong> (belief in the universal connection of all things)</p>
+<p>A rare and powerful pairing. Connectedness <em>knows</em> the purpose; Significance brings passion and attention to it. Together: a leader who shows up for something larger than themselves and can articulate exactly why it matters.</p>
+<p><strong>Significance + Learner</strong> (energized by acquiring new knowledge)</p>
+<p>Learner feeds Significance with the credibility and depth needed to make an impact worth noticing. Significance gives Learner a reason to share what has been discovered — an audience that deserves the knowledge.</p>
+<p><strong>Significance + Communication</strong> (finds words to express ideas, brings narratives to life)</p>
+<p>Significance provides the purpose and the awareness of what will land; Communication provides the vehicle. Together: someone who is both driven to matter and skilled at making others feel the impact.</p>
+<p>---</p>
+<p><em>Compiled from Gallup Theme Thursday, Seasons 1–6, covering multiple expert and practitioner discussions of the CliftonStrengths Significance theme.</em></p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ideation · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain strat">Strategic Thinking</div>
+    <h1>Ideation</h1>
+    <p class="hero-def">People exceptionally talented in the Ideation theme are fascinated by ideas. They are able to find connections between seemingly disparate phenomena.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What Is Ideation</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition:</strong> People exceptionally talented in the Ideation theme are fascinated by ideas. They are able to find connections between seemingly disparate phenomena.</p>
+<p>Ideation operates on two axes simultaneously: <strong>generating</strong> new thoughts that have never existed before, and <strong>connecting</strong> thoughts across domains where others see no relationship. These are not the same mechanism — some high-ideation people skew toward blank-canvas creation (something from nothing), while others are more reactive (given an existing idea, they immediately see ten variants). The second type is more common, but both varieties share the same drive: the jolt of energy that comes from a new idea, regardless of its destination.</p>
+<p>The theme sits in the <strong>Strategic Thinking</strong> domain, meaning its primary activity happens inside the head — processing the world conceptually rather than executing on it or building relationships around it.</p>
+<p>The three structural elements of Ideation are:</p>
+<ul class="marker-list">
+<li><strong>Creativity</strong> — seeing the familiar from a strange but strangely enlightening angle; asking &quot;what if&quot; not to plan options but to explore possibility</li>
+<li><strong>Complexity</strong> — finding complexity intrinsically fascinating, and then finding the thread of simplicity inside it</li>
+<li><strong>Connectivity</strong> — linking ideas that appear unrelated; distinct from the Connectedness theme (which links people, events, and cause-and-effect) in that Ideation&#x27;s connections are idea-to-idea</li>
+</ul>
+<p><strong>How Ideation differs from adjacent themes:</strong></p>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Core question</th><th>Relationship to novelty</th></tr></thead><tbody><tr><td>Ideation</td><td>What&#x27;s a new angle on this?</td><td>Creates or connects — no timeline, no filter</td></tr><tr><td>Strategic (pattern recognition and planning)</td><td>What if this happens, then what?</td><td>Looks for patterns in what already exists; quickly filters options</td></tr><tr><td>Futuristic (vivid vision of what could be)</td><td>What will this become?</td><td>Projects forward in time; imagination is directional</td></tr><tr><td>Input (collector of information)</td><td>What&#x27;s worth keeping?</td><td>Creativity through accumulation and curation, not generation</td></tr></tbody></table>
+<p>Ideation is the closest of all 34 CliftonStrengths themes to the common understanding of creativity — authentic creation of a thought that had not previously existed.</p>
+<p><strong>Statistical note:</strong> Approximately 14% of people who have taken CliftonStrengths have Ideation in their top five — roughly one in seven people.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Observable behaviors and patterns:</strong></p>
+<ul class="marker-list">
+<li>Generates ideas rapidly and in high volume, often without self-filtering. Volume precedes quality; quantity is the mechanism that produces the good ones.</li>
+<li>Gets visibly energized during brainstorming — there is a recognizable spark or mental acceleration that observers notice.</li>
+<li>Notices similarities, themes, and connections that others overlook — including connections between things that appear to have nothing in common.</li>
+<li>Has exponentially more ideas than actions. Most ideas are never executed and this is not a problem — it is the nature of the talent.</li>
+<li>Ideas are not equivalent to opinions or commitments. A person with high Ideation may generate an idea they don&#x27;t personally believe in, or one that contradicts their values, simply because the idea is there and interesting.</li>
+<li>Finds repetition and status quo draining. The existing process is always potentially improvable; doing the same thing the same way again costs energy.</li>
+<li>Cannot fully turn the generative process off. Ideas arise during meetings, at night, in the shower — the &quot;popcorn popper&quot; image recurs across all sources: the popping does not stop.</li>
+<li>Is an early adopter — alert to new tools, approaches, and directions before they become mainstream.</li>
+<li>Gravitates toward &quot;what if&quot; mode, pilot phases, review stages, and any space where things are not yet fixed and crazy ideas are still welcome.</li>
+</ul>
+<p><strong>Personal-life manifestation:</strong></p>
+<ul class="marker-list">
+<li>May be the friend with the latest gadget, the most original hobby, the unusual side project.</li>
+<li>Expresses ideation through art, writing, engineering, tinkering, content creation — any medium that involves making something that didn&#x27;t exist before.</li>
+<li>Often has a recurring idea that keeps surfacing — this repetition is a signal, not noise.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Unique contribution:</strong></p>
+<p>Ideation is an energy source for teams stuck on the status quo. When productivity hits a plateau, when conflict has reached an impasse, when a team keeps cycling back to the same solution — a person with high Ideation can offer a break through divergent thinking. They bring not the next step, but a completely different direction, which resets the energy of the group.</p>
+<p>They can contribute without full context. Unlike themes that require deep involvement, Ideation can offer creative input and fresh perspectives without having gone on the entire journey with the team. This makes them fast to activate, and approachable for people who need a quick injection of new thinking.</p>
+<p><strong>Concrete roles on a problem-solving team:</strong></p>
+<ul class="marker-list">
+<li><strong>First stop</strong> — before analysis, before prioritization, before feasibility: generate raw options</li>
+<li><strong>Thought partner</strong> — re-energize someone who is slogging through the same problem repeatedly</li>
+<li><strong>Bridge builder</strong> — find the connection between two seemingly incompatible positions or ideas</li>
+<li><strong>Message tailorer</strong> — translate a concept into the form most absorbable for a specific audience</li>
+</ul>
+<p><strong>As a leader:</strong></p>
+<ul class="marker-list">
+<li>Helps people see beyond the obvious and find anchoring points that make unfamiliar change feel connected to what they already know</li>
+<li>Can invite followers into a safe, non-binding &quot;what if&quot; space — creating hope and expanding perceived possibility</li>
+<li>Communicates change by connecting new territory to familiar ground, which reduces anxiety in teams that need stability</li>
+<li>Builds compassion by connecting people&#x27;s personal stories to where the organization is going</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Blind spots and failure modes:</strong></p>
+<p><strong>The ambush.</strong> A wave of ideas landing on people without warning can confuse, overwhelm, or destabilize. Those without high Ideation do not experience brainstorming as energizing — for many it is cognitively stressful. Three people with high Ideation in a room can generate an atmosphere that feels chaotic, exclusive, and fast-moving to anyone not tuned to that frequency.</p>
+<p><strong>The commitment misread.</strong> Excitement about an idea is easily misread as commitment to executing it. Partners with strong Executing themes (Achiever, Discipline, Responsibility) may take enthusiasm as a promise. This creates friction and broken expectations.</p>
+<p><strong>The raw state — overwhelming others.</strong> Raw Ideation broadcasts volume without patience. It can come across as dismissive of what already works, destabilizing to teams that need consistency, or exhausting to people who need clarity before they can move.</p>
+<p><strong>The raw state — internal anxiety.</strong> By the time an idea moves from inception to development to deployment, many more ideas have arrived. This can create restlessness, boredom with older ideas, and frustration with the pace of implementation. Without awareness, this tips into abandoning projects before completion, or bitterness when ideas arrive &quot;too early&quot; — being right years before anyone else is ready is not always satisfying.</p>
+<p><strong>Ideation as destabilizer.</strong> When a team or organization is at a point where execution is what&#x27;s needed — not more ideas — continued ideating is actively harmful. A leader who adds ideas when the room needs to move forward demoralizes the team. The mature version is knowing when to leave the room.</p>
+<p><strong>The condescension trap.</strong> High Ideation people often have already thought through something that others are presenting as new. Without intentional patience, this shows as dismissiveness.</p>
+<p><strong>Core risk summary:</strong></p>
+<ul class="marker-list">
+<li>Ideas ≠ values</li>
+<li>Ideas ≠ commitments</li>
+<li>More ideas ≠ better outcomes</li>
+<li>Being the idea source ≠ being the executor</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop Ideation</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>These practices are for people who already have Ideation as a dominant theme — they strengthen what is already there.</p>
+<p><strong>Daily idea release.</strong> Set a recurring 3–5 minute window to write, voice-record, or say aloud every idea that surfaced in the past 24 hours — without judgment, without editing. The goal is to skim the overflow of foam off the top so fresher, more targeted ideas can surface underneath.</p>
+<p><strong>Build brainstorm buffers.</strong> Schedule 10 minutes before a meeting to pre-brainstorm, and 10 minutes after to capture what arose during. Showing up to a meeting already having cycled through ideas means the best ones arrive more quickly. This is not about preparation — it is about showing up energized.</p>
+<p><strong>Find a thinking partner.</strong> Identify one person who helps you reach your best ideas — someone who asks good questions, who listens, who can play devil&#x27;s advocate. Invite that person to brainstorm explicitly for one hour, with quantity as the explicit goal. Pay attention afterward: what did they do that made the thinking better?</p>
+<p><strong>Package one idea fully.</strong> Take the best idea currently in your head and work it until it is fully baked: write it, say it, rewrite it, test it, then present it. High Ideation people are fluent in half-baked ideas — the stretch is developing the ability to see an idea through to the form where others can receive it.</p>
+<p><strong>Use repetition as your filter.</strong> The ideas worth acting on tend to come back — again and again, independently. Track recurring ideas as signals. When the same idea surfaces more than twice, that is data.</p>
+<p><strong>Know your audience before ideating aloud.</strong> Ask before broadcasting: &quot;Are you open to new ideas right now?&quot; or &quot;Are we brainstorming, or are we committing?&quot; If the answer is not, it is not the moment. This is not suppression — it is precision.</p>
+<p><strong>Commit to the destination, not the process.</strong> When making agreements with managers or partners, commit to the outcome, not the method. The method will change — the destination is what integrity requires you to deliver.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Ideation</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<p><strong>Invite explicitly, not by accident.</strong> Saying &quot;I need 5 ideas on this — go&quot; is dramatically more energizing than &quot;what&#x27;s your opinion?&quot; It frames the request as what Ideation does best — volume and velocity, not evaluation. Set a number and a boundary if needed; the person with high Ideation can stop as fast as they can start.</p>
+<p><strong>Distinguish brainstorm mode from decision mode.</strong> Be explicit about which mode the conversation is in. &quot;We&#x27;re just spitballing&quot; and &quot;we&#x27;re committing to this&quot; are two different conversations. Mixing them creates misalignment that harms trust.</p>
+<p><strong>Give freedom in method, not necessarily in outcome.</strong> Tell them what cannot be changed (safety, compliance, brand, deadline). Within that bounded space, allow variance in approach. If you need the same process every time, explain the reason — it reduces the frustration of constraint.</p>
+<p><strong>Invite them early.</strong> Bring them in during pilot phases and review cycles, before things are finalized. After the decision is made, their creative energy has nowhere useful to go.</p>
+<p><strong>Recognize the assist, not just the outcome.</strong> Someone with high Ideation often sparks the innovation that someone else executes. Recognizing the moment of ideation — the specific spark, not just the completed thing — matters to them more than recognizing the project completion.</p>
+<p><strong>Recognize with something tangible that evokes the spark.</strong> A token, a photo, a physical object associated with the moment an idea was generated is more meaningful than a generic award.</p>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>Use them when you&#x27;re stuck. Say &quot;I&#x27;ve been hitting the same wall on this — do you have a few minutes to brainstorm?&quot; No preparation needed on their end; their brain activates on contact.</li>
+<li>Do not take every idea as equally weighted or as representing their considered position. They are a vessel for ideas, not an advocate for every idea they produce.</li>
+<li>Challenge them. Asking &quot;what else?&quot; or playing devil&#x27;s advocate does not deflate them — it generates more. Do not accept the first answer as final.</li>
+<li>Catch what resonates and say why. This helps them make connections between what you need and what they can offer.</li>
+<li>Tell them when the brainstorm is over. They will not always stop on their own.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Ideation + Strategic (pattern recognition and options planning):</strong> The most statistically common pairing — a 46% overlap in top-five profiles. Both themes ask &quot;what if,&quot; but from different starting points. Ideation generates what doesn&#x27;t yet exist; Strategic finds patterns in what does. Together they produce both the raw material and the filter: novel ideas run through a framework that identifies which ones lead somewhere useful.</p>
+<p><strong>Ideation + Futuristic (vivid vision of what could be):</strong> Both operate in possibility space, but Futuristic has a timeline — it thinks forward toward a specific imagined future. Ideation has no required timeline; it generates in all directions. Futuristic provides the scaffolding (here is what we&#x27;re building toward), and Ideation fills the scaffolding with creative content. Futuristic is more excited about progress itself; Ideation is more excited about the novelty that progress requires.</p>
+<p><strong>Ideation + Maximizer (building on what is best and elevating excellence):</strong> Ideation produces the volume; Maximizer sorts and stack-ranks. Without Maximizer, high Ideation can remain permanently in generation mode — all quantity, no selection. With Maximizer present (either in the same person or in a partner), the best ideas get identified and developed rather than discarded into the pile.</p>
+<p><strong>Ideation + Activator (impatience to begin and bias toward action):</strong> Activator pushes ideas into motion quickly — sometimes before the idea is fully formed. This combination is energizing and fast, but requires Executing partners to follow through after launch.</p>
+<p><strong>Ideation + Analytical (demands for data, proof, and logical rigor):</strong> A complementary pairing rather than a natural one. Ideation asks what is not there; Analytical asks what is there. Analytical provides grounding and credibility for ideas that otherwise float free. When working with someone high in Analytical, framing matters: &quot;I want to think this through&quot; rather than &quot;here is my conclusion&quot; creates the space for genuine collaboration.</p>
+<p><strong>Ideation + Input (collects information, resources, and knowledge):</strong> Both are often labeled &quot;creative,&quot; but from opposite directions. Input is creative through accumulation — gathering from outside and deploying the best of what was collected. Ideation is creative through generation — producing from within. The combination produces both original thinking and richly sourced thinking; the risk is information overload without a filter that determines what to act on.</p>
+<p><strong>Ideation + Communication (finds the words and makes ideas come alive):</strong> Ideation generates the raw concept; Communication wraps it in language that makes others receive it. This combination is particularly powerful for people whose role involves persuasion, teaching, or selling ideas — the content and the delivery emerge together.</p>
+<p><strong>Ideation + Discipline (creates structure, routine, and order) or Deliberative (careful, vigilant risk assessment):</strong> Friction combination. Discipline and Deliberative require consistency and predictability; Ideation produces variance and challenges established process. Ideation in this environment needs explicit invitation and explicit constraint. Without deliberate management, the Ideation person will feel suppressed; the Discipline or Deliberative person will feel destabilized.</p>
+<p><strong>The key partnership need for most high-Ideation people:</strong> an Executing partner (someone with Achiever, Responsibility, Discipline, or similar themes) who can take ideas and run with them. The mature move is giving the idea away without needing to own its execution.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

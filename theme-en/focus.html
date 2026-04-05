@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Focus · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain exec">Executing</div>
+    <h1>Focus</h1>
+    <p class="hero-def">Focus is a talent theme in the Executing domain of the CliftonStrengths framework. Its core is direction: the ability to set a destination, filter everything through that destination, and maintain course until arrival.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What Is Focus</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p>Focus is a talent theme in the <strong>Executing domain</strong> of the CliftonStrengths framework. Its core is <strong>direction</strong>: the ability to set a destination, filter everything through that destination, and maintain course until arrival.</p>
+<p>The official short definition: &quot;People exceptionally talented in the Focus theme can take a direction, follow through, and make the necessary corrections to stay on track. They prioritize, then act.&quot;</p>
+<p>Three synonyms capture it more precisely:</p>
+<ul class="marker-list">
+<li><strong>Priority</strong> — Focus is fundamentally about choosing what matters most and using that choice as a filter for all subsequent decisions.</li>
+<li><strong>Efficiency</strong> — waste (of time, energy, effort, attention) is genuinely uncomfortable for someone with Focus. Every input is evaluated by its contribution to the goal.</li>
+<li><strong>Direction</strong> — Focus people need to know where they&#x27;re going before they can function at full capacity. Goal ambiguity is disorienting, not energizing.</li>
+</ul>
+<p><strong>How Focus differs from similar themes:</strong></p>
+<ul class="marker-list">
+<li><strong>Discipline</strong> (Executing — creates structure, order, and systematic plans): Discipline answers <em>how</em> to get somewhere. Focus answers <em>where</em> to go. A person with Discipline without Focus may execute beautifully toward the wrong destination. A person with Focus without Discipline may know where they&#x27;re going but lack the structure to get there reliably.</li>
+<li><strong>Achiever</strong> (Executing — internal drive to complete and produce): Achiever is energized by <em>finishing</em>. Focus is energized by <em>directing</em>. Achiever wants to complete more things; Focus wants to ensure the things being completed are the right ones.</li>
+<li><strong>Deliberative</strong> (Executing — anticipates obstacles, manages risk carefully): Deliberative is cautious about <em>what can go wrong</em>. Focus is cautious about <em>what is worth doing</em>. Both filter, but through different lenses.</li>
+<li><strong>Strategic</strong> (Strategic Thinking — sees multiple paths and selects the best route): Strategic evaluates many possible paths. Focus commits to one and stays on it. Strategic is about the selection process; Focus is about the commitment after selection.</li>
+<li><strong>Futuristic</strong> (Strategic Thinking — inspired by future possibility): Futuristic imagines many possible futures. Focus selects one and relentlessly pursues it. Futuristic provides the vision; Focus provides the lock-on.</li>
+<li><strong>Analytical</strong> (Strategic Thinking — searches for reasons and causes): Analytical filters for truth. Focus filters for priority. Analytical sorts evidence to find the correct answer; Focus sorts activities to find the most important one.</li>
+</ul>
+<p><strong>Domain context:</strong> Focus sits in the Executing domain alongside Achiever, Arranger (orchestrates people and resources), Consistency (applies equal rules for everyone), Deliberative, Discipline, Responsibility (psychological ownership of commitments), and Restorative (identifies and fixes what is broken).</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>The compass check.</strong> People with Focus instinctively measure everything against the current goal: &quot;Does this move us toward the target?&quot; Activities that don&#x27;t pass the check generate visible discomfort — not as judgment, but as a navigation signal.</p>
+<p><strong>Goal-setting before acting.</strong> Focus people are uncomfortable starting work without knowing the destination. Before diving in, they want to know what &quot;done&quot; looks like, what success means, and what the priority is. Ambiguous kickoffs are genuinely frustrating.</p>
+<p><strong>Redirecting behavior.</strong> In meetings and conversations, Focus people naturally pull discussions back to the point. The verbal pattern is recognizable: &quot;Let&#x27;s get back to what we&#x27;re trying to solve here,&quot; &quot;How does this connect to our goal?&quot; This isn&#x27;t rudeness — it&#x27;s the compass recalibrating.</p>
+<p><strong>Explicit trade-offs.</strong> Focus people understand intuitively that saying yes to X means saying no to Y. They are more comfortable than most with declining requests, not out of avoidance, but because they can articulate the opportunity cost clearly.</p>
+<p><strong>Impatience with tangents.</strong> Digressions, exploratory side conversations, and &quot;wouldn&#x27;t it be interesting if&quot; discussions consume the resource Focus most protects: directed attention. The impatience that surfaces in these moments is a signal, not a character trait.</p>
+<p><strong>Narrow scope, deep intensity.</strong> Once locked onto a priority, people with Focus work without interruption for extended periods. The narrowing is the feature: removing everything else so the target can be reached faster.</p>
+<p><strong>Efficiency orientation.</strong> Waste — whether it&#x27;s time in an unfocused meeting, energy on low-priority tasks, or effort on activities that don&#x27;t move the needle — is genuinely aversive. Focus people often optimize processes not for elegance but for the elimination of what doesn&#x27;t contribute.</p>
+<p><strong>Directional clarity in communication.</strong> When Focus people express an opinion or recommendation, it is usually framed around a destination: &quot;We should do X because it gets us to Y.&quot; This destination-anchored reasoning makes them clear communicators in high-stakes conversations.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Priority clarity.</strong> Focus people provide the team with a clear answer to &quot;what matters most right now.&quot; When a team is scattered across too many initiatives, a person with Focus can cut through the noise and name the one thing that should take precedence.</p>
+<p><strong>Scope protection.</strong> Scope creep is one of the most common execution failures in organizational life. Focus people are naturally resistant to it — they evaluate every proposed addition against the original goal and can articulate clearly why it does or doesn&#x27;t belong.</p>
+<p><strong>Meeting efficiency.</strong> A Focus person in a meeting is a structural asset: they keep the discussion pointed at the outcome, signal when it&#x27;s drifting, and help the group exit with decisions rather than conversations.</p>
+<p><strong>Explicit trade-offs.</strong> Organizations that struggle to say no often fail to execute because everything is equally important. A Focus person forces the trade-off conversation — making it clear that choosing to do one thing means not doing another, which is the prerequisite for real prioritization.</p>
+<p><strong>Accountability to the goal.</strong> Focus people naturally track whether current activities align with stated direction. This awareness creates a feedback loop: &quot;This is what we said we&#x27;d do — are we doing it?&quot;</p>
+<p><strong>Sustained directional pressure.</strong> In long-term projects, teams can lose sight of the original goal as they get absorbed in execution details. Focus provides a consistent pull back to the destination — recalibrating direction over time.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Tunnel vision.</strong> The same filtering mechanism that eliminates distraction can also eliminate important signals outside the current focus. Opportunities, emerging threats, or useful information can be screened out if they don&#x27;t appear directly relevant to the current goal.</p>
+<p><strong>Inflexibility under changing conditions.</strong> When circumstances change and a goal needs to be revised, Focus can create resistance. The talent that makes someone excellent at staying on course can make it genuinely difficult to change course — even when the evidence demands it.</p>
+<p><strong>Shutting down exploration prematurely.</strong> Creative and strategic work often requires divergent thinking before converging on a direction. Focus people can compress this phase too quickly, moving to the &quot;what are we going to do&quot; question before the team has adequately explored &quot;what might be possible.&quot;</p>
+<p><strong>Appearing dismissive.</strong> Ideas and contributions that don&#x27;t connect to the current priority may receive minimal engagement from a Focus person. From the outside, this can read as lack of interest or disrespect for the contribution. From the inside, it&#x27;s simply navigation — but the relational cost is real.</p>
+<p><strong>Frustrating to explorers.</strong> Colleagues with Ideation (generates new ideas), Input (collects and connects information), or Learner (enjoys exploring and understanding) may find that working alongside a strong Focus person consistently curtails the kind of expansive conversation they need to do their best thinking.</p>
+<p><strong>Paralysis in ambiguity.</strong> Without a clear goal, Focus has nothing to orient toward. Situations that are genuinely ambiguous — where the right direction is not yet known — can be more disorienting to Focus people than to others. They may rush to set a goal (any goal) to resolve the discomfort, rather than sitting with uncertainty long enough to find the right one.</p>
+<p><strong>Pursuing an outdated goal.</strong> Because Focus maintains direction persistently, there is a risk of pursuing a goal that was right six months ago but has since been superseded by new information. Without regular compass recalibration, direction can become dogma.</p>
+<p><strong>Impatience with process.</strong> Organizations require approvals, consultations, and iterative refinement that can feel to a Focus person like friction on the path to the destination. The impatience that results can damage relationships with people whose roles are to manage process.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Write goals before acting.</strong> For each meaningful project, write one sentence: &quot;By [date], I will have [specific outcome].&quot; This externalizes the direction and makes it easier to evaluate daily activities against it.</p>
+<p><strong>Practice the compass check explicitly.</strong> At the start of each week, review the top priorities. At the end, check: did your time and energy go where you said they would? The gap between intention and reality is the development data.</p>
+<p><strong>Communicate priorities out loud.</strong> Focus is more powerful when others can align with it. Develop the habit of stating &quot;the one thing that matters most here is X&quot; in meetings and one-on-ones. This invites others to navigate by the same compass.</p>
+<p><strong>Build in a scheduled exploration window.</strong> Rather than defending all time against tangents, designate a specific block (a weekly &quot;exploration hour,&quot; for example) where the compass is deliberately set aside. This gives Focus a bounded space to protect without shutting out the divergent thinking that can generate better goals.</p>
+<p><strong>Ask &quot;what would need to be true for this direction to change?&quot;</strong> This question builds principled flexibility. It allows a Focus person to remain committed to a direction while staying genuinely open to conditions that would justify a pivot.</p>
+<p><strong>Partner with broad scanners.</strong> Deliberately seek working relationships with people who have Ideation, Input, or Strategic themes — not to adopt their style, but to get regular exposure to signals that might not pass the current compass check unassisted.</p>
+<p><strong>Practice the principled no.</strong> When declining a request, articulate the reason in terms of the goal: &quot;I&#x27;m not taking this on because it doesn&#x27;t connect to [current priority].&quot; This makes the decision transparent and gives the requester useful information rather than a flat refusal.</p>
+<p><strong>Recalibrate the goal quarterly.</strong> Schedule a structured review every quarter to ask: Is this goal still the right goal? What has changed in the environment that might affect direction? This prevents the &quot;pursuing an outdated goal&quot; failure mode.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Focus</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li>State the goal before the conversation, not at the end. A Focus person needs the destination to be set before they can engage productively with the path.</li>
+<li>Define what &quot;done&quot; looks like specifically. Vague success criteria don&#x27;t give Focus anything to navigate by.</li>
+<li>Respect their time budget. Unfocused meetings or ambiguous check-ins are genuinely draining. If a meeting has no clear outcome, expect disengagement.</li>
+<li>When priorities must change, explain why. Focus people can pivot when given a logical reason that connects to the goal. &quot;The market changed and here&#x27;s what that means for our direction&quot; lands better than &quot;we&#x27;re shifting gears.&quot;</li>
+<li>Give them the authority to say no. If a Focus person is expected to accept every new request regardless of fit, you are disabling the core of their talent.</li>
+<li>When their focus kept the team on track — name it. &quot;Your ability to keep us from going down that rabbit hole saved us two weeks&quot; is meaningful recognition for a Focus person.</li>
+<li>Don&#x27;t interpret directness as hostility. When a Focus person cuts off a tangent, they are navigating, not dismissing.</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>Lead with the point. Give context after, not before. A Focus person is listening for what you need from them — front-loading context before the ask increases the chance of disengagement.</li>
+<li>Connect new ideas to the current goal explicitly, or be upfront that you&#x27;re proposing a new direction. &quot;Here&#x27;s an idea that I think would accelerate what we&#x27;re already doing&quot; lands better than launching into a concept that seems disconnected.</li>
+<li>Respect their focus periods. An interrupted deep work session is not a minor inconvenience to a Focus person — the re-entry cost is real. Use async communication where possible.</li>
+<li>Don&#x27;t take &quot;no&quot; personally. Their decline is usually principled (doesn&#x27;t fit the priority) rather than relational.</li>
+<li>If you need their creative engagement or exploratory thinking, set the context explicitly: &quot;I&#x27;m not proposing we do this — I&#x27;m trying to think through options.&quot; This gives the Focus person a frame that makes the exploration feel purposeful.</li>
+<li>When you bring a problem, come with a proposed direction if possible. Focus people engage more energetically with &quot;here&#x27;s what I think we should do and why&quot; than with open-ended &quot;what do you think we should do?&quot;</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Focus + Achiever</strong> (Executing — internal drive to complete and produce): The most operationally powerful pairing in the Executing domain. Focus determines the target; Achiever runs at it full speed. Together they create sustained, high-intensity execution in a single direction. A person with both can work without interruption for days on the chosen priority. The risk: immense output in potentially the wrong direction if the goal was set without adequate strategic input.</p>
+<p><strong>Focus + Discipline</strong> (Executing — creates structure, order, and systematic routines): A precision instrument. Focus sets the destination; Discipline builds the plan, the schedule, and the checkpoints to reach it. Together they create systematic, sustained forward progress — neither chaotic nor undirected. Risk: the combined filtering effect can narrow attention so tightly that signals indicating the goal should shift are ignored. Partners with broader scanning ability are important to have nearby.</p>
+<p><strong>Focus + Responsibility</strong> (Executing — psychological ownership of commitments): Goal plus commitment. Once a direction is set, a person with both of these themes is exceptionally reliable: they are navigating toward a clear destination <em>and</em> feel personally accountable for arriving. This combination builds deep organizational trust over time.</p>
+<p><strong>Focus + Arranger</strong> (Executing — orchestrates people, resources, and activities toward maximum productivity): Focus brings singular direction to Arranger&#x27;s naturally flexible and reconfigurable style. The result: a person who continuously optimizes how resources and people are arranged, but always in service of a clear end goal. Without Focus, Arranger may rearrange as an end in itself; with Focus, the rearranging is efficient and purposeful.</p>
+<blockquote class="md-quote">&quot;I have Focus. And so I think it&#x27;s — I have a lot of clarity on the end goal. And so the arranging is a means to an end.&quot; [Gallup Theme Thursday, Arranger Season]</blockquote>
+<p><strong>Focus + Command</strong> (Influencing — takes charge, makes decisions, and directs others): Focus knows where to go; Command takes others there with authority and confidence. The combination produces directive, clear leadership. The risk: the combination can be controlling — clear direction delivered forcefully, with little tolerance for questions that seem to delay arrival.</p>
+<p><strong>Focus + Strategic</strong> (Strategic Thinking — creates alternative ways to proceed): Strategic explores multiple paths before committing; Focus commits completely once the path is chosen. The combination creates someone who can both see the landscape of options and then lock onto the best route and pursue it with full intensity. This is rare: most people are either good at the evaluation or the commitment, not both.</p>
+<p><strong>Focus + Deliberative</strong> (Executing — anticipates problems, assesses risk carefully before acting): Both themes filter. Deliberative filters for risk; Focus filters for priority. Together, the person is very careful about which goal to commit to — conducting thorough due diligence before setting direction — and then pursues it with full intensity. They are slow to start and fast to finish, in the best sense.</p>
+<p><strong>Focus + Analytical</strong> (Strategic Thinking — searches for reasons, causes, and patterns in data): Focus determines the question worth investigating; Analytical investigates it rigorously. The combination produces deep, evidence-based work on the right problem. The risk: the Analytical drive to fully understand can conflict with the Focus drive to reach the destination — they may over-investigate relative to what&#x27;s needed for a decision.</p>
+<p><strong>Focus + Learner</strong> (Strategic Thinking — continually desires to learn and improve): Focus selects a domain; Learner commits to mastering it. The combination is the engine of deep expertise development. Rather than spreading learning across many domains, a person with both picks a field and studies it relentlessly. This is what subject-matter experts with high depth-to-breadth ratios tend to look like.</p>
+<p><strong>Focus + Maximizer</strong> (Influencing — takes what is already strong and pushes it toward excellence): Focus selects the priority; Maximizer pushes that priority from good to excellent. The combination produces high-quality output in a narrow lane. Together they create someone who not only knows what matters most but is unwilling to stop until it&#x27;s excellent. The risk: shared tendency toward narrowing can mean critical peripheral information goes unnoticed.</p>
+<p><strong>Focus + Futuristic</strong> (Strategic Thinking — inspired by what could be, lives in the imagined future): Futuristic provides a vivid destination; Focus locks onto it and maintains direction. This combination is particularly powerful for long-horizon work, where sustained commitment to an imagined future is required. The Futuristic vision gives Focus something concrete and compelling to navigate toward; Focus gives the Futuristic vision a spine of execution rather than remaining an aspiration.</p>
+<p><strong>Focus + Belief</strong> (Executing — has core values that are enduring and define purpose): When the goal aligns with core values, a person with both Focus and Belief is nearly immovable. The direction is not just strategically chosen — it is morally anchored. This creates exceptional persistence in the face of resistance. The risk: if the goal conflicts with values, there is genuine internal conflict that can be disorienting.</p>
+<p>---</p>
+<p><em>Sources: Gallup CliftonStrengths official theme descriptions; Gallup Theme Thursday video series (cross-referenced from Achiever Season 1, Discipline, Arranger, Analytical, and Competition transcripts); Gallup strengths coach training materials.</em></p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

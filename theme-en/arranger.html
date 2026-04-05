@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arranger · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain exec">Executing</div>
+    <h1>Arranger</h1>
+    <p class="hero-def"></p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Arranger</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition (CliftonStrengths 34 report):</strong></p>
+<blockquote class="md-quote">&quot;You can organize, but you also have a flexibility that complements this ability. You like to determine how all the pieces and resources can be arranged for maximum productivity.&quot;</blockquote>
+<p><strong>Domain:</strong> Executing. Arranger is about getting things done — specifically, getting them done by orchestrating and coordinating the work of people, processes, and resources simultaneously.</p>
+<p><strong>Three defining words:</strong></p>
+<ul class="marker-list">
+<li><strong>Productivity</strong> — the primary orientation. Arranger is not about elegance of arrangement for its own sake; it&#x27;s about moving forward.</li>
+<li><strong>Multiplicity</strong> — Arranger thrives on variables. The pieces of the productivity puzzle can be people, processes, or products. More variables = more to work with.</li>
+<li><strong>Flexibility</strong> — not fixed or settled. Always willing and able to change, adjust, arrange, and rearrange. Planning and executing happen simultaneously, in real time.</li>
+</ul>
+<p>The fourth key word is <strong>interactive</strong> — Arranger involves and interacts with other people to get things done. This is what separates it from purely individual execution themes.</p>
+<p><strong>Distinction from similar talents:</strong></p>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Core difference from Arranger</th></tr></thead><tbody><tr><td>Achiever (executing)</td><td>Personal diligence; individual productivity. Arranger = collaborative productivity through others.</td></tr><tr><td>Strategic (strategic thinking)</td><td>Strategic sorts through imaginary possibilities. Arranger juggles real, present realities in real time.</td></tr><tr><td>Adaptability (relationship building)</td><td>Adaptability reacts to change. Arranger manages and initiates change.</td></tr><tr><td>Discipline (executing)</td><td>Discipline = fixed preplanning, then execution. Arranger = fluid planning and executing simultaneously.</td></tr><tr><td>Responsibility (executing)</td><td>Responsibility <em>holds</em> things — outstanding promises drive behavior. Arranger <em>touches</em> things — momentary influence, then moves on.</td></tr><tr><td>Restorative (executing)</td><td>Restorative takes a broken engine and fixes it. Arranger taps the edges of a running engine to make it smoother.</td></tr></tbody></table>
+<p><strong>Arranger is not:</strong></p>
+<ul class="marker-list">
+<li>A theme about neatness or rigidity — it is organized <em>through</em> flexibility, not despite it.</li>
+<li>A planning theme — Arranger doesn&#x27;t pre-plan and then execute; it does both in the moment.</li>
+<li>A theme driven by personal achievement — the conductor doesn&#x27;t have to play every instrument.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral signatures:</strong></p>
+<ul class="marker-list">
+<li>Immediately sees which pieces of a situation could be moved to make the whole picture work better — before others have even identified the problem.</li>
+<li>Comfortable holding a large number of simultaneous concerns without losing track of any. As one practitioner described it: &quot;holding a dozen ping-pong balls underwater at the same time.&quot;</li>
+<li>Performs better as complexity increases. More inputs = more opportunities to find optimal configurations. Static situations are experienced as mildly aversive.</li>
+<li>Procrastinates when there is little to do. Can design a webinar in 2 hours when fully loaded; takes a day and a half when the plate is empty. This is not dysfunction — it is a feature of how this talent generates momentum.</li>
+<li>Surveys and maps environments quickly upon entering them — not for trivia, but for productivity. Where are the parts? How do they connect? So that when action is needed, navigation is instant.</li>
+<li>Keeps visible lists as an external memory system. Things not in front of an Arranger effectively do not exist. Hidden lists do not get used.</li>
+<li>Distinguishes between &quot;change through me&quot; and &quot;change to me.&quot; Initiating change is energizing; having change imposed without input is uncomfortable. This is distinct from disliking change — Arranger often loves change, as long as they have a say in it.</li>
+<li>Shows up in childhood: elaborate event planning, reconfiguring seating at parties, thinking through who should sit with whom and why.</li>
+<li>Self-description: &quot;I&#x27;m a better firefighter than a farmer.&quot; Drawn to action and adjustment, not maintenance.</li>
+</ul>
+<p><strong>The internal experience:</strong> Arranger gets into what practitioners describe as a &quot;serious zone&quot; when able to interact with all the components of a situation simultaneously — a flow state triggered by multiplicity, not by singular focus.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>What Arranger uniquely contributes:</strong></p>
+<ul class="marker-list">
+<li><strong>Navigates logistics</strong> by considering ideal configurations — not just what the components are, but how they combine. Understands &quot;the mixing,&quot; not just the ingredients.</li>
+<li><strong>Calming presence</strong> in chaos — not through reassurance or mystery, but through tangible, objective ability to say &quot;here&#x27;s what matters and here&#x27;s how it fits.&quot; Where others see conflicting priorities, an Arranger sees <em>attractive</em> priorities.</li>
+<li><strong>Powerful combination of opinion and operation</strong> — can identify practical insights for improvement (opinion) and execute on multiple assignments simultaneously (operation). Other people often cannot do both.</li>
+<li><strong>Courage to change</strong> — initiates change rather than waiting and reacting. This is distinct from recklessness; it is a willingness to move the pieces when others assume decisions are locked in.</li>
+<li><strong>Multiple-stakeholder management</strong> — performs better under multiple pressures than under a single focused one. Can hold many stakeholder concerns simultaneously and help the team navigate toward what is most urgent and most important.</li>
+<li><strong>Team configuration as a leadership skill</strong> — as a leader, Arranger sees the &quot;best seat on the bus&quot; for each team member. The clockmaker metaphor: understanding where each gear will be positioned best for the whole mechanism to tick and move forward.</li>
+<li><strong>Shared results orientation</strong> — understands the influence individual inputs have on overall output. Instinctively tracks how components connect to the organization&#x27;s accomplishments.</li>
+</ul>
+<p><strong>Real-world examples from practitioners:</strong></p>
+<ul class="marker-list">
+<li>A bank branch manager handling 10+ staff, customer transactions, safety, and sales simultaneously — switching gears constantly without losing the thread.</li>
+<li>A federal agency leader entering a new office, taking time to understand each team member&#x27;s strengths before any reorganization, then configuring roles to match individual strengths to program areas.</li>
+<li>A facilitator physically rearranging classroom seating daily — thinking through which pairings would generate the best conversations for the next day.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Raw (undeveloped) expressions of Arranger:</strong></p>
+<ul class="marker-list">
+<li><strong>Creates complexity where it doesn&#x27;t need to exist.</strong> Arranger is attracted to complexity; when there isn&#x27;t enough, it may generate it. In raw form: procrastination (waiting for enough parts), or picking at things that don&#x27;t need to be touched.</li>
+<li><strong>Never satisfied.</strong> Constantly looking for a different way to arrange. Can reinvent the wheel because rearranging is pleasurable, not because improvement is needed. Raw Arranger confuses the pleasure of the process with the purpose of the process.</li>
+<li><strong>Doubtful until the moment.</strong> Has an internal confidence that &quot;I can sort through this&quot; that can manifest as dismissing others&#x27; solutions before properly evaluating them. &quot;Your way probably isn&#x27;t going to work, but don&#x27;t worry, I&#x27;ll figure it out.&quot;</li>
+<li><strong>Team upsetter.</strong> Raw Arranger has to own the process. Constant rearrangement without explanation is experienced by others as instability or disregard for their work.</li>
+</ul>
+<p><strong>Blind spots (potential, not guaranteed):</strong></p>
+<ul class="marker-list">
+<li><strong>Delegation difficulty.</strong> Holding the whole puzzle makes it feel like removing any piece breaks the picture. Result: difficulty letting go of tasks, even when delegation would produce better outcomes. The reframe that works: others can take a piece to an even better level, which expands what you can do more of.</li>
+<li><strong>Detail without big picture.</strong> May love the components of a task so much that they fail to describe the destination to stakeholders. &quot;They don&#x27;t need to know the ingredients; they just want to eat the cake.&quot; Fix: create &quot;scenic overlook&quot; checkpoints — stop and ask if others want more detail before continuing.</li>
+<li><strong>Leaving people behind.</strong> Arranger can move very fast through mental configurations and assume the team is following. In a leadership role, this creates confusion and erodes stability. Communication is not optional for an Arranger — it is the mechanism by which speed becomes useful rather than destabilizing.</li>
+<li><strong>Change without explanation.</strong> Initiating changes that seem obvious to the Arranger can read as &quot;change for change&#x27;s sake&quot; to others. Explaining <em>why</em> the change is happening — the logic, not just the result — is what makes the change acceptable.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>The raw → mature arc:</strong></p>
+<table class="maturity-table"><thead><tr><th>Raw</th><th>Mature</th></tr></thead><tbody><tr><td>Creates complexity</td><td>Creates order</td></tr><tr><td>Never satisfied</td><td>Practices best alternatives</td></tr><tr><td>Doubtful until the moment</td><td>Inclusive in the moment</td></tr><tr><td>Has to own the process</td><td>Can facilitate the process</td></tr><tr><td>Team upsetter</td><td>Team player</td></tr></tbody></table>
+<p><strong>Specific development actions:</strong></p>
+<li><strong>Constantly ask: &quot;What are we measuring?&quot;</strong> This pulls Arranger back from the pleasure of rearranging toward the purpose of the arrangement. Real Arranger uses the puzzle to get to a better place — not because puzzles are fun.</li>
+<li><strong>Seek out roles with multiple simultaneous work streams.</strong> Be the air traffic controller. Look for situations where several things must happen at once — this is where Arranger performs at its best.</li>
+<li><strong>Create stopping points when communicating.</strong> Before going deep on how things work, ask: &quot;Do you want to know more about how this works?&quot; Let the other person guide how much detail they receive.</li>
+<li><strong>Maintain visible lists for slow periods.</strong> When the plate is empty, Arranger gets into trouble. Visible, current, accessible lists of open projects prevent the &quot;mischievous derailleur&quot; — poking at things that don&#x27;t need to be poked.</li>
+<li><strong>Practice explaining why before what.</strong> When making a change, communicate the reason and the goal, not just the new configuration. The team cannot follow what they cannot understand.</li>
+<li><strong>When delegating, identify what only you can do vs. what others can do better.</strong> The exercise: examine each component of the task and sort it. Delegating well is itself an Arranger act — it frees up the talent for higher-leverage configurations.</li>
+<li><strong>Partner with someone who tracks the overall goal.</strong> Arranger can get lost in the pleasure of rearranging. A partner with Focus or Discipline who holds the destination is a corrective mechanism.</li>
+<li><strong>Ask others about their goals.</strong> This gives Arranger legitimate terrain to apply the talent. Knowing what others are trying to accomplish creates new configurations to work with.</li>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Arranger</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li><strong>Give them authority to make necessary changes without having to ask permission.</strong> Requiring approval for every adjustment creates friction that defeats the talent.</li>
+<li><strong>Give them access to all moving parts.</strong> If they&#x27;re teaching a class, let them see the supply closet, the room layout, the catering plan. If they&#x27;re hosting a show, let them sit at the board. Access to components is not a perk — it is a prerequisite for the talent to function.</li>
+<li><strong>Challenge them by asking for their insight on how a process might work more efficiently.</strong> This is a direct way to engage Arranger talent and signal that you value what they see.</li>
+<li><strong>Be clear on the scope of their role.</strong> Are they the owner, or a consultant who can offer input and then step back? Ambiguity about this creates either undercontribution or overreach.</li>
+<li><strong>Share the ultimate goal and the &quot;why.&quot;</strong> Arranger uses the context of the goal to sort what it&#x27;s juggling. Without the destination, the juggling becomes arbitrary.</li>
+<li><strong>Communicate early, often, and consistently.</strong> Arranger needs information to make adjustments — and would rather make small adjustments continuously than large corrections later. Don&#x27;t withhold details to avoid overwhelming them.</li>
+<li><strong>Be upfront about deadlines and what is locked vs. adjustable.</strong> If something cannot change, say so and explain who is counting on it and how it connects to other moving pieces.</li>
+<li><strong>Offer &quot;field trips&quot;</strong> — physical or intellectual — to other parts of the organization that they rely on or that rely on them. This gives Arranger a fuller map of the system they&#x27;re configuring.</li>
+</ul>
+<p><strong>For colleagues:</strong></p>
+<ul class="marker-list">
+<li>Don&#x27;t leave out details for fear of overwhelming them — Arranger can handle complexity; what frustrates them is missing pieces.</li>
+<li>Ask: &quot;What are the most important things you&#x27;re juggling right now?&quot; or &quot;What seems out of place and just needs a better fit?&quot;</li>
+<li>When you want their help, give them access and get out of the way.</li>
+<li>Understand that &quot;I need to borrow your Arranger for a minute&quot; is a legitimate and welcome request.</li>
+</ul>
+<p><strong>Questions that engage Arranger:</strong></p>
+<ul class="marker-list">
+<li>&quot;What part of this do you want to explore first?&quot;</li>
+<li>&quot;How would you configure this if you had full authority?&quot;</li>
+<li>&quot;Is it okay to keep readjusting, or do we need to lock something in?&quot;</li>
+<li>&quot;What do you see that we&#x27;re not seeing?&quot;</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Statistically most likely pair:</strong></p>
+<p><strong>Arranger + Responsibility</strong> — &quot;Constantly seeking out the most efficient path toward commitments.&quot; Responsibility provides the anchoring force (honor what you promised); Arranger provides the adaptive flexibility (find the best way to deliver it). The result is a graceful, dancing execution: we will do what we said we would do, and we&#x27;ll find the best possible way to get there.</p>
+<p><strong>Statistically least likely pair:</strong></p>
+<p><strong>Arranger + Command</strong> — Both have a controlling orientation (variables vs. direction), which may explain why they rarely co-occur. When they do appear together: decisive about the best order, more persuasive than Arranger alone, with the ability to drive multitasking rather than homing in on one thing.</p>
+<p>---</p>
+<p><strong>Combinations that intensify Arranger:</strong></p>
+<p><strong>Arranger + Individualization</strong> (perceptive of individual differences) — Produces the ability to find the right fit for each person <em>and</em> configure them for collective productivity. &quot;Knowing where each person needs to sit on the bus, and being able to assign that seat and move forward.&quot; The talent for seeing people as unique + the talent for configuring them optimally = exceptional team-building capability.</p>
+<p><strong>Arranger + Includer</strong> (ensuring everyone is involved) — Broadens Arranger&#x27;s naturally collaborative reach. Makes the involvement even more comprehensive — ensures nobody is left out of the configuration.</p>
+<p><strong>Arranger + Activator</strong> (impatient to start) — Sees all the moving pieces and gets them moving. The perception (Arranger) + the initiation (Activator) creates rapid, multi-track execution momentum.</p>
+<p>---</p>
+<p><strong>Combinations that moderate Arranger:</strong></p>
+<p><strong>Arranger + Harmony</strong> (seeks consensus, avoids conflict) — Stabilizes the emotional environment around changes Arranger introduces. Change has emotional implications for people; Harmony provides a dampening effect that can smooth transitions.</p>
+<p><strong>Arranger + Focus</strong> (sets direction and stays on it) — Brings singular direction to a naturally flexible approach. Arranger with high Focus looks significantly different: the arranging becomes a means to a clear end rather than an enjoyable process in itself. Narrows the scope of reconfiguration toward the goal.</p>
+<p>---</p>
+<p><strong>Combinations with complementary dynamics:</strong></p>
+<p><strong>Arranger + Strategic</strong> (sorts through alternatives to find the best path) — Both are about finding the best configuration, but Strategic works in the imaginary (possibilities, scenarios, what-ifs) while Arranger works in reality (what&#x27;s here, what&#x27;s moving, what can be touched). Together: the ability to anticipate the best path (Strategic) <em>and</em> execute it in real time as conditions change (Arranger). Mara Hoogerhuis: &quot;I can think ahead about what we should be doing, but it&#x27;s not until I&#x27;m in the classroom that real-time [Arranger] kicks in.&quot;</p>
+<p><strong>Arranger + Maximizer</strong> (takes things from good to excellent) — Arranger provides the sorting mechanism; Maximizer provides the quality standard to sort toward. Helps Arranger move past the pleasure of rearranging toward the best alternative.</p>
+<p><strong>Arranger + Input</strong> (collects and archives information) — Input gathers an ever-expanding library of information. Arranger organizes that library in real time and directs it toward current goals. Together: real-time curation — getting the right information to serve the goal at the right moment.</p>
+<p><strong>Arranger + Communication</strong> (compelled to express ideas verbally) — A common natural pairing. The Communication theme gives Arranger a vehicle to bring people along. Without deliberate use of Communication, Arranger leaders can &quot;go a million miles an hour and just assume that people are coming along&quot; — the speed of mental configuration outpaces the team&#x27;s awareness that the configuration has changed.</p>
+<p><strong>Arranger + Responsibility</strong> — Provides accountability for commitments while Arranger provides flexibility in how they are met. The combination means: we will deliver, and we will find the best way to do it.</p>
+<p>---</p>
+<p><em>Sources: Gallup Theme Thursday, Season 1 (2014, host: Curt Liesveld, guest: Mara Hoogerhuis); Season 2 (2016, host: Micah Lieber); Season 3 (2017, host: Micah Lieber, guest: Angela Beldin Martinez); Season 5 (2019, host: Micah Aaron); Season 6 (2021, host: Micah Lieber).</em></p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

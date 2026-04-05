@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competition · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain infl">Influencing</div>
+    <h1>Competition</h1>
+    <p class="hero-def">People with Competition measure their progress against the performance of others. They strive to win first place and revel in contests.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Competition</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Core definition:</strong> People with Competition measure their progress against the performance of others. They strive to win first place and revel in contests.</p>
+<p>The essence of Competition is <strong>comparison</strong>. It is not the joy of competing — it is the drive to win. &quot;Close only counts in horseshoes and hand grenades.&quot; [S3]</p>
+<p>Competition is externally motivated: the energy comes from having someone else in the race. The classic distinction — a person with Achiever (a theme focused on internal drive and task completion) runs faster when they look at the clock and push for a personal best; a person with Competition runs faster when there is someone in the lane next to them. [S1]</p>
+<p>Competition sits in the <strong>Influencing domain</strong>, not Executing. This is deliberate: winning requires other people. You cannot hold a race alone. The competitive drive is, at its root, a drive to influence and mobilize others toward a shared goal. [S1]</p>
+<p><strong>Prevalence:</strong> Competition ranks 26th–27th out of 34 themes in frequency. About 11% of people have it in their top 5. It appears significantly more often in men (ranked ~11th) than in women (ranked ~30th), though it is by no means exclusive to either. [S1, S2]</p>
+<p><strong>Distinctions from similar themes:</strong></p>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>What drives the scorecard</th></tr></thead><tbody><tr><td><strong>Competition</strong></td><td>&quot;How do I rank compared to others?&quot;</td></tr><tr><td><strong>Achiever</strong> (drive, task completion, internal push)</td><td>&quot;Did I do better than I did before?&quot;</td></tr><tr><td><strong>Significance</strong> (desire to be seen as important)</td><td>&quot;Are others watching me perform?&quot;</td></tr><tr><td><strong>Maximizer</strong> (taking something from good to excellent)</td><td>&quot;How do I polish this to the highest quality?&quot;</td></tr><tr><td><strong>Analytical</strong> (data, evidence, proof)</td><td>&quot;Does the data validate my theory?&quot;</td></tr></tbody></table>
+<p>Competition uses data the same way Analytical does — but the scorecard&#x27;s purpose is to measure competitive position and validate victory, not to test a hypothesis. [S1]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral markers:</strong></p>
+<ul class="marker-list">
+<li>Instinctively notices how others are performing relative to themselves. Automatically sorts, counts, ranks, and measures.</li>
+<li>Frames rules and expectations through the lens of &quot;what do I need to do to win,&quot; not just &quot;what are the requirements.&quot; [S5]</li>
+<li>Keeps score in virtually any context — work, sports, personal hobbies, even yoga (&quot;I win at yoga every Saturday&quot;). [S1]</li>
+<li>Gravitates toward metrics: scorecards, leaderboards, weekly number updates, tracking sheets, finish lines, awards, Fitbit steps. If it can be measured, they are tracking it. [S1]</li>
+<li>Second place feels like a loss. The feeling is visceral, not intellectual.</li>
+<li>Winning and emotion are inseparable. High joy when winning, high pain when losing. [S5]</li>
+<li>Seeks out challenges, tends to &quot;go big or go home.&quot; Avoids situations where winning is not possible — or explicitly declares onlooker/supporter status rather than half-competing. [S1]</li>
+<li>Has a filter for noticing outstanding talent in others — often spots potential in teammates before those teammates see it themselves. [S3]</li>
+<li>Admires champions. Studies top performers obsessively. Reads their biographies, listens to their interviews, follows their metrics. [S1]</li>
+<li>Takes losing personally and uses it as fuel. Michael Jordan quote: &quot;I&#x27;ve been trusted with the game-winning shot 26 times and missed — and that&#x27;s why I keep competing.&quot; [S2]</li>
+</ul>
+<p><strong>In personal life:</strong></p>
+<ul class="marker-list">
+<li>Weighs interest in any activity against their ability to win or reach excellence in it. If they can&#x27;t be top performers, they either pass entirely or consciously reframe themselves as supporters. [S6]</li>
+<li>Can turn almost anything competitive — how fast they climb stairs, who gets to the car first. [S2]</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Benchmark awareness.</strong> When a team or organization starts navel-gazing on internal metrics, the person with Competition brings a lateral scan: how are we doing compared to others in the industry? Where are we trailing? This awareness of relative position is a form of relevance that leaders with other themes often miss. A kindergarten teacher with high Competition was the only person on her teaching team to notice their students were significantly behind other schools in the district — even while individual goals were being met. [S6]</p>
+<p><strong>Energy catalyst.</strong> Competition creates a &quot;forward wake&quot; — the momentum of their drive pulls others along, including people who would not otherwise frame the work as a race. This is particularly powerful in sales, performance-oriented roles, and any environment where the stakes are visible. [S6]</p>
+<p><strong>Celebration of wins.</strong> People with Competition feel victory deeply, which makes their celebration of a team&#x27;s shared wins authentic and energizing. They cheer louder for other competitors than most other themes would, because they recognize the grit required to win. [S1, S6]</p>
+<p><strong>Recognition radar.</strong> Because they are always tracking excellence, they notice and acknowledge high performers — quantifiably, visibly, and often before formal systems catch up. This makes them naturals at peer recognition and mentorship. [S3]</p>
+<p><strong>Resilience under pressure.</strong> Competition brings an acceptance of discomfort as part of the journey. &quot;Nothing hurts when you win.&quot; They keep going past the point where others stop, because stopping before the win is simply not a considered option. [S6]</p>
+<p><strong>Leader contribution:</strong> A manager with Competition focuses attention on what a team has to offer now and in the future, creates clarity around benchmarks, and communicates hope through measured progress — &quot;here&#x27;s how tomorrow will be better than today.&quot; [S3]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Raw Competition</strong> (uninformed, underdeveloped) looks like:</p>
+<ul class="marker-list">
+<li><strong>Sore loser.</strong> Loss is felt so intensely that it spills into public behavior — tantrums, complaints, blame. The John McEnroe pattern: brilliant competitor, destructive when losing. [S1]</li>
+<li><strong>Sore winner.</strong> Rubbing the win in — the need to make sure the other person knows they lost. [S1]</li>
+<li><strong>Withdrawal from unwinnable situations.</strong> If they don&#x27;t see a path to winning, they disengage entirely — crossing arms, calling the game rigged, refusing to play. This can look like being &quot;difficult&quot; or uncooperative. [S2]</li>
+<li><strong>&quot;That&#x27;s not fair&quot; fixation.</strong> In raw form, the comparison radar fixates on perceived inequities rather than competitive edges. [S2]</li>
+<li><strong>Competing against direct reports.</strong> This is one of the most damaging failure modes in a manager role. If you&#x27;re racing against the people you&#x27;re supposed to develop, you destroy trust and suppress their performance. [S1]</li>
+<li><strong>Losing energy around mediocrity.</strong> When the environment provides no real competition, the person with Competition can disengage visibly, which reads as arrogance or dismissiveness. [S1]</li>
+</ul>
+<p><strong>Blind spots (structural risks even in mature Competition):</strong></p>
+<ul class="marker-list">
+<li><strong>Avoidance of new territory.</strong> Because Competition quickly sorts to arenas where winning is possible, it can steer away from new skills, new roles, or new relationships where beginner status is unavoidable. Growth opportunities get skipped because they feel unwinnable. [S5]</li>
+<li><strong>Narrow definition of &quot;the field.&quot;</strong> If the comparison set is too small (only internal colleagues) or too large (everyone who has ever done this), the competitive calibration breaks down. [S5]</li>
+<li><strong>Costs they don&#x27;t see.</strong> The drive to win can push past boundaries others are not willing to cross. Mature Competition means knowing explicitly what costs you are not willing to pay to win. [S5]</li>
+<li><strong>Masking poor behavior as theme.</strong> The theme does not justify destructive conduct. When behavior is genuinely harmful to others, it is a person problem that needs to be addressed directly — not something to explain away through a strengths lens. [S6]</li>
+</ul>
+<p><strong>Note:</strong> Poor behavior should not be masked by the theme. If there is destructive conduct, address it directly. The competitive drive is the raw material; character determines what is done with it. [S6]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Understand why it is an Influencing theme.</strong> You cannot win alone. The competitive energy is most powerful when directed at mobilizing others — teammates, partners, the organization — toward the goal. Accepting that you need other people to win is not a constraint; it is the structural logic of how Competition creates maximum impact. [S1]</p>
+<p><strong>Study the best, systematically.</strong> Competition develops naturally when it has high-quality targets. Identify the best performer in your field — or in a field adjacent to yours — and track them: their background, their metrics, their decisions, their trajectory. This is not stalking; it is the talent operating at its sharpest. One senior executive with Competition proactively researched the top asset manager at a competing firm, attended her earnings calls, and used her performance as his personal benchmark — even though they had never met. [S3]</p>
+<p><strong>Define the playing field explicitly.</strong> When entering a new domain where winning is not yet possible, reframe the reference group: &quot;I&#x27;m not comparing myself to everyone who has ever done this — I&#x27;m competing against other people who are also new to it.&quot; This preserves the competitive drive without triggering the &quot;if I can&#x27;t win, I won&#x27;t play&quot; withdrawal. [S5]</p>
+<p><strong>Identify your competition champions.</strong> Spend time with other people who are as excited about winning as you are — people who put in the same effort and feel the same intensity. You will push each other to higher performance. These relationships often become the most meaningful ones in your career. [S1, S5]</p>
+<p><strong>Build a tolerance for the long game.</strong> Early in a career, Competition often wants quick wins. Development means learning to sustain competitive drive across multi-year timelines — recognizing that some competitions take years to win, and maintaining the tracking and preparation across that time. [S3]</p>
+<p><strong>Find companions for your weak spots.</strong> Competition paired with Developer (a theme focused on noticing incremental growth in others) means you have someone who can help you see progress even when you have not yet won. This is essential for managing loss productively. Competition paired with Positivity (energized by what&#x27;s good, celebrates others) amplifies the celebration of wins and softens the impact of setbacks. [S2]</p>
+<p><strong>Replace &quot;winning&quot; with &quot;excellence&quot; as a communication frame</strong> — not as a permanent substitution (they are not the same thing), but as a way to make the drive legible to people who are not motivated by competition. This is a language choice, not a change of motivation. [S6]</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Competition</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>For managers:</strong></p>
+<ul class="marker-list">
+<li><strong>Give them a scoreboard.</strong> Make success measurable and visible — not just &quot;do your best&quot; but &quot;here is what top performance looks like, here is where you stand, here is who you are competing against.&quot; Without a clear external comparison point, the competitive drive has no traction. [S1]</li>
+<li><strong>Provide external benchmarks.</strong> Show them where the best performers in the industry are. Share data, not just goals. &quot;Here is how the best team in our sector performs on this metric&quot; activates the competitive engine. [S3]</li>
+<li><strong>Make space for their reaction to losing.</strong> People with Competition feel loss in their spine. If you do not create a safe space for that reaction, it will either explode publicly or go underground and fester. Ask how they want to process a loss. Offer them space or support based on their preference. [S3]</li>
+<li><strong>Ask the right questions.</strong> &quot;What are you tracking? Where are you currently top of your game? Where are you gaining on top performers? What are you winning today? Who are your role models?&quot; [S6]</li>
+<li><strong>Inspire them with stories of excellence.</strong> Books, podcasts, autobiographies, and connections with mentors — especially about high performers in their domain. This is not motivational fluff; it is fuel for the competitive drive. [S6]</li>
+<li><strong>Leverage their talent-spotting.</strong> They notice excellence in others quantifiably, often before others see it. Use this in talent development, mentorship pairing, and team assessment. [S3]</li>
+<li><strong>Be direct if behavior becomes destructive.</strong> The theme does not excuse poor conduct. Address the behavior separately from the talent. [S6]</li>
+</ul>
+<p><strong>For colleagues and partners:</strong></p>
+<ul class="marker-list">
+<li><strong>Share the win.</strong> A team win in which they played a key role is more energizing to them than a personal win they achieved alone. Frame shared victories as victories.</li>
+<li><strong>Tell them who you are competing against.</strong> They understand the world through comparison. If you want their focused energy, show them the field.</li>
+<li><strong>Don&#x27;t suppress the drive.</strong> Redirecting competitive energy toward an external competitor (another team, another company, a market benchmark) is far more effective than trying to eliminate it.</li>
+<li><strong>Know that their cheering is real.</strong> When someone with Competition gives you a standing ovation for your award, they mean it — they track excellence, so their recognition carries weight.</li>
+<li><strong>Don&#x27;t make the competition zero-sum.</strong> The people with Competition who develop best prefer competitions where everyone can be a winner — where the goal is raising overall performance, not defeating specific people. [S1]</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Most likely statistical pair: Achiever</strong> (internal drive, task completion, need to feel productive)</p>
+<p>Achiever + Competition is highly common and extremely productive in performance-oriented environments. Achiever provides the internal engine (task completion, consistency, work ethic); Competition provides the external calibration (how do I rank? am I winning?). Together they produce what one coach called &quot;a productive scorekeeper&quot; — someone who tracks milestones with precision <em>and</em> monitors competitive position simultaneously. In Mario Kart terms: Competition keeps you racing; Achiever is the speed boost you run over at every checkpoint. [S2]</p>
+<p><strong>Least likely statistical pair: Connectedness</strong> (belief that everything is connected, that there are no coincidences, that we are all part of something larger)</p>
+<p>These themes have opposing locus of control assumptions: Competition is strongly internal (&quot;I control my fate, I can win through effort&quot;), while Connectedness is more external (&quot;things happen for reasons beyond my control&quot;). When they coexist, the result is &quot;a selective social advocate&quot; — someone who competes with purpose and is acutely aware of how their winning ripples into a larger impact. Their victories mean something beyond the leaderboard. [S2]</p>
+<p><strong>Developer</strong> (sees and nurtures incremental growth in others)</p>
+<p>Developer fills the critical blind spot in Competition: noticing progress even when you have not yet won. Competition can struggle to find value in a performance that did not end in first place. Developer says &quot;here is what you did better than before.&quot; This pairing is especially powerful for managers who have high Competition — Developer keeps them from dismissing team members who are improving but not yet at the top. [S2]</p>
+<p><strong>Positivity</strong> (enthusiasm, ability to see the best in situations)</p>
+<p>Positivity amplifies the celebratory side of Competition. It also softens the landing after a loss — not by dismissing the pain, but by reorienting toward what comes next. A person with Competition and Positivity comes across as contagious rather than intimidating; the drive feels like an invitation rather than a threat. [S2]</p>
+<p><strong>Strategic</strong> (pattern recognition, ability to find the best route to a goal)</p>
+<p>Strategic answers the question Competition is always implicitly asking: &quot;Where can we win?&quot; It helps direct competitive energy toward the arenas where the odds are best and the prize is worth the effort. Together they produce disciplined competitive prioritization rather than undifferentiated aggression. [S2]</p>
+<p><strong>Woo</strong> (winning people over, comfort with strangers, social ease)</p>
+<p>Since Competition needs others to win, Woo helps build the social access required. The person can connect quickly with competitors, mentors, and potential allies — and turn rivals into sources of learning. This combination makes the competitive drive more collaborative in execution. [S1]</p>
+<p><strong>Maximizer</strong> (taking something from good to excellent)</p>
+<p>These two are sometimes confused, but they are structurally different. Maximizer asks &quot;how do I get this to the highest quality?&quot; — it is not inherently comparative. Competition asks &quot;how do I do better than the person next to me?&quot; The pairing is powerful in quality-driven competitive environments (elite sports, top-tier professional services) where both dimensions — absolute excellence and relative ranking — matter simultaneously. [S6]</p>
+<p>---</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

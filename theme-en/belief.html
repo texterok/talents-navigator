@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belief · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain exec">Executing</div>
+    <h1>Belief</h1>
+    <p class="hero-def">People with high Belief have certain core values that are unchanging, and out of those values emerges a defined purpose for their life. These values directly fuel action — they are not just held internally but drive execution.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Belief</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Core definition:</strong> People with high Belief have certain core values that are <strong>unchanging</strong>, and out of those values emerges a defined purpose for their life. These values directly fuel action — they are not just held internally but drive execution.</p>
+<p><strong>Domain:</strong> Executing. The key distinction: Belief doesn&#x27;t just give you values — it makes your values the engine that gets things done. You act because your values demand it, not because you committed to someone else (Responsibility) or because the task is urgent.</p>
+<blockquote class="md-quote">&quot;It&#x27;s not just that you have great values — it&#x27;s that your values are what drive you out the door.&quot; [S2]</blockquote>
+<p><strong>Prevalence:</strong> 11% of Gallup&#x27;s database has Belief in the top five — roughly 1 in 10 people.</p>
+<h3>Distinction from similar themes</h3>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>What drives execution</th></tr></thead><tbody><tr><td><strong>Belief</strong></td><td>Core values — &quot;I do this because it&#x27;s right by what I hold most important&quot;</td></tr><tr><td><strong>Responsibility</strong></td><td>Commitment — &quot;I do this because I said I would and people are counting on me&quot;</td></tr><tr><td><strong>Consistency</strong></td><td>Reliable habits — &quot;I do this the same way because it works&quot;</td></tr><tr><td><strong>Significance</strong> (influencing)</td><td>Recognition — finds mission <em>in</em> the work; Belief finds work that <em>lives out</em> the mission</td></tr><tr><td><strong>Focus</strong> (executing)</td><td>Task intensity — passion on the task itself, not on the purpose behind it</td></tr></tbody></table>
+<p><strong>Clarification for those without Belief:</strong> Not having Belief in your top five doesn&#x27;t mean you lack values. The difference is that for high-Belief people, their values are wired directly into their task list — touching those values immediately affects how they execute.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p><strong>Behavioral signals:</strong></p>
+<ul class="marker-list">
+<li>Has a clear internal sense of right and wrong on specific issues — not necessarily across all topics, but on the things that matter most to them</li>
+<li>Experiences rapid energy shifts when values are honored or violated — colleagues describe this as a &quot;spinal tap&quot; response: instant, visceral</li>
+<li>Knows which way to go when value-laden choices are presented — a sense of certainty, not analysis</li>
+<li>Expresses &quot;heck yes&quot; or &quot;absolutely not&quot; — little gray zone on core matters</li>
+<li>Works harder and longer when the work aligns with their values; effort doesn&#x27;t feel like struggle in those conditions</li>
+<li>Sees themselves as a spokesperson, conduit, or representative for a cause or way of being</li>
+<li>Seeks integration — wants to be the same person at work and at home; resists contexts that force compartmentalization</li>
+<li>Often volunteers, serves on boards, or takes on unpaid work when it aligns with their mission</li>
+<li>Can go under the radar until activated — not an always-scanning influencing theme; fires up when their values are hit</li>
+</ul>
+<p><strong>What belief looks like before it&#x27;s named:</strong> Rapid energy change. &quot;Heck yes.&quot; &quot;Absolutely not.&quot; Staying in a role for decades because the mission aligns. Leaving a role abruptly due to &quot;missional drift&quot; — when the organization departs from the values they believed in.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>For the team</h3>
+<ul class="marker-list">
+<li><strong>Conscience of the group:</strong> Raises the question &quot;What should we say yes to that&#x27;s truly right?&quot; — and makes explicit what the team shouldn&#x27;t take on.</li>
+<li><strong>Missional anchor:</strong> Prevents mission drift. When opportunities feel distracting, Belief keeps the team grounded in what it stands for.</li>
+<li><strong>Simplifier:</strong> Narrows executing options to what&#x27;s essential for the mission. Reduces noise by filtering through values.</li>
+<li><strong>Safe space creator:</strong> The clarity about what is and isn&#x27;t acceptable creates predictable boundaries that others can execute within.</li>
+<li><strong>Talent magnet:</strong> People are drawn to conviction. The certainty and stability of high Belief creates trust and attracts others who want to work toward something meaningful.</li>
+</ul>
+<h3>For leadership</h3>
+<ul class="marker-list">
+<li>Limits tolerance for frivolous initiatives — leaders with high Belief don&#x27;t have time for work that isn&#x27;t important.</li>
+<li>Acts as a compass during change — keeps people anchored to why the work matters.</li>
+<li>Reads passion in others: employees, peers, customers. Can notice and speak the language of purpose.</li>
+<li>Builds trust by publicly outlining which behaviors align with the mission and which don&#x27;t — before problems arise, not after.</li>
+<li>Can &quot;loan their passion&quot; to others who need energy or direction.</li>
+<li>Inspires hope by linking day-to-day tasks to larger impact.</li>
+</ul>
+<p><strong>Important distinction for measurement:</strong> Belief is internally motivated. Measuring progress for a high-Belief person by counting followers, clients, or influence on others misses the point. What matters is their own effort toward a value-driven goal.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Blind spots</h3>
+<ul class="marker-list">
+<li><strong>Viewing others through own values:</strong> Can miss individual differences by applying their value filter to everyone. The result is judgment rather than curiosity.</li>
+<li><strong>Shutdown when values are confronted:</strong> When core values feel threatened, Belief can become a dam — blocking flow, shutting down rather than engaging.</li>
+<li><strong>In/out-group dynamics in leadership:</strong> High clarity about &quot;our values&quot; can inadvertently create a sense of who belongs and who doesn&#x27;t.</li>
+</ul>
+<h3>Raw vs. mature Belief</h3>
+<p>This is the most operationally useful distinction in all five transcripts:</p>
+<table class="maturity-table"><thead><tr><th>Raw Belief</th><th>Mature Belief</th></tr></thead><tbody><tr><td>Moves <strong>against</strong> those with differing values</td><td>Moves <strong>toward</strong> — engages those with different values</td></tr><tr><td>Defined by what it opposes</td><td>Defined by what it stands for</td></tr><tr><td>Judgmental; guarded; closes down</td><td>Grounded; stable; open to challenge</td></tr><tr><td>Perceived as stubborn, old-fashioned, self-righteous</td><td>Perceived as principled, trustworthy, certain</td></tr><tr><td>Tries to convince others to adopt its values</td><td>Shares values clearly without requiring adoption</td></tr><tr><td>Fights for everything</td><td>Chooses battles deliberately</td></tr></tbody></table>
+<p><strong>The anchor metaphor:</strong> An anchor can drag a boat down, or hold it steady in a storm. The same Belief — raw — is deadweight; mature — is ballast.</p>
+<p><strong>Interpersonal risk:</strong> Two people with high Belief and different values can clash severely without ever naming what they&#x27;re actually disagreeing about. Once values are surfaced and compared, they often discover more alignment than expected — or at least understand the actual source of conflict.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop Belief</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><p>These are actions for people who have Belief in their profile and want to move it from raw to mature:</p>
+<p><strong>1. Name your values explicitly.</strong></p>
+<p>Belief is fueled by &quot;what is right&quot; — but unnamed values can&#x27;t be used intentionally. Do a values card sort (pick top 5 non-negotiables from a set of ~25 cards). Repeat the exercise annually. Track which values remain constant across contexts — those are your core. The ones that change tell a story about what was situationally important.</p>
+<p><strong>2. Give your values a voice.</strong></p>
+<p>Belief doesn&#x27;t have to preach — but it does have to communicate. Others can&#x27;t work with what they can&#x27;t see. Articulate where you&#x27;re coming from so colleagues can understand your reactions, predict your engagement, and partner with you effectively.</p>
+<p><strong>3. Shift from &quot;against&quot; to &quot;for.&quot;</strong></p>
+<p>Raw Belief expends energy screaming &quot;that&#x27;s wrong.&quot; Mature Belief leads with &quot;here&#x27;s what is right.&quot; Practice articulating what you stand for, not only what you won&#x27;t tolerate.</p>
+<p><strong>4. Connect your daily work to mission impact.</strong></p>
+<p>Belief hungers for progress toward a value-driven goal. Build a habit: whenever you receive a task, ask &quot;how does this connect to our mission? How does it affect the people we serve?&quot; If possible, get frontline exposure to see the direct residual effect of your work on people.</p>
+<p><strong>5. Use a &quot;what&#x27;s standing out&quot; approach to priorities.</strong></p>
+<p>If you feel out of alignment, the signal is real — you probably are. Instead of starting with &quot;what&#x27;s outstanding&quot; (backlog), start with &quot;what&#x27;s standing out&quot; (what matters most). Give yourself permission to prioritize the most important things, not just the unfinished things.</p>
+<p><strong>6. Align your work context to your values — actively.</strong></p>
+<p>The goal is not work-life balance. It&#x27;s integration — ensuring that your external work aligns with your internal mission. Seek projects and roles where this alignment exists. Proactively name the misalignments so you can manage them rather than be blindsided by them.</p>
+<p><strong>7. Learn to choose battles without letting go of values.</strong></p>
+<p>Values are different from priorities: priorities are <em>what</em> you do; values are <em>why</em>. Mature Belief doesn&#x27;t compromise values — it avoids placing itself in value-violating situations in the first place, rather than escalating every conflict.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Belief</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>For managers</h3>
+<p><strong>To understand them:</strong></p>
+<ul class="marker-list">
+<li>Ask: &quot;What brought you to this role?&quot; &quot;What will you always make time for?&quot; &quot;What&#x27;s the most important thing we need to get right?&quot;</li>
+<li>Watch for sudden energy shifts — rapid &quot;absolutely yes&quot; or &quot;absolutely not&quot; are signals that a value has been touched.</li>
+</ul>
+<p><strong>To engage them:</strong></p>
+<ul class="marker-list">
+<li>Connect team goals to what the team stands for, not just to business outcomes. &quot;What difference are we trying to make?&quot; is more motivating than &quot;hit the number.&quot;</li>
+<li>Discuss organizational values explicitly — not as posters, but as real questions: &quot;Are we living them? Are we drifting?&quot;</li>
+<li>Align their specific role and tasks to the parts of the organization&#x27;s mission that genuinely inspire them.</li>
+</ul>
+<p><strong>To measure their progress:</strong></p>
+<ul class="marker-list">
+<li>Don&#x27;t measure only external influence (number of followers, clients, conversions). Measure effort toward value-driven goals.</li>
+<li>Help them build a way to track progress against values-aligned outcomes — a decision matrix or set of questions connecting their work to mission impact.</li>
+</ul>
+<p><strong>To retain them:</strong></p>
+<ul class="marker-list">
+<li>They leave when they experience &quot;missional drift&quot; — when the organization&#x27;s actions diverge from its stated values or from their personal values. Transparency about organizational direction and values alignment is a retention lever, not just an engagement signal.</li>
+</ul>
+<h3>For colleagues</h3>
+<ul class="marker-list">
+<li>When they become &quot;judgy,&quot; get curious rather than defensive. Replace wall-with-wall with a question: &quot;What&#x27;s important to you here?&quot;</li>
+<li>Understand that apparent inflexibility is usually a value being triggered — it&#x27;s not stubbornness for its own sake.</li>
+<li>Be willing to share your own non-negotiables. Reciprocal transparency creates the trust they respond to.</li>
+<li>Mirror their language back to them — pick up on the words they repeat and use them in your questions.</li>
+<li>Trust their sense that something is off. Their intuition toward execution is real data.</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Most common pairing</h3>
+<p><strong>Belief + Responsibility</strong> (highest statistical frequency, both others-oriented):</p>
+<p>Both themes have a values orientation. Together: a steward of both mission and commitments. Belief drives what you say yes to; Responsibility makes sure you honor those yeses. &quot;I say yes to tasks that align with my values, and a core value of mine is to honor my commitments.&quot; [S5]</p>
+<h3>Complementary pairings (different strengths, high synergy)</h3>
+<p><strong>Belief + Futuristic</strong> (vision for thinking themes):</p>
+<p>Belief can get stuck executing the same value-aligned work repeatedly because that&#x27;s where the comfort is. Futuristic provides a vision: where might these values land through change? How might the mission expand in the future?</p>
+<p><strong>Belief + Context</strong> (reflecting/thinking theme):</p>
+<p>Context adds depth and credibility — the history and stories behind the values. Helps others understand where the mission comes from and why it matters. Turns Belief&#x27;s conviction into a case.</p>
+<p><strong>Belief + Empathy</strong> (relationship-building theme):</p>
+<p>Belief has radar for mission and purpose. Empathy has radar for other people&#x27;s reactions to that mission. Together: identifies who will be energized by the values and who might be alienated by them — before the friction surfaces.</p>
+<p><strong>Belief + Woo</strong> (influencing theme — Winning Others Over):</p>
+<p>Softens the edge. Woo can win others over not just to the person but to the cause. Result: a &quot;charming missionary&quot; — compelling rather than confrontational.</p>
+<p><strong>Belief + Command</strong> (influencing theme — least common pair, ~2%):</p>
+<p>Sharpens the edge. Command amplifies the push to act when something is wrong. Together: &quot;This is right, AND we&#x27;re going to do something about it.&quot; Rare combination. When present, it produces a strong, directive advocate.</p>
+<h3>Unlikely pairings (appear together ~2% of the time each)</h3>
+<p><strong>Belief + Significance</strong> (influencing):</p>
+<p>Functionally similar outputs — both mission-driven — but opposite mechanics. Significance finds mission in the work (recognition and impact drive the search for meaning). Belief finds work that lives out a pre-existing mission. Their drivers don&#x27;t reinforce each other, which is why they rarely co-occur.</p>
+<p><strong>Belief + Focus</strong> (executing):</p>
+<p>Both bring intensity and passion. But Focus directs intensity at the task itself; Belief directs it at the purpose behind the task. The tasks they prioritize and how they sustain energy differ fundamentally.</p>
+<p><strong>Belief + Command</strong> (influencing):</p>
+<p>Belief is internal and executing; Command is external and influencing. One executes from values; the other directs others toward action. Functionally different orientations — which makes them rare but powerful when combined.</p>
+<p>---</p>
+<p><em>Compiled from Gallup Theme Thursday transcripts, Seasons 1–6 (2015–2020). Hosts: Kurt Liefeld (S1), Micah McArthur-Burton (S2–S3, S5–S6). Featured practitioners: Kelly Winkler, Tim Hodges (S1), Jane Miller / COO of Gallup (S3).</em></p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>

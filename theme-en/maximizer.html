@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maximizer · CliftonStrengths</title>
+<base target="_parent">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--bg-card:#FFFFFF;--bg-accent:#F0EDE6;--bg-hl:#E8F4E8;
+  --text:#1A1A1A;--text2:#5A5A5A;--text3:#8A8A8A;
+  --accent:#2D6A4F;--al:#40916C;--all:#D8F3DC;
+  --amber:#B5651D;--amb-bg:#FFF3E0;
+  --red:#C44536;--red-bg:#FDECEA;
+  --exec:#6D28D9;--exec-bg:#F0ECFF;
+  --infl:#C2590A;--infl-bg:#FFF3E8;
+  --rel:#0B7A55;--rel-bg:#E6F7F0;
+  --strat:#1856C7;--strat-bg:#EBF1FF;
+  --border:#E5E2DB;--bl:#F0EDE6;
+  --sh:0 1px 3px rgba(0,0,0,.04);--sh2:0 4px 12px rgba(0,0,0,.06);
+  --r:12px;--rs:8px;--rl:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:44px 28px 36px;margin-bottom:32px;background:linear-gradient(135deg,#F8FFF8 0%,#F0EDE6 100%);border-radius:var(--rl);border:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,var(--all) 0%,transparent 70%);opacity:.6}
+.hero-domain{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.hero-domain.exec{color:var(--exec);background:var(--exec-bg)}
+.hero-domain.infl{color:var(--infl);background:var(--infl-bg)}
+.hero-domain.rel{color:var(--rel);background:var(--rel-bg)}
+.hero-domain.strat{color:var(--strat);background:var(--strat-bg)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;letter-spacing:-1px;margin-bottom:6px;position:relative}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--text2);margin-bottom:18px}
+.hero-def{font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.75;position:relative}
+.section{margin-bottom:12px}
+.section-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;user-select:none;transition:all .2s;box-shadow:var(--sh)}
+.section-header:hover{border-color:var(--al);box-shadow:var(--sh2)}
+.section-header.open{border-radius:var(--r) var(--r) 0 0;border-bottom-color:var(--bl);background:linear-gradient(to right,#F8FFF8,var(--bg-card))}
+.section-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg-accent);border-radius:var(--rs);flex-shrink:0}
+.section-header.open .section-icon{background:var(--all)}
+.section-title-group{flex:1}
+.section-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1px}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text)}
+.section-chevron{width:20px;height:20px;transition:transform .3s;color:var(--text3);flex-shrink:0}
+.section-header.open .section-chevron{transform:rotate(180deg);color:var(--accent)}
+.section-body{display:none;padding:24px 20px 28px;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh)}
+.section-body.open{display:block;animation:sd .25s ease}
+@keyframes sd{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+h3{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--text);margin:24px 0 10px}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:700;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--text2);font-size:14px;line-height:1.7}
+strong{color:var(--text);font-weight:600}
+em{font-style:italic}
+blockquote.md-quote{border-left:3px solid var(--al);padding:10px 16px;margin:12px 0;background:var(--all);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;color:var(--text2);font-size:14px}
+ul.marker-list{list-style:none;margin:10px 0 16px}
+ul.marker-list li{padding:8px 0 8px 24px;position:relative;color:var(--text2);font-size:14px;border-bottom:1px solid var(--bl)}
+ul.marker-list li:last-child{border-bottom:none}
+ul.marker-list li::before{content:'';position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--all);border:2px solid var(--accent);border-radius:50%}
+table.maturity-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 20px;font-size:13px;border-radius:var(--rs);overflow:hidden;border:1px solid var(--border)}
+table.maturity-table thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+table.maturity-table thead th:first-child{background:var(--bg-accent);color:var(--text2)}
+table.maturity-table thead th:nth-child(2){background:var(--red-bg);color:var(--red)}
+table.maturity-table thead th:nth-child(3){background:var(--bg-hl);color:var(--accent)}
+table.maturity-table td{padding:10px 14px;border-bottom:1px solid var(--bl);color:var(--text2);vertical-align:top;line-height:1.5;font-size:13px}
+table.maturity-table tr:last-child td{border-bottom:none}
+table.maturity-table td:first-child{font-weight:600;color:var(--text);background:#FDFCFA}
+@media(max-width:600px){
+  .page{padding:20px 14px 40px}
+  .hero{padding:32px 16px 28px}
+  .hero h1{font-size:40px}
+  .section-header{padding:14px 16px}
+  .section-body{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-domain infl">Influencing</div>
+    <h1>Maximizer</h1>
+    <p class="hero-def">People exceptionally talented in the Maximizer theme focus on strengths as a way to stimulate personal and group excellence. They seek to transform something strong into something superb.</p>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header open" onclick="toggleSection('s1')">
+      <div class="section-icon">🧭</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">What is Maximizer</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body open"><p><strong>Official short definition:</strong> People exceptionally talented in the Maximizer theme focus on strengths as a way to stimulate personal and group excellence. They seek to transform something strong into something superb.</p>
+<p><strong>Core mechanics:</strong> Maximizer is oriented toward quality — not fixing what&#x27;s broken, but amplifying what already works. The psychological driver is the recognition that taking something from below average to slightly above average requires significant effort and delivers minimal satisfaction. Taking something already strong to superb requires the same effort — but for a Maximizer, that effort is energizing rather than draining.</p>
+<p><strong>Domain:</strong> Influencing. Maximizer operates through its effect on others — it thrives when it&#x27;s rubbing off on people, raising collective standards, and pressing teams toward world-class outcomes.</p>
+<p><strong>Prevalence:</strong> Approximately 17% of people have Maximizer in their top five.</p>
+<h3>Distinction from similar themes</h3>
+<table class="maturity-table"><thead><tr><th>Theme</th><th>Core drive</th><th>Key difference</th></tr></thead><tbody><tr><td><strong>Maximizer</strong></td><td>Excellence — transforming good into superb</td><td>Compares to an internal standard of quality</td></tr><tr><td><strong>Competition</strong> (focuses on being #1 relative to others)</td><td>Victory — beating others</td><td>Compares to other people; interested in winning, not quality per se</td></tr><tr><td><strong>Significance</strong> (desires work that others see as important)</td><td>Meaning — being seen as important</td><td>Driven by external recognition; Maximizer is driven by the quality of the work itself</td></tr><tr><td><strong>Activator</strong> (impatient to begin)</td><td>Action — getting things moving</td><td>&quot;Let&#x27;s get going&quot;; Maximizer says &quot;let&#x27;s make this even better&quot;</td></tr><tr><td><strong>Focus</strong> (single-minded toward a goal)</td><td>Goal completion</td><td>Focus concentrates on the goal; Maximizer concentrates on excellence</td></tr><tr><td><strong>Developer</strong> (believes everyone can grow incrementally)</td><td>Growth — incremental improvement</td><td>Developer celebrates every small step; Maximizer looks for promise and potential, not just progress</td></tr><tr><td><strong>Restorative</strong> (energized by fixing problems)</td><td>Repair — bringing something back to working state</td><td>Restorative is attracted to what&#x27;s broken; Maximizer is impatient with it</td></tr><tr><td><strong>Achiever</strong> (strong drive to accomplish)</td><td>Productivity — doing more</td><td>Achiever adds stamina and work ethic; Maximizer adds the quality lens — not just more, but better</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">How It Shows Up</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Behavioral patterns</h3>
+<ul class="marker-list">
+<li>Drawn to winning teams and high-performing organizations; finds most energy when working with what&#x27;s already excellent</li>
+<li>Can see ways a project can be improved even when others already consider it finished</li>
+<li>Spots the strengths of others faster than those people spot them themselves — and moves quickly to help exploit those strengths</li>
+<li>Operates in constant &quot;QA mode&quot;: while others celebrate completion, the Maximizer is already thinking about how the next version could be better</li>
+<li>Naturally sorts — proactively evaluating which people, ideas, and projects have the greatest potential to be outstanding, and filtering out those that don&#x27;t</li>
+<li>Tends to specialize over time, narrowing focus toward what they do best rather than pursuing breadth</li>
+<li>Strongly oriented toward ROI: given limited time and resources, wants to invest where the return will be greatest</li>
+</ul>
+<h3>Characteristic phrases / inner voice</h3>
+<ul class="marker-list">
+<li>&quot;Whatever is worth doing is worth overdoing&quot;</li>
+<li>&quot;This is good — here&#x27;s how it could be great&quot;</li>
+<li>&quot;Why focus on that if it&#x27;s broken? Let&#x27;s work on what&#x27;s already working&quot;</li>
+<li>&quot;Good enough is not good enough&quot;</li>
+</ul>
+<h3>Raw vs. mature expression</h3>
+<table class="maturity-table"><thead><tr><th>Dimension</th><th>Raw Maximizer</th><th>Mature Maximizer</th></tr></thead><tbody><tr><td><strong>Selectivity</strong></td><td>Dismissive — ignores things that aren&#x27;t already good</td><td>Selective — proactively sorts to find potential</td></tr><tr><td><strong>Standards</strong></td><td>Everything needs to be the best (exhausting, leads to chronic disappointment)</td><td>What&#x27;s good can be better — applies excellence selectively where it matters most</td></tr><tr><td><strong>Satisfaction</strong></td><td>Never satisfied — always tinkering</td><td>Notices and expresses improvement; acknowledges how far things have come</td></tr><tr><td><strong>Social impact</strong></td><td>Snobbish — closed off, high standards applied unilaterally</td><td>Supportive — shares the path to excellence, brings others along</td></tr></tbody></table>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <div class="section-icon">🔥</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Value for Team and Organization</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><ul class="marker-list">
+<li><strong>Standard-setter:</strong> Maximizer&#x27;s presence on a team raises the floor — people who work alongside a Maximizer know good enough won&#x27;t be accepted, which inspires more careful, higher-quality work</li>
+<li><strong>Strength spotter:</strong> Sees potential in people, processes, and deliverables that others miss — what a Maximizer calls &quot;excellence goggles&quot;</li>
+<li><strong>Finisher / quality gate:</strong> Naturally suited as the final step before any work is declared done; passing your best projects through a Maximizer before calling them final consistently surfaces improvements</li>
+<li><strong>Talent magnet:</strong> Because Maximizer notices and names what&#x27;s most promising, people feel seen and valued around a strong Maximizer — which attracts high performers who want to be recognized and developed</li>
+<li><strong>Reframe from fixing to building:</strong> Without a Maximizer, teams tend to carry broken pieces around with the hope of someday fixing them. Maximizer helps the team see the value in letting go of what isn&#x27;t working and investing that energy into what is</li>
+<li><strong>Best-practice orientation:</strong> Naturally studies top performers, benchmarks, and exemplars — and translates those insights into actionable improvements for the team</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Dark Side / Risks</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Moving goalposts</h3>
+<p>Maximizer sees improvement opportunities constantly — including after others consider something complete. This can come across as constantly moving the goalposts or &quot;adding a mile to the end of the marathon.&quot; Teams working with a Maximizer may feel they can never satisfy the standard.</p>
+<h3>Opportunity cost of perfection</h3>
+<p>Maximizer can see opportunities for excellence everywhere. If they pursue all of them, they run out of time and resources. The same drive that makes something great can also delay shipping, frustrate partners, and block progress.</p>
+<h3>Never satisfied (stability problem)</h3>
+<p>The internal state of a Maximizer is perpetual improvement mode. For people around them — especially those implementing decisions — this &quot;we&#x27;re done for now&quot; quality reads as &quot;he&#x27;ll change it again next week.&quot; This creates uncertainty and can erode trust in stable commitments.</p>
+<h3>Impatience with the broken</h3>
+<p>Maximizer has little appetite for fixing what doesn&#x27;t work. In environments with real operational problems, this can lead to selective blindness — focusing energy on polishing strong areas while broken systems go unaddressed.</p>
+<h3>Dismissiveness in raw form</h3>
+<p>An undeveloped Maximizer may be perceived as arrogant or exclusive — someone who only wants to engage with the best and doesn&#x27;t have patience for anything mediocre. This can damage relationships and team cohesion.</p>
+<h3>High expectations applied without differentiation</h3>
+<p>When leading others, Maximizer&#x27;s internal standard of &quot;never good enough&quot; — which works fine as a personal drive — becomes problematic if applied to others without communication. Team members may feel that no matter how hard they try, it won&#x27;t be enough.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <div class="section-icon">🌿</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">How to Develop It</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Maximize your Maximizer — be selective</h3>
+<p>You cannot maximize everything. Identify what you actually want to be known for and where the investment of excellence is justified. For everything outside that domain: either say no, or deliberately remove personal ownership so you&#x27;re not trapped by your own standards.</p>
+<p><strong>Practical tool:</strong> Use a decision matrix when facing multiple areas that &quot;could be better&quot; — weight each by how much it actually matters, then concentrate excellence-effort on the top items.</p>
+<h3>Define layers of completion before starting</h3>
+<p>Before beginning a project, agree on what &quot;good enough for now,&quot; &quot;good,&quot; and &quot;excellent&quot; look like. Build in planned iteration cycles so that the Maximizer impulse to improve has a legitimate outlet without derailing the rest of the team.</p>
+<blockquote class="md-quote">&quot;Define a &#x27;victory parfait&#x27;: what is the minimum viable product, what will impress your most important stakeholders, and what would it take to truly outdo yourselves?&quot; [S6]</blockquote>
+<h3>Study excellence deliberately</h3>
+<p>Spend time with people, organizations, or works that define your personal ceiling of quality. Follow people you admire who exemplify what excellent looks like in your domain. Understanding what &quot;world-class&quot; actually looks like sharpens your internal compass.</p>
+<h3>Practice strengths — 5–30 minutes per week</h3>
+<p>Pick one specific talent theme each week. Understand what fires it up for you and find new ways to activate it on purpose. This builds deliberate awareness of when your Maximizer is engaged and when it&#x27;s running in the background unproductively.</p>
+<h3>Spend less time on diminishing returns</h3>
+<p>If a problem has been worked on for a long time and isn&#x27;t yielding meaningful improvement, it&#x27;s draining you without return. Recognize this pattern and either bring in a partner with fresh energy (Restorative, Analytical) or redirect toward a new area where improvement is still possible and energizing.</p>
+<h3>Learn when to push and when to move on</h3>
+<p>Not everything is ready to be maximized. The situation may not have the resources, readiness, or stakeholder appetite for the level of excellence you&#x27;re capable of delivering. Recognize these signals and redirect energy rather than push through.</p>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 06</div>
+        <div class="section-title">How to Work with Someone Who Has Maximizer</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>For managers</h3>
+<p><strong>Connect them to your strongest assets.</strong> Maximizer finds the most energy and ideas when exposed to what&#x27;s already excellent about the team or organization. Pair them with your best projects, top performers, and strongest elements — not with remediation or damage control.</p>
+<p><strong>Position them at the end of a process, not the beginning.</strong> Maximizer&#x27;s &quot;final polish&quot; function works best when there&#x27;s something already solid to work with. If placed too early, the drive to improve can interfere with the foundational work others need to do.</p>
+<p><strong>Define layers of success explicitly.</strong> In goal-setting, distinguish between what constitutes &quot;done,&quot; &quot;good,&quot; and &quot;excellent.&quot; This gives the Maximizer a sanctioned space to operate without creating open-ended expectations for the rest of the team.</p>
+<p><strong>Communicate about the polishing impulse proactively.</strong> Let the team know that this person&#x27;s improvement suggestions are in service of the work, not personal criticism. Reframing this saves significant friction.</p>
+<p><strong>Set clear &quot;freeze&quot; moments.</strong> Be specific about when there is room for tweaking and when there isn&#x27;t. A Maximizer will always be able to suggest a tweak — the question is whether the situation has room for it.</p>
+<p><strong>Track progress by comparing to the starting point, not just to the goal.</strong> Ask the Maximizer to articulate the difference between the first draft and the current state, not just what still needs to improve. This channels the Maximizer instinct productively and surfaces appreciation for work already done.</p>
+<h3>For colleagues</h3>
+<ul class="marker-list">
+<li>Understand that gentle nudges toward improvement are not criticism — they&#x27;re a reflexive response to seeing potential</li>
+<li>Ask what they&#x27;re noticing and what they&#x27;re most excited about — this surfaces their perspective in a way that feels constructive rather than adversarial</li>
+<li>Give them time to get familiar with a project before expecting feedback — they need to understand what&#x27;s there before they can see how it could be better</li>
+<li>When a Maximizer raises a midstream change, take it seriously — but ask them to make the shift in expectations explicit so others can adjust</li>
+<li>Don&#x27;t ask them to fix what&#x27;s broken unless they&#x27;ve chosen to engage with it; their energy is for amplifying what&#x27;s already good</li>
+</ul>
+<p>---</p></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <div class="section-icon">🔗</div>
+      <div class="section-title-group">
+        <div class="section-num">Section 07</div>
+        <div class="section-title">Combinations with Other Talents</div>
+      </div>
+      <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="section-body"><h3>Maximizer + Strategic (most frequent pairing — ~30% co-occurrence)</h3>
+<p>Strategic (navigating from present to goal via the most efficient path) gives Maximizer a planning framework. Strategic identifies the optimal route; Maximizer ensures the quality of each move. Together: constantly making maps for how things can improve, not just getting somewhere but getting somewhere excellent. The combination communicates both &quot;this can be better&quot; and &quot;here&#x27;s how we get there.&quot;</p>
+<h3>Maximizer + Achiever (high co-occurrence)</h3>
+<p>Achiever (strong drive to accomplish and produce results) functions as the engine; Maximizer provides the quality lens. Achiever adds stamina and work ethic — the willingness to put in the effort required to reach excellence. Without Achiever, Maximizer may see the excellence but not sustain the grind to reach it. Without Maximizer, Achiever may produce volume without the commitment to quality.</p>
+<h3>Maximizer + Analytical (strong complementarity)</h3>
+<p>Analytical (objective, data-driven thinking) brings dispassionate credibility to Maximizer&#x27;s instinctual sensing of where the best return on investment exists. Maximizer senses the opportunity; Analytical validates or challenges it with data. Together, they determine not just where excellence is possible but where it&#x27;s justified — and where &quot;good enough&quot; is actually the right call.</p>
+<h3>Maximizer + Communication (complementary across domains)</h3>
+<p>Communication (ability to bring ideas and facts to life through storytelling) functions as the &quot;marketing manager&quot; for Maximizer&#x27;s standards. Maximizer perceives the need for quality improvement; Communication provides the narrative that earns buy-in for the additional time and resources that improvement requires. Without Communication, raw Maximizer feedback can be blunt, arrogant, or demotivating — even when the underlying insight is sound.</p>
+<h3>Maximizer + Individualization (amplified people-focused application)</h3>
+<p>Individualization (ability to perceive the unique qualities of each person) makes Maximizer&#x27;s excellence-spotting highly personal. A manager with both can look at a specific person and say &quot;here&#x27;s what I know about you that I think could be even better&quot; — and be precisely right. This combination is particularly powerful for individual development and talent deployment.</p>
+<h3>Maximizer + Intellection (deep expertise orientation)</h3>
+<p>Intellection (enjoys complex thinking and deep reflection) channels Maximizer toward mastery of specific domains. The Maximizer drive to excel + the Intellection drive to think deeply = sustained investment in becoming a genuine subject-matter expert. People with this combination tend to engage fully only in discussions where they have meaningful expertise to contribute.</p>
+<h3>Maximizer + Restorative (rare — &lt; 1% co-occurrence in top five)</h3>
+<p>Restorative (energized by fixing problems and bringing broken things back to working state) and Maximizer point in nearly opposite directions. Restorative is attracted to what&#x27;s broken; Maximizer is impatient with it. Restorative wants to restore to baseline; Maximizer has already moved past baseline toward enhancement. This combination is possible but rare; when it does exist, the person typically operates with two different modes for two different contexts.</p></div>
+  </div>
+</div>
+<script>
+function toggleSection(id){
+  var s=document.getElementById(id);
+  var h=s.querySelector('.section-header');
+  var b=s.querySelector('.section-body');
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+</script>
+</body>
+</html>
