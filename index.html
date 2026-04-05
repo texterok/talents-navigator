@@ -376,6 +376,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .dyn-cat-tension{background:#FFF3E0;color:#C2590A}
 .dyn-cat-compensating{background:#EBF1FF;color:#1856C7}
 .dyn-cat-statistical{background:#F0ECFF;color:#6D28D9}
+.dyn-cat-rare{background:#FEE2E2;color:#991B1B}
+.dyn-cat-moderating{background:#FEF9C3;color:#92400E}
 .dyn-cat-complementary{background:#F0EDE6;color:#5A5A5A}
 .dyn-pair-freq{font-size:10px;font-weight:700;color:var(--accent);flex-shrink:0}
 .dyn-card-arrow{font-size:12px;color:var(--text-3);transition:transform .2s;flex-shrink:0}
@@ -1196,9 +1198,9 @@ const CAT_LABELS={
   productive_tension:{ru:'Напряжение',en:'Tension',cls:'tension'},
   compensating:{ru:'Компенсация',en:'Compensating',cls:'compensating'},
   statistical:{ru:'Частая пара',en:'Common pair',cls:'statistical'},
-  statistical_rare:{ru:'Редкая пара',en:'Rare pair',cls:'statistical'},
+  statistical_rare:{ru:'Редкая пара',en:'Rare pair',cls:'rare'},
   complementary:{ru:'Дополнение',en:'Complement',cls:'complementary'},
-  moderating:{ru:'Балансировка',en:'Moderating',cls:'complementary'},
+  moderating:{ru:'Балансировка',en:'Moderating',cls:'moderating'},
 };
 function renderDynamics(){
   const el=document.getElementById('dynamicsArea');
