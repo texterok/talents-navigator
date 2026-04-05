@@ -583,18 +583,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
       </div>
     </div>
 
-  </div>
-
-  <!-- MAIN TABS -->
-  <div class="main-tabs" id="mainTabs">
-    <button class="main-tab active" data-tab="explore" id="tabBtnExplore" onclick="switchMainTab('explore')">Разобраться</button>
-    <button class="main-tab" data-tab="apply" id="tabBtnApply" onclick="switchMainTab('apply')">Применить</button>
-    <button class="main-tab" data-tab="boost" id="tabBtnBoost" onclick="switchMainTab('boost')">Усилить</button>
-  </div>
-
-  <!-- TAB: РАЗОБРАТЬСЯ -->
-  <div class="tab-content active" id="tabExplore">
-    <!-- Energy zones -->
+    <!-- Energy zones — context for top-10 badges above -->
     <div class="method-toggle">
       <div class="method-hdr" onclick="this.parentElement.classList.toggle('open')">
         <span>⚡ Сколько энергии стоит каждый талант</span>
@@ -628,6 +617,17 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
       </div>
     </div>
 
+  </div>
+
+  <!-- MAIN TABS -->
+  <div class="main-tabs" id="mainTabs">
+    <button class="main-tab active" data-tab="explore" id="tabBtnExplore" onclick="switchMainTab('explore')">Разобраться</button>
+    <button class="main-tab" data-tab="apply" id="tabBtnApply" onclick="switchMainTab('apply')">Применить</button>
+    <button class="main-tab" data-tab="boost" id="tabBtnBoost" onclick="switchMainTab('boost')">Усилить</button>
+  </div>
+
+  <!-- TAB: РАЗОБРАТЬСЯ -->
+  <div class="tab-content active" id="tabExplore">
     <!-- Domain balance -->
     <div class="domain-balance" id="domainBalance"></div>
 
