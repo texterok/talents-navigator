@@ -140,13 +140,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .blind-label.critical{color:#DC2626}
 .blind-label.weak{color:#D97706}
 .blind-label.fragile{color:#0284C7}
-.blind-legend-toggle{display:flex;align-items:center;justify-content:space-between;padding:10px 0;font-size:13px;font-weight:600;color:var(--text-2);cursor:pointer;user-select:none;border-bottom:1px solid var(--border-light);margin-bottom:12px}
-.blind-legend-arrow{font-size:10px;transition:transform .2s}
-.blind-legend-toggle.open .blind-legend-arrow{transform:rotate(180deg)}
-.blind-legend{display:none;flex-direction:column;gap:8px;padding:0 0 14px;border-bottom:1px solid var(--border-light);margin-bottom:14px}
-.blind-legend.open{display:flex}
-.blind-legend-item{display:flex;align-items:baseline;gap:8px;font-size:12px;color:var(--text-2);line-height:1.5}
-.blind-legend-item .blind-label{flex-shrink:0;min-width:120px}
+.blind-tabs{display:flex;gap:0;border-bottom:1px solid var(--border-light);margin-bottom:0}
+.blind-tab{padding:10px 16px;font-size:12px;font-weight:700;border:none;background:none;cursor:pointer;color:var(--text-3);border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.blind-tab:hover{color:var(--text)}
+.blind-tab.active{border-bottom-color:var(--accent);color:var(--accent)}
+.blind-tab-desc{font-size:13px;color:var(--text-2);line-height:1.55;padding:12px 0 14px;border-bottom:1px solid var(--border-light);margin-bottom:14px}
 .blind-explain{font-size:13px;color:var(--text-2);line-height:1.55}
 .blind-explain strong{color:var(--text);font-weight:600}
 
@@ -428,15 +426,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <!-- BLIND SPOTS -->
       <div class="blind-card" id="blindSection" style="display:none">
         <div class="blind-card-title">Слепые зоны команды</div>
-        <div class="blind-card-sub">Анализ покрытия талантов в команде. Это не недостатки — это зоны для осознанного партнёрства или найма.</div>
-        <div class="blind-legend-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.classList.toggle('open')">
-          <span>Что означают уровни</span><span class="blind-legend-arrow">▾</span>
+        <div class="blind-tabs">
+          <button class="blind-tab active" onclick="switchBlindTab('critical',this)">Слепая зона</button>
+          <button class="blind-tab" onclick="switchBlindTab('weak',this)">Слабое покрытие</button>
+          <button class="blind-tab" onclick="switchBlindTab('fragile',this)">Хрупкое покрытие</button>
         </div>
-        <div class="blind-legend">
-          <div class="blind-legend-item"><span class="blind-label critical">Слепая зона</span> <span>Ни у кого в команде этот талант не входит даже в топ-10. Никто не может включить его даже при сознательном усилии. Требует найма или внешнего партнёрства.</span></div>
-          <div class="blind-legend-item"><span class="blind-label weak">Слабое покрытие</span> <span>Таланта нет в топ-5 ни у кого — он не включается автоматически. Но у кого-то он в зоне 6-10: ресурс есть, но требует осознанного усилия.</span></div>
-          <div class="blind-legend-item"><span class="blind-label fragile">Хрупкое покрытие</span> <span>Только один человек закрывает этот талант в топ-5. Если он в отпуске, на больничном или уходит — команда теряет эту способность.</span></div>
-        </div>
+        <div class="blind-tab-desc" id="blindTabDesc">Ни у кого в команде этот талант не входит даже в топ-10. Никто не может включить его даже при сознательном усилии. Требует найма или внешнего партнёрства.</div>
         <div class="blind-list" id="blindList"></div>
       </div>
 
@@ -862,6 +857,23 @@ const BLIND_IMPACT = {
   "Woo":"Первые контакты с клиентами и рекрутинг проходят натужно. Нет того, кто снимет напряжение, расширит сеть и сделает тихих участников видимыми."
 };
 
+const BLIND_TAB_DESC = {
+  critical: 'Ни у кого в команде этот талант не входит даже в топ-10. Никто не может включить его даже при сознательном усилии. Требует найма или внешнего партнёрства.',
+  weak: 'Таланта нет в топ-5 ни у кого — он не включается на автопилоте. Но у кого-то он в зоне 6-10: ресурс есть, но требует осознанного усилия для включения.',
+  fragile: 'Только один человек закрывает этот талант в топ-5. Если он в отпуске, на больничном или уходит — команда полностью теряет эту способность.'
+};
+let _blindFilter = 'critical';
+function switchBlindTab(sev, btn) {
+  _blindFilter = sev;
+  document.querySelectorAll('.blind-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('blindTabDesc').textContent = BLIND_TAB_DESC[sev] || '';
+  // Show/hide items
+  document.querySelectorAll('.blind-item').forEach(el => {
+    el.style.display = el.classList.contains(sev) ? '' : 'none';
+  });
+}
+
 function renderBlindSpots(consented) {
   // Count theme presence in top-5 and top-10
   const top5Counts = {};
@@ -911,16 +923,26 @@ function renderBlindSpots(consented) {
     return a.domain.localeCompare(b.domain);
   });
 
-  const toShow = blindItems.slice(0, 12);
-  if (toShow.length === 0) {
+  if (blindItems.length === 0) {
     document.getElementById('blindList').innerHTML = `<div style="padding:16px;color:var(--text-2);font-size:13px">Явных слепых зон не обнаружено — команда достаточно разнообразна по темам.</div>`;
     return;
   }
 
+  // Update tab counters
+  const counts = { critical: 0, weak: 0, fragile: 0 };
+  blindItems.forEach(i => counts[i.severity] = (counts[i.severity]||0) + 1);
+  document.querySelectorAll('.blind-tab').forEach(btn => {
+    const sev = btn.onclick.toString().match(/'(\w+)'/)?.[1];
+    if (sev && counts[sev] !== undefined) {
+      btn.textContent = btn.textContent.replace(/\s*\(\d+\)/, '') + (counts[sev] ? ` (${counts[sev]})` : '');
+    }
+  });
+
   let html = '';
-  toShow.forEach(item => {
+  blindItems.forEach(item => {
     const cls = DOMAIN_CLASS[item.domain];
     const impact = BLIND_IMPACT[item.theme] || '';
+    const hidden = item.severity !== _blindFilter ? ' style="display:none"' : '';
     let detailHtml = '';
 
     if (item.severity === 'critical') {
@@ -936,7 +958,7 @@ function renderBlindSpots(consented) {
       detailHtml = `<div class="blind-explain">${explain}</div>`;
     }
 
-    html += `<div class="blind-item ${item.severity}">
+    html += `<div class="blind-item ${item.severity}"${hidden}>
       <div class="blind-item-hdr">
         <span class="blind-domain ${cls}">${esc(item.domain)}</span>
         <div class="blind-theme">${esc(RU_NAMES[item.theme] || item.theme)} <span style="font-size:12px;color:var(--text-3);font-weight:400">${esc(item.theme)}</span></div>
