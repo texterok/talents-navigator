@@ -2162,6 +2162,7 @@ function renderMultipliers(){
   }, 'multiplier');
 }
 
+let _lang = localStorage.getItem('tn-lang') || 'ru';
 let _obState = JSON.parse(localStorage.getItem('tn_onboarding')||'null') || {checklist:null,steps:{},dismissed:false};
 render();
 
@@ -2423,7 +2424,6 @@ function addLogoutButton() {
 })();
 
 // ── LANGUAGE SWITCHER ────────────────────────────────────────────
-let _lang = localStorage.getItem('tn-lang') || 'ru';
 
 const I18N = {
   'hdrSub':       {ru:'Навигатор талантов — руководство по лидерству', en:'Talent Navigator — leadership guide'},
