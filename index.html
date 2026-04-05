@@ -434,6 +434,11 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 /* AI Amplification tab */
 .amp-wrap{display:flex;flex-direction:column;gap:16px}
 .amp-empty{text-align:center;color:var(--text-2);padding:40px 20px;font-size:14px}
+.amp-adkar{background:linear-gradient(135deg,var(--surface) 0%,var(--bg) 100%);border:1px solid var(--border);border-radius:var(--r);padding:24px 20px;margin-bottom:8px}
+.amp-adkar-title{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--text);margin-bottom:12px;line-height:1.3}
+.amp-adkar-text{font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:8px}
+.amp-adkar-cta{font-size:14px;line-height:1.6;margin-top:12px;padding:12px 16px;background:var(--accent-light);border-radius:8px;border-left:3px solid var(--accent)}
+.amp-adkar-hook{font-size:14px;color:var(--accent);margin-top:14px;padding:10px 16px;background:#E6F7F0;border-radius:8px}
 .amp-alpha-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;color:#fff;background:#B08B5B;border-radius:4px;padding:2px 7px;margin-left:8px;vertical-align:middle}
 .amp-section-title{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--text-1);margin-bottom:4px}
 .amp-section-sub{font-size:13px;color:var(--text-2);margin-bottom:0;line-height:1.6}
@@ -1632,8 +1637,9 @@ function renderAiInstr(){
   el.innerHTML=`
 <div class="ai-instr-wrap">
   <div class="ai-intro">
-    <div class="ai-intro-title">Инструкции для AI-ассистента под ваш профиль</div>
-    <div class="ai-intro-text">AI-ассистенты (Claude, ChatGPT, Gemini и другие) работают лучше, когда знают, как вы думаете и что для вас важно. Эти инструкции переводят ваш CliftonStrengths профиль на язык, который понимает AI — и меняет качество ответов с первого сообщения.</div>
+    <div class="ai-intro-title">AI уже знает, как вы думаете</div>
+    <div class="ai-intro-text">Вы потратили время, чтобы разобраться в своих талантах. Теперь передайте это знание вашему AI-ассистенту — и он перестанет давать вам советы, которые не подходят вашему стилю мышления.<br><br>
+    <strong>Что изменится:</strong> AI будет учитывать вашу склонность к анализу, потребность в глубине, нетерпимость к поверхностным ответам — всё, что делает вас вами. Один раз вставить — работает в каждом чате.</div>
   </div>
 
   <div class="ai-toggle">
@@ -1750,7 +1756,7 @@ function renderAmplify(){
 
   const lines=[];
   lines.push(`<div class="amp-wrap">`);
-  lines.push(`<div><span class="amp-section-title">AI-усиление под ваш профиль</span><span class="amp-alpha-badge">АЛЬФА</span><div class="amp-section-sub">Галлап учит закрывать слабые зоны партнёрством: найди человека, у которого это сильное, и работайте вместе. Эта логика не изменилась — но AI стал новым типом партнёра. Он не заменяет людей в зонах отношений, но закрывает когнитивные и коммуникационные пробелы быстрее и дешевле. Карточки отсортированы снизу вверх: сначала то, что AI закрывает за тебя.</div></div>`);
+  lines.push(`<div><span class="amp-section-title">AI-усиление под ваш профиль</span><span class="amp-alpha-badge">АЛЬФА</span></div>`);
 
 
 
@@ -1788,7 +1794,7 @@ function renderAmplify(){
     const modeData=isStrong?(data['multiplier']||data['compensator']):data['compensator'];
     const hasFullData=modeData&&modeData.scenarios;
     const tagClass=isStrong?'amp-tag-multiplier':isWeak?'amp-tag-compensator':'amp-tag-neutral';
-    const tagText=isStrong?'Мультипликатор':isWeak?'Компенсатор':'Развитие';
+    const tagText=isStrong?'Усилитель':isWeak?'Компенсатор':'Развитие';
     const themeIcon=THEME_ICONS[name]||domainIconMap[t&&t.domain]||'⭐';
     const cardId=`amp-card-${name.replace(/[^a-z]/gi,'').toLowerCase()}`;
     const agentData=AMP_AGENTS[name];
@@ -1830,7 +1836,7 @@ function renderAmplify(){
     const isStrong=zone==='z1'||zone==='z2';
     const isWeak=zone==='z4'||zone==='z5';
     const tagClass=isStrong?'amp-tag-multiplier':isWeak?'amp-tag-compensator':'amp-tag-neutral';
-    const tagText=isStrong?'Мультипликатор':isWeak?'Компенсатор':'Развитие';
+    const tagText=isStrong?'Усилитель':isWeak?'Компенсатор':'Развитие';
     const themeIcon=THEME_ICONS[name]||domainIconMap[t&&t.domain]||'⭐';
     const cardId=`amp-card-${name.replace(/[^a-z]/gi,'').toLowerCase()}`;
     const agentData=AMP_AGENTS[name];
@@ -1880,6 +1886,30 @@ function renderAmplifyFiltered(el, filterFn, mode){
   const domainIconMap={'Executing':'⚙️','Influencing':'📣','Relationship Building':'🤝','Strategic Thinking':'🧠'};
   const lines=[];
   lines.push(`<div class="amp-wrap">`);
+
+  // ADKAR intro
+  if(mode==='compensator'){
+    // Find the user's weakest talent with available data
+    const weakest=[...selected].reverse().find(n=>(AMP_DATA[n]||AMP_AGENTS[n])&&selected.indexOf(n)+1>=16);
+    const weakestT=weakest?findTheme(weakest):null;
+    const weakestName=weakestT?weakestT.ru:weakest||'';
+    const weakestPos=weakest?selected.indexOf(weakest)+1:'';
+    lines.push(`<div class="amp-adkar">`);
+    lines.push(`<div class="amp-adkar-title">Ваши таланты ${selected.length>20?'21':'16'}–${selected.length} стоят вам энергии каждый день</div>`);
+    lines.push(`<div class="amp-adkar-text">Gallup говорит: закрой слабое через партнёра. Раньше это значило — найди коллегу. Теперь у вас есть AI-партнёр, который работает 24/7 и не устаёт.</div>`);
+    lines.push(`<div class="amp-adkar-text">Ниже — готовые решения под ваш профиль. Каждое закрывает конкретную боль, которую создаёт ваша слабая зона.</div>`);
+    lines.push(`<div class="amp-adkar-cta"><strong>Скопируйте промпт → вставьте в ChatGPT или Claude → получите результат.</strong></div>`);
+    if(weakest) lines.push(`<div class="amp-adkar-hook">Ваш самый «дорогой» талант — <strong>${weakestName} (#${weakestPos})</strong>. Начните с него ↓</div>`);
+    lines.push(`</div>`);
+  } else {
+    lines.push(`<div class="amp-adkar">`);
+    lines.push(`<div class="amp-adkar-title">Ваши топ-таланты — уже мощные. AI делает их ещё мощнее</div>`);
+    lines.push(`<div class="amp-adkar-text">Вы и так используете свои сильные стороны каждый день. Но даже природный талант упирается в ограничения: не хватает времени, внимания, рутина съедает энергию.</div>`);
+    lines.push(`<div class="amp-adkar-text">AI-усилитель берёт на себя рутинную часть вашего таланта — чтобы вы тратили энергию только на то, что делаете лучше всех.</div>`);
+    lines.push(`<div class="amp-adkar-cta"><strong>Каждая карточка — готовый рецепт. Боль → решение → промпт для копирования.</strong></div>`);
+    lines.push(`</div>`);
+  }
+
   let hasAny=false;
   const list=mode==='compensator'?[...selected].reverse():[...selected];
   list.forEach(name=>{
