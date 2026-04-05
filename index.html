@@ -2162,6 +2162,7 @@ function renderMultipliers(){
   }, 'multiplier');
 }
 
+let _obState = JSON.parse(localStorage.getItem('tn_onboarding')||'null') || {checklist:null,steps:{},dismissed:false};
 render();
 
 
@@ -2538,7 +2539,6 @@ const OB_CHECKLISTS = {
   }
 };
 
-let _obState = JSON.parse(localStorage.getItem('tn_onboarding')||'null') || {checklist:null,steps:{},dismissed:false};
 function saveObState(){localStorage.setItem('tn_onboarding',JSON.stringify(_obState))}
 function toggleOnboarding(){
   const panel=document.getElementById('obPanel');
