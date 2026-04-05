@@ -2346,15 +2346,24 @@ async function afterLogin() {
 }
 
 async function loadAndRender(themes) {
-  const files = ['t','dynamics','theme_rules','amp_data','amp_agents','checkup_qs','combinations'];
+  const coreFiles = ['t','dynamics','theme_rules','amp_data','amp_agents','checkup_qs'];
+  const optionalFiles = ['combinations'];
   const baseUrl = `${SUPA_URL}/storage/v1/object/authenticated/content`;
   const { data: { session } } = await supa.auth.getSession();
   if (!session) throw new Error('Сессия истекла, войдите снова');
   const token = session.access_token;
+  const hdrs = { Authorization: `Bearer ${token}` };
 
-  const results = await Promise.all(files.map(f =>
-    fetch(`${baseUrl}/${f}.json`, { headers: { Authorization: `Bearer ${token}` } })
+  const results = await Promise.all(coreFiles.map(f =>
+    fetch(`${baseUrl}/${f}.json`, { headers: hdrs })
       .then(r => { if (!r.ok) throw new Error(`Ошибка загрузки ${f}.json: ${r.status}`); return r.json(); })
+  ));
+
+  // Load optional files without blocking
+  const optResults = await Promise.all(optionalFiles.map(f =>
+    fetch(`${baseUrl}/${f}.json`, { headers: hdrs })
+      .then(r => r.ok ? r.json() : {})
+      .catch(() => ({}))
   ));
 
   T = results[0];
@@ -2363,7 +2372,7 @@ async function loadAndRender(themes) {
   AMP_DATA = results[3];
   AMP_AGENTS = results[4];
   CHECKUP_QS = results[5];
-  COMBINATIONS = results[6];
+  COMBINATIONS = optResults[0] || {};
   selected = themes;
   hideOverlay();
   render();
