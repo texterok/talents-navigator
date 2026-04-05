@@ -287,7 +287,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 /* MAIN TABS */
 .main-tabs{display:none;border-bottom:2px solid var(--border);margin-bottom:24px;gap:0}
 .main-tabs.visible{display:flex}
-.main-tab{padding:14px 28px;font-size:15px;font-weight:700;font-family:var(--sans);border:none;background:none;cursor:pointer;color:var(--text-3);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.main-tab{padding:12px 16px;font-size:13px;font-weight:700;font-family:var(--sans);border:none;background:none;cursor:pointer;color:var(--text-3);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
 .main-tab:hover{color:var(--text)}
 .main-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 
@@ -621,25 +621,22 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 
   <!-- MAIN TABS -->
   <div class="main-tabs" id="mainTabs">
-    <button class="main-tab active" data-tab="explore" id="tabBtnExplore" onclick="switchMainTab('explore')">Разобраться</button>
-    <button class="main-tab" data-tab="apply" id="tabBtnApply" onclick="switchMainTab('apply')">Применить</button>
-    <button class="main-tab" data-tab="boost" id="tabBtnBoost" onclick="switchMainTab('boost')">Усилить</button>
+    <button class="main-tab active" data-tab="talents" id="tabBtnTalents" onclick="switchMainTab('talents')">Таланты</button>
+    <button class="main-tab" data-tab="leadership" id="tabBtnLeadership" onclick="switchMainTab('leadership')">Лидерство</button>
+    <button class="main-tab" data-tab="environment" id="tabBtnEnvironment" onclick="switchMainTab('environment')">Среда</button>
+    <button class="main-tab" data-tab="aiprompt" id="tabBtnAiprompt" onclick="switchMainTab('aiprompt')">AI-промпт</button>
+    <button class="main-tab" data-tab="aiboost" id="tabBtnAiboost" onclick="switchMainTab('aiboost')">AI-практика</button>
   </div>
 
-  <!-- TAB: РАЗОБРАТЬСЯ -->
-  <div class="tab-content active" id="tabExplore">
-    <!-- Domain balance -->
+  <!-- TAB: ТАЛАНТЫ -->
+  <div class="tab-content active" id="tabTalents">
     <div class="domain-balance" id="domainBalance"></div>
-
-    <!-- All talents grid -->
     <div class="sec-title" id="detailedTitle" style="margin-top:20px">Подробный разбор талантов</div>
     <div class="grid-mode-toggle" id="gridModeToggle">
       <button class="gmt-btn active" id="gmtOrder" onclick="setGridMode('order')">По порядку</button>
       <button class="gmt-btn" id="gmtDomain" onclick="setGridMode('domain')">По доменам</button>
     </div>
     <div id="domainGrid" class="domain-grid-wrap"></div>
-
-    <!-- Talent dynamics (moved here from separate tab) -->
     <div class="sec-title" style="margin-top:28px">Связки талантов</div>
     <div class="dyn-controls" id="dynControls">
       <div class="dyn-controls-hdr">
@@ -651,20 +648,27 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
     <div class="dynamics-area visible" id="dynamicsArea"></div>
   </div>
 
-  <!-- TAB: ПРИМЕНИТЬ -->
-  <div class="tab-content" id="tabApply">
+  <!-- TAB: ЛИДЕРСТВО -->
+  <div class="tab-content" id="tabLeadership">
     <div class="tab-intro" id="talentsIntro" style="display:none;padding:16px 0 20px;border-bottom:1px solid var(--border-light);margin-bottom:24px">
       <div style="font-size:17px;font-weight:600;color:var(--text-1);margin-bottom:6px">Ваша лидерская платформа</div>
       <div style="font-size:14px;color:var(--text-2);line-height:1.6">Топ-10 талантов — это то, через что вы естественно строите доверие, проявляете заботу, даёте опору и создаёте направление.</div>
     </div>
     <div class="cards-area visible" id="cardsArea"></div>
-    <div class="sec-title" style="margin-top:28px">Чекап среды</div>
+  </div>
+
+  <!-- TAB: СРЕДА -->
+  <div class="tab-content" id="tabEnvironment">
     <div id="checkupContent"></div>
   </div>
 
-  <!-- TAB: УСИЛИТЬ -->
-  <div class="tab-content" id="tabBoost">
+  <!-- TAB: AI-ПРОМПТ -->
+  <div class="tab-content" id="tabAiprompt">
     <div id="aiInstrContent"></div>
+  </div>
+
+  <!-- TAB: AI-ПРАКТИКА -->
+  <div class="tab-content" id="tabAiboost">
     <div id="amplifyContent"></div>
   </div>
 
@@ -1180,11 +1184,11 @@ function switchMainTab(tab){
   document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelector(`.main-tab[data-tab="${tab}"]`).classList.add('active');
-  const tabMap={explore:'tabExplore',apply:'tabApply',boost:'tabBoost'};
+  const tabMap={talents:'tabTalents',leadership:'tabLeadership',environment:'tabEnvironment',aiprompt:'tabAiprompt',aiboost:'tabAiboost'};
   document.getElementById(tabMap[tab]).classList.add('active');
-  if(tab==='explore'){renderDynControls();renderDynamics()}
-  if(tab==='apply'){renderCheckup()}
-  if(tab==='boost'){renderAmplify()}
+  if(tab==='talents'){renderDynControls();renderDynamics()}
+  if(tab==='environment'){renderCheckup()}
+  if(tab==='aiboost'){renderAmplify()}
 }
 
 let CHECKUP_QS=[]
@@ -1834,7 +1838,7 @@ function render(){
   renderChips();renderDomainBalance();renderCards();renderAiInstr();renderAmplify();
   const tabs=document.getElementById('mainTabs');
   if(selected.length>=2)tabs.classList.add('visible');else tabs.classList.remove('visible');
-  if(document.getElementById('tabExplore').classList.contains('active')){renderDynControls();renderDynamics()}
+  if(document.getElementById('tabTalents').classList.contains('active')){renderDynControls();renderDynamics()}
 }
 
 render();
@@ -2095,9 +2099,11 @@ const I18N = {
   'gmtOrder':     {ru:'По порядку', en:'By rank'},
   'gmtDomain':    {ru:'По доменам', en:'By domain'},
   'detailedTitle':{ru:'Подробный разбор талантов', en:'Detailed talent breakdown'},
-  'tabBtnExplore':{ru:'Разобраться', en:'Explore'},
-  'tabBtnApply':  {ru:'Применить', en:'Apply'},
-  'tabBtnBoost':  {ru:'Усилить', en:'Boost'},
+  'tabBtnTalents':    {ru:'Таланты', en:'Talents'},
+  'tabBtnLeadership': {ru:'Лидерство', en:'Leadership'},
+  'tabBtnEnvironment':{ru:'Среда', en:'Environment'},
+  'tabBtnAiprompt':   {ru:'AI-промпт', en:'AI Prompt'},
+  'tabBtnAiboost':    {ru:'AI-практика', en:'AI Practice'},
 };
 
 const ZONE_I18N = {
