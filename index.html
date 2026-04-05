@@ -806,7 +806,8 @@ function renderChips(){
     const t=findTheme(name);
     if(!t)return'';
     const cls=DOMAIN_CLS[t.domain]||'strat';
-    return`<span class="p5-badge ${cls}"><span class="p5-badge-num">${i+1}</span>${t.ru||name}</span>`;
+    const label=_lang==='en'?name:`${t.ru||name}`;
+    return`<span class="p5-badge ${cls}"><span class="p5-badge-num">${i+1}</span>${label}</span>`;
   }).join('');
 
   renderGridView();
@@ -860,7 +861,10 @@ function renderGridView(){
           const dlabel=DOMAIN_LABELS[item.domain]||'';
           h+=`<div class="olist-item" onclick="openThemeOverlay('${slug}','${item.ru||item.name}')">
             <div class="olist-pos" style="color:${zone.color}">${item.pos}</div>
-            <div><div class="olist-name">${item.name}</div><div class="olist-ru">${item.ru||''}</div></div>
+            <div>${_lang==='en'
+              ?`<div class="olist-name">${item.name}</div>`
+              :`<div class="olist-name">${item.ru||item.name}</div><div class="olist-ru">${item.name}</div>`
+            }</div>
             <span class="olist-domain ${dcls}">${dlabel}</span>
             <span class="olist-item-more">${_lang==='en'?'Details →':'Подробнее →'}</span>
           </div>`;
@@ -892,7 +896,10 @@ function renderGridView(){
         const cellSlug=item.name.toLowerCase().replace(/[^a-z-]/g,'');
         html+=`<div class="dgrid-cell ${item.zone.cls}${isTop?' top10':''}" style="cursor:pointer" onclick="openThemeOverlay('${cellSlug}','${item.ru}')">
           <div class="dgrid-cell-pos">${item.pos}</div>
-          <div><div class="dgrid-cell-name">${item.name}</div><div class="dgrid-cell-ru">${item.ru}</div></div>
+          <div>${_lang==='en'
+            ?`<div class="dgrid-cell-name">${item.name}</div>`
+            :`<div class="dgrid-cell-name">${item.ru}</div><div class="dgrid-cell-ru">${item.name}</div>`
+          }</div>
           <span class="dgrid-cell-more">${_lang==='en'?'Details':'Подробнее'}</span>
         </div>`;
       });
@@ -938,7 +945,10 @@ function renderCards(){
     html+=`<div class="card-hdr" data-d="${t.domain}" onclick="toggleCard(this)">
       <div class="card-hdr-num">${i+1}</div>
       <div class="card-hdr-info">
-        <div class="card-hdr-name">${t.name} <span style="font-weight:400;color:var(--text-2);font-family:var(--sans);font-size:14px">(${t.ru})</span></div>
+        <div class="card-hdr-name">${_lang==='en'
+          ?t.name
+          :`${t.ru} <span style="font-weight:400;color:var(--text-2);font-family:var(--sans);font-size:14px">${t.name}</span>`
+        }</div>
         <div class="card-hdr-meta">${t.domain}</div>
       </div>
       <div class="card-hdr-arrow">▾</div>
@@ -961,7 +971,8 @@ function renderCards(){
 
     // Deep dive button
     const themeSlug=name.toLowerCase().replace(/[^a-z-]/g,'');
-    html+=`<div class="card-deep-btn" onclick="openThemeOverlay('${themeSlug}','${t.ru||name}')">📖 Читать подробнее — ${t.ru||name}</div>`;
+    const deepLabel=_lang==='en'?`📖 Read more — ${name}`:`📖 Читать подробнее — ${t.ru||name}`;
+    html+=`<div class="card-deep-btn" onclick="openThemeOverlay('${themeSlug}','${t.ru||name}')">${deepLabel}</div>`;
 
     // Use mgmt_title for management section label
     // z1-z2: all sections; z3: management only; z4-z5: no leadership sections
@@ -1776,7 +1787,7 @@ function renderAmplify(){
   // Helper: render full card (with AMP_DATA scenarios)
   function renderFullCard(name, data, zone){
     const t=findTheme(name);
-    const displayName=t?t.ru:name;
+    const displayName=_lang==='en'?name:(t?t.ru:name);
     const pos=selected.indexOf(name)+1;
     const isStrong=zone==='z1'||zone==='z2';
     const isWeak=zone==='z4'||zone==='z5';
@@ -1820,7 +1831,7 @@ function renderAmplify(){
   // Helper: render simplified card (only AMP_AGENTS, no AMP_DATA scenarios)
   function renderSimpleCard(name){
     const t=findTheme(name);
-    const displayName=t?t.ru:name;
+    const displayName=_lang==='en'?name:(t?t.ru:name);
     const pos=selected.indexOf(name)+1;
     const zone=getThemeZone(name);
     const isStrong=zone==='z1'||zone==='z2';
@@ -1910,7 +1921,7 @@ function renderAmplifyFiltered(el, filterFn, mode){
       hasAny=true;
       // Inline renderFullCard logic
       const t=findTheme(name);
-      const displayName=t?t.ru:name;
+      const displayName=_lang==='en'?name:(t?t.ru:name);
       const pos=selected.indexOf(name)+1;
       const isStrong=zone==='z1'||zone==='z2';
       const isWeak=zone==='z4'||zone==='z5';
@@ -1943,7 +1954,7 @@ function renderAmplifyFiltered(el, filterFn, mode){
     } else if(AMP_AGENTS[name]){
       hasAny=true;
       const t=findTheme(name);
-      const displayName=t?t.ru:name;
+      const displayName=_lang==='en'?name:(t?t.ru:name);
       const pos=selected.indexOf(name)+1;
       const isStrong=zone==='z1'||zone==='z2';
       const isWeak=zone==='z4'||zone==='z5';
