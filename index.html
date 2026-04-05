@@ -30,6 +30,10 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .hdr h1{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:-.02em}
 .hdr h1 em{font-style:normal;color:var(--accent)}
 .hdr-sub{font-size:12px;color:var(--text-3);font-weight:300}
+.hdr-nav{display:flex;gap:4px;margin-left:auto}
+.hdr-nav-btn{padding:6px 14px;font-size:13px;font-weight:600;font-family:var(--sans);border:none;background:transparent;cursor:pointer;color:var(--text-3);border-radius:8px;transition:all .15s;white-space:nowrap}
+.hdr-nav-btn:hover{background:rgba(31,29,25,.06);color:var(--text)}
+.hdr-nav-btn.active{background:var(--accent);color:#fff}
 .lang-sw{display:flex;align-items:center;font-size:13px;font-weight:600;color:var(--text-2);background:rgba(31,29,25,.06);border:none;border-radius:8px;padding:5px 11px;cursor:pointer;transition:background .2s;letter-spacing:.04em;margin-left:auto}
 .lang-sw:hover{background:rgba(31,29,25,.1)}
 
@@ -284,22 +288,15 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 .dynamics-area{margin-bottom:28px}
 .dynamics-area.visible{display:block}
 
-/* TOP NAV */
-.top-nav{display:none;gap:0;margin-bottom:0}
-.top-nav.visible{display:flex}
-.top-nav-btn{flex:1;padding:14px 0;font-size:15px;font-weight:700;font-family:var(--sans);border:none;background:var(--surface);cursor:pointer;color:var(--text-3);border-bottom:3px solid var(--border);transition:all .2s;text-align:center}
-.top-nav-btn:hover{color:var(--text)}
-.top-nav-btn.active{color:var(--accent);border-bottom-color:var(--accent);background:var(--bg)}
-
 /* SUB TABS */
 .sub-tabs{display:flex;border-bottom:1px solid var(--border-light);margin-bottom:20px;gap:0;background:var(--surface);border-radius:8px 8px 0 0;overflow:hidden}
 .sub-tab{padding:10px 16px;font-size:12px;font-weight:600;font-family:var(--sans);border:none;background:none;cursor:pointer;color:var(--text-3);border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;flex:1;text-align:center}
 .sub-tab:hover{color:var(--text)}
 .sub-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 
-/* SECTIONS */
-.top-section{display:none}
-.top-section.active{display:block}
+/* PAGE SECTIONS */
+.page-section{display:none}
+.page-section.active{display:block}
 .tab-content{display:none}
 .tab-content.active{display:block}
 
@@ -583,7 +580,10 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 
 <div class="hdr"><div class="hdr-in">
   <h1>Clifton<em>Strengths</em></h1>
-  <span class="hdr-sub" id="hdrSub">Навигатор талантов — руководство по лидерству</span>
+  <nav class="hdr-nav" id="hdrNav">
+    <button class="hdr-nav-btn active" id="hdrNavTalents" onclick="switchPage('talents')">Обзор талантов</button>
+    <button class="hdr-nav-btn" id="hdrNavAi" onclick="switchPage('ai')">AI-усиление</button>
+  </nav>
   <button class="lang-sw" id="langBtn" onclick="toggleLang()">EN</button>
 </div></div>
 
@@ -633,14 +633,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
 
   </div>
 
-  <!-- TOP NAV -->
-  <div class="top-nav" id="topNav">
-    <button class="top-nav-btn active" id="topNavTalents" onclick="switchTopNav('talents')">Таланты</button>
-    <button class="top-nav-btn" id="topNavAi" onclick="switchTopNav('ai')">AI</button>
-  </div>
-
-  <!-- SECTION: ТАЛАНТЫ -->
-  <div class="top-section active" id="sectionTalents">
+  <!-- PAGE: ТАЛАНТЫ -->
+  <div class="page-section active" id="pageTalents">
     <div class="sub-tabs">
       <button class="sub-tab active" data-section="talents" data-sub="explore" id="subBtnExplore" onclick="switchSubTab('talents','explore')">Разобраться</button>
       <button class="sub-tab" data-section="talents" data-sub="leadership" id="subBtnLeadership" onclick="switchSubTab('talents','leadership')">Лидерство</button>
@@ -679,8 +673,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
     </div>
   </div>
 
-  <!-- SECTION: AI -->
-  <div class="top-section" id="sectionAi">
+  <!-- PAGE: AI -->
+  <div class="page-section" id="pageAi">
     <div class="sub-tabs">
       <button class="sub-tab active" data-section="ai" data-sub="setup" id="subBtnSetup" onclick="switchSubTab('ai','setup')">Настройка</button>
       <button class="sub-tab" data-section="ai" data-sub="compensators" id="subBtnCompensators" onclick="switchSubTab('ai','compensators')">Компенсаторы</button>
@@ -1208,22 +1202,21 @@ function renderDynamics(){
   el.innerHTML=html;
 }
 
-function switchTopNav(section){
-  document.querySelectorAll('.top-nav-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.top-section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(section==='ai'?'topNavAi':'topNavTalents').classList.add('active');
-  document.getElementById(section==='ai'?'sectionAi':'sectionTalents').classList.add('active');
-  // Trigger render for active sub-tab
-  if(section==='talents'){
-    const activeSub=document.querySelector('#sectionTalents .sub-tab.active');
+function switchPage(page){
+  document.querySelectorAll('.hdr-nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(page==='ai'?'hdrNavAi':'hdrNavTalents').classList.add('active');
+  document.getElementById(page==='ai'?'pageAi':'pageTalents').classList.add('active');
+  if(page==='talents'){
+    const activeSub=document.querySelector('#pageTalents .sub-tab.active');
     if(activeSub) switchSubTab('talents',activeSub.dataset.sub);
   } else {
-    const activeSub=document.querySelector('#sectionAi .sub-tab.active');
+    const activeSub=document.querySelector('#pageAi .sub-tab.active');
     if(activeSub) switchSubTab('ai',activeSub.dataset.sub);
   }
 }
 function switchSubTab(section,sub){
-  const container=document.getElementById(section==='ai'?'sectionAi':'sectionTalents');
+  const container=document.getElementById(section==='ai'?'pageAi':'pageTalents');
   container.querySelectorAll('.sub-tab').forEach(t=>t.classList.remove('active'));
   container.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   container.querySelector(`.sub-tab[data-sub="${sub}"]`).classList.add('active');
@@ -1980,8 +1973,8 @@ function renderAmplifyFiltered(el, filterFn, mode){
 
 function render(){
   renderChips();renderDomainBalance();renderCards();renderAiInstr();renderAmplify();
-  const nav=document.getElementById('topNav');
-  if(selected.length>=2)nav.classList.add('visible');else nav.classList.remove('visible');
+  const nav=document.getElementById('hdrNav');
+  if(nav)nav.style.display=selected.length>=2?'flex':'none';
   if(document.getElementById('tabExplore').classList.contains('active')){renderDynControls();renderDynamics()}
 }
 
@@ -2261,8 +2254,8 @@ const I18N = {
   'gmtOrder':     {ru:'По порядку', en:'By rank'},
   'gmtDomain':    {ru:'По доменам', en:'By domain'},
   'detailedTitle':{ru:'Подробный разбор талантов', en:'Detailed talent breakdown'},
-  'topNavTalents':    {ru:'Таланты', en:'Talents'},
-  'topNavAi':         {ru:'AI', en:'AI'},
+  'hdrNavTalents':    {ru:'Обзор талантов', en:'Talent Overview'},
+  'hdrNavAi':         {ru:'AI-усиление', en:'AI Boost'},
   'subBtnExplore':    {ru:'Разобраться', en:'Explore'},
   'subBtnLeadership': {ru:'Лидерство', en:'Leadership'},
   'subBtnEnvironment':{ru:'Среда', en:'Environment'},
