@@ -140,6 +140,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .blind-label.critical{color:#DC2626}
 .blind-label.weak{color:#D97706}
 .blind-label.fragile{color:#0284C7}
+.blind-legend-toggle{display:flex;align-items:center;justify-content:space-between;padding:10px 0;font-size:13px;font-weight:600;color:var(--text-2);cursor:pointer;user-select:none;border-bottom:1px solid var(--border-light);margin-bottom:12px}
+.blind-legend-arrow{font-size:10px;transition:transform .2s}
+.blind-legend-toggle.open .blind-legend-arrow{transform:rotate(180deg)}
+.blind-legend{display:none;flex-direction:column;gap:8px;padding:0 0 14px;border-bottom:1px solid var(--border-light);margin-bottom:14px}
+.blind-legend.open{display:flex}
+.blind-legend-item{display:flex;align-items:baseline;gap:8px;font-size:12px;color:var(--text-2);line-height:1.5}
+.blind-legend-item .blind-label{flex-shrink:0;min-width:120px}
 .blind-explain{font-size:13px;color:var(--text-2);line-height:1.55}
 .blind-explain strong{color:var(--text);font-weight:600}
 
@@ -421,7 +428,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <!-- BLIND SPOTS -->
       <div class="blind-card" id="blindSection" style="display:none">
         <div class="blind-card-title">Слепые зоны команды</div>
-        <div class="blind-card-sub">Домены и темы, слабо представленные в топ-5 участников. Это не недостатки — это зоны для осознанного партнёрства или найма.</div>
+        <div class="blind-card-sub">Анализ покрытия талантов в команде. Это не недостатки — это зоны для осознанного партнёрства или найма.</div>
+        <div class="blind-legend-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.classList.toggle('open')">
+          <span>Что означают уровни</span><span class="blind-legend-arrow">▾</span>
+        </div>
+        <div class="blind-legend">
+          <div class="blind-legend-item"><span class="blind-label critical">Слепая зона</span> <span>Ни у кого в команде этот талант не входит даже в топ-10. Никто не может включить его даже при сознательном усилии. Требует найма или внешнего партнёрства.</span></div>
+          <div class="blind-legend-item"><span class="blind-label weak">Слабое покрытие</span> <span>Таланта нет в топ-5 ни у кого — он не включается автоматически. Но у кого-то он в зоне 6-10: ресурс есть, но требует осознанного усилия.</span></div>
+          <div class="blind-legend-item"><span class="blind-label fragile">Хрупкое покрытие</span> <span>Только один человек закрывает этот талант в топ-5. Если он в отпуске, на больничном или уходит — команда теряет эту способность.</span></div>
+        </div>
         <div class="blind-list" id="blindList"></div>
       </div>
 
@@ -909,16 +924,15 @@ function renderBlindSpots(consented) {
     let detailHtml = '';
 
     if (item.severity === 'critical') {
-      detailHtml = `<div class="blind-explain">Ни у кого в команде этот талант не входит даже в топ-10. Это означает, что никто не может включить его даже при сознательном усилии.</div>`;
-      if (impact) detailHtml += `<div class="blind-impact">${esc(impact)}</div>`;
+      if (impact) detailHtml = `<div class="blind-impact">${esc(impact)}</div>`;
     } else if (item.severity === 'weak') {
       const names = (item.people||[]).map(p => `<strong>${esc(p.name)}</strong> (#${p.pos})`).join(', ');
-      detailHtml = `<div class="blind-explain">Этого таланта нет ни у кого в топ-5 — он не включается автоматически. Но ${names} ${item.people.length===1?'имеет':'имеют'} его в зоне 6-10 — это значит, что при осознанном включении ресурс есть, но он не работает на автопилоте.</div>`;
+      detailHtml = `<div class="blind-explain">Ресурс в зоне 6-10: ${names}</div>`;
     } else if (item.severity === 'fragile') {
       const holderNames = (item.top5People||[]).map(p => `<strong>${esc(p.name)}</strong> (#${p.pos})`).join(', ');
       const supportNames = (item.people||[]).map(p => `<strong>${esc(p.name)}</strong> (#${p.pos})`).join(', ');
-      let explain = `Только ${holderNames} ${(item.top5People||[]).length===1?'закрывает':'закрывают'} этот талант в топ-5. Если ${(item.top5People||[]).length===1?'этот человек':'эти люди'} в отпуске, на больничном или уходят — команда теряет эту способность полностью.`;
-      if (supportNames) explain += ` Подстраховка в зоне 6-10: ${supportNames}.`;
+      let explain = `Носитель: ${holderNames}`;
+      if (supportNames) explain += `. Подстраховка 6-10: ${supportNames}`;
       detailHtml = `<div class="blind-explain">${explain}</div>`;
     }
 
