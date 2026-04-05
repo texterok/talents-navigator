@@ -583,7 +583,18 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
       </div>
     </div>
 
-    <!-- METHODOLOGY TOGGLE -->
+  </div>
+
+  <!-- MAIN TABS -->
+  <div class="main-tabs" id="mainTabs">
+    <button class="main-tab active" data-tab="explore" id="tabBtnExplore" onclick="switchMainTab('explore')">Разобраться</button>
+    <button class="main-tab" data-tab="apply" id="tabBtnApply" onclick="switchMainTab('apply')">Применить</button>
+    <button class="main-tab" data-tab="boost" id="tabBtnBoost" onclick="switchMainTab('boost')">Усилить</button>
+  </div>
+
+  <!-- TAB: РАЗОБРАТЬСЯ -->
+  <div class="tab-content active" id="tabExplore">
+    <!-- Energy zones -->
     <div class="method-toggle">
       <div class="method-hdr" onclick="this.parentElement.classList.toggle('open')">
         <span>⚡ Сколько энергии стоит каждый талант</span>
@@ -591,7 +602,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
       </div>
       <div class="method-body">
         <p>Каждый человек делает одни вещи легко — это его природные таланты. Другие требуют сознательного усилия. Позиция таланта в вашем профиле определяет, в какой зоне он находится — и сколько энергии стоит его использование.</p>
-
         <div class="zone-table">
           <div class="zt-row zt-z1"><span class="zt-pos">1–5</span><span class="zt-name">Работает само</span><span class="zt-desc">Природный талант. Включается рефлекторно, даёт энергию. Это то, что вы делаете лучше всего и с удовольствием.</span></div>
           <div class="zt-row zt-z2"><span class="zt-pos">6–10</span><span class="zt-name">Легко включается</span><span class="zt-desc">Почти как топ-5. Активируется быстро, в рабочих условиях работает надёжно. Требует минимального усилия.</span></div>
@@ -599,61 +609,38 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
           <div class="zt-row zt-z4"><span class="zt-pos">16–20</span><span class="zt-name">Требует усилия</span><span class="zt-desc">Каждый раз стоит ресурса. При постоянном использовании накапливается усталость. Лучше делегировать.</span></div>
           <div class="zt-row zt-z5"><span class="zt-pos">21–34</span><span class="zt-name">Вне природной зоны</span><span class="zt-desc">Максимальные затраты при минимальной отдаче. Если роль требует постоянно — стоит закрыть через команду.</span></div>
         </div>
-
-        <p style="margin-top:14px">Важно не то, насколько силён отдельный талант в баллах, а то, как ваши ведущие таланты сочетаются с тем, что вы реально делаете каждый день. Если роль требует одного, а природа даёт другое — никакой опыт и мотивация не компенсируют эту разницу надолго.</p>
-
-        <p><strong>Четыре зоны лидерской энергии</strong> — ещё один срез. Каждая тема принадлежит одной из четырёх зон:</p>
+        <p style="margin-top:14px">Важно не то, насколько силён отдельный талант в баллах, а то, как ваши ведущие таланты сочетаются с тем, что вы реально делаете каждый день.</p>
+        <p><strong>Четыре зоны лидерской энергии</strong> — каждая тема принадлежит одной из четырёх зон:</p>
         <div class="domain-legend">
           <span class="dl-item" style="color:var(--exec)">● Исполнение</span>
           <span class="dl-item" style="color:var(--infl)">● Влияние</span>
           <span class="dl-item" style="color:var(--rel)">● Выстраивание отношений</span>
           <span class="dl-item" style="color:var(--strat)">● Стратегическое мышление</span>
         </div>
-        <p>Команде не нужно, чтобы каждый был одинаково силён во всех зонах. Но команде нужно покрытие всех четырёх зон — через разных людей.</p>
-
-        <p style="margin-top:18px"><strong>Почему это работает — цифры исследований Gallup</strong></p>
+        <p style="margin-top:18px"><strong>Почему это работает — цифры Gallup</strong></p>
         <div class="stats-grid">
-          <div class="stat-card"><div class="stat-num">×6</div><div class="stat-desc">Те, кто фокусируется на сильных сторонах, в 6 раз более вовлечены в работу</div></div>
+          <div class="stat-card"><div class="stat-num">×6</div><div class="stat-desc">вовлечённость у тех, кто фокусируется на сильных сторонах</div></div>
           <div class="stat-card"><div class="stat-num">+23%</div><div class="stat-desc">прибыльность у команд в верхнем квартиле вовлечённости</div></div>
-          <div class="stat-card"><div class="stat-num">+18%</div><div class="stat-desc">продуктивность у команд с высокой вовлечённостью</div></div>
-          <div class="stat-card"><div class="stat-num">−15%</div><div class="stat-desc">текучесть у сотрудников, получивших обратную связь по талантам</div></div>
+          <div class="stat-card"><div class="stat-num">+18%</div><div class="stat-desc">продуктивность у вовлечённых команд</div></div>
+          <div class="stat-card"><div class="stat-num">−15%</div><div class="stat-desc">текучесть после обратной связи по талантам</div></div>
         </div>
-        <p class="stats-source">Источник: Gallup Meta-Analysis Q12® (112 000 команд, 2.7 млн сотрудников); Strengths-Based Employee Development: The Business Results, 2016; Clifton StrengthsFinder Technical Report.</p>
+        <p class="stats-source">Источник: Gallup Meta-Analysis Q12®, Strengths-Based Employee Development 2016.</p>
       </div>
     </div>
 
-    <!-- DOMAIN BALANCE -->
+    <!-- Domain balance -->
     <div class="domain-balance" id="domainBalance"></div>
 
-    <!-- ALL TALENTS GRID -->
+    <!-- All talents grid -->
     <div class="sec-title" id="detailedTitle" style="margin-top:20px">Подробный разбор талантов</div>
     <div class="grid-mode-toggle" id="gridModeToggle">
       <button class="gmt-btn active" id="gmtOrder" onclick="setGridMode('order')">По порядку</button>
       <button class="gmt-btn" id="gmtDomain" onclick="setGridMode('domain')">По доменам</button>
     </div>
     <div id="domainGrid" class="domain-grid-wrap"></div>
-  </div>
 
-  <!-- MAIN TABS -->
-  <div class="main-tabs" id="mainTabs">
-    <button class="main-tab active" data-tab="talents" onclick="switchMainTab('talents')">🧭 Лидерский профиль</button>
-    <button class="main-tab" data-tab="dynamics" onclick="switchMainTab('dynamics')">🔗 Связки</button>
-    <button class="main-tab" data-tab="checkup" onclick="switchMainTab('checkup')">🎯 Чекап среды</button>
-    <button class="main-tab" data-tab="aiinstr" onclick="switchMainTab('aiinstr')">🤖 Инструкции для AI</button>
-    <button class="main-tab" data-tab="amplify" onclick="switchMainTab('amplify')">⚡ AI-усиление</button>
-  </div>
-
-  <!-- TAB: TALENTS -->
-  <div class="tab-content active" id="tabTalents">
-    <div class="tab-intro" id="talentsIntro" style="display:none;padding:16px 0 20px;border-bottom:1px solid var(--border-light);margin-bottom:24px">
-      <div style="font-size:17px;font-weight:600;color:var(--text-1);margin-bottom:6px">Ваша лидерская платформа</div>
-      <div style="font-size:14px;color:var(--text-2);line-height:1.6">Топ-10 талантов — это то, через что вы естественно строите доверие, проявляете заботу, даёте опору и создаёте направление. Gallup Leadership Guide показывает, как именно каждый из них работает в лидерском контексте.</div>
-    </div>
-    <div class="cards-area visible" id="cardsArea"></div>
-  </div>
-
-  <!-- TAB: DYNAMICS -->
-  <div class="tab-content" id="tabDynamics">
+    <!-- Talent dynamics (moved here from separate tab) -->
+    <div class="sec-title" style="margin-top:28px">Связки талантов</div>
     <div class="dyn-controls" id="dynControls">
       <div class="dyn-controls-hdr">
         <span class="dyn-controls-title">Выберите таланты для анализа связок</span>
@@ -664,18 +651,20 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
     <div class="dynamics-area visible" id="dynamicsArea"></div>
   </div>
 
-  <!-- TAB: CHECKUP -->
-  <div class="tab-content" id="tabCheckup">
+  <!-- TAB: ПРИМЕНИТЬ -->
+  <div class="tab-content" id="tabApply">
+    <div class="tab-intro" id="talentsIntro" style="display:none;padding:16px 0 20px;border-bottom:1px solid var(--border-light);margin-bottom:24px">
+      <div style="font-size:17px;font-weight:600;color:var(--text-1);margin-bottom:6px">Ваша лидерская платформа</div>
+      <div style="font-size:14px;color:var(--text-2);line-height:1.6">Топ-10 талантов — это то, через что вы естественно строите доверие, проявляете заботу, даёте опору и создаёте направление.</div>
+    </div>
+    <div class="cards-area visible" id="cardsArea"></div>
+    <div class="sec-title" style="margin-top:28px">Чекап среды</div>
     <div id="checkupContent"></div>
   </div>
 
-  <!-- TAB: AI INSTRUCTIONS -->
-  <div class="tab-content" id="tabAiinstr">
+  <!-- TAB: УСИЛИТЬ -->
+  <div class="tab-content" id="tabBoost">
     <div id="aiInstrContent"></div>
-  </div>
-
-  <!-- TAB: AI AMPLIFICATION -->
-  <div class="tab-content" id="tabAmplify">
     <div id="amplifyContent"></div>
   </div>
 
@@ -1191,11 +1180,11 @@ function switchMainTab(tab){
   document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelector(`.main-tab[data-tab="${tab}"]`).classList.add('active');
-  const tabMap={talents:'tabTalents',dynamics:'tabDynamics',checkup:'tabCheckup',aiinstr:'tabAiinstr',amplify:'tabAmplify'};
+  const tabMap={explore:'tabExplore',apply:'tabApply',boost:'tabBoost'};
   document.getElementById(tabMap[tab]).classList.add('active');
-  if(tab==='dynamics'){renderDynControls();renderDynamics()}
-  if(tab==='checkup'){renderCheckup()}
-  if(tab==='amplify'){renderAmplify()}
+  if(tab==='explore'){renderDynControls();renderDynamics()}
+  if(tab==='apply'){renderCheckup()}
+  if(tab==='boost'){renderAmplify()}
 }
 
 let CHECKUP_QS=[]
@@ -1845,7 +1834,7 @@ function render(){
   renderChips();renderDomainBalance();renderCards();renderAiInstr();renderAmplify();
   const tabs=document.getElementById('mainTabs');
   if(selected.length>=2)tabs.classList.add('visible');else tabs.classList.remove('visible');
-  if(document.getElementById('tabDynamics').classList.contains('active')){renderDynControls();renderDynamics()}
+  if(document.getElementById('tabExplore').classList.contains('active')){renderDynControls();renderDynamics()}
 }
 
 render();
@@ -2106,6 +2095,9 @@ const I18N = {
   'gmtOrder':     {ru:'По порядку', en:'By rank'},
   'gmtDomain':    {ru:'По доменам', en:'By domain'},
   'detailedTitle':{ru:'Подробный разбор талантов', en:'Detailed talent breakdown'},
+  'tabBtnExplore':{ru:'Разобраться', en:'Explore'},
+  'tabBtnApply':  {ru:'Применить', en:'Apply'},
+  'tabBtnBoost':  {ru:'Усилить', en:'Boost'},
 };
 
 const ZONE_I18N = {
